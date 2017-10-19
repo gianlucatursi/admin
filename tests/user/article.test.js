@@ -52,11 +52,18 @@
         "likes": "likes"
       });
 
-      expect(article.ds_name).toBe('Gianluca');
-      expect(article.ds_surname).toBe('Tursi');
-      expect(article.token).toBe('123');
+      expect(article._id).toBe("_id");
+      expect(article.ds_abstract).toBe("ds_abstract");
+      expect(article.ds_title).toBe("ds_title");
+      expect(article.ds_description).toBe("ds_description");
+      expect(article.dt_publication_date).toBe("dt_publication_date");
+      expect(article.id_category).toBe("id_category");
+      expect(article.id_channel).toBe("id_channel");
+      expect(article.id_city).toBe("id_city");
+      expect(article.is_deleted).toBe("is_deleted");
 
       article = new ArticleModel({});
+
       expect(article.ds_name).toBeUndefined();
       expect(article.ds_surname).toBeUndefined();
       expect(article.token).toBeUndefined();

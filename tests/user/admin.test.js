@@ -68,13 +68,31 @@
 
     });
 
+    it('should be exist with check function', function(){
+
+      var user = new AdminModel({
+        "_id" : "MYID"
+      });
+
+      expect(user.check('_id', 'MYID')).toBeDefined();
+      expect(user.check('_id', 'DIFFERENT ID')).toBeUndefined();
+
+    });
+
     it('should have channel privilege', function(){
 
       var user = new AdminModel({
-        "cd_privilege" : "CMS-ACCESS-USER"
+        "cd_privilege" : "CMS-ACCESS-CHANNEL"
       });
 
       expect(user.isAdmin).toBe(false);
+
+      user = new AdminModel({
+        "cd_privilege" : "CMS-ACCESS-ADMIN"
+      });
+
+      expect(user.isAdmin).toBe(true);
+
 
     });
 

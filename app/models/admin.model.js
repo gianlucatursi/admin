@@ -5,7 +5,7 @@
 
   var _PRIVILEGES = {
     'CMS-ACCESS-ADMIN': 0,
-    'CMS-ACCESS-USER': 1
+    'CMS-ACCESS-CHANNEL': 1
   };
 
   AdminModel.$inject = []; // 'Restangular', '$q', 'AuthServices'
@@ -29,6 +29,7 @@
     //////////////////////////////////
 
     Admin.prototype.set = _set;
+    Admin.prototype.check = _check;
 
 
     //////////////////////////////////
@@ -47,6 +48,20 @@
       angular.extend(this, uData);
     }
 
+    /**
+     * Check if exist {@code _property} with {@code value} in this instance
+     * @param _property
+     * @param value
+     * @return {*}
+     * @private
+     */
+    function _check(_property, value){
+      if(this[_property]){
+        return this[_property] == value ? this : undefined;
+      }else{
+        return undefined;
+      }
+    }
 
     /** return User ***/
     return Admin;
