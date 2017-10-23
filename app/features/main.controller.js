@@ -19,6 +19,7 @@
 
 
     function _loginEvent(data, env){
+
       if(data.error){
         $state.go($state.ROUTING.login.name);
       }else{
