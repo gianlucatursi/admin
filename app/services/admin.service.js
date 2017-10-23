@@ -50,14 +50,21 @@
      */
     function _login(username, password){
 
+      var defer = $q.defer();
+
       var hashed = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
 
-      return  Restangular
+      Restangular
         .one(API.admin.login())
         .customPOST({
-          "username":username,
-          "password":hashed
+           "username":username,
+           "password":hashed
+        })
+        .then(function(){
+          defer.resolve();
         });
+
+      return defer.promise;
     }
 
     /** return service **/

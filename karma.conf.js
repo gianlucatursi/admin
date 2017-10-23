@@ -18,6 +18,8 @@ module.exports = function(config) {
       './node_modules/angular/angular.js',                             // angular
       './node_modules/angular-ui-router/release/angular-ui-router.js', // ui-router
       './node_modules/angular-mocks/angular-mocks.js',
+      './app/libs/crypto-js/crypto-js.js',
+      './app/libs/underscore/underscore.js',
       './app/config.js',
       './app/app.js',
       './app/models/**/*.js',
