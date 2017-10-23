@@ -93,9 +93,23 @@
 
       expect(user.isAdmin).toBe(true);
 
+    });
+
+    it('should be not logged ', function(){
+
+      var user = new AdminModel({});
+      expect(_.isEmpty({})).toBe(true);
+      expect(user.isLogged()).toBe(false);
 
     });
 
+    it('should be logged', function(){
+
+      var user = new AdminModel({"test":"logged"});
+      expect(user.isLogged()).toBe(true);
+
+
+    });
 
   });
 })();

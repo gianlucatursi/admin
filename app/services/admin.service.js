@@ -86,6 +86,12 @@
     //////////////////////////////////
     /////////// PRIVATES ////////////
     //////////////////////////////////
+
+    /**
+     * Check if user is in session and try to login
+     * if not exist then send event on bus for notify all that user is not logged
+     * @private
+     */
     function _checkUser(){
       var _this = this;
       var user_login = localStorageService.get('user_login');

@@ -15,8 +15,9 @@
 
     /////////// CONSTRUCTOR ///////////
     function Admin(userData) {
+      this.logged = false;
       if (userData) {
-        userData.isWorking = false;
+        this.isWorking = false;
         this.set(userData);
         return this;
       } else {
@@ -30,6 +31,7 @@
 
     Admin.prototype.set = _set;
     Admin.prototype.check = _check;
+    Admin.prototype.isLogged = _isLogged;
 
 
     //////////////////////////////////
@@ -67,11 +69,22 @@
       }
     }
 
+    /**
+     * Return if user is logged or not
+     * @return {*}
+     * @private
+     */
+    function _isLogged(){
+
+      if(this.logged != undefined){
+        return this.logged;
+      }
+
+      return false;
+    }
+
     /** return User ***/
     return Admin;
   }
-
-
-
 
 })(window.angular);
