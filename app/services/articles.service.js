@@ -1,10 +1,10 @@
 (function (angular) {
   "use strict";
 
-  var services = angular.module('nembol.services');
+  var services = angular.module('Smart.services');
 
-  ArticleServices.$inject = ['Restangular', 'ArticleModel', 'UserModel', '$q', 'API'];
-  services.service('ArticleServices', ArticleServices);
+  ArticleService.$inject = ['Restangular', 'ArticleModel', 'UserModel', '$q', 'API'];
+  services.service('ArticleService', ArticleService);
 
   /**
    * Product manager
@@ -13,7 +13,7 @@
    * @param $q
    * @param API
    */
-  function ArticleServices(Restangular, ArticleModel, UserModel, $q, API) {
+  function ArticleService(Restangular, ArticleModel, UserModel, $q, API) {
 
     var articles = {};
     var _that = this;

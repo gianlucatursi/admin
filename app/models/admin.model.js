@@ -42,9 +42,13 @@
      * @private
      */
     function _set(uData) {
+
+      uData.logged = !_.isEmpty(uData);
+
       if('cd_privilege' in uData && uData.cd_privilege in _PRIVILEGES){
         uData.isAdmin = _PRIVILEGES[uData.cd_privilege] == 0;
       }
+
       angular.extend(this, uData);
     }
 

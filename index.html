@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" ng-app="Community">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,8 +15,18 @@
         <link href="app/assets/css/main.css" rel="stylesheet">
     </head>
 
-    <body>
+    <body ng-controller="MainController as main">
 
+        <div class="loading">
+            <img class="logo animated pulse infinite" src="./app/assets/images/logo.png" />
+        </div>
+
+        <div class="container maincontent">
+
+            <h1>LOGGED</h1>
+            <div>{{main.admin.user | json}}</div>
+        </div>
+        <!--
         <div class="container">
             <div class="header clearfix">
                 <nav>
@@ -69,22 +79,34 @@
                 <p>© Community Smart 2017</p>
             </footer>
 
-        </div> <!-- /container -->
+        </div>
+        -->
 
         <script type="text/javascript" src="app/libs/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="app/libs/angular/angular.min.js"></script>
         <script type="text/javascript" src="app/libs/underscore/underscore-min.js"></script>
         <script type="text/javascript" src="app/libs/restangular/dist/restangular.min.js"></script>
         <script type="text/javascript" src="app/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="app/libs/angular-local-storage/dist/angular-local-storage.min.js"></script>
         <script type="text/javascript" src="app/libs/crypto-js/crypto-js.js"></script>
+        <script type="text/javascript" src="app/libs/postal.js/lib/postal.min.js"></script>
 
         <!-- APP -->
         <script type="text/javascript" src="app/config.js"></script>
         <script type="text/javascript" src="app/app.js"></script>
 
-        <!-- SERVICES -->
+        <!--------- MODELS --------->
+        <script type="text/javascript" src="app/models/admin.model.js"></script>
+        <script type="text/javascript" src="app/models/article.model.js"></script>
 
+        <!-- SERVICES -->
+        <script type="text/javascript" src="app/services/bus.service.js"></script>
         <script type="text/javascript" src="app/services/api.service.js"></script>
+        <script type="text/javascript" src="app/services/admin.service.js"></script>
+        <script type="text/javascript" src="app/services/articles.service.js"></script>
+
+        <!-- FEATURES -->
+        <script type="text/javascript" src="app/features/main.controller.js"></script>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -92,6 +114,11 @@
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="app/assets/vendor/ie10-viewport-bug-workaround/ie10-viewport-bug-workaround.js"></script>
 
+        <script type="text/javascript">
+          (function(){
+            $('.maincontent').hide();
+          })();
+        </script>
 
     </body>
 

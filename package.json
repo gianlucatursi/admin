@@ -4,7 +4,8 @@
   "description": "Community Smart CMS",
   "main": "index.js",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "style": "grunt less:dev"
   },
   "author": "DigitalX",
   "license": "",

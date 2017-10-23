@@ -1,23 +1,26 @@
 (function (angular) {
   "use strict";
 
-  var services = angular.module('nembol.services');
+  var services = angular.module('Smart.services');
 
-  AdminServices.$inject = ['Restangular', 'AdminModel', '$q', 'API'];
-  services.service('ArticleServices', AdminServices);
+  AdminService.$inject = ['Restangular', 'localStorageService', 'EventBus', 'AdminModel', '$q', 'API'];
+  services.service('AdminService', AdminService);
 
   /**
    * Product manager
    * @param Restangular
+   * @param localStorageService
+   * @param EventBus
    * @param AdminModel Model
    * @param $q
    * @param API
    */
-  function AdminServices(Restangular, AdminModel, $q, API) {
+  function AdminService(Restangular, localStorageService, EventBus, AdminModel, $q, API) {
 
     var _that = this;
-    _that.current_user = new AdminModel({});
+    _that.user = new AdminModel({});
 
+    setTimeout(_checkUser.bind(_that), 300);
     //////////////////////////////////
     /////////// PROTOTYPES ///////////
     //////////////////////////////////
@@ -35,11 +38,10 @@
      * @private
      */
     function _retriveInstance(_id, data) {
-      var admin = _that.current_user['_id'] == _id ? _that.current_user['_id'] : undefined;
+      var admin = _that.user['_id'] == _id ? _that.user['_id'] : undefined;
       admin.set(data);
       return admin;
     }
-
 
     /**
      * Do A Login
@@ -50,6 +52,7 @@
      */
     function _login(username, password){
 
+      var _this = this;
       var defer = $q.defer();
 
       var hashed = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
@@ -60,11 +63,69 @@
            "username":username,
            "password":hashed
         })
-        .then(function(){
-          defer.resolve();
+        .then(function(data){
+          if(data.user){
+            _this.user.set(data.user);
+          }
+
+          if(data.token){
+            Restangular.setDefaultHeaders({'x-access-token': data.token});
+          }
+
+          localStorageService.set('user_login', {username: username, password: password});
+
+          defer.resolve(data);
+        }, function(error){
+          defer.reject(error);
         });
 
       return defer.promise;
+    }
+
+
+    //////////////////////////////////
+    /////////// PRIVATES ////////////
+    //////////////////////////////////
+    function _checkUser(){
+      var _this = this;
+      var user_login = localStorageService.get('user_login');
+      if(user_login && user_login['username'] && user_login['password']){
+
+        _this
+          .login(user_login.username, user_login.password)
+          .then(function(data){
+
+            EventBus.publish({
+              channel: EventBus.MESSAGES.AUTH.CHANNEL,
+              topic: EventBus.MESSAGES.AUTH.TOPICS.USER.LOGIN,
+              data: {
+                token: data.token,
+                error: null
+              }
+            });
+
+          }, function(error){
+
+            EventBus.publish({
+              channel: EventBus.MESSAGES.AUTH.CHANNEL,
+              topic: EventBus.MESSAGES.AUTH.TOPICS.USER.LOGIN,
+              data: {
+                token: null,
+                error: error
+              }
+            });
+
+          });
+      }else{
+        EventBus.publish({
+          channel: EventBus.MESSAGES.AUTH.CHANNEL,
+          topic: EventBus.MESSAGES.AUTH.TOPICS.USER.LOGIN,
+          data: {
+            token: null,
+            error: new Error('User not available')
+          }
+        });
+      }
     }
 
     /** return service **/
