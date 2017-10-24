@@ -26,12 +26,13 @@
 
                         <div class="form-group">
                             <label>COMMUNITY</label>
-                            <ui-select class="community-ui-select" ng-model="chooseCity.selected">
-                                <ui-select-match>
-                                    <span ng-bind="chooseCity.selected"></span>
+                            <ui-select class="community-ui-select" ng-model="chooseCity.city_selected">
+                                <ui-select-match placeholder="Seleziona...">
+                                    <span ng-if="!!chooseCity.city_selected.ds_name" ng-bind="chooseCity.city_selected.ds_name"></span>
+                                    <span ng-if="!chooseCity.city_selected.ds_name">Seleziona..</span>
                                 </ui-select-match>
-                                <ui-select-choices repeat="item in ['Maschio','Femmina'] | filter: $select.search track by $index">
-                                    <span ng-bind="item"></span>
+                                <ui-select-choices repeat="city in chooseCity.user.cities | filter: $select.search track by $index">
+                                    <span ng-bind="city.ds_name"></span>
                                 </ui-select-choices>
                             </ui-select>
                         </div>
@@ -40,12 +41,12 @@
                 <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
             </div>
 
-            <div class="row no-padding">
+            <div class="row no-padding" style="margin-top:10px;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
                     <div class="row no-padding">
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margin-top-10px"></div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <button ng-click="loginCtr.login()" class="btn btn-green pull-right" ladda="loginCtr.userdata.isWorking()">ACCEDI</button>
+                            <button ng-click="chooseCity.selectCity()" class="btn btn-green pull-right" ladda="loginCtr.userdata.isWorking()">ACCEDI</button>
                         </div>
                     </div>
                 </div>

@@ -59,11 +59,11 @@
 
     /**
      * Select a city
-     * @param _id_city
+     * @param _city
      * @private
      */
-    function _chooseCity(_id_city){
-      this.set({ city_selected: _id_city });
+    function _chooseCity(_city){
+      this.set({ city_selected: _city });
     }
 
     /**

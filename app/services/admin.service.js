@@ -87,26 +87,29 @@
           _that.user.set(data.user);
           Restangular.setDefaultHeaders({'x-access-token': data.token});
 
-          if(_that.user.isRedazione()){
-            _getCity()
-              .then(function(result){
+          _getCity()
+            .then(function(result){
+
+              if(_that.user.isRedazione()){
+                _that.user.set({cities : result});
+
                 if(result.length == 1){
-                  _this.user.choose_city(result[0]._id);
+                  _this.user.choose_city(result[0]);
                 }
 
-                _that.user.set({cities : result});
                 _that.options.isWorking = false;
 
                 defer.resolve(data);
 
-              }, function(error){
-                _that.options.isWorking = false;
-                defer.reject(error);
-              });
-          }else{
-            _this.user.choose_city(_this.user.id_city);
-            defer.resolve(data);
-          }
+              }else{
+                _this.user.choose_city(_(result).find({_id: _this.user.id_city}));
+                defer.resolve(data);
+              }
+
+            }, function(error){
+              _that.options.isWorking = false;
+              defer.reject(error);
+            });
 
           localStorageService.set('user_login', {username: username, password: password});
 
