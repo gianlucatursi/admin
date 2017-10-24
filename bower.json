@@ -16,28 +16,24 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "angular": "^1.6.6",
+    "angular": "1.6.6",
     "restangular": "^1.6.1",
     "angular-bootstrap": "^2.5.0",
     "angular-animate": "^1.6.4",
     "angular-ui-router": "^1.0.3",
     "angular-ladda": "^0.4.3",
-    "angular-loading-bar": "^0.9.0",
     "underscore": "^1.8.3",
     "animate.css": "^3.5.2",
     "angular-sanitize": "^1.6.4",
     "angular-ui-select": "^0.19.8",
     "angular-bind-html-compile": "^1.3.0",
     "angular-bootstrap-file-field": "^0.1.3",
-    "moment": "^2.18.1",
     "angular-cookies": "^1.6.4",
-    "angularjs-datepicker": "^2.1.23",
-    "angular-moment": "^1.0.1",
-    "angular-i18n": "^1.6.4",
-    "angular-tawk-to": "^0.0.2",
-    "angularjs-google-maps": "^0.5.0",
     "crypto-js": "^3.1.9",
     "angular-local-storage": "^0.7.1",
     "postal.js": "^2.0.4"
+  },
+  "resolutions": {
+    "angular": "1.6.6"
   }
 }
