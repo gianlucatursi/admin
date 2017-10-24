@@ -18,6 +18,12 @@
     });
 
 
+    /**
+     * Login callback
+     * @param data
+     * @param env
+     * @private
+     */
     function _loginEvent(data, env){
 
       if(data.error){

@@ -1,16 +1,60 @@
-<div id="login" class="row">
+<div id="login" class="row" ng-controller="LoginController as loginCtr">
     <div class="col-sm-1 col-md-2 col-lg-2"></div>
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
         <div class="login_form">
-            <div style="position: absolute; padding-top: 30px;left: 60px;">
-                <img src="app/assets/images/logo.png">
-            </div>
 
             <div class="row" id="logintitle">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <p class="text-center bold font-title">COMMUNITY <span class="color-smart bold">SMART</span></p>
+                <div class="col-sm-12 col-md-12 col-lg-12 hidden-xs" style="margin-left:-50px">
+                    <img src="app/assets/images/logo_h.png">
+                </div>
+                <div class="col-xs-12 hidden-md hidden-sm hidden-lg">
+                    <img src="app/assets/images/logo.png" style="display: block; margin-left:auto;margin-right: auto;">
                 </div>
             </div>
+
+            <div class="row no-padding">
+                <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
+                    <form class="communityform">
+                        <p class="titleform">LOGIN</p>
+                        <div ng-if="!loginCtr.userdata.invalid" class="space-15"></div>
+
+                        <div class="box-login-invalid" ng-if="loginCtr.userdata.invalid">
+                            <p>Dati di accesso errati, riprova.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label ng-class="{'label-invalid': loginCtr.userdata.invalid}">INDIRIZZO E-MAIL</label>
+                            <input ng-model="loginCtr.userdata.email" type="email" class="form-control community-control">
+                            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                        </div>
+                        <div class="form-group">
+                            <label ng-class="{'label-invalid': loginCtr.userdata.invalid}">PASSWORD</label>
+                            <input ng-model="loginCtr.userdata.password" type="password" class="form-control community-control">
+                        </div>
+                    </form>
+                </div>
+                <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+            </div>
+
+            <div ng-if="!loginCtr.userdata.invalid">
+                <br />
+            </div>
+
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
+                    <div class="row no-padding">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margin-top-10px">
+                            <a class="community_link">RECUPERA PASSWORD</a>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <button ng-click="loginCtr.login()" class="btn btn-green pull-right" ladda="loginCtr.userdata.isWorking()">ACCEDI</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
     <div class="col-sm-1 col-md-2 col-lg-2"></div>

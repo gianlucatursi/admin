@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var required = ['LocalStorageModule', 'restangular', 'ui.router','Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives'];
+  var required = ['angular-ladda', 'LocalStorageModule', 'restangular', 'ui.router','Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives'];
 
   var app = angular.module('Community', required);
 
@@ -58,5 +58,13 @@
     }
 
   });
+
+  app.config(function (laddaProvider) {
+    laddaProvider.setOption({ /* optional */
+      style: 'zoom-in',
+      spinnerSize: 35,
+      spinnerColor: '#ffffff'
+    });
+  })
 
 })();

@@ -7,6 +7,7 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: @white;
+  font-family: Roboto;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -108,13 +109,13 @@ body {
 
     margin-top:25%;
     width: 100%;
-    height: 50vh;
+    height: 442px;
 
     border: 2px solid @light-grey;
     border-radius: 20px;
     margin-left:auto;
     margin-right:auto;
-    max-width: 490px;
+    max-width: 500px;
   }
 
   #logintitle{
@@ -124,5 +125,116 @@ body {
   .font-title{
     color: @grey;
     font-size: 28pt;
+  }
+}
+.no-padding{
+  padding: 0 !important;
+}
+.space-15{
+  height: 15px;
+}
+/***** form ******/
+form.communityform {
+  .titleform {
+    color: @mid-grey!important;
+    font-family: RobotoBold;
+  }
+
+  .form-group{
+
+    label{
+      color: @grey;
+      font-family: RobotoLight;
+      font-size: 12px;
+    }
+
+    label.label-invalid{
+      color: @red;
+    }
+  }
+
+  .community-control{
+    border: none;
+    border-bottom: 2px solid @light-grey;
+    box-shadow: none;
+    border-radius: 0;
+    padding-left: 0;
+
+    pointer-events: auto;
+
+    &:hover {
+      color: #777;
+      color: rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+  }
+}
+
+.box-login-invalid{
+  border: 1px solid @smart;
+  background-color: @light-red;
+  margin-bottom: 10px;
+
+  height: 40px;
+
+  p {
+    vertical-align: middle;
+    color: @smart;
+    margin-top: 8px;
+    padding-left: 10px;
+  }
+}
+
+.margin-top-10px{
+  margin-top: 10px;
+}
+.padding-15per{
+  padding-left: 15%;
+  padding-right: 15%
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn.focus:active,
+.btn:active:focus {
+  border: none !important;
+  outline: none;
+  outline-offset: -2px;
+  background-image: none;
+  color: white;
+}
+
+.btn:focus {
+  border: none !important;
+  outline: none;
+  outline-offset: -2px;
+  background-image: none;
+  color: white;
+  opacity:0.8;
+}
+
+.btn-green{
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: @green;
+  color: white;
+  font-size: 14px;
+  padding: 10px 25px;
+
+  &:hover, &:focus, &:active{
+    color: white;
+  }
+}
+
+.community_link{
+
+  color: @mid-grey;
+  font-family: RobotoBold;
+  cursor: pointer;
+
+  &:hover, &:active, &:focus{
+    color: @mid-grey;
+    text-decoration: none;
   }
 }

@@ -18,6 +18,10 @@
   function AdminService(Restangular, localStorageService, EventBus, AdminModel, $q, API) {
 
     var _that = this;
+    _that.options = {
+      isWorking: false
+    };
+
     _that.user = new AdminModel({});
 
     setTimeout(_checkUser.bind(_that), 300);
@@ -26,6 +30,7 @@
     //////////////////////////////////
 
     _that.retriveInstance = _retriveInstance;
+    _that.isWorking = _isWorking;
     _that.login = _login;
 
     //////////////////////////////////
@@ -43,6 +48,10 @@
       return admin;
     }
 
+    function _isWorking(){
+      return _that.options.isWorking;
+    }
+
     /**
      * Do A Login
      * @param username
@@ -55,6 +64,8 @@
       var _this = this;
       var defer = $q.defer();
 
+      _that.options.isWorking = true;
+
       var hashed = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
 
       Restangular
@@ -64,6 +75,8 @@
            "password":hashed
         })
         .then(function(data){
+          _that.options.isWorking = false;
+
           if(data.user){
             _this.user.set(data.user);
           }
@@ -76,6 +89,7 @@
 
           defer.resolve(data);
         }, function(error){
+          _that.options.isWorking = false;
           defer.reject(error);
         });
 

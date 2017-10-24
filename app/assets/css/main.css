@@ -2975,11 +2975,82 @@
 .ion-xbox:before {
   content: "\f30c";
 }
+/** Light **/
+@font-face {
+  font-family: 'RobotoSlabRegular';
+  src: url("../fonts/Roboto_Slab/RobotoSlab-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'RobotoSlabLight';
+  src: url("../fonts/Roboto_Slab/RobotoSlab-Light.ttf") format("truetype");
+  font-style: italic, oblique;
+}
+@font-face {
+  font-family: 'RobotoSlabThin';
+  src: url("../fonts/Roboto_Slab/RobotoSlab-Thin.ttf") format("truetype");
+}
+/** Regular Italic**/
+@font-face {
+  font-family: 'RobotoSlabBold';
+  src: url("../fonts/Roboto_Slab/RobotoSlab-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+/** Light **/
+@font-face {
+  font-family: 'RobotoLight';
+  src: url("../fonts/Roboto/Roboto-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'RobotoLightItalic';
+  src: url("../fonts/Roboto/Roboto-LightItalic.ttf") format("truetype");
+  font-style: italic, oblique;
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("../fonts/Roboto/Roboto-Black.ttf") format("truetype");
+  font-weight: 500;
+}
+/** Regular Italic**/
+@font-face {
+  font-family: 'RobotoItalic';
+  src: url("../fonts/Roboto/Roboto-BlackItalic.ttf") format("truetype");
+  font-style: italic, oblique;
+  font-weight: 500;
+}
+/** Medium **/
+@font-face {
+  font-family: 'RobotoMedium';
+  src: url("../fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+  font-weight: 600;
+}
+/** Medium Italic **/
+@font-face {
+  font-family: 'RobotoMediumItalic';
+  src: url("../fonts/Roboto/Roboto-MediumItalic.ttf") format("truetype");
+  font-style: italic, oblique;
+  font-weight: 600;
+}
+/** Bold **/
+@font-face {
+  font-family: 'RobotoBold';
+  src: url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+/** Bold Italic**/
+@font-face {
+  font-family: 'RobotoBoldItalic';
+  src: url("../fonts/Roboto/Roboto-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic, oblique;
+}
 /* Space out content a bit */
 body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: white;
+  font-family: Roboto;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -3064,12 +3135,12 @@ body {
 #login .login_form {
   margin-top: 25%;
   width: 100%;
-  height: 50vh;
+  height: 442px;
   border: 2px solid #E5E5E5;
   border-radius: 20px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 490px;
+  max-width: 500px;
 }
 #login #logintitle {
   padding-top: 50px;
@@ -3077,4 +3148,98 @@ body {
 #login .font-title {
   color: #808080;
   font-size: 28pt;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.space-15 {
+  height: 15px;
+}
+/***** form ******/
+form.communityform .titleform {
+  color: #939393 !important;
+  font-family: RobotoBold;
+}
+form.communityform .form-group label {
+  color: #808080;
+  font-family: RobotoLight;
+  font-size: 12px;
+}
+form.communityform .form-group label.label-invalid {
+  color: #D93E5F;
+}
+form.communityform .community-control {
+  border: none;
+  border-bottom: 2px solid #E5E5E5;
+  box-shadow: none;
+  border-radius: 0;
+  padding-left: 0;
+  pointer-events: auto;
+}
+form.communityform .community-control:hover {
+  color: #777;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+.box-login-invalid {
+  border: 1px solid #D93E5F;
+  background-color: #FDE9EA;
+  margin-bottom: 10px;
+  height: 40px;
+}
+.box-login-invalid p {
+  vertical-align: middle;
+  color: #D93E5F;
+  margin-top: 8px;
+  padding-left: 10px;
+}
+.margin-top-10px {
+  margin-top: 10px;
+}
+.padding-15per {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn.focus:active,
+.btn:active:focus {
+  border: none !important;
+  outline: none;
+  outline-offset: -2px;
+  background-image: none;
+  color: white;
+}
+.btn:focus {
+  border: none !important;
+  outline: none;
+  outline-offset: -2px;
+  background-image: none;
+  color: white;
+  opacity: 0.8;
+}
+.btn-green {
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: #24C40D;
+  color: white;
+  font-size: 14px;
+  padding: 10px 25px;
+}
+.btn-green:hover,
+.btn-green:focus,
+.btn-green:active {
+  color: white;
+}
+.community_link {
+  color: #939393;
+  font-family: RobotoBold;
+  cursor: pointer;
+}
+.community_link:hover,
+.community_link:active,
+.community_link:focus {
+  color: #939393;
+  text-decoration: none;
 }
