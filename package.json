@@ -4,6 +4,7 @@
   "description": "Community Smart CMS",
   "main": "index.js",
   "scripts": {
+    "postpublish": "npm install && bower install",
     "test": "karma start",
     "style": "grunt less:dev"
   },
