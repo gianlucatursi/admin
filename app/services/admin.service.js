@@ -30,6 +30,7 @@
     //////////////////////////////////
 
     _that.retriveInstance = _retriveInstance;
+    _that.cities = _getCity;
     _that.isWorking = _isWorking;
     _that.login = _login;
 
@@ -48,6 +49,11 @@
       return admin;
     }
 
+    /**
+     * Get if is working
+     * @return {boolean}
+     * @private
+     */
     function _isWorking(){
       return _that.options.isWorking;
     }
@@ -61,7 +67,7 @@
      */
     function _login(username, password){
 
-      var _this = this;
+      var _this = _that;
       var defer = $q.defer();
 
       _that.options.isWorking = true;
@@ -75,19 +81,35 @@
            "password":hashed
         })
         .then(function(data){
+
           _that.options.isWorking = false;
 
-          if(data.user){
-            _this.user.set(data.user);
-          }
+          _that.user.set(data.user);
+          Restangular.setDefaultHeaders({'x-access-token': data.token});
 
-          if(data.token){
-            Restangular.setDefaultHeaders({'x-access-token': data.token});
+          if(_that.user.isRedazione()){
+            _getCity()
+              .then(function(result){
+                if(result.length == 1){
+                  _this.user.choose_city(result[0]._id);
+                }
+
+                _that.user.set({cities : result});
+                _that.options.isWorking = false;
+
+                defer.resolve(data);
+
+              }, function(error){
+                _that.options.isWorking = false;
+                defer.reject(error);
+              });
+          }else{
+            _this.user.choose_city(_this.user.id_city);
+            defer.resolve(data);
           }
 
           localStorageService.set('user_login', {username: username, password: password});
 
-          defer.resolve(data);
         }, function(error){
           _that.options.isWorking = false;
           defer.reject(error);
@@ -146,6 +168,18 @@
           }
         });
       }
+    }
+
+    /**
+     * Get city list
+     * @private
+     */
+    function _getCity(){
+
+      return Restangular
+        .one(API.city())
+        .get();
+
     }
 
     /** return service **/

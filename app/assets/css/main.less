@@ -2,12 +2,14 @@
 @import "ionicicons";
 @import "fonts";
 
+*{
+  font-family: Roboto;
+}
 /* Space out content a bit */
 body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: @white;
-  font-family: Roboto;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -103,8 +105,12 @@ body {
 
 // login view
 
-#login{
+#login, #choose_city{
 
+  .subtitle{
+    font-family: Roboto;
+    color: @grey;
+  }
   .login_form{
 
     margin-top:25%;
@@ -237,4 +243,64 @@ form.communityform {
     color: @mid-grey;
     text-decoration: none;
   }
+}
+
+.form-control:focus {
+  outline: 0 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+input, textarea {
+  outline: none;
+  box-shadow:none !important;
+}
+
+.ui-select-bootstrap .ui-select-choices-row>span:hover, .ui-select-bootstrap .ui-select-choices-row>span:focus {
+  text-decoration: none;
+  color: black;
+  background-color: @light-grey;
+}
+
+.community-ui-select{
+
+  .ui-select-match-text{
+    padding-left: 10px;
+  }
+  .ui-select-toggle{
+    border: none;
+    border-bottom: 2px solid @light-grey;
+    box-shadow: none;
+    border-radius: 0;
+    padding-left: 0;
+
+    pointer-events: auto;
+
+    &:hover {
+      color: #777;
+      color: rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+  }
+  .ui-select-search {
+    outline: 0;
+    box-shadow: none;
+    border: none !important;
+    outline: none;
+    outline-offset: -2px;
+    background-image: none;
+
+    &:hover {
+      color: #777;
+      color: rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+
+    &:focus, &:active{
+      outline: 0 !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+    }
+  }
+
 }

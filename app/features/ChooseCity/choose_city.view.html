@@ -1,0 +1,58 @@
+<div id="choose_city" class="row" ng-controller="ChooseCityController as chooseCity">
+    <div class="col-sm-1 col-md-2 col-lg-2"></div>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
+        <div class="login_form">
+
+            <div class="row" id="logintitle">
+                <div class="col-sm-12 col-md-12 col-lg-12 hidden-xs" style="margin-left:-50px">
+                    <img src="app/assets/images/logo_h.png">
+                </div>
+                <div class="col-xs-12 hidden-md hidden-sm hidden-lg">
+                    <img src="app/assets/images/logo.png" style="display: block; margin-left:auto;margin-right: auto;">
+                </div>
+            </div>
+
+            <div class="row no-padding">
+                <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
+                    <form class="communityform">
+                        <p class="titleform">LOGIN</p>
+                        <div class="space-15"></div>
+                        <p class="subtitle">Il tuo account risulta collegato a più Community, seleziona quella cui vuoi accedere.</p>
+
+                        <br />
+                        <br />
+
+
+                        <div class="form-group">
+                            <label>COMMUNITY</label>
+                            <ui-select class="community-ui-select" ng-model="chooseCity.selected">
+                                <ui-select-match>
+                                    <span ng-bind="chooseCity.selected"></span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in ['Maschio','Femmina'] | filter: $select.search track by $index">
+                                    <span ng-bind="item"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </form>
+                </div>
+                <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+            </div>
+
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
+                    <div class="row no-padding">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margin-top-10px"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <button ng-click="loginCtr.login()" class="btn btn-green pull-right" ladda="loginCtr.userdata.isWorking()">ACCEDI</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-1 col-md-2 col-lg-2"></div>
+</div>

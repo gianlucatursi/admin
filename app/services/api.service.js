@@ -17,7 +17,9 @@
       articles: {
         get: _customRequest.bind(null, 'article'),
         byId: _customRequest.bind(null, 'article/:id'),
-      }
+      },
+      /************ CITY **************/
+      city: _customRequest.bind(null, 'city')
     };
 
     function _customRequest(url, to_replace) {

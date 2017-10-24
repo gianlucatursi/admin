@@ -10,11 +10,22 @@
         <!-- Bootstrap core CSS -->
         <link href="app/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="app/libs/ladda/dist/ladda-themeless.min.css">
+        <link rel="stylesheet" href="app/libs/angular-ui-select/dist/select.min.css">
 
         <link href="app/libs/animate.css/animate.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
         <link href="app/assets/css/main.css" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+        <script>
+            document.createElement('ui-select');
+            document.createElement('ui-select-match');
+            document.createElement('ui-select-choices');
+        </script>
+        <![endif]-->
     </head>
 
     <body ng-controller="MainController as main">
@@ -98,6 +109,8 @@
         <script type="text/javascript" src="app/libs/angular-local-storage/dist/angular-local-storage.min.js"></script>
         <script type="text/javascript" src="app/libs/crypto-js/crypto-js.js"></script>
         <script type="text/javascript" src="app/libs/postal.js/lib/postal.min.js"></script>
+        <script type="text/javascript" src="app/libs/angular-sanitize/angular-sanitize.min.js"></script>
+        <script type="text/javascript" src="app/libs/angular-ui-select/dist/select.min.js"></script>
         <script type="text/javascript" src="app/libs/ladda/dist/spin.min.js"></script>
         <script type="text/javascript" src="app/libs/ladda/dist/ladda.min.js"></script>
         <script type="text/javascript" src="app/libs/angular-ladda/dist/angular-ladda.min.js"></script>
@@ -119,6 +132,7 @@
         <!-- FEATURES -->
         <script type="text/javascript" src="app/features/main.controller.js"></script>
         <script type="text/javascript" src="app/features/Login/login.controller.js"></script>
+        <script type="text/javascript" src="app/features/ChooseCity/choose_city.controller.js"></script>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->

@@ -19,12 +19,21 @@
     _this.login = _login;
 
 
+    /**
+     * Login method
+     * @private
+     */
     function _login(){
 
       AdminService
         .login(_this.userdata.email, _this.userdata.password)
         .then(function(success){
-          alert('success: ' + JSON.stringify(AdminService.user));
+          if(AdminService.user.city_selected()){
+            $state.go($state.ROUTING.home.name);
+          }else{
+            $state.go($state.ROUTING.choose_city.name);
+          }
+
         }, function (error){
           _this.userdata.invalid = true;
         });

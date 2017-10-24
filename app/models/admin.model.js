@@ -30,8 +30,11 @@
     //////////////////////////////////
 
     Admin.prototype.set = _set;
+    Admin.prototype.choose_city = _chooseCity;
+    Admin.prototype.city_selected = _citySelected;
     Admin.prototype.check = _check;
     Admin.prototype.isLogged = _isLogged;
+    Admin.prototype.isRedazione = _isRedazione;
 
 
     //////////////////////////////////
@@ -52,6 +55,28 @@
       }
 
       angular.extend(this, uData);
+    }
+
+    /**
+     * Select a city
+     * @param _id_city
+     * @private
+     */
+    function _chooseCity(_id_city){
+      this.set({ city_selected: _id_city });
+    }
+
+    /**
+     * Get city selected
+     * @return {*}
+     * @private
+     */
+    function _citySelected(){
+      if(this.city_selected != undefined){
+        return this.city_selected;
+      }
+
+      return undefined;
     }
 
     /**
@@ -83,6 +108,13 @@
       return false;
     }
 
+    function _isRedazione(){
+      if(this.isAdmin != undefined){
+        return this.isAdmin;
+      }
+
+      return false;
+    }
     /** return User ***/
     return Admin;
   }
