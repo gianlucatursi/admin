@@ -31,7 +31,7 @@
 
     Admin.prototype.set = _set;
     Admin.prototype.choose_city = _chooseCity;
-    Admin.prototype.city_selected = _citySelected;
+    Admin.prototype.citySelected = _citySelected;
     Admin.prototype.check = _check;
     Admin.prototype.isLogged = _isLogged;
     Admin.prototype.isRedazione = _isRedazione;

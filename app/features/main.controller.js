@@ -29,7 +29,7 @@
       if(data.error){
         $state.go($state.ROUTING.login.name);
       }else{
-        if(AdminService.user.city_selected()){
+        if(AdminService.user.citySelected()){
           $state.go($state.ROUTING.home.name);
         }else{
           $state.go($state.ROUTING.choose_city.name);

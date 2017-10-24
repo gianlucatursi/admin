@@ -28,7 +28,8 @@
       AdminService
         .login(_this.userdata.email, _this.userdata.password)
         .then(function(success){
-          if(AdminService.user.city_selected()){
+
+          if(AdminService.user.citySelected()){
             $state.go($state.ROUTING.home.name);
           }else{
             $state.go($state.ROUTING.choose_city.name);
