@@ -2,6 +2,9 @@
 .color-grey {
   color: #808080;
 }
+.color-mid-grey {
+  color: #939393;
+}
 .color-smart {
   color: #D93E5F;
 }
@@ -3119,6 +3122,9 @@ body {
 .font-light {
   font-family: RobotoLight;
 }
+.font-bold {
+  font-family: RobotoBold;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 48em) {
   /* Remove the padding we set earlier */
@@ -3347,7 +3353,7 @@ textarea {
 }
 /*** HOME **/
 #home .navbar_page_title {
-  color: #808080;
+  color: #939393;
   font-family: Roboto;
   font-size: 14px;
 }
@@ -3358,4 +3364,7 @@ textarea {
 }
 #home .height-30px {
   height: 30px;
+}
+#container_view > div:first-child {
+  margin-top: 40px;
 }

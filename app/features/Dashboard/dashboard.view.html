@@ -1,8 +1,9 @@
-<div id="dashboard">
+<div id="dashboard" ng-controller="DashboardController as dash">
 
     <!-- NAV BAR -->
     <div class="row">
-        <p class="font-bold font-medium"></p>
+        <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{dash.current_state.title | uppercase}}</p>
+        <p class="font-bold font-medium" style="color: {{dash.city.assets_color}}">{{dash.city.ds_name | uppercase}} SMART</p>
     </div>
 
     <!------------- body content ---------->
