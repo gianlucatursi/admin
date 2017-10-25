@@ -12,6 +12,16 @@
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
+    /*
+    Event
+    EventBus.subscribe({
+      channel: EventBus.MESSAGES.ROUTING.CHANNEL,
+      topic: 'home.contenuti',
+      callback: function (){
+        alert('Home contenuti appear');
+     }
+    });
+    */
 
   }
 

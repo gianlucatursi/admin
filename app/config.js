@@ -6,64 +6,88 @@
   angular.module('Smart.models', []);
   angular.module('Smart.directives', []);
   angular.module('Smart.routing', [])
-    .constant('ROUTING', {
+    .constant('ROUTING', _initRouting());
 
+  /**
+   * Initialize routing
+   * @private
+   */
+  function _initRouting(){
+    var __ROUTING = {
       login: {
         title: 'Login',
-        name: 'login',
-        url: '/login',
-        templateUrl: 'app/features/Login/login.view.html'
+          name: 'login',
+          url: '/login',
+          templateUrl: 'app/features/Login/login.view.html'
       },
       choose_city:{
         title: 'Choose City',
-        name: 'choose_city',
-        url: '/choose_city',
-        templateUrl: 'app/features/ChooseCity/choose_city.view.html'
+          name: 'choose_city',
+          url: '/choose_city',
+          templateUrl: 'app/features/ChooseCity/choose_city.view.html'
       },
       home: {
         title: 'Home',
-        name: 'home',
-        url: '/home',
-        abstract: true,
-        templateUrl: 'app/features/Home/home.view.html'
+          name: 'home',
+          url: '/home',
+          abstract: true,
+          templateUrl: 'app/features/Home/home.view.html'
       },
       home_dashboard: {
         title: 'Dashboard',
-        name: 'home.dashboard',
-        url: '/dashboard',
-        templateUrl: 'app/features/Dashboard/dashboard.view.html'
+          name: 'home.dashboard',
+          url: '/dashboard',
+          templateUrl: 'app/features/Dashboard/dashboard.view.html'
       },
       canali:{
         title: 'Gestisci Canali',
-        name: 'home.canali',
-        url: '/canali',
-        templateUrl: 'app/features/Canali/canali.view.html'
+          name: 'home.canali',
+          url: '/canali',
+          templateUrl: 'app/features/Canali/canali.view.html'
       },
       media:{
         title: 'Media',
-        name: 'home.media',
-        url: '/media',
-        templateUrl: 'app/features/Media/media.view.html'
+          name: 'home.media',
+          url: '/media',
+          templateUrl: 'app/features/Media/media.view.html'
       },
       iscritti:{
         title: 'Gestisci Iscritti',
-        name: 'home.iscritti',
-        url: '/iscritti',
-        templateUrl: 'app/features/Iscritti/iscritti.view.html'
+          name: 'home.iscritti',
+          url: '/iscritti',
+          templateUrl: 'app/features/Iscritti/iscritti.view.html'
       },
       edizioni:{
         title: 'Gestisci Edizioni',
-        name: 'home.edizioni',
-        url: '/edizioni',
-        templateUrl: 'app/features/Edizioni/edizioni.view.html'
+          name: 'home.edizioni',
+          url: '/edizioni',
+          templateUrl: 'app/features/Edizioni/edizioni.view.html'
       },
       contenuti:{
         title: 'Tutti i post',
-        name: 'home.contenuti',
-        url: '/contenuti',
-        templateUrl: 'app/features/Contenuti/contenuti.view.html'
+          name: 'home.contenuti',
+          url: '/contenuti',
+          templateUrl: 'app/features/Contenuti/contenuti.view.html'
       }
 
-  });
+    };
+
+    _.each(__ROUTING, function(value, key){
+      __ROUTING[key]['resolve'] = {
+        event: (function(){
+          postal.publish({
+            channel: '$routing',
+            topic: value.name,
+            data: {
+              state: value,
+              error: null
+            }
+          });
+        })
+      }
+    });
+
+    return __ROUTING;
+  };
 
 })(window.angular);

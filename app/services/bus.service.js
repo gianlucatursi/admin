@@ -12,6 +12,9 @@
           LOGIN: 'user.login'
         }
       }
+    },
+    ROUTING:{
+      CHANNEL: '$routing'
     }
 
   };
