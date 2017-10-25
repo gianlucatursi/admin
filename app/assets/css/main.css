@@ -3049,6 +3049,13 @@
   font-style: italic, oblique;
 }
 /* CSS */
+/**
+HOW TO USE
+<span class="lsf">flickr</span>
+
+http://kudakurage.com/ligature_symbols/
+
+ */
 @font-face {
   font-family: 'LigatureSymbols';
   src: url('../fonts/LigatureSymbols/LigatureSymbols-2.11.eot');
@@ -3398,4 +3405,7 @@ textarea {
 }
 #container_view > div:first-child {
   margin-top: 40px;
+}
+#container_view .page_content {
+  margin-top: 5px;
 }

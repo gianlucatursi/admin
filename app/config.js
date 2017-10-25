@@ -32,6 +32,36 @@
         name: 'home.dashboard',
         url: '/dashboard',
         templateUrl: 'app/features/Dashboard/dashboard.view.html'
+      },
+      canali:{
+        title: 'Gestisci Canali',
+        name: 'home.canali',
+        url: '/canali',
+        templateUrl: 'app/features/Canali/canali.view.html'
+      },
+      media:{
+        title: 'Media',
+        name: 'home.media',
+        url: '/media',
+        templateUrl: 'app/features/Media/media.view.html'
+      },
+      iscritti:{
+        title: 'Gestisci Iscritti',
+        name: 'home.iscritti',
+        url: '/iscritti',
+        templateUrl: 'app/features/Iscritti/iscritti.view.html'
+      },
+      edizioni:{
+        title: 'Gestisci Edizioni',
+        name: 'home.edizioni',
+        url: '/edizioni',
+        templateUrl: 'app/features/Edizioni/edizioni.view.html'
+      },
+      contenuti:{
+        title: 'Tutti i post',
+        name: 'home.contenuti',
+        url: '/contenuti',
+        templateUrl: 'app/features/Contenuti/contenuti.view.html'
       }
 
   });
