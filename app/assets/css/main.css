@@ -3104,6 +3104,21 @@ body {
 .marketing p + h4 {
   margin-top: 1.5rem;
 }
+.font-small {
+  font-size: 12px;
+}
+.font-normal {
+  font-size: 14px;
+}
+.font-medium {
+  font-size: 16px;
+}
+.font-large {
+  font-size: 18px;
+}
+.font-light {
+  font-family: RobotoLight;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 48em) {
   /* Remove the padding we set earlier */
