@@ -3261,13 +3261,13 @@ form.communityform .community-control:hover {
   color: white;
 }
 .btn-new {
-  font-family: RobotoMedium !important;
+  font-family: RobotoBold !important;
   font-weight: 500;
   background-color: white;
   border: 1px solid #24C40D;
   border-radius: 5px;
   color: #24C40D;
-  font-size: 14px;
+  font-size: 16px;
   padding: 10px 15px;
 }
 .btn-new:hover,
@@ -3347,4 +3347,12 @@ textarea {
   color: #808080;
   font-family: Roboto;
   font-size: 14px;
+}
+#home .menu_link {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+}
+#home .height-30px {
+  height: 30px;
 }
