@@ -3207,6 +3207,9 @@ form.communityform .community-control:hover {
   color: rgba(0, 0, 0, 0.7);
   cursor: pointer;
 }
+.pointer {
+  cursor: pointer;
+}
 .box-login-invalid {
   border: 1px solid #D93E5F;
   background-color: #FDE9EA;
