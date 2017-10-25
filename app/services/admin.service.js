@@ -30,7 +30,6 @@
       if (_that.user.isLogged()) {
         return true;
       } else {
-        alert('not logged');
         $state.go($state.ROUTING.login.name);
         return false;
       }

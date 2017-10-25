@@ -205,11 +205,14 @@ form.communityform {
 .btn.focus,
 .btn.focus:active,
 .btn:active:focus {
-  border: none !important;
+  //border: none !important;
   outline: none;
   outline-offset: -2px;
+  box-shadow: none;
+  /*
   background-image: none;
   color: white;
+  */
 }
 
 .btn:focus {
@@ -233,6 +236,24 @@ form.communityform {
     color: white;
   }
 }
+
+.btn-new{
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: @white;
+  border: 1px solid @green;
+  border-radius: 5px;
+  color: @green;
+  font-size: 14px;
+  padding: 10px 15px;
+
+  &:hover, &:focus, &:active{
+    border: 1px solid @green;
+    border-radius: 5px;
+    color: @green;
+  }
+}
+
 
 .community_link{
 
@@ -304,4 +325,17 @@ input, textarea {
     }
   }
 
+}
+
+.padding-left-20px{
+  padding-left: 20px;
+}
+
+/*** HOME **/
+#home {
+  .navbar_page_title{
+    color: @grey;
+    font-family: Roboto;
+    font-size: 14px;
+  }
 }

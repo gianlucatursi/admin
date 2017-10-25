@@ -10,6 +10,7 @@
 
     var _this = this;
     _this.user = AdminService.user;
+    _this.current_state = $state.current;
 
   }
 

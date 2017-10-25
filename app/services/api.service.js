@@ -11,7 +11,7 @@
     return {
       /************ LOGIN **************/
       admin: {
-        login: _customRequest.bind(null, 'admin/auth')
+        login: _customRequest.bind(null, '/auth')
       },
       /************ ARTICLE **************/
       articles: {

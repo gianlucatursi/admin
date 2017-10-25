@@ -3053,7 +3053,7 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: white;
-  min-width: 600px;
+  min-width: 800px !important;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -3216,11 +3216,13 @@ form.communityform .community-control:hover {
 .btn.focus,
 .btn.focus:active,
 .btn:active:focus {
-  border: none !important;
   outline: none;
   outline-offset: -2px;
+  box-shadow: none;
+  /*
   background-image: none;
   color: white;
+  */
 }
 .btn:focus {
   border: none !important;
@@ -3242,6 +3244,23 @@ form.communityform .community-control:hover {
 .btn-green:focus,
 .btn-green:active {
   color: white;
+}
+.btn-new {
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: white;
+  border: 1px solid #24C40D;
+  border-radius: 5px;
+  color: #24C40D;
+  font-size: 14px;
+  padding: 10px 15px;
+}
+.btn-new:hover,
+.btn-new:focus,
+.btn-new:active {
+  border: 1px solid #24C40D;
+  border-radius: 5px;
+  color: #24C40D;
 }
 .community_link {
   color: #939393;
@@ -3304,4 +3323,13 @@ textarea {
   outline: 0 !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
+}
+.padding-left-20px {
+  padding-left: 20px;
+}
+/*** HOME **/
+#home .navbar_page_title {
+  color: #808080;
+  font-family: Roboto;
+  font-size: 14px;
 }
