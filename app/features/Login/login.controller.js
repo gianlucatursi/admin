@@ -30,7 +30,7 @@
         .then(function(success){
 
           if(AdminService.user.citySelected()){
-            $state.go($state.ROUTING.home.name);
+            $state.go($state.ROUTING.home_dashboard.name);
           }else{
             $state.go($state.ROUTING.choose_city.name);
           }

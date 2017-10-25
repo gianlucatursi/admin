@@ -3,7 +3,7 @@
 
   var services = angular.module('Smart.services');
 
-  AdminService.$inject = ['Restangular', 'localStorageService', 'EventBus', 'AdminModel', '$q', 'API'];
+  AdminService.$inject = ['Restangular', 'localStorageService', 'EventBus', 'AdminModel', '$q', 'API', '$transitions', '$state'];
   services.service('AdminService', AdminService);
 
   /**
@@ -15,7 +15,7 @@
    * @param $q
    * @param API
    */
-  function AdminService(Restangular, localStorageService, EventBus, AdminModel, $q, API) {
+  function AdminService(Restangular, localStorageService, EventBus, AdminModel, $q, API, $transitions, $state) {
 
     var _that = this;
     _that.options = {
@@ -23,6 +23,18 @@
     };
 
     _that.user = new AdminModel({});
+
+    $transitions.onStart({ to: 'home.**' }, function(trans) {
+
+      //var toState = trans.to();
+      if (_that.user.isLogged()) {
+        return true;
+      } else {
+        alert('not logged');
+        $state.go($state.ROUTING.login.name);
+        return false;
+      }
+    });
 
     setTimeout(_checkUser.bind(_that), 300);
     //////////////////////////////////

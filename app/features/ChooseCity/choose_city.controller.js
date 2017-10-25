@@ -19,7 +19,7 @@
 
       if(_this.city_selected && _this.city_selected._id){
         AdminService.user.choose_city(_this.city_selected);
-        $state.go($state.ROUTING.home.name);
+        $state.go($state.ROUTING.home_dashboard.name);
       }
 
     }

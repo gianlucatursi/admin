@@ -1,5 +1,14 @@
-<div id="home" ng-controller="HomeController as home">
+<div id="home" ng-controller="HomeController as home" style="padding-top:20px">
 
-    <h1>Home</h1>
-    <h3>{{home.user.citySelected().ds_name}}</h3>
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <img src="app/assets/images/logo.png" width="80px" />
+            <h1>Home</h1>
+            <h3>{{home.user.citySelected().ds_name}}</h3>
+        </div>
+
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <ui-view id="container_view"></ui-view>
+        </div>
+    </div>
 </div>

@@ -6,6 +6,9 @@
 
   var app = angular.module('Community', required);
 
+  app.run(function($trace) {
+    $trace.enable('TRANSITION');
+  });
 
   app.config(function($stateProvider, $urlRouterProvider, $provide, ROUTING) {
 
@@ -16,26 +19,7 @@
 
       $provide.decorator('$state', function($delegate, $rootScope) {
         $delegate.ROUTING = ROUTING;
-
-        $rootScope.$on('$stateChangeStart', function(event, state, params) {
-          if ($delegate.current === "login" || $delegate.current === "register") {
-            return;
-          }
-          console.log("decorator", $delegate);
-          $delegate.current.resolve = {
-            auth: ['AdminService', '$stateParams', function(AdminService, $stateParams) {
-              //how to invoke this function?
-              if (AdminService.user.isLogged()) {
-                return true;
-              } else {
-                $delegate.go(ROUTING.login.name);
-                return false;
-              }
-            }]
-          };
-        });
         return $delegate;
-
       });
 
     });

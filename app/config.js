@@ -21,7 +21,13 @@
       home: {
         name: 'home',
         url: '/home',
+        abstract: true,
         templateUrl: 'app/features/Home/home.view.html'
+      },
+      home_dashboard: {
+        name: 'home.dashboard',
+        url: '/dashboard',
+        templateUrl: 'app/features/Dashboard/dashboard.view.html'
       }
 
   });
