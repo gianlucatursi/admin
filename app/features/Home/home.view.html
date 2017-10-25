@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="padding-left-20px">
-                        <a class="menu_link font-medium color-grey pointer">DASHBOARD</a>
+                        <a class="menu_link font-medium color-grey pointer" ui-sref="{{home.ROUTING.home_dashboard.name}}">DASHBOARD</a>
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
             <div class="row height-30px">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="padding-left-20px">
-                        <a class="menu_link font-medium color-grey pointer" ui-serf="home.contenuti">CONTENUTI</a>
+                        <a class="menu_link font-medium color-grey pointer" ui-sref="{{home.ROUTING.contenuti.name}}">CONTENUTI</a><!-- ng-click="home.go.toContenuti()"-->
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             <div class="row height-30px">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="padding-left-20px">
-                        <a class="menu_link font-medium color-grey pointer">MEDIA</a>
+                        <a class="menu_link font-medium color-grey pointer" ui-sref="{{home.ROUTING.media.name}}">MEDIA</a>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="row height-30px" ng-if="home.user.isRedazione()">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="padding-left-20px">
-                        <a class="menu_link font-medium color-grey pointer">EDIZIONI</a>
+                        <a class="menu_link font-medium color-grey pointer" ui-sref="{{home.ROUTING.edizioni.name}}">EDIZIONI</a>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="row height-30px" ng-if="home.user.isRedazione()">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="padding-left-20px">
-                        <a class="menu_link font-medium color-grey pointer">CANALI</a>
+                        <a class="menu_link font-medium color-grey pointer" ui-sref="{{home.ROUTING.canali.name}}">CANALI</a>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
             <div class="row height-30px">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="padding-left-20px">
-                        <a class="menu_link font-medium color-grey pointer">ISCRITTI</a>
+                        <a class="menu_link font-medium color-grey pointer" ui-sref="{{home.ROUTING.iscritti.name}}">ISCRITTI</a>
                     </div>
                 </div>
             </div>

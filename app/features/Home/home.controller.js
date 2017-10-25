@@ -10,7 +10,7 @@
 
     var _this = this;
     _this.user = AdminService.user;
-    _this.ROUNTING = $state.ROUNTING;
+    _this.ROUTING = $state.ROUTING;
     _this.current_state = $state.current;
 
   }
