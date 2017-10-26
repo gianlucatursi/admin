@@ -8,7 +8,6 @@
 
   app.run(function($trace) {
     $trace.enable('TRANSITION');
-    //$templateCache.removeAll();
   });
 
   app.config(function($stateProvider, $urlRouterProvider, $provide, ROUTING) {
