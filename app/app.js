@@ -50,6 +50,6 @@
       spinnerSize: 35,
       spinnerColor: '#ffffff'
     });
-  })
+  });
 
 })();
