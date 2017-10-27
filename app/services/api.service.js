@@ -16,10 +16,14 @@
       /************ ARTICLE **************/
       articles: {
         get: _customRequest.bind(null, 'article'),
+        update: _customRequest.bind(null, 'article/:id'),
         byId: _customRequest.bind(null, 'article/:id'),
       },
       /************ CITY **************/
-      city: _customRequest.bind(null, 'city')
+      city: _customRequest.bind(null, 'city'),
+      channels: {
+        get: _customRequest.bind(null, 'getchannel'),
+      }
     };
 
     /**

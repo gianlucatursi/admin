@@ -35,6 +35,7 @@
     Admin.prototype.check = _check;
     Admin.prototype.isLogged = _isLogged;
     Admin.prototype.isRedazione = _isRedazione;
+    Admin.prototype.channelId = _channelId;
 
 
     //////////////////////////////////
@@ -108,12 +109,30 @@
       return false;
     }
 
+    /**
+     * True if user is Redazione
+     * @return {*}
+     * @private
+     */
     function _isRedazione(){
       if(this.isAdmin != undefined){
         return this.isAdmin;
       }
 
       return false;
+    }
+
+    /**
+     * Return channel id (for Channel user)
+     * @return {*}
+     * @private
+     */
+    function _channelId(){
+      if(!this.isRedazione() && this.id_channel){
+        return this.id_channel;
+      }
+
+      return undefined;
     }
     /** return User ***/
     return Admin;

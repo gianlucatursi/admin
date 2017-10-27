@@ -12,12 +12,33 @@
 
     <div class="row page_content">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <h1>Contenuti</h1>
+            <div class="row">
 
-            <div ng-repeat="article in contenuti.articles">
-                <h1>{{article.title()}}</h1>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"></div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"></div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"></div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"></div>
+
+
             </div>
         </div>
+        <!--
+
+        <h1>Contenuti</h1>
+
+            <div ng-repeat="article in contenuti.articles">
+                <h1>
+                    {{article.abstract()}}
+                </h1>
+            </div>
+            <h1>----------</h1>
+
+            <div ng-repeat="c in contenuti.channels">
+                <h1>
+                    {{c.name()}}
+                </h1>
+            </div>
+        -->
     </div>
 
 </div>

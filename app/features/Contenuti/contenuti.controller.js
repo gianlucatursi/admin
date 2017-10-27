@@ -3,16 +3,18 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  ContenutiController.$inject = ['$state', 'EventBus', 'AdminService', 'ArticleService'];
+  ContenutiController.$inject = ['$state', 'EventBus', 'AdminService', 'ArticleService', 'ChannelService'];
   controllers.controller('ContenutiController', ContenutiController);
 
-  function ContenutiController($state, EventBus, AdminService, ArticleService){
+  function ContenutiController($state, EventBus, AdminService, ArticleService, ChannelService){
 
     var _this = this;
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
     _this.articles = [];
+
+    _this.channels = ChannelService.local();
 
     ArticleService
       .get()

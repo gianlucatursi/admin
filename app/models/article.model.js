@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  ArticleModel.$inject = ['IMAGE_BASEURL']; // 'Restangular', '$q', 'AuthServices'
+  ArticleModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL']; // 'Restangular', '$q', 'AuthServices'
   models.factory('ArticleModel', ArticleModel);
 
-  function ArticleModel(IMAGE_BASEURL) { //Restangular, $q, API, Images, AuthServices
+  function ArticleModel(API, $q ,Restangular, IMAGE_BASEURL) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Article(articleData) {
@@ -27,8 +27,9 @@
 
 
     /////////// CRUD ///////////
-    Article.prototype.delete = function(){ /* TODO */ };
-    Article.prototype.update = function(){ /* TODO */ };
+    Article.prototype.delete = _delete;
+    Article.prototype.update = _update;
+    Article.prototype.publish = _publish;
 
 
     /////////// ARTICLE DATA FOR VIEW ///////////
@@ -78,7 +79,29 @@
      * TODO
      * @private
      */
-    function _update(){
+    function _update(data){
+
+      var defer = $q.defer();
+      var _this = this;
+
+      Restangular
+        .one(API.articles.update({id: _this.identifier()}))
+        .customPUT(data).then(
+          function(result){
+            _this.set(data);
+            defer.reject({success: true, article: _this});
+          },
+          function(error){
+            alert("FAILD -> FAKE UPDATE");
+            _this.set(data);
+            defer.reject(error);
+          }
+      );
+
+      return defer.promise;
+    }
+
+    function _publish(){
 
     }
 
