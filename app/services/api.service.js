@@ -22,11 +22,26 @@
       city: _customRequest.bind(null, 'city')
     };
 
-    function _customRequest(url, to_replace) {
+    /**
+     * Generate url for request
+     * @param url Base url
+     * @param to_replace params to replace (Es: /article/:id   {id: 'article_id'})
+     * @param query params in query string (Es: article?id_city=..  { id_city: 'city_id' }
+     * @return {*}
+     * @private
+     */
+    function _customRequest(url, to_replace, query) {
 
       _.each(to_replace, function(value, key){
-        url = url.replace(key, value);
+        url = url.replace(":" + key, value);
       });
+
+      if(query){
+        url += "?";
+        _.each(query, function(value, key){
+          url += key + "=" + value + "&";
+        });
+      }
 
       return url;
     }

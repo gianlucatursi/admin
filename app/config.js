@@ -1,6 +1,11 @@
 (function(angular) {
   'use strict';
 
+  var required = ['angular-ladda', 'ngSanitize', 'ui.select', 'LocalStorageModule', 'restangular', 'ui.router',
+    'Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives'];
+
+  angular.module('Community', required)
+    .constant('IMAGE_BASEURL', 'https://images.google.it/');
   angular.module('Smart.controllers', []);
   angular.module('Smart.services', []);
   angular.module('Smart.models', []);

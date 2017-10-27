@@ -1,10 +1,7 @@
 (function() {
   'use strict';
 
-  var required = ['angular-ladda', 'ngSanitize', 'ui.select', 'LocalStorageModule', 'restangular', 'ui.router',
-                  'Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives'];
-
-  var app = angular.module('Community', required);
+  var app = angular.module('Community');
 
   app.run(function($trace) {
     $trace.enable('TRANSITION');
