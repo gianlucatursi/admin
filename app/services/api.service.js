@@ -23,7 +23,8 @@
       city: _customRequest.bind(null, 'city'),
       channels: {
         get: _customRequest.bind(null, 'getchannel'),
-      }
+      },
+      categories : _customRequest.bind(null, 'category')
     };
 
     /**

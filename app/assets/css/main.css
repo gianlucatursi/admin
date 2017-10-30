@@ -3307,6 +3307,24 @@ form.communityform .community-control:hover {
 .btn-green:active {
   color: white;
 }
+.btn-grey {
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: white;
+  color: #939393;
+  border: 2px solid #939393;
+  font-size: 14px;
+  padding: 10px 15px;
+  margin-top: 10px;
+}
+.btn-grey:hover,
+.btn-grey:focus,
+.btn-grey:active {
+  color: #939393;
+}
+.border-bottom-grey {
+  border-bottom: 2px solid #E5E5E5;
+}
 .btn-new {
   font-family: RobotoBold !important;
   font-weight: 500;

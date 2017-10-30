@@ -41,6 +41,7 @@
     _that.retriveInstance = _retriveInstance;
     _that.pager = _getPager;
     _that.get  = _get;
+    _that.toArray = _toArray;
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
     //////////////////////////////////
@@ -75,14 +76,24 @@
      * Get Method
      * @private
      */
-    function _get(){
+    function _get(channel_id, category_id){
       var defer = $q.defer();
       var _this = this;
 
       _this.isWorking = true;
 
+      var filters = { id_city: AdminService.user.citySelected()._id };
+
+      if(category_id){
+        filters.id_category = category_id;
+      }
+
+      if(channel_id){
+        filters.id_channel = channel_id;
+      }
+
       Restangular
-        .one(API.articles.get({}, {id_city: AdminService.user.citySelected()._id}))
+        .one(API.articles.get({}, filters))
         .getList()
         .then(function(data){
 
@@ -108,6 +119,19 @@
       return defer.promise;
     }
 
+    /**
+     * To array list
+     * @return {Array}
+     * @private
+     */
+    function _toArray(){
+      var list = [];
+      _.each(articles, function(val, key){
+        list.push(val);
+      });
+
+      return list;
+    }
     /** return service **/
     return this;
 

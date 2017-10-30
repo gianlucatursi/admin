@@ -29,8 +29,10 @@
     _that.retriveInstance = _retriveInstance;
     _that.pager = _getPager;
     _that.get  = _get;
+    _that.byId  = _byId;
     _that.local  = _local;
     _that.selected = _getSelected;
+    _that.toArray = _toArray;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -109,6 +111,21 @@
       return defer.promise;
     }
 
+    /**
+     * Get by id
+     * @param _id
+     * @return {*}
+     * @private
+     */
+    function _byId(_id){
+      return channels[_id];
+    }
+
+    /**
+     * Get local list
+     * @return {{}}
+     * @private
+     */
     function _local(){
       if(!channels){
         this.get();
@@ -117,10 +134,32 @@
       return channels;
     }
 
+    /**
+     * Get selected
+     * @return {{}|*}
+     * @private
+     */
     function _getSelected(){
       return this._selected;
     }
 
+    /**
+     * To Array
+     * @return {Array}
+     * @private
+     */
+    function _toArray(){
+      if(!channels){
+        return [];
+      }
+
+      var list = [];
+      _.each(channels, function(value, key){
+        list.push(value);
+      });
+
+      return list;
+    }
     /** return service **/
     return this;
 
