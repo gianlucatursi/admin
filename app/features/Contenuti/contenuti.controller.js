@@ -11,7 +11,7 @@
     var _this = this;
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
-
+    _this.channelService = ChannelService;
     _this.options = {
       articleWorking: ArticleService.working,
       textToSearch: '',
