@@ -13,7 +13,9 @@
     _this.city = AdminService.user.citySelected();
 
     _this.options = {
-      articleWorking: ArticleService.working
+      articleWorking: ArticleService.working,
+      textToSearch: '',
+      searchWorking: false
     };
 
     _this.current_state = $state.current;
@@ -26,6 +28,7 @@
     _this.categories = [];
 
     _this.applyFilters = _applyFilters;
+    _this.searchText = _searchText;
 
     _initializeCollections();
 
@@ -47,6 +50,26 @@
       _this.articles = [];
 
       _getArticles(filter.id_channel, filter.id_category);
+
+    }
+
+    function _searchText(){
+
+      _this.articles = [];
+      _this.options.searchWorking = true;
+
+      ArticleService
+        .search(_this.options.textToSearch)
+        .then(
+          function(results){
+            _this.options.searchWorking = false;
+            _this.articles = ArticleService.toArray();
+          },
+          function(){
+            _this.options.searchWorking = false;
+            console.error("ERROR GETTING ARTICLES");
+          }
+        );
 
     }
     /**

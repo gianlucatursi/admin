@@ -56,32 +56,38 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8" style="margin-top:20px;">
-                    <div class="row border-bottom-grey">
-                        <div class="col-lg-1 col-sm-1 col-md-2 col-xs-2">
-                            <span class="lsf">search</span>
-                        </div>
-                        <div class="col-lg-11 col-sm-11 col-md-10 col-xs-10">
-                            <input class="form-control" placeholder="Cerca in tutti i post" type="text">
+                <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                    <div class="row border-bottom-grey" style="padding-left: 0px;margin-left: 0px;">
+                        <div class="col-lg-11 col-sm-11 col-md-10 col-xs-10" >
+                            <!--<span class="search-icon lsf">search</span>-->
+                            <input class="form-control search-input" placeholder="Cerca in tutti i post" ng-model="contenuti.options.textToSearch" type="text">
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                    <button class="btn btn-grey btn-block">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                    <button ladda="contenuti.options.searchWorking" class="btn btn-grey btn-block" ng-click="contenuti.searchText()">
                         CERCA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="lsf">right</span></button>
                 </div>
             </div>
-        </div>
 
-        <br/>
 
-        <div class="row">
-            <div ng-repeat="article in contenuti.articles">
-                <h1>
-                    {{article.abstract()}}
-                </h1>
+            <!--------- list ---------->
+
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <div class="row" ng-repeat="article in contenuti.articles">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                            <h1>
+                                {{article.abstract()}}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 

@@ -18,6 +18,7 @@
         get: _customRequest.bind(null, 'article'),
         update: _customRequest.bind(null, 'article/:id'),
         byId: _customRequest.bind(null, 'article/:id'),
+        search:_customRequest.bind(null, 'search/article'),
       },
       /************ CITY **************/
       city: _customRequest.bind(null, 'city'),

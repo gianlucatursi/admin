@@ -42,6 +42,7 @@
     _that.pager = _getPager;
     _that.get  = _get;
     _that.toArray = _toArray;
+    _that.search = _search;
     _that.working = function(){ return _that.isWorking };
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -135,6 +136,47 @@
       });
 
       return list;
+    }
+
+    /**
+     * Search text
+     * @param text
+     * @return {Promise}
+     * @private
+     */
+    function _search(text){
+      var defer = $q.defer();
+      var _this = this;
+
+      articles = [];
+
+      //_this.isWorking = true;
+
+      Restangular
+        .one(API.articles.search({}, {text: text}))
+        .getList()
+        .then(function(data){
+
+          //_this.isWorking = false;
+
+          _.each(data, function (article) {
+            // init articles
+            _retriveInstance(article._id, article);
+          });
+
+          if (articles.length > 0) {
+            _pager.start = (_pager.limit * _pager.offset) + 1;
+            _pager.end = _pager.start + (articles.length - 1);
+          }
+
+          defer.resolve(articles || []);
+
+        }, function(error){
+          //_this.isWorking = false;
+          defer.reject(error);
+        });
+
+      return defer.promise;
     }
     /** return service **/
     return this;
