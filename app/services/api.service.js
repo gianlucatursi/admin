@@ -48,6 +48,8 @@
         });
       }
 
+      url = url.replace(/\&$/g, '');
+
       return url;
     }
 

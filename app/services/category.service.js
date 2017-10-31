@@ -40,7 +40,8 @@
       var defer = $q.defer();
 
       if(_that.options.loaded){
-        return defer.resolve(_that.list);
+        defer.resolve(_that.list);
+        return defer.promise;
       }
 
       Restangular

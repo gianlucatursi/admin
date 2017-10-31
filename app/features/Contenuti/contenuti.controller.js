@@ -11,6 +11,11 @@
     var _this = this;
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
+
+    _this.options = {
+      articleWorking: ArticleService.working
+    };
+
     _this.current_state = $state.current;
     _this.articles = [];
     _this.channelSelected = {};
@@ -20,18 +25,16 @@
     _this.categorySelected = {};
     _this.categories = [];
 
-
-    _this.filters = _filters;
+    _this.applyFilters = _applyFilters;
 
     _initializeCollections();
 
     /**
      * Filter function
-     * @param article
      * @return {*}
      * @private
      */
-    function _filters(article){
+    function _applyFilters(){
       //article
       var filter = {};
       if(_this.channelSelected._id != ''){
@@ -41,21 +44,10 @@
         filter.id_category = _this.categorySelected._id;
       }
 
-      if(filter.id_category && filter.id_channel){
-        if(article.id_category == filter.id_category && article.id_channel == filter.id_channel){
-          return article
-        }
-      }else {
-        if(filter.id_category && article.id_category == filter.id_category){
-          return article;
+      _this.articles = [];
 
-        }else if(filter.id_channel && article.id_channel == filter.id_channel){
-          return article;
+      _getArticles(filter.id_channel, filter.id_category);
 
-        }
-
-        return _.isEmpty(filter) ? article : null;
-      }
     }
     /**
      * Initialize collections

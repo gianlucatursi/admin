@@ -42,6 +42,7 @@
     _that.pager = _getPager;
     _that.get  = _get;
     _that.toArray = _toArray;
+    _that.working = function(){ return _that.isWorking };
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
     //////////////////////////////////
@@ -79,6 +80,8 @@
     function _get(channel_id, category_id){
       var defer = $q.defer();
       var _this = this;
+
+      articles = [];
 
       _this.isWorking = true;
 
@@ -126,8 +129,9 @@
      */
     function _toArray(){
       var list = [];
-      _.each(articles, function(val, key){
-        list.push(val);
+
+      _.each(Object.keys(articles), function(key){
+        list.push(articles[key]);
       });
 
       return list;
