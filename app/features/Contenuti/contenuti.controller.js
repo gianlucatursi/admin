@@ -22,7 +22,7 @@
         isopen: false,
         active: 1,
         count: 1,
-        limit: 5
+        limit: 1
       }
     };
 
@@ -38,6 +38,7 @@
     _this.applyFilters = _applyFilters;
     _this.searchText = _searchText;
     _this.generatePages = _generatePages;
+    _this.changePage = _changePage;
 
     _initializeCollections();
 
@@ -85,6 +86,10 @@
     function _generatePages(){
       return _.range(1,_this.options.pager.count+1);
     }
+
+    function _changePage(pnum){
+      _this.options.pager.active = pnum;
+    }
     /**
      * Initialize collections
      * @private
@@ -128,7 +133,7 @@
         .then(
           function(results){
             _this.articles = ArticleService.toArray();
-            _this.options.pager.count = Math.ceil(_this.articles.length / 5);
+            _this.options.pager.count = Math.ceil(_this.articles.length / _this.options.pager.limit);
           },
           function(){
             console.error("ERROR GETTING ARTICLES");
