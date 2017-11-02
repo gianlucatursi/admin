@@ -271,7 +271,7 @@ form.communityform {
   outline: none;
   outline-offset: -2px;
   background-image: none;
-  color: white;
+  /*color: white;*/
   opacity:0.8;
 }
 
@@ -285,6 +285,28 @@ form.communityform {
 
   &:hover, &:focus, &:active{
     color: white;
+  }
+}
+
+.btn-pager{
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: @white;
+  border: 2px solid @blue;
+  color: @blue;
+  font-size: 14px;
+  padding: 10px 25px;
+
+  &:hover, &:focus, &:active{
+    border: 2px solid @blue !important;
+    color: @blue;
+  }
+
+  &.mydropdown{
+
+    width: 150px;
+    padding-left: 10px;
+    border: 2px solid @blue !important;
   }
 }
 

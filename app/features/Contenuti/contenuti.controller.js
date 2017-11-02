@@ -17,7 +17,13 @@
     _this.options = {
       articleWorking: ArticleService.working,
       textToSearch: '',
-      searchWorking: false
+      searchWorking: false,
+      pager:{
+        isopen: false,
+        active: 1,
+        count: 1,
+        limit: 5
+      }
     };
 
     _this.current_state = $state.current;
@@ -31,6 +37,7 @@
 
     _this.applyFilters = _applyFilters;
     _this.searchText = _searchText;
+    _this.generatePages = _generatePages;
 
     _initializeCollections();
 
@@ -73,6 +80,10 @@
           }
         );
 
+    }
+
+    function _generatePages(){
+      return _.range(1,_this.options.pager.count+1);
     }
     /**
      * Initialize collections
@@ -117,6 +128,7 @@
         .then(
           function(results){
             _this.articles = ArticleService.toArray();
+            _this.options.pager.count = Math.ceil(_this.articles.length / 5);
           },
           function(){
             console.error("ERROR GETTING ARTICLES");

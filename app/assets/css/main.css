@@ -5,6 +5,9 @@
 .color-mid-grey {
   color: #939393;
 }
+.color-blue {
+  color: #48AACC;
+}
 .color-smart {
   color: #D93E5F;
 }
@@ -3316,7 +3319,7 @@ form.communityform .community-control:hover {
   outline: none;
   outline-offset: -2px;
   background-image: none;
-  color: white;
+  /*color: white;*/
   opacity: 0.8;
 }
 .btn-green {
@@ -3331,6 +3334,26 @@ form.communityform .community-control:hover {
 .btn-green:focus,
 .btn-green:active {
   color: white;
+}
+.btn-pager {
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: white;
+  border: 2px solid #48AACC;
+  color: #48AACC;
+  font-size: 14px;
+  padding: 10px 25px;
+}
+.btn-pager:hover,
+.btn-pager:focus,
+.btn-pager:active {
+  border: 2px solid #48AACC !important;
+  color: #48AACC;
+}
+.btn-pager.mydropdown {
+  width: 150px;
+  padding-left: 10px;
+  border: 2px solid #48AACC !important;
 }
 .btn-grey {
   font-family: RobotoMedium !important;
