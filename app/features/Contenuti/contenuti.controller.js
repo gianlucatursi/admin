@@ -22,7 +22,7 @@
         isopen: false,
         active: 1,
         count: 1,
-        limit: 1
+        limit: 5
       }
     };
 
@@ -68,6 +68,11 @@
       _this.articles = [];
       _this.options.searchWorking = true;
 
+      if(_this.options.textToSearch == ''){
+        _this.options.searchWorking = false;
+        return _applyFilters();
+      }
+
       ArticleService
         .search(_this.options.textToSearch)
         .then(
@@ -75,7 +80,7 @@
             _this.options.searchWorking = false;
             _this.articles = ArticleService.toArray();
           },
-          function(){
+          function(err){
             _this.options.searchWorking = false;
             console.error("ERROR GETTING ARTICLES");
           }

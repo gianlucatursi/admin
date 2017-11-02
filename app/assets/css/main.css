@@ -3368,6 +3368,7 @@ form.communityform .community-control:hover {
 .btn-grey:hover,
 .btn-grey:focus,
 .btn-grey:active {
+  border: 2px solid #939393 !important;
   color: #939393;
 }
 .border-bottom-grey {
