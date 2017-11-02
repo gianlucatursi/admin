@@ -27,6 +27,8 @@
     //////////////////////////////////
 
     _that.get = _get;
+    _that.byId  = _byId;
+
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -64,6 +66,16 @@
 
       return defer.promise;
 
+    }
+
+    /**
+     * Get by id
+     * @param _id
+     * @return {*}
+     * @private
+     */
+    function _byId(_id){
+      return _.find(_that.list, {_id: _id});
     }
 
     /** return service **/

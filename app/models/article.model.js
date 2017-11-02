@@ -50,6 +50,7 @@
     Article.prototype.gallery = _gallery;
     Article.prototype.galleryUrls = _galleryUrls;
     Article.prototype.commentList = _commentList;
+    Article.prototype.showAlertIcon = _showAlertIcon;
     Article.prototype.likeList = _likesList;
 
     //////////////////////////////////
@@ -150,7 +151,7 @@
      */
     function _publishDate(){
       if(this.dt_publication_date){
-        return new Date(this.dt_publication_date);
+        return new Date((this.dt_publication_date || "").replace(/-/g,"/").replace(/[TZ]/g," "));
       }
       return undefined;
     }
@@ -270,6 +271,12 @@
 
     }
 
+
+    function _showAlertIcon(){
+
+      return false;
+
+    }
     /**
      * Get like list
      * @return {string|Array}

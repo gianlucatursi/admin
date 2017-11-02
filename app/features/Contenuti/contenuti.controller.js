@@ -12,6 +12,8 @@
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
     _this.channelService = ChannelService;
+    _this.categoryService = CategoryService;
+
     _this.options = {
       articleWorking: ArticleService.working,
       textToSearch: '',

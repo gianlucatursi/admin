@@ -14,6 +14,12 @@
 .bgcolor-grey {
   background-color: #808080;
 }
+.bgcolor-light-grey {
+  background-color: #E5E5E5;
+}
+.bgcolor-mid-grey {
+  background-color: #939393;
+}
 /*!
   Ionicons, v2.0.0
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
@@ -3094,7 +3100,7 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: white;
-  min-width: 800px !important;
+  min-width: 840px !important;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -3102,6 +3108,10 @@ body {
 .footer {
   padding-right: 1rem;
   padding-left: 1rem;
+}
+.master-uiview {
+  width: 75%;
+  margin-left: 12.5%;
 }
 /* Custom page header */
 .header {
@@ -3156,6 +3166,15 @@ body {
 }
 .font-large {
   font-size: 18px;
+}
+.roboto-slab {
+  font-family: RobotoSlabRegular !important;
+}
+.roboto-slab-bold {
+  font-family: RobotoSlabBold !important;
+}
+.roboto-slab-light {
+  font-family: RobotoSlabLight !important;
 }
 .font-light {
   font-family: RobotoLight;
@@ -3221,6 +3240,12 @@ body {
 }
 .no-padding {
   padding: 0 !important;
+}
+.padding-top-5 {
+  padding-top: 5px;
+}
+.no-margin {
+  margin: 0 !important;
 }
 .space-15 {
   height: 15px;
@@ -3439,4 +3464,8 @@ textarea {
   font-family: Roboto;
   font-size: 18px;
   margin-bottom: 10px;
+}
+.img-preview-article {
+  width: 120px;
+  height: 90px;
 }
