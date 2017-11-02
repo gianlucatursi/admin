@@ -31,6 +31,8 @@
     Channel.prototype.iconImageUrl = _iconImageUrl;
     Channel.prototype.website = _website;
     Channel.prototype.phonenumber = _phonenumber;
+    Channel.prototype.activeFrom = _activeFrom;
+
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -111,6 +113,12 @@
       return this.ds_phone;
     }
 
+    function _activeFrom(){
+      if(this.dt_activation){
+        return new Date((this.dt_activation || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+      }
+      return undefined;
+    }
     /** return User ***/
     return Channel;
   }

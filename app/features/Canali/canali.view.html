@@ -12,7 +12,168 @@
 
     <div class="row page_content">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <h1>CANALI</h1>
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1>button</h1>
+                </div>
+            </div>
+
+            <!--------- list ---------->
+
+            <br/>
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                    <!---------- ELEMENT ---------->
+                    <div class="row" ng-repeat="channel in canali.channels | limitTo:canali.options.pager.limit:-(canali.options.pager.active*canali.options.pager.limit)">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                            <div class="row">
+                                <!------------- FIRST COL [article description]--------->
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <img ng-src="{{channel.iconImageUrl()}}" width="35px"/>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 no-padding">
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" style="height:15px">
+                                                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                                                    <p class="font-bold no-padding no-margin">{{channel.name()}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-medium padding-top-10">Attivo dal {{channel.activeFrom() | date:'dd - MM - yyyy'}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!------------- SECOND COL [article title]--------->
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="color-grey font-small no-padding no-margin">TIPO</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-medium font-bold padding-top-5">{{channel.category()}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!------------- THIRD COL [pubblication date]--------->
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <p class="color-grey font-small no-padding no-margin">CONTENUTI</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
+                                                    <p ng-if="article.dt_publication_date" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
+                                                    <p ng-if="!article.dt_publication_date" class="font-medium padding-top-5 font-bold"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <p class="color-grey font-small no-padding no-margin">SEGNALAZIONI</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
+                                                    <p ng-if="article.dt_publication_date" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
+                                                    <p ng-if="!article.dt_publication_date" class="font-medium padding-top-5 font-bold"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <p class="color-grey font-small no-padding no-margin">STATO</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
+                                                    <p ng-if="article.dt_publication_date" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
+                                                    <p ng-if="!article.dt_publication_date" class="font-medium padding-top-5 font-bold"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <br />
+                                <div class="bgcolor-light-grey" style="height: 2px;" ></div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!---- END LIST --------->
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <!-- Single button -->
+                    <div class="btn-group pull-right" uib-dropdown is-open="contenuti.options.pager.isopen">
+                        <button id="single-button" type="button" class="btn btn-pager mydropdown" uib-dropdown-toggle>
+                            <span class="pull-left">PAGINA {{contenuti.options.pager.active}}</span>
+                            <span class="pull-right lsf ">dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                            <li role="menuitem" ng-repeat="page in contenuti.generatePages()">
+                                <a ng-click="contenuti.changePage(page)">PAGINA {{page}}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 
