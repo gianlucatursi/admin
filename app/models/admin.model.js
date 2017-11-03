@@ -128,7 +128,7 @@
      * @private
      */
     function _channelId(){
-      if(!this.isRedazione() && this.id_channel){
+      if(!this.isRedazione() && this._id){
         return this._id;
       }
 
