@@ -120,9 +120,7 @@
       if(AdminService.user.isRedazione()){
         _getArticles();
       }else{
-        if(AdminService.user.isRedazione()){
-          _getArticles(AdminService.user.channelId());
-        }
+        _getArticles(AdminService.user.channelId());
       }
 
     }
