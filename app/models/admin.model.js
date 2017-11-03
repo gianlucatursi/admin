@@ -129,7 +129,7 @@
      */
     function _channelId(){
       if(!this.isRedazione() && this.id_channel){
-        return this.id_channel;
+        return this._id;
       }
 
       return undefined;
