@@ -150,10 +150,17 @@
 
       articles = [];
 
-      //_this.isWorking = true;
+      var filters = {
+        id_city: AdminService.user.citySelected()._id,
+        text: text
+      };
+
+      if(!AdminService.user.isRedazione()){
+        filters.id_channel = AdminService.user.channelId();
+      }
 
       Restangular
-        .one(API.articles.search({}, {text: text}))
+        .one(API.articles.search({}, filters))
         .getList()
         .then(function(data){
 
