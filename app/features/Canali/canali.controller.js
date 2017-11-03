@@ -24,6 +24,8 @@
       }
     };
 
+    _this.changePage = _changePage;
+    _this.generatePages = _generatePages;
 
     _getChannels();
 
@@ -42,6 +44,14 @@
             console.error("ERROR GETTING CHANNELS");
           }
         );
+    }
+
+    function _changePage(pnum){
+      _this.options.pager.active = pnum;
+    }
+
+    function _generatePages(){
+      return _.range(1,_this.options.pager.count+1);
     }
 
   }

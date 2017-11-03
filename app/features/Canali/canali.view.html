@@ -10,17 +10,21 @@
 
     <!------------- body content ---------->
 
-    <div class="row page_content">
+    <div class="row page_content" style="margin-top:50px;">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <div class="row">
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h1>button</h1>
+
+                    <button class="btn btn-green pull-left" style="padding-left:12px; padding-right:12px;">
+                        <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;NUOVO CANALE
+                    </button>
                 </div>
             </div>
 
             <!--------- list ---------->
 
+            <br/>
             <br/>
             <br/>
 
@@ -53,7 +57,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <p class="font-medium padding-top-10">Attivo dal {{channel.activeFrom() | date:'dd - MM - yyyy'}}</p>
+                                            <p class="font-15 padding-top-15">Attivo dal {{channel.activeFrom() | date:'dd - MM - yyyy'}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +77,7 @@
 
                                     <div class="row no-padding">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <p class="font-medium font-bold padding-top-5">{{channel.category()}}</p>
+                                            <p class="font-15 font-bold padding-top-10">{{channel.category()}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -96,8 +100,7 @@
 
                                             <div class="row no-padding">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
-                                                    <p ng-if="article.dt_publication_date" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
-                                                    <p ng-if="!article.dt_publication_date" class="font-medium padding-top-5 font-bold"></p>
+                                                    <p class="font-15 font-bold padding-top-10">147</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,8 +118,7 @@
 
                                             <div class="row no-padding">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
-                                                    <p ng-if="article.dt_publication_date" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
-                                                    <p ng-if="!article.dt_publication_date" class="font-medium padding-top-5 font-bold"></p>
+                                                    <p class="font-15 font-bold padding-top-10">2</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -134,8 +136,7 @@
 
                                             <div class="row no-padding">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
-                                                    <p ng-if="article.dt_publication_date" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
-                                                    <p ng-if="!article.dt_publication_date" class="font-medium padding-top-5 font-bold"></p>
+                                                    <p class="font-15 font-bold padding-top-10 color-green">ATTIVO</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,6 +156,8 @@
 
             <!---- END LIST --------->
 
+            <br />
+            <br />
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
 
@@ -162,12 +165,12 @@
                     <!-- Single button -->
                     <div class="btn-group pull-right" uib-dropdown is-open="contenuti.options.pager.isopen">
                         <button id="single-button" type="button" class="btn btn-pager mydropdown" uib-dropdown-toggle>
-                            <span class="pull-left">PAGINA {{contenuti.options.pager.active}}</span>
+                            <span class="pull-left">PAGINA {{canali.options.pager.active}}</span>
                             <span class="pull-right lsf ">dropdown</span>
                         </button>
                         <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                            <li role="menuitem" ng-repeat="page in contenuti.generatePages()">
-                                <a ng-click="contenuti.changePage(page)">PAGINA {{page}}</a>
+                            <li role="menuitem" ng-repeat="page in canali.generatePages()">
+                                <a ng-click="canali.changePage(page)">PAGINA {{page}}</a>
                             </li>
                         </ul>
                     </div>
