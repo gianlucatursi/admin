@@ -25,6 +25,9 @@
       channels: {
         get: _customRequest.bind(null, 'getchannel'),
       },
+      edizioni: {
+        get: _customRequest.bind(null, 'alleditions'),
+      },
       categories : _customRequest.bind(null, 'category')
     };
 
