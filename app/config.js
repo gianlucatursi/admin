@@ -50,6 +50,12 @@
           url: '/canali',
           templateUrl: 'app/features/Canali/canali.view.html'
       },
+      newchannel:{
+        title: 'Nuovo canale',
+        name: 'home.nuovo_canale',
+        url: '/nuovocanale',
+        templateUrl: 'app/features/Details/NewChannel/newchannel.view.html'
+      },
       media:{
         title: 'Media',
           name: 'home.media',
