@@ -3559,3 +3559,7 @@ textarea {
 .border-line {
   border-bottom: 2px solid #E5E5E5;
 }
+.form-control.ui-select-search {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
