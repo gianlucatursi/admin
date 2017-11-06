@@ -14,9 +14,9 @@
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <div class="row no-padding">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                    <div class="form-group">
-                        <label class="font-small color-grey">CANALE</label>
-                        <input type="text" class="form-control" />
+                    <div class="form-group row border-bottom-grey">
+                        <label class="font-small color-grey" for="name_new_channel">NOME CANALE</label>
+                        <input class="form-control new-channel-name ng-pristine ng-valid ng-empty ng-touched color-black" placeholder="Nome del canale" id="name_new_channel" type="text">
                     </div>
                 </div>
             </div>
@@ -25,25 +25,67 @@
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                     <uib-tabset active="activeJustified">
-                        <uib-tab index="0">
+                        <uib-tab index="0" id="tab0">
                             <uib-tab-heading>
-                                <span class="lsf">barcode</span> IMPOSTAZIONI
+                                <span class="lsf icon-tab">photo</span> <label >IMPOSTAZIONI</label>
                             </uib-tab-heading>
                             <uib-tab-body>
-                                <h3>BODY IMPOSTAZIONI</h3>
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-settings">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                            <label class="font-small color-grey">TIPO</label>
+                                            <ui-select class="community-ui-select" ng-model="contenuti.channelSelected">
+                                                <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                                <ui-select-choices repeat="channel in contenuti.channels | filter: $select.search track by $index">
+                                                    <span ng-bind="channel.ds_name"></span>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                            <h1>Checkbox</h1>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <label class="font-small color-grey">ICONA</label>
+                                            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-icon">
+                                                <button class="btn btn-info btn-selected-settings"><i class="fa fa-check"></i>&nbsp;&nbsp;&nbsp;SELEZIONA</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <div class="border-bottom-grey">
+                                                <label class="font-small color-grey">AUTORI</label>
+                                                <input class="form-control new-channel-author ng-pristine ng-valid ng-empty ng-touched color-black" placeholder="Nome dell'autore" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 10px">
+                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <button class="btn btn-info btn-add-author"><i class="fa fa-plus"></i></button>
+                                            <label class="font-small color-grey label-add-author">Aggiungi Autore</label>
+                                        </div>
+                                    </div>
+                                    <div class="row border-bottom-grey">
+                                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
+                                            <button class="btn btn-info btn-delete-settings">ELIMINA</button>
+                                            <button class="btn btn-info btn-block-settings">BLOCCA</button>
+                                            <button class="btn btn-info btn-save-settings">SALVA</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </uib-tab-body>
                         </uib-tab>
-                        <uib-tab index="1">
+                        <uib-tab index="1" id="tab1">
                             <uib-tab-heading>
-                                <span class="lsf">file</span> CONTATTI
+                                <span class="lsf icon-tab">map</span> <label >CONTATTI</label>
                             </uib-tab-heading>
                             <uib-tab-body>
                                 <h3>BODY CONTATTI</h3>
                             </uib-tab-body>
                         </uib-tab>
-                        <uib-tab index="2">
+                        <uib-tab index="2" id="tab2">
                             <uib-tab-heading>
-                                <span class="lsf">file</span> ORARI
+                                <span class="lsf icon-tab">time</span> <label >ORARI</label>
                             </uib-tab-heading>
                             <uib-tab-body>
                                 <h3>BODY ORARI</h3>
