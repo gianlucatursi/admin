@@ -3127,6 +3127,17 @@ http://kudakurage.com/ligature_symbols/
 .md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
   border: 1px solid #48AACC !important;
 }
+.article_element {
+  opacity: 1;
+}
+.article_element.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+.article_element.ng-enter-active {
+  opacity: 1;
+}
 * {
   font-family: Roboto;
 }
@@ -3264,7 +3275,7 @@ html {
   margin-top: 25%;
   width: 100%;
   height: 442px;
-  border: 2px solid #E5E5E5;
+  border: 1px solid #E5E5E5;
   border-radius: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -3383,7 +3394,7 @@ form.communityform .community-control:hover {
   font-family: RobotoMedium !important;
   font-weight: 500;
   background-color: white;
-  border: 2px solid #48AACC;
+  border: 1px solid #48AACC;
   color: #48AACC;
   font-size: 14px;
   padding: 10px 25px;
@@ -3391,20 +3402,20 @@ form.communityform .community-control:hover {
 .btn-pager:hover,
 .btn-pager:focus,
 .btn-pager:active {
-  border: 2px solid #48AACC !important;
+  border: 1px solid #48AACC !important;
   color: #48AACC;
 }
 .btn-pager.mydropdown {
   width: 150px;
   padding-left: 10px;
-  border: 2px solid #48AACC !important;
+  border: 1px solid #48AACC !important;
 }
 .btn-grey {
   font-family: RobotoMedium !important;
   font-weight: 500;
   background-color: white;
   color: #939393;
-  border: 2px solid #939393;
+  border: 1px solid #939393;
   font-size: 14px;
   padding: 10px 15px;
   margin-top: 10px;
@@ -3412,7 +3423,7 @@ form.communityform .community-control:hover {
 .btn-grey:hover,
 .btn-grey:focus,
 .btn-grey:active {
-  border: 2px solid #939393 !important;
+  border: 1px solid #939393 !important;
   color: #939393;
 }
 .border-bottom-grey {

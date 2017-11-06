@@ -60,6 +60,7 @@
 
       if(_.isDate(_this.dateSelected)){
         filter.dt_start = _this.dateSelected;
+        filter.dt_start.setHours(0, 0, 1, 0);
       }
       _this.articles = [];
 

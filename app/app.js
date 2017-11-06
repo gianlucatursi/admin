@@ -62,9 +62,9 @@
   });
   app.config(function (laddaProvider) {
     laddaProvider.setOption({ /* optional */
-      style: 'zoom-in',
+      style: 'expand-right',
       spinnerSize: 35,
-      spinnerColor: '#ffffff'
+      spinnerColor: '#939393'
     });
   });
 

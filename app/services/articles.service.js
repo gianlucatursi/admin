@@ -90,12 +90,12 @@
 
       var filters = { id_city: AdminService.user.citySelected()._id };
 
-      if(options.category_id){
-        filters.id_category = options.category_id;
+      if(options.id_category){
+        filters.id_category = options.id_category;
       }
 
-      if(options.channel_id){
-        filters.id_channel = options.channel_id;
+      if(options.id_channel){
+        filters.id_channel = options.id_channel;
       }
 
       if(options.dt_start && _.isDate(options.dt_start)){

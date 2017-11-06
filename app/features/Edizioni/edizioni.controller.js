@@ -76,6 +76,7 @@
     function _dateChanged(){
 
       if(_.isDate(_this.dateSelected)){
+        _this.dateSelected.setHours(0, 0, 1, 0);
         _getEditions(_this.dateSelected.getTime());
       }
     }
