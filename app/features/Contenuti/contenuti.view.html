@@ -37,14 +37,9 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                    <div class="form-group">
-                        <label class="font-small color-grey" style="white-space:nowrap;">DATA PUBBLICAZIONE</label>
-                        <ui-select class="community-ui-select" ng-model="chooseCity.city_selected">
-                            <ui-select-match placeholder="Seleziona..."></ui-select-match>
-                            <ui-select-choices ng-repeat="i in []">
-                                <span ng-bind="i.ds_name"></span>
-                            </ui-select-choices>
-                        </ui-select>
+                    <div class="form-group border-line publish_date_filter">
+                        <label class="font-small color-grey" style="white-space:nowrap;padding-bottom: 5px;">DATA PUBBLICAZIONE</label>
+                        <md-datepicker ng-model="contenuti.dateSelected" md-placeholder="Seleziona la data..."  style="height: 42px;width: 230px;" md-open-on-focus></md-datepicker>
                     </div>
                 </div>
 

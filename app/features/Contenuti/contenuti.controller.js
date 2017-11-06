@@ -29,6 +29,7 @@
     _this.current_state = $state.current;
     _this.articles = [];
     _this.channelSelected = {};
+    _this.dateSelected = null;
     _this.channels = [];
 
 

@@ -13,6 +13,7 @@
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
     _this.edizioni = [];
+    _this.dateSelected = null;
 
     _this.options = {
       pager:{
