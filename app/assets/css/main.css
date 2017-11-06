@@ -3563,3 +3563,6 @@ textarea {
   padding-top: 0px;
   padding-bottom: 0px;
 }
+.ui-select-bootstrap .ui-select-choices-row.active > span {
+  background-color: #48AACC;
+}
