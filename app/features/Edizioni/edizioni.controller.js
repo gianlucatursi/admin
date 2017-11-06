@@ -26,13 +26,18 @@
 
     _this.changePage = _changePage;
     _this.generatePages = _generatePages;
+    _this.dateChanged = _dateChanged;
 
     _getEditions();
 
-    function _getEditions(){
+    /**
+     * Get editions
+     * @private
+     */
+    function _getEditions(timestamp){
 
       EdizioniService
-        .get()
+        .get(timestamp)
         .then(
           function(results){
 
@@ -46,14 +51,34 @@
         );
     }
 
+    /**
+     * Change page
+     * @param pnum
+     * @private
+     */
     function _changePage(pnum){
       _this.options.pager.active = pnum;
     }
 
+    /**
+     * Generate pages
+     * @return {*}
+     * @private
+     */
     function _generatePages(){
       return _.range(1,_this.options.pager.count+1);
     }
 
+    /**
+     * Called when date is changed
+     * @private
+     */
+    function _dateChanged(){
+
+      if(_.isDate(_this.dateSelected)){
+        _getEditions(_this.dateSelected.getTime());
+      }
+    }
   }
 
 })(window.angular);

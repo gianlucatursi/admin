@@ -58,9 +58,12 @@
         filter.id_category = _this.categorySelected._id;
       }
 
+      if(_.isDate(_this.dateSelected)){
+        filter.dt_start = _this.dateSelected;
+      }
       _this.articles = [];
 
-      _getArticles(filter.id_channel, filter.id_category);
+      _getArticles(filter);
 
     }
 
@@ -121,7 +124,7 @@
       if(AdminService.user.isRedazione()){
         _getArticles();
       }else{
-        _getArticles(AdminService.user.channelId());
+        _getArticles({id_channel: AdminService.user.channelId()});
       }
 
     }
@@ -130,10 +133,10 @@
      * Get article
      * @private
      */
-    function _getArticles(channel_id, category_id){
+    function _getArticles(filters){
 
       ArticleService
-        .get(channel_id, category_id)
+        .get(filters || {})
         .then(
           function(results){
             _this.articles = ArticleService.toArray();

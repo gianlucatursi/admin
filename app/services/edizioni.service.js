@@ -58,7 +58,7 @@
      * Get Method
      * @private
      */
-    function _get(){
+    function _get(timestamp){
       var defer = $q.defer();
       var _this = this;
 
@@ -71,6 +71,10 @@
         filters.id_channel = AdminService.user.channelId();
       }else{
         filters.id_city = AdminService.user.citySelected()._id;
+      }
+
+      if(timestamp){
+        filters.dt_edition = timestamp;
       }
 
       Restangular
