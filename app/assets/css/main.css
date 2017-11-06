@@ -3505,3 +3505,29 @@ textarea {
   width: 120px;
   height: 90px;
 }
+.no-round-right {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.no-round-left {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.md-datepicker-button {
+  display: none;
+}
+.search-edition .md-datepicker-input {
+  font-family: Roboto;
+  width: 160px;
+  font-size: 16px;
+}
+.search-edition .md-datepicker-input-container {
+  border-bottom: none;
+  margin-top: 3px;
+}
+.md-calendar-selected-date .md-calendar-date-selection-indicator {
+  background: #48AACC !important;
+}
+.md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
+  border: 1px solid #48AACC !important;
+}

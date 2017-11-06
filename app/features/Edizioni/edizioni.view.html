@@ -16,9 +16,14 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                    <button class="btn btn-green pull-left" style="padding-left:12px; padding-right:12px;">
-                        <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;CREA NUOVA EDIZIONE
-                    </button>
+                    <div class="form-group form-inline search-edition" >
+                        <!--<input class="form-control no-round-right pull-left" placeholder="Seleziona la data..." type="date" style="height: 42px;width: 230px;">-->
+                        <md-datepicker class="form-control no-round-right pull-left" ng-model="ctrl.myDate" md-placeholder="Seleziona la data..."  style="height: 42px;width: 230px;"></md-datepicker>
+
+                        <button class="btn btn-green no-round-left pull-left" style="padding-left:12px; padding-right:12px;">
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;CREA NUOVA EDIZIONE
+                        </button>
+                    </div>
                 </div>
             </div>
 

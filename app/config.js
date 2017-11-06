@@ -2,7 +2,7 @@
   'use strict';
 
   var required = ['angular-ladda', 'ui.bootstrap', 'ngSanitize', 'ui.select', 'LocalStorageModule', 'restangular', 'ui.router',
-    'Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives', 'vimeoEmbed'];
+    'Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives', 'vimeoEmbed', 'ngAnimate','ngMaterial'];
 
   angular.module('Community', required)
     .constant('IMAGE_BASEURL', 'https://images.google.it/');
