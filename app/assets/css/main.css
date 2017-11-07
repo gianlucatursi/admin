@@ -3183,6 +3183,10 @@ http://kudakurage.com/ligature_symbols/
   background-color: #3FA9F5;
   color: white;
 }
+#new_channel .tab-title {
+  font-family: RobotoBold;
+  vertical-align: top;
+}
 #new_channel .new-channel-name {
   border: none;
   font-family: Roboto;
@@ -3266,6 +3270,17 @@ http://kudakurage.com/ligature_symbols/
 }
 #new_channel .container-hour {
   margin-top: 40px;
+}
+.icon-tab-channel {
+  font-size: 25px;
+  margin-top: 5px;
+}
+.padding-10px {
+  padding: 10px;
+}
+.span-tab {
+  line-height: 50px;
+  text-align: center;
 }
 .md-datepicker-button {
   display: none;
