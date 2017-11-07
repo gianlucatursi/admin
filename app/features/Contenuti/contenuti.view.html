@@ -14,7 +14,7 @@
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <div class="row">
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <div class="col-lg-4 col-md-3 col-sm-6 col-xs-6">
                     <div class="form-group">
                         <label class="font-small color-grey">CANALE</label>
                         <ui-select class="community-ui-select" ng-model="contenuti.channelSelected">
@@ -37,18 +37,13 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                    <div class="form-group">
-                        <label class="font-small color-grey" style="white-space:nowrap;">DATA PUBBLICAZIONE</label>
-                        <ui-select class="community-ui-select" ng-model="chooseCity.city_selected">
-                            <ui-select-match placeholder="Seleziona..."></ui-select-match>
-                            <ui-select-choices ng-repeat="i in []">
-                                <span ng-bind="i.ds_name"></span>
-                            </ui-select-choices>
-                        </ui-select>
+                    <div class="form-group border-line publish_date_filter">
+                        <label class="font-small color-grey" style="white-space:nowrap;padding-bottom: 5px;">DATA PUBBLICAZIONE</label>
+                        <md-datepicker md-open-on-focus ng-model="contenuti.dateSelected" md-placeholder="Seleziona la data..."  style="height: 42px;width: 230px;"></md-datepicker>
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
                     <button ladda="contenuti.options.articleWorking()" class="btn btn-grey btn-block" ng-click="contenuti.applyFilters()">
                         APPLICA&nbsp;&nbsp;&nbsp;<span class="lsf">right</span></button>
                 </div>
@@ -56,7 +51,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <div class="col-lg-10 col-md-9 col-sm-6 col-xs-6">
                     <div class="row border-bottom-grey" style="padding-left: 0px;margin-left: 0px;">
                         <div class="col-lg-11 col-sm-11 col-md-10 col-xs-10" >
                             <span class="search-icon lsf">search</span>
@@ -65,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
                     <button ladda="contenuti.options.searchWorking" class="btn btn-grey btn-block" style="margin-top: 0;" ng-click="contenuti.searchText()">
                         CERCA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="lsf">right</span></button>
                 </div>
@@ -81,7 +76,7 @@
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                     <!---------- ELEMENT ---------->
-                    <div class="row" ng-repeat="article in contenuti.articles | limitTo:contenuti.options.pager.limit:-(contenuti.options.pager.active*contenuti.options.pager.limit)">
+                    <div class="row article_element" ng-repeat="article in contenuti.articles | limitTo:contenuti.options.pager.limit:-(contenuti.options.pager.active*contenuti.options.pager.limit)">
                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                             <div class="row">
@@ -111,7 +106,7 @@
                                     </div>
                                 </div>
                                 <!------------- SECOND COL [article title]--------->
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
                                     <div class="row no-padding">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -151,9 +146,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 no-padding">
-                                    <img ng-if="article.showAlertIcon()"  src="app/assets/images/alert.jpg"  style="margin-top:20px;"/>
-                                </div>
                                 <!------------- FOUR COL [image]--------->
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                     <div class="row no-padding">
@@ -164,6 +156,47 @@
                                 </div>
                             </div>
 
+                            <!--- STATS WITH REPORTS-->
+                            <div class="row" ng-if="article.isReported()">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 border-right-mid-grey">
+                                    <div class="row no-padding no-margin">
+                                        <div class="col-lg-3 col-md-3 no-padding no-margin">
+                                            <img src="app/assets/images/alert.jpg"  style="width:35px;margin-top:-8px;"/>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 no-padding no-margin">
+                                            <p class="font-normal color-grey no-padding no-margin"><span class="font-bold">{{article.commentsReportedCount()}}</span> commenti segnalati</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                                    <p class="font-normal color-grey"><span class="font-bold">{{article.views()}}</span> visualizzazioni</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p class="font-normal color-grey"><span class="font-bold">{{article.likeCount()}}</span> mi piace</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <p class="font-normal color-grey"><span class="font-bold">{{article.commentsCount()}}</span> commenti</p>
+                                </div>
+
+                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs"></div>
+                            </div>
+
+                            <!--- STATS WITHOUT REPORTS-->
+                            <div class="row" ng-if="!article.isReported()">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                                    <p class="font-normal color-grey"><span class="font-bold">{{article.views()}}</span> visualizzazioni</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <p class="font-normal color-grey"><span class="font-bold">{{article.likeCount()}}</span> mi piace</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <p class="font-normal color-grey"><span class="font-bold">{{article.commentsCount()}}</span> commenti</p>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-2 col-xs-2"></div>
+                            </div>
+
+                            <!--------- LINE --------->
                             <div class="row">
                                 <br />
                                 <div class="bgcolor-light-grey" style="height: 2px;" ></div>
@@ -198,4 +231,108 @@
         </div>
     </div>
 
+    <br/>
+    <br/>
 </div>
+
+
+
+
+
+
+
+
+<!------------ SEGNALAZIONI --------------
+
+<div class="row" ng-repeat="article in contenuti.articles | limitTo:contenuti.options.pager.limit:-(contenuti.options.pager.active*contenuti.options.pager.limit)">
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+    <div class="row">
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <img ng-src="{{contenuti.channelService.byId(article.id_channel).iconImageUrl()}}" width="35px"/>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 no-padding">
+                    <div class="row no-padding">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="font-bold no-padding no-margin">{{contenuti.channelService.byId(article.id_channel).name()}}</p>
+                        </div>
+                    </div>
+                    <div class="row no-padding">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p class="font-small no-padding color-mid-grey no-margin"> in {{contenuti.categoryService.byId(article.id_category).ds_name | uppercase}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="font-small padding-top-5">{{article.abstract()}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                </div>
+            </div>
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="color-grey font-small no-padding no-margin">ARTICOLO</p>
+                </div>
+            </div>
+
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="font-medium font-bold roboto-slab-bold padding-top-5">{{article.title()}}</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                </div>
+            </div>
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="color-grey font-small no-padding no-margin">PUBBLICAZIONE</p>
+                </div>
+            </div>
+
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
+                    <p ng-if="article.dt_publication_date" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
+                    <p ng-if="!article.dt_publication_date" class="font-medium padding-top-5 font-bold"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 no-padding">
+            <img ng-if="article.showAlertIcon()"  src="app/assets/images/alert.jpg"  style="margin-top:20px;"/>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class="row no-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <img class="img-preview-article bgcolor-grey"/>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row">
+            <br />
+            <div class="bgcolor-light-grey" style="height: 2px;" ></div>
+            <br />
+        </div>
+    </div>
+</div>
+
+-->

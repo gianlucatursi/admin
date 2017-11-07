@@ -78,7 +78,7 @@
      * Get Method
      * @private
      */
-    function _get(channel_id, category_id){
+    function _get(options){
       var defer = $q.defer();
       var _this = this;
 
@@ -86,14 +86,20 @@
 
       _this.isWorking = true;
 
+      options = options == undefined ? {} : options;
+
       var filters = { id_city: AdminService.user.citySelected()._id };
 
-      if(category_id){
-        filters.id_category = category_id;
+      if(options.id_category){
+        filters.id_category = options.id_category;
       }
 
-      if(channel_id){
-        filters.id_channel = channel_id;
+      if(options.id_channel){
+        filters.id_channel = options.id_channel;
+      }
+
+      if(options.dt_start && _.isDate(options.dt_start)){
+        filters.dt_start = options.dt_start.getTime();
       }
 
       Restangular

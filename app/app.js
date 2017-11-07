@@ -41,11 +41,30 @@
 
   });
 
+  app.config(function($mdDateLocaleProvider) {
+
+    $mdDateLocaleProvider.firstDayOfWeek = 1;
+
+    $mdDateLocaleProvider.months = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+    $mdDateLocaleProvider.shortMonths = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
+    $mdDateLocaleProvider.days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoedì', 'Giovedì', 'Venerdì', 'Sabato'];
+    $mdDateLocaleProvider.shortDays = ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'];
+
+    $mdDateLocaleProvider.msgCalendar = 'Calendario';
+    $mdDateLocaleProvider.msgOpenCalendar = 'Apri il calendario';
+
+    $mdDateLocaleProvider.formatDate = function(date) {
+      if(date == null || date == undefined) return '';
+
+      return moment(date).format('DD-MM-YYYY');
+    };
+
+  });
   app.config(function (laddaProvider) {
     laddaProvider.setOption({ /* optional */
-      style: 'zoom-in',
+      style: 'expand-right',
       spinnerSize: 35,
-      spinnerColor: '#ffffff'
+      spinnerColor: '#939393'
     });
   });
 

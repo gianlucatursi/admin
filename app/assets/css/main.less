@@ -3,6 +3,8 @@
 @import "fonts";
 @import "ligature";
 @import "vittorio";
+@import "md-picker";
+@import "animation";
 
 *{
   font-family: Roboto;
@@ -11,10 +13,12 @@
 body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-  background-color: @white;
-  min-width: 840px !important;
+  background-color: @white !important;
+  min-width: 900px !important;
 }
-
+html{
+  background-color: @white !important;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -160,7 +164,7 @@ body {
     width: 100%;
     height: 442px;
 
-    border: 2px solid @light-grey;
+    border: 1px solid @light-grey;
     border-radius: 20px;
     margin-left:auto;
     margin-right:auto;
@@ -300,13 +304,13 @@ form.communityform {
   font-family: RobotoMedium !important;
   font-weight: 500;
   background-color: @white;
-  border: 2px solid @blue;
+  border: 1px solid @blue;
   color: @blue;
   font-size: 14px;
   padding: 10px 25px;
 
   &:hover, &:focus, &:active{
-    border: 2px solid @blue !important;
+    border: 1px solid @blue !important;
     color: @blue;
   }
 
@@ -314,7 +318,7 @@ form.communityform {
 
     width: 150px;
     padding-left: 10px;
-    border: 2px solid @blue !important;
+    border: 1px solid @blue !important;
   }
 }
 
@@ -323,14 +327,14 @@ form.communityform {
   font-weight: 500;
   background-color: white;
   color: @mid-grey;
-  border: 2px solid @mid-grey;
+  border: 1px solid @mid-grey;
   font-size: 14px;
   padding: 10px 15px;
   margin-top: 10px;
 
 
   &:hover, &:focus, &:active{
-    border: 2px solid @mid-grey !important;
+    border: 1px solid @mid-grey !important;
     color: @mid-grey;
   }
 }
@@ -473,10 +477,37 @@ input, textarea {
   border: none;
   font-family: Roboto;
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .img-preview-article{
   width: 120px;
   height: 90px;
+}
+
+.no-round-right{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.no-round-left{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.border-line{
+  border-bottom: 2px solid @light-grey;
+}
+
+.form-control.ui-select-search{
+  padding-top:0px;
+  padding-bottom:0px;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active>span{
+  background-color: @light-blue;
+}
+
+.border-right-mid-grey{
+  border-right: 1px solid @light-grey;
 }

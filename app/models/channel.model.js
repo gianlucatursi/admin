@@ -32,6 +32,7 @@
     Channel.prototype.website = _website;
     Channel.prototype.phonenumber = _phonenumber;
     Channel.prototype.activeFrom = _activeFrom;
+    Channel.prototype.stats = _getStats;
 
 
     //////////////////////////////////
@@ -44,6 +45,11 @@
      * @private
      */
     function _set(uData) {
+      this.stats = {
+        articles: 0,
+        reports: 0
+      };
+
       angular.extend(this, uData);
     }
 
@@ -92,7 +98,7 @@
       if(this.id_icon){
         return IMAGE_BASEURL + this.id_icon;
       }
-      return 'app/assets/images/c_icon.png';
+      return 'app/assets/images/c_icon.jpg';
     }
 
     /**
@@ -118,6 +124,31 @@
         return new Date((this.dt_activation || "").replace(/-/g,"/").replace(/[TZ]/g," "));
       }
       return undefined;
+    }
+
+    /**
+     * Get stats of this channel
+     * @private
+     */
+    function _getStats(){
+
+      var _this = this;
+
+      Restangular
+        .one(API.channels.stats({}, {id_channel: this._id}))
+        .get()
+        .then(function(result){
+          _this.stats.articles = result.articles;
+          _this.stats.reports = result.reports;
+        }, function(error){
+          consol.errror("STATS CHANNEL FAILED");
+        });
+      /**
+       * this.stats = {
+        articles: 0,
+        reports: 0
+      };
+       */
     }
     /** return User ***/
     return Channel;

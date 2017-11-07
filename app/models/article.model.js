@@ -52,6 +52,13 @@
     Article.prototype.commentList = _commentList;
     Article.prototype.showAlertIcon = _showAlertIcon;
     Article.prototype.likeList = _likesList;
+    Article.prototype.likeCount = _likesCount;
+    Article.prototype.views = _viewsCounter;
+
+    Article.prototype.isReported = _isReported;
+    Article.prototype.commentsReportedCount = _commentsReportedCount;
+    Article.prototype.commentsCount = _commentsCount;
+
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -64,6 +71,7 @@
      */
     function _set(uData) {
       angular.extend(this, uData);
+      _analyzeComments.call(this);
     }
 
     /////////// CRUD IMPLEMENTATION ///////////
@@ -267,14 +275,14 @@
      */
     function _commentList(){
 
-      return this.comments || [];
+      return this.__commentsList || [];
 
     }
 
 
     function _showAlertIcon(){
 
-      return false;
+      return this.__toAlert;
 
     }
     /**
@@ -285,6 +293,94 @@
     function _likesList(){
       return this.likes || [];
     }
+
+    /**
+     * Number of likes
+     * @return {Number|number}
+     * @private
+     */
+    function _likesCount(){
+      return (this.likes || []).length;
+    }
+
+    /**
+     * Number of views
+     * @return {number|Number}
+     * @private
+     */
+    function _viewsCounter(){
+      return (this.views || []).length;
+    }
+    //////////////////// COMMENTS FUNCTIONS ////////////////////
+
+    /**
+     * Analyze comments
+     * @private
+     */
+    function _analyzeComments(){
+      var _this = this;
+
+      _this.__toAlert = false;
+      _this.__commentsCount = 0;
+      _this.__reportedCount = 0;
+      _this.__commentsList = [];
+
+      if(_this.comments && _this.comments.length > 0){
+
+        _.each(_this.comments, function(comm){
+
+          _this.__commentsCount++;
+          _this.__commentsList.push(comm);
+
+          if(comm.is_handled != true){
+            _this.__reportedCount += (comm.reports && comm.reports.length > 0 ? 1 : 0);
+          }
+
+          _.each((comm.replies || []), function(rep){
+
+            _this.__commentsCount++;
+            _this.__commentsList.push(rep);
+
+            if(rep.is_handled != true){
+              _this.__reportedCount += (rep.reports && rep.reports.length > 0 ? 1 : 0);
+            }
+
+          });
+        });
+
+      }
+
+      this.__toAlert = _this.__reportedCount > 0;
+
+    }
+
+    /**
+     * Return true if exist a comment with report
+     * @return {boolean|*}
+     * @private
+     */
+    function _isReported(){
+      return this.__toAlert;
+    }
+
+    /**
+     * Return counter of reported comments
+     * @return {number|*}
+     * @private
+     */
+    function _commentsReportedCount(){
+      return this.__reportedCount;
+    }
+
+    /**
+     * Return counter of comments (also replies)
+     * @return {number}
+     * @private
+     */
+    function _commentsCount(){
+      return this.__commentsCount;
+    }
+
 
     /** return User ***/
     return Article;

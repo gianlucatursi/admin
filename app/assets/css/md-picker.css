@@ -1,0 +1,56 @@
+.color-grey {
+  color: #808080;
+}
+.color-mid-grey {
+  color: #939393;
+}
+.color-blue {
+  color: #48AACC;
+}
+.color-smart {
+  color: #D93E5F;
+}
+.color-green {
+  color: #24C40D;
+}
+.bgcolor-smart {
+  background-color: #D93E5F;
+}
+.bgcolor-grey {
+  background-color: #808080;
+}
+.bgcolor-light-grey {
+  background-color: #E5E5E5;
+}
+.bgcolor-mid-grey {
+  background-color: #939393;
+}
+.md-datepicker-button {
+  display: none;
+}
+.md-datepicker-input {
+  font-family: Roboto;
+}
+.md-datepicker-input-container {
+  border-bottom: none;
+}
+.search-edition .md-datepicker-input {
+  font-family: Roboto;
+  width: 160px;
+  font-size: 16px;
+}
+.search-edition .md-datepicker-input-container {
+  border-bottom: none;
+  margin-top: 3px;
+}
+.publish_date_filter .md-datepicker-input {
+  font-family: Roboto;
+  width: 180px;
+  font-size: 16px;
+}
+.md-calendar-selected-date .md-calendar-date-selection-indicator {
+  background: #48AACC !important;
+}
+.md-calendar-date.md-calendar-date-today .md-calendar-date-selection-indicator {
+  border: 1px solid #48AACC !important;
+}
