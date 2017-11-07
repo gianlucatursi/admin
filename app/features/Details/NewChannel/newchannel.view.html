@@ -170,7 +170,7 @@
                                 </span>
                             </uib-tab-heading>
                             <uib-tab-body>
-                                <div class="row col-lg-12 col-sm-12 col-md-12 col-xs-12 container-hour">
+                                <div class="row" style="margin-top: 45px">
                                     <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
 
                                         <cs-flag
@@ -181,73 +181,75 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-hour" ng-if="newchannel.new_channel.orari_specifici">
-                                    <div class="row">
-                                        <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 width-60px">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" ng-if="newchannel.new_channel.orari_specifici">
+                                        <div class="row">
+                                            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 width-60px">
 
+                                            </div>
+                                            <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                                <p class="font-small color-grey">GIORNO</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <p class="font-small color-grey">DA</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <p class="font-small color-grey">A</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <p class="font-small color-grey">DA</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <p class="font-small color-grey">A</p>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-                                            <p class="font-small color-grey">GIORNO</p>
+                                        <!-------- days -------->
+                                        <div class="row margin-bottom-10px" ng-repeat="day in newchannel.new_channel.days">
+                                            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 width-60px">
+                                                <cs-flag
+                                                        class="my-flag-validation"
+                                                        flag-show-info="false"
+                                                        flag-selected="day.flag"
+                                                        flag-string=""></cs-flag>
+                                            </div>
+                                            <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 border-bottom-grey new-channel-day">
+                                                <p class="font-small font-medium color-black">{{day.label}}</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                                    <ui-select-choices repeat="h in newchannel.hours | filter: $select.search track by $index">
+                                                        <span ng-bind="h"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                                    <ui-select-choices repeat="h in newchannel.hours | filter: $select.search track by $index">
+                                                        <span ng-bind="h"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                                    <ui-select-choices repeat="h in newchannel.hours | filter: $select.search track by $index">
+                                                        <span ng-bind="h"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                                    <ui-select-choices repeat="h in newchannel.hours | filter: $select.search track by $index">
+                                                        <span ng-bind="h"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                            <p class="font-small color-grey">DA</p>
-                                        </div>
-                                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                            <p class="font-small color-grey">A</p>
-                                        </div>
-                                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                            <p class="font-small color-grey">DA</p>
-                                        </div>
-                                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                            <p class="font-small color-grey">A</p>
-                                        </div>
-                                    </div>
-                                    <!-------- days -------->
-                                    <div class="row margin-bottom-10px" ng-repeat="day in newchannel.new_channel.days">
-                                        <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 width-60px">
-                                            <cs-flag
-                                                    class="my-flag-validation"
-                                                    flag-show-info="false"
-                                                    flag-selected="day.flag"
-                                                    flag-string=""></cs-flag>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 border-bottom-grey new-channel-day">
-                                            <p class="font-small font-medium color-black">{{day.label}}</p>
-                                        </div>
-                                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                            <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
-                                                <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
-                                                <ui-select-choices repeat="channel in contenuti.channels | filter: $select.search track by $index">
-                                                    <span ng-bind="channel.ds_name"></span>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
-                                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                            <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
-                                                <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
-                                                <ui-select-choices repeat="channel in contenuti.channels | filter: $select.search track by $index">
-                                                    <span ng-bind="channel.ds_name"></span>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
-                                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                            <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
-                                                <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
-                                                <ui-select-choices repeat="channel in contenuti.channels | filter: $select.search track by $index">
-                                                    <span ng-bind="channel.ds_name"></span>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
-                                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                            <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
-                                                <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
-                                                <ui-select-choices repeat="channel in contenuti.channels | filter: $select.search track by $index">
-                                                    <span ng-bind="channel.ds_name"></span>
-                                                </ui-select-choices>
-                                            </ui-select>
-                                        </div>
-                                    </div>
 
+                                    </div>
                                 </div>
 
                                 <!-------- END --------->
