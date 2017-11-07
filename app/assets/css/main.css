@@ -3,7 +3,7 @@
   color: #808080;
 }
 .color-day-text-grey {
-  color: #444444;
+  color: #939393;
 }
 .color-black {
   color: black;
@@ -3259,11 +3259,9 @@ http://kudakurage.com/ligature_symbols/
 }
 #new_channel .table-day-text {
   font-size: 16px;
-  color: #444444 !important;
 }
 #new_channel .table-day-text span {
   font-size: 16px;
-  color: #444444 !important;
 }
 #new_channel .container-hour {
   margin-top: 40px;
@@ -3325,21 +3323,25 @@ http://kudakurage.com/ligature_symbols/
   border: 1px solid #3FA9F5;
   background-color: white;
 }
-.cs-checkbox i {
+.cs-checkbox span.icon-check {
   color: white;
-  font-size: 200%;
+  font-size: 20px;
   text-align: center;
-  margin-left: 3px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .cs-checkbox.selected {
   border: 1px solid #3FA9F5;
   background-color: #3FA9F5;
 }
-.cs-checkbox.selected i {
+.cs-checkbox.selected span.icon-check {
   color: white;
-  font-size: 200%;
+  font-size: 20px;
   text-align: center;
-  margin-left: 3px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .cs-radio {
   width: 30px;
@@ -3349,7 +3351,7 @@ http://kudakurage.com/ligature_symbols/
   border-radius: 100%;
   line-height: 30px;
 }
-.cs-radio i {
+.cs-radio span.icon-check {
   color: white;
   font-size: 160%;
   text-align: center;
@@ -3361,7 +3363,7 @@ http://kudakurage.com/ligature_symbols/
   border: 1px solid #3FA9F5;
   background-color: #3FA9F5;
 }
-.cs-radio.selected i {
+.cs-radio.selected span.icon-check {
   color: white;
   font-size: 160%;
   text-align: center;
@@ -3371,6 +3373,31 @@ http://kudakurage.com/ligature_symbols/
 }
 *:focus {
   outline: none !important;
+}
+.flag-with-scroll .flag-span-title {
+  display: block;
+  overflow: auto;
+  max-height: 60px;
+}
+/*
+   *  STYLE 2
+   */
+.flag-span-title {
+  font-family: RobotoBold;
+  color: #939393;
+}
+.flag-span-title::-webkit-scrollbar-track {
+  /*-webkit-box-shadow: inset 0 0 6px @grey;*/
+  background-color: #F5F5F5;
+}
+.flag-span-title::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+.flag-span-title::-webkit-scrollbar-thumb {
+  height: 12px;
+  /*-webkit-box-shadow: inset 0 0 6px @grey;*/
+  background-color: #BEBEBE;
 }
 * {
   font-family: Roboto;
@@ -3829,4 +3856,11 @@ textarea {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
+}
+.author-name {
+  padding-bottom: 10px !important;
+  margin-bottom: 10px !important;
+  border-bottom: 2px solid #E5E5E5;
+  color: black;
+  font-size: 16px;
 }

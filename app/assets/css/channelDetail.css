@@ -2,7 +2,7 @@
   color: #808080;
 }
 .color-day-text-grey {
-  color: #444444;
+  color: #939393;
 }
 .color-black {
   color: black;
@@ -186,11 +186,9 @@
 }
 #new_channel .table-day-text {
   font-size: 16px;
-  color: #444444 !important;
 }
 #new_channel .table-day-text span {
   font-size: 16px;
-  color: #444444 !important;
 }
 #new_channel .container-hour {
   margin-top: 40px;

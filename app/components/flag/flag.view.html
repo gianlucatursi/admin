@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="width: 40px">
             <div class="cs-checkbox" ng-init="isValid = true" ng-class="{'selected': selected, 'ng-invalid':(!isValid || validation())}" ng-click="selected = !selected; isValid = selected;onFlagged({arg1: selected})">
-                <i class="icon ion-android-done"></i>
+                <span class="lsf icon-check">ok</span>
             </div>
         </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 {{fontClass ? fontClass : 'font-120'}} {{widthClass ? widthClass : ''}}" style="line-height: {{lineHeight ? lineHeight:30}}px;" >
-            <span bind-html-compile="title" class="flag-span-title"></span>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 {{fontClass ? fontClass : 'font-120'}} {{widthClass ? widthClass : ''}}" style="line-height: {{lineHeight ? lineHeight:30}}px;" >
+            <span class="flag-span-title">{{title}}</span>
         </div>
     </div>
 </div>

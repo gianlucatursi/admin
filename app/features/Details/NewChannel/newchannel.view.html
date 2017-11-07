@@ -47,15 +47,16 @@
                                         </div>
                                         <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
                                             <cs-flag
+                                                    style="margin-top:30px;"
                                                     class="my-flag-validation"
                                                     flag-show-info="false"
-                                                    flag-selected="true"
+                                                    flag-selected="false"
                                                     flag-string="INSERZIONISTA"></cs-flag>
                                         </div>
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                             <p class="font-small color-grey">ICONA</p>
                                             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-icon">
-                                                <button class="btn btn-blue-icon margin-top-20px" ><i class="fa fa-check"></i>&nbsp;&nbsp;&nbsp;SELEZIONA</button>
+                                                <button class="btn btn-blue-icon margin-top-20px" ><span class="lsf font-medium">ok</span>&nbsp;&nbsp;&nbsp;SELEZIONA</button>
                                             </div>
                                         </div>
                                     </div>
@@ -63,12 +64,17 @@
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                             <div class="border-bottom-grey">
                                                 <p class="font-small color-grey">AUTORI</p>
-                                                <input class="font-normal color-grey form-control new-channel-author table-day-text" placeholder="Nome dell'autore" type="text">
+
+                                                <div class="row no-padding no-margin" ng-repeat="aName in newchannel.new_channel.authors track by $index">
+                                                    <p class="no-padding no-margin color-black author-name">{{aName}}</p>
+                                                </div>
+                                                <br />
+                                                <input class="font-normal form-control new-channel-author table-day-text" ng-model="newchannel.aToAdd" placeholder="Nome dell'autore" type="text">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row" style="margin-top: 10px">
-                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6" ng-click="newchannel.addAuthor(newchannel.aToAdd)">
                                             <button class="btn btn-info btn-add-author"><i class="fa fa-plus"></i></button>
                                             <label class="font-small color-grey label-add-author">Aggiungi Autore</label>
                                         </div>
