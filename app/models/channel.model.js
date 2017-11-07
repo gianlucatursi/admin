@@ -32,8 +32,11 @@
     Channel.prototype.website = _website;
     Channel.prototype.phonenumber = _phonenumber;
     Channel.prototype.activeFrom = _activeFrom;
-    Channel.prototype.stats = _getStats;
 
+    /** stats **/
+    Channel.prototype.statistics = _getStats;
+    Channel.prototype.reportCount = _reportCount;
+    Channel.prototype.articleCount = _articleCount;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -141,14 +144,33 @@
           _this.stats.articles = result.articles;
           _this.stats.reports = result.reports;
         }, function(error){
-          consol.errror("STATS CHANNEL FAILED");
+          console.error("STATS CHANNEL FAILED");
         });
+
+      return true;
+
       /**
        * this.stats = {
         articles: 0,
         reports: 0
       };
        */
+    }
+
+    /**
+     * Count of reports for this channel
+     * @return {number}
+     */
+    function _reportCount(){
+      return this.stats.reports;
+    }
+
+    /**
+     * Count of article for this channel
+     * @return {number}
+     */
+    function _articleCount(){
+      return this.stats.articles;
     }
     /** return User ***/
     return Channel;
