@@ -1,6 +1,9 @@
 .color-grey {
   color: #808080;
 }
+.color-day-text-grey {
+  color: #444444;
+}
 .color-black {
   color: black;
 }
@@ -67,6 +70,8 @@
 #new_channel #tab0 > a {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+  border: 1px solid #CCCCCC;
+  border-right: 0;
 }
 #new_channel #tab0 > a > .ng-scope > .icon-tab {
   font-size: 35px;
@@ -75,6 +80,7 @@
 }
 #new_channel #tab1 > a {
   border-radius: 0;
+  border: 1px solid #CCCCCC;
 }
 #new_channel #tab1 > a > .ng-scope > .icon-tab {
   font-size: 30px;
@@ -85,6 +91,8 @@
 #new_channel #tab2 > a {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+  border: 1px solid #CCCCCC;
+  border-left: 0;
 }
 #new_channel #tab2 > a > .ng-scope > .icon-tab {
   font-size: 30px;
@@ -94,14 +102,9 @@
 }
 #new_channel #tab0 {
   border-top-left-radius: 5px;
-  border: thin #808080;
-}
-#new_channel #tab1 {
-  border: thin #808080;
 }
 #new_channel #tab2 {
   border-top-right-radius: 5px;
-  border: thin #808080;
 }
 #new_channel .nav-tabs > li.active > a {
   background-color: #3FA9F5;
@@ -138,7 +141,7 @@
   margin-bottom: 10px;
 }
 #new_channel .btn-add-author {
-  border-radius: 100%;
+  border-radius: 50%;
   height: 40px;
   width: 40px;
   font-size: 20px;
@@ -176,4 +179,18 @@
 }
 #new_channel .container-modifier {
   margin-bottom: 30px;
+}
+#new_channel .table-day-text {
+  font-size: 18px;
+  color: #444444 !important;
+}
+#new_channel .table-day-text span {
+  font-size: 18px;
+  color: #444444 !important;
+}
+#new_channel .table-day-text::-webkit-input-placeholder {
+  color: #444444 !important;
+}
+#new_channel .container-hour {
+  margin-top: 40px;
 }

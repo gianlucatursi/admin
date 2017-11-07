@@ -48,6 +48,8 @@
   #tab0 > a{
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
+    border: 1px solid @border-grey;
+    border-right: 0;
   }
 
   #tab0 > a > .ng-scope > .icon-tab{
@@ -58,6 +60,7 @@
 
   #tab1 > a{
     border-radius: 0;
+    border: 1px solid @border-grey;
   }
 
   #tab1 > a > .ng-scope > .icon-tab{
@@ -70,6 +73,8 @@
   #tab2 > a{
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
+    border: 1px solid @border-grey;
+    border-left: 0;
   }
 
   #tab2 > a > .ng-scope > .icon-tab{
@@ -81,16 +86,11 @@
 
   #tab0{
     border-top-left-radius: 5px;
-    border: thin @grey;
   }
 
-  #tab1{
-    border: thin @grey;
-  }
 
   #tab2{
     border-top-right-radius: 5px;
-    border: thin @grey;
   }
 
   .nav-tabs > li > a > .ng-scope{
@@ -138,7 +138,7 @@
   }
 
   .btn-add-author{
-    border-radius: 100%;
+    border-radius: 50%;
     height: 40px;
     width: 40px;
     font-size: 20px;
@@ -181,6 +181,24 @@
 
   .container-modifier{
     margin-bottom: 30px;
+  }
+  .new-channel-day{
+  }
+
+  .table-day-text{
+    font-size: 18px;
+    color: @day-text-grey !important;
+    span{
+      font-size: 18px;
+      color: @day-text-grey !important;
+    }
+    &::-webkit-input-placeholder {
+      color: @day-text-grey !important;
+    }
+  }
+
+  .container-hour{
+    margin-top: 40px;
   }
 
 
