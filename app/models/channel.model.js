@@ -92,7 +92,7 @@
       if(this.id_icon){
         return IMAGE_BASEURL + this.id_icon;
       }
-      return 'app/assets/images/c_icon.png';
+      return 'app/assets/images/c_icon.jpg';
     }
 
     /**
