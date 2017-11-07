@@ -37,7 +37,7 @@
     function _getEditions(timestamp){
 
       EdizioniService
-        .get(timestamp)
+        .getByDay(timestamp)
         .then(
           function(results){
 

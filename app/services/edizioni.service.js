@@ -28,6 +28,7 @@
 
     _that.retriveInstance = _retriveInstance;
     _that.get  = _get;
+    _that.getByDay  = _get;
     _that.byId  = _byId;
     _that.local  = _local;
     _that.selected = _getSelected;
@@ -73,14 +74,21 @@
         filters.id_city = AdminService.user.citySelected()._id;
       }
 
+      var url = API.edizioni.get({}, filters);
+
       if(timestamp){
         filters.dt_edition = timestamp;
+        url = API.edizioni.getByDay({}, filters)
       }
 
       Restangular
-        .one(API.edizioni.get({}, filters))
+        .one(url)
         .getList()
         .then(function(data){
+
+          if(_.isObject(data)){
+            return defer.reject(new Error("Cannot be an object"));
+          }
 
           _this.isWorking = false;
 

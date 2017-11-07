@@ -28,6 +28,7 @@
       },
       edizioni: {
         get: _customRequest.bind(null, 'alleditions'),
+        getByDay: _customRequest.bind(null, 'todayedition'),
       },
       categories : _customRequest.bind(null, 'category')
     };
