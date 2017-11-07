@@ -241,7 +241,7 @@ form.communityform {
 }
 
 .box-login-invalid{
-  border: 1px solid @smart;
+  border: 1px solid @red;
   background-color: @light-red;
   margin-bottom: 10px;
 
@@ -249,7 +249,7 @@ form.communityform {
 
   p {
     vertical-align: middle;
-    color: @smart;
+    color: @red;
     margin-top: 8px;
     padding-left: 10px;
   }
@@ -257,6 +257,10 @@ form.communityform {
 
 .margin-top-10px{
   margin-top: 10px;
+}
+
+.margin-top-20px{
+  margin-top: 20px;
 }
 .padding-15per{
   padding-left: 15%;
@@ -353,12 +357,28 @@ form.communityform {
   padding: 10px 15px;
 
   &:hover, &:focus, &:active{
-    border: 1px solid @green;
+    border: 1px solid @green !important;
     border-radius: 5px;
-    color: @green;
+    color: @green !important;
   }
 }
 
+.btn-blue-icon{
+  font-family: RobotoBold !important;
+  font-weight: 500;
+  background-color: @white;
+  border: 1px solid @light-blue;
+  border-radius: 5px;
+  color: @light-blue;
+  font-size: 16px;
+  padding: 10px 15px;
+
+  &:hover, &:focus, &:active{
+    border: 1px solid @light-blue !important;
+    border-radius: 5px;
+    color: @light-blue !important;
+  }
+}
 
 .community_link{
 
@@ -511,3 +531,4 @@ input, textarea {
 .border-right-mid-grey{
   border-right: 1px solid @light-grey;
 }
+
