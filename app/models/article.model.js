@@ -52,6 +52,8 @@
     Article.prototype.commentList = _commentList;
     Article.prototype.showAlertIcon = _showAlertIcon;
     Article.prototype.likeList = _likesList;
+    Article.prototype.likeCount = _likesCount;
+    Article.prototype.views = _viewsCounter;
 
     Article.prototype.isReported = _isReported;
     Article.prototype.commentsReportedCount = _commentsReportedCount;
@@ -69,7 +71,7 @@
      */
     function _set(uData) {
       angular.extend(this, uData);
-      _analyzeComments();
+      _analyzeComments.call(this);
     }
 
     /////////// CRUD IMPLEMENTATION ///////////
@@ -280,7 +282,7 @@
 
     function _showAlertIcon(){
 
-      return false;
+      return this.__toAlert;
 
     }
     /**
@@ -292,6 +294,23 @@
       return this.likes || [];
     }
 
+    /**
+     * Number of likes
+     * @return {Number|number}
+     * @private
+     */
+    function _likesCount(){
+      return (this.likes || []).length;
+    }
+
+    /**
+     * Number of views
+     * @return {number|Number}
+     * @private
+     */
+    function _viewsCounter(){
+      return (this.views || []).length;
+    }
     //////////////////// COMMENTS FUNCTIONS ////////////////////
 
     /**
@@ -301,14 +320,14 @@
     function _analyzeComments(){
       var _this = this;
 
-      this.__toAlert = false;
-      this.__commentsCount = 0;
-      this.__reportedCount = 0;
-      this.__commentsList = [];
+      _this.__toAlert = false;
+      _this.__commentsCount = 0;
+      _this.__reportedCount = 0;
+      _this.__commentsList = [];
 
-      if(this.comments && this.comments.length > 0){
+      if(_this.comments && _this.comments.length > 0){
 
-        _.each(this.comments, function(comm){
+        _.each(_this.comments, function(comm){
 
           _this.__commentsCount++;
           _this.__commentsList.push(comm);

@@ -3146,7 +3146,7 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: white !important;
-  min-width: 840px !important;
+  min-width: 900px !important;
 }
 html {
   background-color: white !important;
@@ -3565,4 +3565,7 @@ textarea {
 }
 .ui-select-bootstrap .ui-select-choices-row.active > span {
   background-color: #48AACC;
+}
+.border-right-mid-grey {
+  border-right: 1px solid #E5E5E5;
 }
