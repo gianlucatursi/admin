@@ -14,7 +14,41 @@
     _this.current_state = $state.current;
     _this.aToAdd = '';
     _this.new_channel = {
-      authors: []
+      authors: [],
+      phone : '',
+      website: '',
+      email: '',
+      address: '',
+      isInserzionista: false,
+      orari_specifici: false,
+      days: [ {
+          label: 'Lunedì',
+          flag: false
+        }, {
+          flag: false,
+          label: 'Martedì',
+        },
+        {
+          flag: false,
+          label: 'Mercoledì',
+        },
+        {
+          flag: false,
+          label: 'Giovedì',
+        },
+        {
+          flag: false,
+          label: 'Venerdì',
+        },
+        {
+          flag: false,
+          label: 'Sabato',
+        },
+        {
+          flag: false,
+          label: 'Domenica',
+        }
+      ]
     };
 
     _this.addAuthor = _addAuthor;
@@ -25,6 +59,8 @@
      * @private
      */
     function _addAuthor(a){
+      if(a == '') return;
+
       _this.new_channel.authors.push(a);
       _this.aToAdd = '';
     }
