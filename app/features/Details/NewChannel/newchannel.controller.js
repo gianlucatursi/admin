@@ -14,44 +14,7 @@
     _this.current_state = $state.current;
     _this.aToAdd = '';
     _this.hours = [];
-    _this.new_channel = {
-      authors: [],
-      phone : '',
-      website: '',
-      email: '',
-      address: '',
-      isInserzionista: false,
-      orari_specifici: false,
-      days: [ {
-          label: 'Lunedì',
-          flag: false
-        }, {
-          flag: false,
-          label: 'Martedì',
-        },
-        {
-          flag: false,
-          label: 'Mercoledì',
-        },
-        {
-          flag: false,
-          label: 'Giovedì',
-        },
-        {
-          flag: false,
-          label: 'Venerdì',
-        },
-        {
-          flag: false,
-          label: 'Sabato',
-        },
-        {
-          flag: false,
-          label: 'Domenica',
-        }
-      ]
-    };
-
+    _this.new_channel = {};
     _initStatics();
 
     _this.addAuthor = _addAuthor;
@@ -68,6 +31,10 @@
       _this.aToAdd = '';
     }
 
+    /**
+     * Init statics
+     * @private
+     */
     function _initStatics(){
       _this.hours = [
         "00:00",
@@ -120,7 +87,101 @@
         "23:00",
         "23:30"
       ]
-    }
+    };
+
+    _this.new_channel = {
+      authors: [],
+      phone : '',
+      website: '',
+      email: '',
+      address: '',
+      isInserzionista: false,
+      orari_specifici: false,
+      days: [ {
+        label: 'Lunedì',
+        open: false,
+        morning:{
+          start: '',
+          end: ''
+        },
+        afternoon:{
+          start: '',
+          end: ''
+        }
+      }, {
+        open: false,
+        label: 'Martedì',
+        morning:{
+          start: '',
+          end: ''
+        },
+        afternoon:{
+          start: '',
+          end: ''
+        }
+      },
+        {
+          open: false,
+          label: 'Mercoledì',
+          morning:{
+            start: '',
+            end: ''
+          },
+          afternoon:{
+            start: '',
+            end: ''
+          }
+        },
+        {
+          open: false,
+          label: 'Giovedì',
+          morning:{
+            start: '',
+            end: ''
+          },
+          afternoon:{
+            start: '',
+            end: ''
+          }
+        },
+        {
+          open: false,
+          label: 'Venerdì',
+          morning:{
+            start: '',
+            end: ''
+          },
+          afternoon:{
+            start: '',
+            end: ''
+          }
+        },
+        {
+          open: false,
+          label: 'Sabato',
+          morning:{
+            start: '',
+            end: ''
+          },
+          afternoon:{
+            start: '',
+            end: ''
+          }
+        },
+        {
+          open: false,
+          label: 'Domenica',
+          morning:{
+            start: '',
+            end: ''
+          },
+          afternoon:{
+            start: '',
+            end: ''
+          }
+        }
+      ]
+    };
   }
 
 })(window.angular);
