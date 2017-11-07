@@ -1,0 +1,62 @@
+@import 'colors';
+
+.cs-checkbox{
+  width: 30px;
+  height: 30px;
+  border: 1px solid @blue-tab;
+  background-color: @white;
+  i {
+    color: @white;
+    font-size: 200%;
+    text-align: center;
+    margin-left: 3px;
+  }
+}
+
+.cs-checkbox.selected{
+  border: 1px solid @blue-tab;
+  background-color: @blue-tab;
+
+  i {
+    color: white;
+    font-size: 200%;
+    text-align: center;
+    margin-left: 3px;
+  }
+}
+
+.cs-radio{
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 100%;
+  line-height: 30px;
+  i {
+    color: white;
+    font-size: 160%;
+    text-align: center;
+    margin-left: 6px;
+    position: absolute;
+    margin-top: 2px;
+  }
+
+}
+
+.cs-radio.selected{
+  border: 1px solid @blue-tab;
+  background-color: @blue-tab;
+
+  i {
+    color: white;
+    font-size: 160%;
+    text-align: center;
+    margin-left: 6px;
+    position: absolute;
+    margin-top: 2px;
+  }
+}
+
+*:focus {
+  outline: none !important;
+}

@@ -1,0 +1,86 @@
+.color-grey {
+  color: #808080;
+}
+.color-day-text-grey {
+  color: #444444;
+}
+.color-black {
+  color: black;
+}
+.color-mid-grey {
+  color: #939393;
+}
+.color-blue {
+  color: #48AACC;
+}
+.color-smart {
+  color: #D93E5F;
+}
+.color-green {
+  color: #24C40D;
+}
+.bgcolor-smart {
+  background-color: #D93E5F;
+}
+.bgcolor-grey {
+  background-color: #808080;
+}
+.bgcolor-light-grey {
+  background-color: #E5E5E5;
+}
+.bgcolor-mid-grey {
+  background-color: #939393;
+}
+.cs-checkbox {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #3FA9F5;
+  background-color: white;
+}
+.cs-checkbox i {
+  color: white;
+  font-size: 200%;
+  text-align: center;
+  margin-left: 3px;
+}
+.cs-checkbox.selected {
+  border: 1px solid #3FA9F5;
+  background-color: #3FA9F5;
+}
+.cs-checkbox.selected i {
+  color: white;
+  font-size: 200%;
+  text-align: center;
+  margin-left: 3px;
+}
+.cs-radio {
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 100%;
+  line-height: 30px;
+}
+.cs-radio i {
+  color: white;
+  font-size: 160%;
+  text-align: center;
+  margin-left: 6px;
+  position: absolute;
+  margin-top: 2px;
+}
+.cs-radio.selected {
+  border: 1px solid #3FA9F5;
+  background-color: #3FA9F5;
+}
+.cs-radio.selected i {
+  color: white;
+  font-size: 160%;
+  text-align: center;
+  margin-left: 6px;
+  position: absolute;
+  margin-top: 2px;
+}
+*:focus {
+  outline: none !important;
+}

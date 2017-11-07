@@ -3319,6 +3319,59 @@ http://kudakurage.com/ligature_symbols/
 .article_element.ng-enter-active {
   opacity: 1;
 }
+.cs-checkbox {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #3FA9F5;
+  background-color: white;
+}
+.cs-checkbox i {
+  color: white;
+  font-size: 200%;
+  text-align: center;
+  margin-left: 3px;
+}
+.cs-checkbox.selected {
+  border: 1px solid #3FA9F5;
+  background-color: #3FA9F5;
+}
+.cs-checkbox.selected i {
+  color: white;
+  font-size: 200%;
+  text-align: center;
+  margin-left: 3px;
+}
+.cs-radio {
+  width: 30px;
+  height: 30px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 100%;
+  line-height: 30px;
+}
+.cs-radio i {
+  color: white;
+  font-size: 160%;
+  text-align: center;
+  margin-left: 6px;
+  position: absolute;
+  margin-top: 2px;
+}
+.cs-radio.selected {
+  border: 1px solid #3FA9F5;
+  background-color: #3FA9F5;
+}
+.cs-radio.selected i {
+  color: white;
+  font-size: 160%;
+  text-align: center;
+  margin-left: 6px;
+  position: absolute;
+  margin-top: 2px;
+}
+*:focus {
+  outline: none !important;
+}
 * {
   font-family: Roboto;
 }
@@ -3769,4 +3822,11 @@ textarea {
 }
 .border-right-mid-grey {
   border-right: 1px solid #E5E5E5;
+}
+.no-glow {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
