@@ -53,6 +53,11 @@
     Article.prototype.showAlertIcon = _showAlertIcon;
     Article.prototype.likeList = _likesList;
 
+    Article.prototype.isReported = _isReported;
+    Article.prototype.commentsReportedCount = _commentsReportedCount;
+    Article.prototype.commentsCount = _commentsCount;
+
+
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
     //////////////////////////////////
@@ -64,6 +69,7 @@
      */
     function _set(uData) {
       angular.extend(this, uData);
+      _analyzeComments();
     }
 
     /////////// CRUD IMPLEMENTATION ///////////
@@ -267,7 +273,7 @@
      */
     function _commentList(){
 
-      return this.comments || [];
+      return this.__commentsList || [];
 
     }
 
@@ -285,6 +291,77 @@
     function _likesList(){
       return this.likes || [];
     }
+
+    //////////////////// COMMENTS FUNCTIONS ////////////////////
+
+    /**
+     * Analyze comments
+     * @private
+     */
+    function _analyzeComments(){
+      var _this = this;
+
+      this.__toAlert = false;
+      this.__commentsCount = 0;
+      this.__reportedCount = 0;
+      this.__commentsList = [];
+
+      if(this.comments && this.comments.length > 0){
+
+        _.each(this.comments, function(comm){
+
+          _this.__commentsCount++;
+          _this.__commentsList.push(comm);
+
+          if(comm.is_handled != true){
+            _this.__reportedCount += (comm.reports && comm.reports.length > 0 ? 1 : 0);
+          }
+
+          _.each((comm.replies || []), function(rep){
+
+            _this.__commentsCount++;
+            _this.__commentsList.push(rep);
+
+            if(rep.is_handled != true){
+              _this.__reportedCount += (rep.reports && rep.reports.length > 0 ? 1 : 0);
+            }
+
+          });
+        });
+
+      }
+
+      this.__toAlert = _this.__reportedCount > 0;
+
+    }
+
+    /**
+     * Return true if exist a comment with report
+     * @return {boolean|*}
+     * @private
+     */
+    function _isReported(){
+      return this.__toAlert;
+    }
+
+    /**
+     * Return counter of reported comments
+     * @return {number|*}
+     * @private
+     */
+    function _commentsReportedCount(){
+      return this.__reportedCount;
+    }
+
+    /**
+     * Return counter of comments (also replies)
+     * @return {number}
+     * @private
+     */
+    function _commentsCount(){
+      return this.__commentsCount;
+    }
+
 
     /** return User ***/
     return Article;
