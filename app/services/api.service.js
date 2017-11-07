@@ -24,6 +24,7 @@
       city: _customRequest.bind(null, 'city'),
       channels: {
         get: _customRequest.bind(null, 'getchannel'),
+        stats: _customRequest.bind(null, 'reports/channel'),
       },
       edizioni: {
         get: _customRequest.bind(null, 'alleditions'),
