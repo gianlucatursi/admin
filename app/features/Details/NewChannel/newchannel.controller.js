@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewChannelController.$inject = ['$state', 'EventBus', 'AdminService'];
+  NewChannelController.$inject = ['$state', 'EventBus', 'AdminService', 'toastr'];
   controllers.controller('NewChannelController', NewChannelController);
 
-  function NewChannelController($state, EventBus, AdminService){
+  function NewChannelController($state, EventBus, AdminService, toastr){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -16,10 +16,15 @@
     _this.hours = [];
     _this.categories = [];
     _this.new_channel = {};
+    _this.options = {
+      saveWorking: false,
+      deleteWorking: false
+    };
+
     _initStatics();
 
     _this.addAuthor = _addAuthor;
-
+    _this.save = _save;
     /**
      * Add author
      * @param a
@@ -31,6 +36,47 @@
       _this.new_channel.authors.push(a);
       _this.aToAdd = '';
     }
+
+    /**
+     * Save channel
+     * @private
+     */
+    function _save(){
+      _this.options.saveWorking = true;
+      _validate();
+
+      // is valid
+    }
+
+    /**
+     * Validate
+     * @private
+     */
+    function _validate(){
+
+      // check name
+      if(_this.new_channel.name == ''){
+        toastr.error('E\' necessario inserire il nome del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        _this.options.saveWorking = false;
+        return;
+      }
+
+      // check category
+      if(_this.new_channel.category == ''){
+        toastr.error('E\' necessario inserire la categoria del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        _this.options.saveWorking = false;
+        return;
+      }
+
+      // check authors
+      if(!_this.new_channel.authors || _this.new_channel.authors.length == 0){
+        toastr.error('E\' necessario inserire almeno un autore del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        _this.options.saveWorking = false;
+        return;
+      }
+
+    }
+
 
     /**
      * Init statics
@@ -87,55 +133,44 @@
         "22:30",
         "23:00",
         "23:30"
-      ]
-    };
+      ];
 
-    _this.categories = [
-      'Commerciale - Locale',
-      'Cultura',
-      'Cronaca',
-      'Economia',
-      'Politica',
-      'Scuola',
-      'Sport',
-      'Tecnologia'
-    ];
+      _this.categories = [
+        'Commerciale - Locale',
+        'Cultura',
+        'Cronaca',
+        'Economia',
+        'Politica',
+        'Scuola',
+        'Sport',
+        'Tecnologia'
+      ];
 
-    _this.new_channel = {
-      authors: [],
-      phone : '',
-      category: '',
-      website: '',
-      email: '',
-      address: '',
-      isInserzionista: false,
-      orari_specifici: false,
-      days: [ {
-        label: 'Lunedì',
-        open: false,
-        morning:{
-          start: '',
-          end: ''
-        },
-        afternoon:{
-          start: '',
-          end: ''
-        }
-      }, {
-        open: false,
-        label: 'Martedì',
-        morning:{
-          start: '',
-          end: ''
-        },
-        afternoon:{
-          start: '',
-          end: ''
-        }
-      },
-        {
+      _this.new_channel = {
+        isNew : true,
+        name: '',
+        authors: [],
+        phone : '',
+        category: '',
+        website: '',
+        email: '',
+        address: '',
+        isInserzionista: false,
+        orari_specifici: false,
+        days: [ {
+          label: 'Lunedì',
           open: false,
-          label: 'Mercoledì',
+          morning:{
+            start: '',
+            end: ''
+          },
+          afternoon:{
+            start: '',
+            end: ''
+          }
+        }, {
+          open: false,
+          label: 'Martedì',
           morning:{
             start: '',
             end: ''
@@ -145,55 +180,68 @@
             end: ''
           }
         },
-        {
-          open: false,
-          label: 'Giovedì',
-          morning:{
-            start: '',
-            end: ''
+          {
+            open: false,
+            label: 'Mercoledì',
+            morning:{
+              start: '',
+              end: ''
+            },
+            afternoon:{
+              start: '',
+              end: ''
+            }
           },
-          afternoon:{
-            start: '',
-            end: ''
-          }
-        },
-        {
-          open: false,
-          label: 'Venerdì',
-          morning:{
-            start: '',
-            end: ''
+          {
+            open: false,
+            label: 'Giovedì',
+            morning:{
+              start: '',
+              end: ''
+            },
+            afternoon:{
+              start: '',
+              end: ''
+            }
           },
-          afternoon:{
-            start: '',
-            end: ''
-          }
-        },
-        {
-          open: false,
-          label: 'Sabato',
-          morning:{
-            start: '',
-            end: ''
+          {
+            open: false,
+            label: 'Venerdì',
+            morning:{
+              start: '',
+              end: ''
+            },
+            afternoon:{
+              start: '',
+              end: ''
+            }
           },
-          afternoon:{
-            start: '',
-            end: ''
-          }
-        },
-        {
-          open: false,
-          label: 'Domenica',
-          morning:{
-            start: '',
-            end: ''
+          {
+            open: false,
+            label: 'Sabato',
+            morning:{
+              start: '',
+              end: ''
+            },
+            afternoon:{
+              start: '',
+              end: ''
+            }
           },
-          afternoon:{
-            start: '',
-            end: ''
+          {
+            open: false,
+            label: 'Domenica',
+            morning:{
+              start: '',
+              end: ''
+            },
+            afternoon:{
+              start: '',
+              end: ''
+            }
           }
-        }
-      ]
+        ]
+      };
     };
   }
 

@@ -54,7 +54,7 @@
      *  });
    *
    *
-   * // tipi : SUCCESS / INFO / WARNING
+   * // tipi : SUCCESS / INFO / WARNING / ERROR
    *
    *
    */
@@ -79,8 +79,6 @@
       maxOpened: 1,
       newestOnTop: true,
       positionClass: 'toast-top-right',
-      preventDuplicates: true,
-      preventOpenDuplicates: true,
       target: 'body'
     });
   });
