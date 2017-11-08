@@ -2,6 +2,21 @@
 
 #new_channel{
 
+  .show-psw-icon{
+
+    position: absolute;
+    right: 10%;
+    top: 45%;
+    font-size: 20px;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+
+    cursor: pointer;
+  }
+
   color: @mid-grey;
 
   .nav-tabs{
@@ -38,6 +53,10 @@
     vertical-align: 20%;
   }
 
+  #tab3 > a > .ng-scope > label {
+    vertical-align: 20%;
+  }
+
 
   li > a > .ng-scope > label{
     margin-right: 20px;
@@ -71,26 +90,41 @@
   }
 
   #tab2 > a{
-    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
     border-top-left-radius: 0;
     border: 1px solid @border-grey;
+    border-right: 0;
     border-left: 0;
   }
 
   #tab2 > a > .ng-scope > .icon-tab{
+    font-size: 35px;
+    font-weight: normal;
+    padding-right: 10px;
+  }
+
+  #tab3 > a{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border: 1px solid @border-grey;
+  }
+
+  #tab3 > a > .ng-scope > .icon-tab{
     font-size: 30px;
     font-weight: normal;
     padding-right: 10px;
     vertical-align: 10%;
   }
 
+
   #tab0{
-    border-top-left-radius: 5px;
+    border-top-left-radius: 10px;
   }
 
 
-  #tab2{
-    border-top-right-radius: 5px;
+  #tab3{
+    border-top-right-radius: 10px;
   }
 
   .nav-tabs > li > a > .ng-scope{

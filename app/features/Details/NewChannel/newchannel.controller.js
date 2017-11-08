@@ -18,13 +18,16 @@
     _this.new_channel = {};
     _this.options = {
       saveWorking: false,
-      deleteWorking: false
+      deleteWorking: false,
+      pswType: 'password'
     };
 
     _initStatics();
 
     _this.addAuthor = _addAuthor;
     _this.save = _save;
+    _this.changePSWType = _changePSWType;
+
     /**
      * Add author
      * @param a
@@ -50,6 +53,11 @@
         //not valid
         _this.options.saveWorking = false;
       }
+    }
+
+
+    function _changePSWType(){
+      _this.options.pswType = _this.options.pswType == 'password' ? 'text' : 'password';
     }
 
     /**
@@ -128,6 +136,8 @@
         category: '',
         website: '',
         email: '',
+        username: '',
+        password: '',
         address: '',
         isInserzionista: false,
         orari_specifici: false,

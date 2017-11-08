@@ -266,6 +266,33 @@
 
                             </uib-tab-body>
                         </uib-tab>
+
+                        <uib-tab index="3" id="tab3">
+                            <uib-tab-heading class="padding-10px">
+                                <span class="font-normal font-bold span-tab">
+                                    <span class="lsf" style="font-size:25px">lock</span>
+                                    <span class="tab-title">&nbsp;&nbsp;ACCESSO</span>
+                                </span>
+                            </uib-tab-heading>
+                            <uib-tab-body>
+                                <div class="row" style="margin-top: 45px">
+                                    <div class="col-lg-3 col-sm-3 col-md-4 col-xs-4">
+                                        <div class="border-bottom-grey">
+                                            <p class="font-small color-grey">USERNAME</p>
+                                            <input class="form-control new-channel-author table-day-text" placeholder="email" type="text" ng-model="newchannel.new_channel.username">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-md-4 col-xs-4">
+                                        <div class="border-bottom-grey">
+                                            <p class="font-small color-grey">PASSWORD</p>
+                                            <input type="{{newchannel.options.pswType}}" class="form-control new-channel-author table-day-text" placeholder="password" ng-model="newchannel.new_channel.password" />
+                                            <span class="lsf color-grey show-psw-icon" ng-click="newchannel.changePSWType()">view</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 col-md-3 col-xs-3"></div>
+                                </div>
+                            </uib-tab-body>
+                        </uib-tab>
                     </uib-tabset>
                 </div>
             </div>

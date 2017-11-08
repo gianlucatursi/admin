@@ -187,6 +187,18 @@
         return false;
       }
 
+      // check username
+      if(!channel.username == ''){
+        toastr.error('E\' necessario inserire l\'username del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
+      // check password
+      if(!channel.password == ''){
+        toastr.error('E\' necessario inserire la password del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
       return true
     }
     /** return service **/
