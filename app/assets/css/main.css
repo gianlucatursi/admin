@@ -3265,7 +3265,8 @@ http://kudakurage.com/ligature_symbols/
   margin-top: 20px;
   margin-right: 5px;
   font-weight: bold;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 #new_channel .btn-block-settings {
   border: 1px solid #939393;
@@ -3273,7 +3274,8 @@ http://kudakurage.com/ligature_symbols/
   color: #939393;
   margin-top: 20px;
   font-weight: bold;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 #new_channel .btn-save-settings {
   border: 1px solid #24C40D;
@@ -3281,7 +3283,8 @@ http://kudakurage.com/ligature_symbols/
   color: #24C40D;
   margin-top: 20px;
   font-weight: bold;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   float: right;
 }
 #new_channel .container-modifier {

@@ -36,6 +36,7 @@
     Admin.prototype.isLogged = _isLogged;
     Admin.prototype.isRedazione = _isRedazione;
     Admin.prototype.channelId = _channelId;
+    Admin.prototype.cityId = _cityId;
 
 
     //////////////////////////////////
@@ -134,6 +135,20 @@
 
       return undefined;
     }
+
+    /**
+     * GEt city id
+     * @private
+     */
+    function _cityId(){
+
+      if(this.city_selected != undefined){
+        return this.city_selected._id;
+      }
+
+      throw new Error('NO CITY SELECTED');
+    }
+
     /** return User ***/
     return Admin;
   }

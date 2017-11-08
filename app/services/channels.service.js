@@ -3,7 +3,7 @@
 
   var services = angular.module('Smart.services');
 
-  ChannelService.$inject = ['Restangular', 'ChannelModel', 'AdminService', '$q', 'API', 'toastr'];
+  ChannelService.$inject = ['Restangular', 'ChannelModel', 'AdminService', '$q', 'API', 'toastr', 'UtilService'];
   services.service('ChannelService', ChannelService);
 
   /**
@@ -13,8 +13,10 @@
    * @param AdminService Model
    * @param $q
    * @param API
+   * @param toastr
+   * @param UtilService
    */
-  function ChannelService(Restangular, ChannelModel, AdminService, $q, API, toastr) {
+  function ChannelService(Restangular, ChannelModel, AdminService, $q, API, toastr, UtilService) {
 
     var channels = {};
     var _that = this;
@@ -33,8 +35,9 @@
     _that.local  = _local;
     _that.selected = _getSelected;
     _that.toArray = _toArray;
-
+    _that.working = function(){ return _that.isWorking; };
     _that.validate = _validate;
+    _that.create = _createChannel;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -175,6 +178,18 @@
         return false;
       }
 
+      // check username
+      if(channel.username == ''){
+        toastr.error('E\' necessario inserire l\'username del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
+      // check password
+      if(channel.password == ''){
+        toastr.error('E\' necessario inserire la password del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
       // check category
       if(channel.category == ''){
         toastr.error('E\' necessario inserire la categoria del canale per poter proseguire','Controlla i dati', { closeButton: true});
@@ -187,20 +202,71 @@
         return false;
       }
 
-      // check username
-      if(!channel.username == ''){
-        toastr.error('E\' necessario inserire l\'username del canale per poter proseguire','Controlla i dati', { closeButton: true});
-        return false;
-      }
-
-      // check password
-      if(!channel.password == ''){
-        toastr.error('E\' necessario inserire la password del canale per poter proseguire','Controlla i dati', { closeButton: true});
-        return false;
-      }
-
       return true
     }
+
+    /**
+     * Create Channel
+     * @param channel
+     */
+    function _createChannel(channel){
+
+      var _this = this;
+      var defer = $q.defer();
+      var password = UtilService.generatePassword(channel.password);
+
+      var opening_hours = [];
+      if(channel.orari_specifici && channel.days){
+        opening_hours = channel.days;
+      }
+
+      var toCreate = {
+        "ds_name": channel.name,
+        "cd_username": channel.username,
+        "pw_password": password,
+        "ds_address": channel.address || '',
+        "id_city": AdminService.user.cityId(),
+        "ds_phone": channel.phone || '',
+        "ds_email": channel.email || '',
+        "ds_website": channel.website || '',
+        "id_icon": channel.icon || '',
+        "dt_activation": new Date(),
+        "ds_category": channel.category || '',
+        "is_advertiser": channel.isInserzionista,
+        "is_locked": false,
+        "authors": channel.authors || [],
+        "opening_hours": opening_hours
+      };
+
+      _this.isWorking = true;
+
+      Restangular
+        .one(API.channels.create())
+        .customPOST(toCreate)
+        .then(function(success){
+          // get new channels
+          toastr.success('Il nuovo canale è stato creato');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Nuovo canale', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+    }
+
     /** return service **/
     return this;
 

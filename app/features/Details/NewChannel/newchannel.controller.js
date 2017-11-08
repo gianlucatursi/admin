@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewChannelController.$inject = ['$state', 'EventBus', 'AdminService', 'ChannelService', 'toastr'];
+  NewChannelController.$inject = ['$state', 'AdminService', 'ChannelService', 'toastr'];
   controllers.controller('NewChannelController', NewChannelController);
 
-  function NewChannelController($state, EventBus, AdminService, ChannelService, toastr){
+  function NewChannelController($state, AdminService, ChannelService, toastr){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -17,8 +17,8 @@
     _this.categories = [];
     _this.new_channel = {};
     _this.options = {
-      saveWorking: false,
-      deleteWorking: false,
+      saveWorking: ChannelService.working,
+      deleteWorking: ChannelService.working,
       pswType: 'password'
     };
 
@@ -45,13 +45,16 @@
      * @private
      */
     function _save(){
-      _this.options.saveWorking = true;
 
       if(ChannelService.validate(_this.new_channel)){
         //valid
+        ChannelService
+          .create(_this.new_channel)
+          .then(function(){
+            $state.go('home.canali');
+          }, function(){});
       }else{
         //not valid
-        _this.options.saveWorking = false;
       }
     }
 

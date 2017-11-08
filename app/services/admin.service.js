@@ -3,7 +3,7 @@
 
   var services = angular.module('Smart.services');
 
-  AdminService.$inject = ['Restangular', 'localStorageService', 'EventBus', 'AdminModel', '$q', 'API', '$transitions', '$state'];
+  AdminService.$inject = ['Restangular', 'UtilService', 'localStorageService', 'EventBus', 'AdminModel', '$q', 'API', '$transitions', '$state'];
   services.service('AdminService', AdminService);
 
   /**
@@ -15,7 +15,7 @@
    * @param $q
    * @param API
    */
-  function AdminService(Restangular, localStorageService, EventBus, AdminModel, $q, API, $transitions, $state) {
+  function AdminService(Restangular, UtilService, localStorageService, EventBus, AdminModel, $q, API, $transitions, $state) {
 
     var _that = this;
     _that.options = {
@@ -83,7 +83,7 @@
 
       _that.options.isWorking = true;
 
-      var hashed = CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
+      var hashed = UtilService.generatePassword(password);
 
       Restangular
         .one(API.admin.login())
