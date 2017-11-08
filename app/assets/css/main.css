@@ -3153,6 +3153,9 @@ http://kudakurage.com/ligature_symbols/
 #new_channel #tab3 > a > .ng-scope > label {
   vertical-align: 20%;
 }
+#new_channel #tab-last > a > .ng-scope > label {
+  vertical-align: 20%;
+}
 #new_channel li > a > .ng-scope > label {
   margin-right: 20px;
   vertical-align: 35%;
@@ -3203,10 +3206,24 @@ http://kudakurage.com/ligature_symbols/
   padding-right: 10px;
   vertical-align: 10%;
 }
+#new_channel #tab-last > a {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border: 1px solid #CCCCCC;
+}
+#new_channel #tab-last > a > .ng-scope > .icon-tab {
+  font-size: 30px;
+  font-weight: normal;
+  padding-right: 10px;
+  vertical-align: 10%;
+}
 #new_channel #tab0 {
   border-top-left-radius: 10px;
 }
 #new_channel #tab3 {
+  border-top-right-radius: 10px;
+}
+#new_channel #tab-last {
   border-top-right-radius: 10px;
 }
 #new_channel .nav-tabs > li.active > a {
@@ -3221,6 +3238,13 @@ http://kudakurage.com/ligature_symbols/
   border: none;
   font-family: Roboto;
   font-size: 18px;
+  margin-left: -10px;
+  margin-bottom: 10px;
+}
+#new_channel .new-channel-title {
+  border: none;
+  font-family: RobotoSlabBold;
+  font-size: 20px;
   margin-left: -10px;
   margin-bottom: 10px;
 }
@@ -3268,6 +3292,13 @@ http://kudakurage.com/ligature_symbols/
   padding-top: 10px;
   padding-bottom: 10px;
 }
+#new_channel .btn-delete-settings:hover,
+#new_channel .btn-delete-settings:focus,
+#new_channel .btn-delete-settings:active {
+  border: 1px solid #E62726 !important;
+  background-color: white;
+  color: #E62726 !important;
+}
 #new_channel .btn-block-settings {
   border: 1px solid #939393;
   background-color: white;
@@ -3277,6 +3308,13 @@ http://kudakurage.com/ligature_symbols/
   padding-top: 10px;
   padding-bottom: 10px;
 }
+#new_channel .btn-block-settings:hover,
+#new_channel .btn-block-settings:focus,
+#new_channel .btn-block-settings:active {
+  border: 1px solid #939393 !important;
+  background-color: white;
+  color: #939393 !important;
+}
 #new_channel .btn-save-settings {
   border: 1px solid #24C40D;
   background-color: white;
@@ -3285,7 +3323,46 @@ http://kudakurage.com/ligature_symbols/
   font-weight: bold;
   padding-top: 10px;
   padding-bottom: 10px;
-  float: right;
+}
+#new_channel .btn-save-settings:hover,
+#new_channel .btn-save-settings:focus,
+#new_channel .btn-save-settings:active {
+  border: 1px solid #24C40D !important;
+  background-color: white;
+  color: #24C40D !important;
+}
+#new_channel .btn-save-bozza-settings {
+  border: 1px solid #48AACC;
+  background-color: white;
+  color: #48AACC;
+  margin-top: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#new_channel .btn-save-bozza-settings:hover,
+#new_channel .btn-save-bozza-settings:focus,
+#new_channel .btn-save-bozza-settings:active {
+  border: 1px solid #48AACC !important;
+  background-color: white;
+  color: #48AACC !important;
+}
+#new_channel .btn-pubblica-settings {
+  border: 1px solid #24C40D;
+  background-color: white;
+  color: #24C40D;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#new_channel .btn-pubblica-settings:hover,
+#new_channel .btn-pubblica-settings:focus,
+#new_channel .btn-pubblica-settings:active {
+  border: 1px solid #24C40D !important;
+  background-color: white;
+  color: #24C40D !important;
 }
 #new_channel .container-modifier {
   margin-bottom: 30px;
@@ -3504,6 +3581,9 @@ div[toast].ng-leave.ng-leave-active {
 * {
   font-family: Roboto;
 }
+.font-w-100 {
+  font-weight: 100 !important;
+}
 /* Space out content a bit */
 body {
   padding-top: 1.5rem;
@@ -3535,6 +3615,12 @@ html {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 3rem;
+}
+.margin-left-0 {
+  margin-left: 0px;
+}
+.margin-top-15px {
+  margin-top: 15px !important;
 }
 .margin-top-50px {
   margin-top: 50px !important;
@@ -3569,6 +3655,9 @@ html {
 }
 .marketing p + h4 {
   margin-top: 1.5rem;
+}
+.font-xs {
+  font-size: 10px;
 }
 .font-small {
   font-size: 12px;

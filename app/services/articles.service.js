@@ -41,6 +41,7 @@
     _that.retriveInstance = _retriveInstance;
     _that.pager = _getPager;
     _that.get  = _get;
+    _that.byId = _byId;
     _that.toArray = _toArray;
     _that.search = _search;
     _that.working = function(){ return _that.isWorking };
@@ -74,6 +75,14 @@
       return _pager;
     }
 
+    /**
+     * Get by id
+     * @param _id to find
+     * @private
+     */
+    function _byId(_id){
+      return articles[_id];
+    }
     /**
      * Get Method
      * @private

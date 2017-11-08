@@ -3,7 +3,7 @@
 
   var required = ['angular-ladda', 'ui.bootstrap', 'ngSanitize', 'ui.select', 'LocalStorageModule', 'restangular', 'ui.router',
     'Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives', 'vimeoEmbed', 'ngAnimate',
-    'ngMaterial', 'toastr', 'angularTrix'];
+    'ngMaterial', 'toastr', 'angularTrix','monospaced.elastic'];
 
   angular.module('Community', required)
     .constant('IMAGE_BASEURL', 'https://images.google.it/');
@@ -86,6 +86,18 @@
           name: 'home.contenuti',
           url: '/contenuti',
           templateUrl: 'app/features/Contenuti/contenuti.view.html'
+      },
+      newarticle:{
+        title: 'Nuovo contenuto',
+        name: 'home.nuovo_contenuto',
+        url: '/nuovocontenuto',
+        templateUrl: 'app/features/Details/NewArticle/newarticle.view.html'
+      },
+      detailarticle:{
+        title: 'Modifica contenuto',
+        name: 'home.modifica_contenuto',
+        url: '/modificacontenuto',
+        templateUrl: 'app/features/Details/NewArticle/newarticle.view.html'
       }
 
     };

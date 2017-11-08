@@ -57,6 +57,10 @@
     vertical-align: 20%;
   }
 
+  #tab-last > a > .ng-scope > label {
+    vertical-align: 20%;
+  }
+
 
   li > a > .ng-scope > label{
     margin-right: 20px;
@@ -117,6 +121,19 @@
     vertical-align: 10%;
   }
 
+  #tab-last > a{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border: 1px solid @border-grey;
+  }
+
+  #tab-last > a > .ng-scope > .icon-tab{
+    font-size: 30px;
+    font-weight: normal;
+    padding-right: 10px;
+    vertical-align: 10%;
+  }
+
 
   #tab0{
     border-top-left-radius: 10px;
@@ -124,6 +141,10 @@
 
 
   #tab3{
+    border-top-right-radius: 10px;
+  }
+
+  #tab-last{
     border-top-right-radius: 10px;
   }
 
@@ -149,6 +170,13 @@
     margin-bottom: 10px;
   }
 
+  .new-channel-title{
+    border: none;
+    font-family: RobotoSlabBold;
+    font-size: 20px;
+    margin-left: -10px;
+    margin-bottom: 10px;
+  }
   .container-settings{
     top: 40px;
   }
@@ -198,6 +226,12 @@
     font-weight: bold;
     padding-top: 10px;
     padding-bottom: 10px;
+
+    &:hover, &:focus, &:active{
+      border: 1px solid @delete !important;
+      background-color: @white;
+      color: @delete!important;
+    }
   }
 
   .btn-block-settings{
@@ -208,6 +242,12 @@
     font-weight: bold;
     padding-top: 10px;
     padding-bottom: 10px;
+
+    &:hover, &:focus, &:active{
+      border: 1px solid @mid-grey!important;
+      background-color: @white;
+      color: @mid-grey!important;
+    }
   }
 
   .btn-save-settings{
@@ -218,8 +258,47 @@
     font-weight: bold;
     padding-top: 10px;
     padding-bottom: 10px;
-    float: right;
+
+    &:hover, &:focus, &:active{
+      border: 1px solid @green!important;
+      background-color: @white;
+      color: @green!important;
+    }
   }
+
+  .btn-save-bozza-settings{
+    border: 1px solid @light-blue;
+    background-color: @white;
+    color: @light-blue;
+    margin-top: 20px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &:hover, &:focus, &:active{
+      border: 1px solid @light-blue!important;
+      background-color: @white;
+      color: @light-blue!important;
+    }
+  }
+
+  .btn-pubblica-settings{
+    border: 1px solid @green;
+    background-color: @white;
+    color: @green;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &:hover, &:focus, &:active{
+      border: 1px solid @green!important;
+      background-color: @white;
+      color: @green!important;
+    }
+  }
+
 
   .container-modifier{
     margin-bottom: 30px;
