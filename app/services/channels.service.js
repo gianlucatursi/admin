@@ -3,7 +3,7 @@
 
   var services = angular.module('Smart.services');
 
-  ChannelService.$inject = ['Restangular', 'ChannelModel', 'AdminService', '$q', 'API'];
+  ChannelService.$inject = ['Restangular', 'ChannelModel', 'AdminService', '$q', 'API', 'toastr'];
   services.service('ChannelService', ChannelService);
 
   /**
@@ -14,7 +14,7 @@
    * @param $q
    * @param API
    */
-  function ChannelService(Restangular, ChannelModel, AdminService, $q, API) {
+  function ChannelService(Restangular, ChannelModel, AdminService, $q, API, toastr) {
 
     var channels = {};
     var _that = this;
@@ -33,6 +33,8 @@
     _that.local  = _local;
     _that.selected = _getSelected;
     _that.toArray = _toArray;
+
+    _that.validate = _validate;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -159,6 +161,33 @@
       });
 
       return list;
+    }
+
+    /**
+     * Validate channel to post
+     * @param channel
+     * @private
+     */
+    function _validate(channel){
+      // check name
+      if(channel.name == ''){
+        toastr.error('E\' necessario inserire il nome del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
+      // check category
+      if(channel.category == ''){
+        toastr.error('E\' necessario inserire la categoria del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
+      // check authors
+      if(!channel.authors || channel.authors.length == 0){
+        toastr.error('E\' necessario inserire almeno un autore del canale per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
+      return true
     }
     /** return service **/
     return this;

@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewChannelController.$inject = ['$state', 'EventBus', 'AdminService', 'toastr'];
+  NewChannelController.$inject = ['$state', 'EventBus', 'AdminService', 'ChannelService', 'toastr'];
   controllers.controller('NewChannelController', NewChannelController);
 
-  function NewChannelController($state, EventBus, AdminService, toastr){
+  function NewChannelController($state, EventBus, AdminService, ChannelService, toastr){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -43,40 +43,14 @@
      */
     function _save(){
       _this.options.saveWorking = true;
-      _validate();
 
-      // is valid
+      if(ChannelService.validate(_this.new_channel)){
+        //valid
+      }else{
+        //not valid
+        _this.options.saveWorking = false;
+      }
     }
-
-    /**
-     * Validate
-     * @private
-     */
-    function _validate(){
-
-      // check name
-      if(_this.new_channel.name == ''){
-        toastr.error('E\' necessario inserire il nome del canale per poter proseguire','Controlla i dati', { closeButton: true});
-        _this.options.saveWorking = false;
-        return;
-      }
-
-      // check category
-      if(_this.new_channel.category == ''){
-        toastr.error('E\' necessario inserire la categoria del canale per poter proseguire','Controlla i dati', { closeButton: true});
-        _this.options.saveWorking = false;
-        return;
-      }
-
-      // check authors
-      if(!_this.new_channel.authors || _this.new_channel.authors.length == 0){
-        toastr.error('E\' necessario inserire almeno un autore del canale per poter proseguire','Controlla i dati', { closeButton: true});
-        _this.options.saveWorking = false;
-        return;
-      }
-
-    }
-
 
     /**
      * Init statics
