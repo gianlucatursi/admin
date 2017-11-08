@@ -159,7 +159,18 @@
      */
     function _publishDate(){
       if(this.dt_publication_date){
-        return new Date((this.dt_publication_date || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+        var date = new Date((this.dt_publication_date || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+
+        if(_.isInvalidDate(date)){
+          date = new Date((this.dt_publication_date || ""));
+          if(_.isInvalidDate(date)){
+            return undefined;
+          }
+          return date;
+        }else{
+          return date
+        }
+
       }
       return undefined;
     }

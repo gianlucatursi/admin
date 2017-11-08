@@ -123,9 +123,22 @@
     }
 
     function _activeFrom(){
+
       if(this.dt_activation){
-        return new Date((this.dt_activation || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+        var date = new Date((this.dt_activation || "").replace(/-/g,"/").replace(/[TZ]/g," "));
+
+        if(_.isInvalidDate(date)){
+          date = new Date((this.dt_activation || ""));
+          if(_.isInvalidDate(date)){
+            return undefined;
+          }
+          return date;
+        }else{
+          return date
+        }
+
       }
+
       return undefined;
     }
 

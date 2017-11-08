@@ -13,7 +13,8 @@
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
     _this.aToAdd = '';
-    _this.hours = [];
+    _this.hours_m = [];
+    _this.hours_a = [];
     _this.categories = [];
     _this.new_channel = {};
     _this.options = {
@@ -68,7 +69,8 @@
      * @private
      */
     function _initStatics(){
-      _this.hours = [
+      /** MORNING **/
+      _this.hours_m = [
         "00:00",
         "00:30",
         "01:00",
@@ -95,7 +97,10 @@
         "11:30",
         "12:00",
         "12:30",
+      ];
 
+      /** AFTERNOON **/
+      _this.hours_a = [
         "13:00",
         "13:30",
         "14:00",

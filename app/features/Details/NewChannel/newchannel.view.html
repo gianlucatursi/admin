@@ -220,7 +220,7 @@
                                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
                                                 <ui-select class="community-ui-select table-day-text" ng-model="day.morning.start">
                                                     <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
-                                                    <ui-select-choices repeat="h in newchannel.hours | filter: $select.search track by $index">
+                                                    <ui-select-choices repeat="h in newchannel.hours_m | filter: $select.search track by $index">
                                                         <span ng-bind="h"></span>
                                                     </ui-select-choices>
                                                 </ui-select>
@@ -228,7 +228,7 @@
                                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
                                                 <ui-select class="community-ui-select table-day-text" ng-model="day.morning.end">
                                                     <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
-                                                    <ui-select-choices repeat="h in newchannel.hours | filter: $select.search track by $index">
+                                                    <ui-select-choices repeat="h in newchannel.hours_m | filter: $select.search track by $index">
                                                         <span ng-bind="h"></span>
                                                     </ui-select-choices>
                                                 </ui-select>
@@ -236,7 +236,7 @@
                                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
                                                 <ui-select class="community-ui-select table-day-text" ng-model="day.afternoon.start">
                                                     <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
-                                                    <ui-select-choices repeat="h in newchannel.hours | filter: $select.search track by $index">
+                                                    <ui-select-choices repeat="h in newchannel.hours_a | filter: $select.search track by $index">
                                                         <span ng-bind="h"></span>
                                                     </ui-select-choices>
                                                 </ui-select>
@@ -244,7 +244,7 @@
                                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
                                                 <ui-select class="community-ui-select table-day-text" ng-model="day.afternoon.end">
                                                     <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
-                                                    <ui-select-choices repeat="h in newchannel.hours | filter: $select.search track by $index">
+                                                    <ui-select-choices repeat="h in newchannel.hours_a | filter: $select.search track by $index">
                                                         <span ng-bind="h"></span>
                                                     </ui-select-choices>
                                                 </ui-select>

@@ -110,4 +110,11 @@
     });
   });
 
+  /** underscore extension **/
+  _.mixin({
+    // Invalid date predicate. The invalid dates are still `Date` instances, however their time is `NaN`.
+    isInvalidDate: function(obj) {
+      return _.isDate(obj) && _.isNaN(obj.getTime());
+    }
+  });
 })();
