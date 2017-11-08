@@ -41,6 +41,50 @@
 
   });
 
+  /**
+   *
+   * TOASTR
+   *
+   * //Solo titolo
+   * toastr.success('I don\'t need a title to live');
+   *
+   * //titolo + subtitle + close button
+   *  toastr.success('What a nice button', 'Button spree', {
+     *    closeButton: true
+     *  });
+   *
+   *
+   * // tipi : SUCCESS / INFO / WARNING
+   *
+   *
+   */
+
+  app.config(function(toastrConfig) {
+    angular.extend(toastrConfig, {
+      allowHtml: false,
+      closeButton: false,
+      autoDismiss: true,
+      iconClasses: {
+        error: 'toast-error',
+        info: 'toast-info',
+        success: 'toast-success',
+        warning: 'toast-warning'
+      },
+      messageClass: 'toast-message',
+      tapToDismiss: true,
+      timeOut: 5000,
+      titleClass: 'toast-title',
+      toastClass: 'toast',
+      containerId: 'toast-container',
+      maxOpened: 1,
+      newestOnTop: true,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      preventOpenDuplicates: true,
+      target: 'body'
+    });
+  });
+
   app.config(function($mdDateLocaleProvider) {
 
     $mdDateLocaleProvider.firstDayOfWeek = 1;

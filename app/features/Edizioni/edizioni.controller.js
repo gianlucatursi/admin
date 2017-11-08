@@ -36,6 +36,8 @@
      */
     function _getEditions(timestamp){
 
+      _this.edizioni = [];
+
       EdizioniService
         .getByDay(timestamp)
         .then(
@@ -76,7 +78,7 @@
     function _dateChanged(){
 
       if(_.isDate(_this.dateSelected)){
-        _this.dateSelected.setHours(0, 0, 1, 0);
+        _this.dateSelected.setHours(2, 0, 1, 0);
         _getEditions(_this.dateSelected.getTime());
       }
     }

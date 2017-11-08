@@ -3,7 +3,7 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  DashboardController.$inject = ['$state', 'EventBus', 'AdminService'];
+  DashboardController.$inject = ['$state', 'EventBus', 'AdminService', 'toastr'];
   controllers.controller('DashboardController', DashboardController);
 
   function DashboardController($state, EventBus, AdminService){

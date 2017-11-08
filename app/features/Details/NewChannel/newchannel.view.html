@@ -39,10 +39,10 @@
                                         <div class="row">
                                             <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
                                                 <p class="font-small color-grey">TIPO</p>
-                                                <ui-select class="community-ui-select table-day-text" ng-model="contenuti.channelSelected">
-                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
-                                                    <ui-select-choices repeat="channel in contenuti.channels | filter: $select.search track by $index">
-                                                        <span ng-bind="channel.ds_name"></span>
+                                                <ui-select class="community-ui-select table-day-text" ng-model="newchannel.new_channel.category">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                                                    <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
+                                                        <span ng-bind="cat"></span>
                                                     </ui-select-choices>
                                                 </ui-select>
                                             </div>

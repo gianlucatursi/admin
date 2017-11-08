@@ -14,6 +14,7 @@
     _this.current_state = $state.current;
     _this.aToAdd = '';
     _this.hours = [];
+    _this.categories = [];
     _this.new_channel = {};
     _initStatics();
 
@@ -89,9 +90,21 @@
       ]
     };
 
+    _this.categories = [
+      'Commerciale - Locale',
+      'Cultura',
+      'Cronaca',
+      'Economia',
+      'Politica',
+      'Scuola',
+      'Sport',
+      'Tecnologia'
+    ];
+
     _this.new_channel = {
       authors: [],
       phone : '',
+      category: '',
       website: '',
       email: '',
       address: '',

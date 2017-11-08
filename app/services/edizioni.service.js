@@ -67,6 +67,8 @@
 
       var filters = {};
 
+      edizioni = {};
+
       if(!AdminService.user.isRedazione()){
         //filters['id_channel']
         filters.id_channel = AdminService.user.channelId();
@@ -85,10 +87,6 @@
         .one(url)
         .getList()
         .then(function(data){
-
-          if(_.isObject(data)){
-            return defer.reject(new Error("Cannot be an object"));
-          }
 
           _this.isWorking = false;
 
