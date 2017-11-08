@@ -23,7 +23,12 @@
       pswType: 'password'
     };
 
-    _initStatics();
+    if($state.current == $state.ROUTING.detailchannel){
+      _initStatics(ChannelService.byId($state.params.id));
+    }else{
+      // new channel
+      _initStatics();
+    }
 
     _this.addAuthor = _addAuthor;
     _this.save = _save;
@@ -52,7 +57,7 @@
         ChannelService
           .create(_this.new_channel)
           .then(function(){
-            $state.go('home.canali');
+            $state.go($state.ROUTING.canali.name);
           }, function(){});
       }else{
         //not valid
@@ -68,18 +73,10 @@
      * Init statics
      * @private
      */
-    function _initStatics(){
+    function _initStatics(toEdit){
+
       /** MORNING **/
       _this.hours_m = [
-        "00:00",
-        "00:30",
-        "01:00",
-        "01:30",
-        "02:00",
-        "02:30",
-        "03:00",
-        "03:30",
-        "04:00",
         "04:30",
         "05:00",
         "05:30",
@@ -97,14 +94,14 @@
         "11:30",
         "12:00",
         "12:30",
-      ];
-
-      /** AFTERNOON **/
-      _this.hours_a = [
         "13:00",
         "13:30",
         "14:00",
         "14:30",
+      ];
+
+      /** AFTERNOON **/
+      _this.hours_a = [
         "15:00",
         "15:30",
         "16:00",
@@ -122,7 +119,16 @@
         "22:00",
         "22:30",
         "23:00",
-        "23:30"
+        "23:30",
+        "00:00",
+        "00:30",
+        "01:00",
+        "01:30",
+        "02:00",
+        "02:30",
+        "03:00",
+        "03:30",
+        "04:00",
       ];
 
       _this.categories = [
@@ -136,8 +142,21 @@
         'Tecnologia'
       ];
 
+      if(toEdit){
+        _initEditChannel(toEdit);
+      }else{
+        _initNewChannel();
+      }
+    }
+
+    /**
+     * Init new channel
+     * @private
+     */
+    function _initNewChannel(){
       _this.new_channel = {
         isNew : true,
+        isLocked: false,
         name: '',
         authors: [],
         phone : '',
@@ -234,7 +253,38 @@
           }
         ]
       };
-    };
+    }
+
+    /**
+     * init edit channel
+     * @param channelToEdit
+     * @private
+     */
+    function _initEditChannel(channelToEdit){
+
+      var opening_hours = channelToEdit.openingHours();
+      var orari_specifici =  false;
+      if(opening_hours && opening_hours.length > 0) {
+        orari_specifici = true;
+      }
+
+      _this.new_channel = {
+        isNew : false,
+        isLocked: channelToEdit.isLocked(),
+        name: channelToEdit.name(),
+        authors: channelToEdit.authorList(),
+        phone : channelToEdit.phonenumber(),
+        category: channelToEdit.category(),
+        website: channelToEdit.website(),
+        email: channelToEdit.email(),
+        username: channelToEdit.username(),
+        password: channelToEdit.password(),
+        address: channelToEdit.address(),
+        isInserzionista: channelToEdit.isAdvertiser(),
+        orari_specifici: orari_specifici,
+        days: channelToEdit.openingHours()
+      };
+    }
   }
 
 })(window.angular);

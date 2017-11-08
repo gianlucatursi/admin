@@ -87,7 +87,8 @@
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
                                         <button ng-if="!newchannel.new_channel.isNew"  ladda="newchannel.options.deleteWorking()" class="btn btn-info btn-delete-settings">ELIMINA</button>
                                         <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings">ANNULLA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew" class="btn btn-info btn-block-settings">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">SBLOCCA</button>
                                         <button class="btn btn-info btn-save-settings" ladda="newchannel.options.saveWorking()" ng-click="newchannel.save()">SALVA</button>
                                     </div>
                                 </div>
@@ -146,7 +147,8 @@
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
                                         <button ng-if="!newchannel.new_channel.isNew"  ladda="newchannel.options.deleteWorking()" class="btn btn-info btn-delete-settings">ELIMINA</button>
                                         <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings">ANNULLA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew" class="btn btn-info btn-block-settings">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">SBLOCCA</button>
                                         <button class="btn btn-info btn-save-settings" ladda="newchannel.options.saveWorking()" ng-click="newchannel.save()">SALVA</button>
                                     </div>
                                 </div>
@@ -259,7 +261,8 @@
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
                                         <button ng-if="!newchannel.new_channel.isNew"  ladda="newchannel.options.deleteWorking()" class="btn btn-info btn-delete-settings">ELIMINA</button>
                                         <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings">ANNULLA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew" class="btn btn-info btn-block-settings">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">SBLOCCA</button>
                                         <button class="btn btn-info btn-save-settings" ladda="newchannel.options.saveWorking()" ng-click="newchannel.save()">SALVA</button>
                                     </div>
                                 </div>
@@ -283,10 +286,14 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-sm-3 col-md-4 col-xs-4">
-                                        <div class="border-bottom-grey">
+                                        <div class="border-bottom-grey" ng-if="newchannel.new_channel.isNew">
                                             <p class="font-small color-grey">PASSWORD</p>
                                             <input type="{{newchannel.options.pswType}}" class="form-control new-channel-author table-day-text" placeholder="password" ng-model="newchannel.new_channel.password" />
                                             <span class="lsf color-grey show-psw-icon" ng-click="newchannel.changePSWType()">view</span>
+                                        </div>
+                                        <div class="border-bottom-grey" ng-if="!newchannel.new_channel.isNew">
+                                            <p class="font-small color-grey">PASSWORD</p>
+                                            <input disabled type="password" class="form-control new-channel-author table-day-text" placeholder="password" value="**********" />
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-6 col-md-3 col-xs-3"></div>
@@ -296,7 +303,8 @@
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
                                         <button ng-if="!newchannel.new_channel.isNew"  ladda="newchannel.options.deleteWorking()" class="btn btn-info btn-delete-settings">ELIMINA</button>
                                         <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings">ANNULLA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew" class="btn btn-info btn-block-settings">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">SBLOCCA</button>
                                         <button class="btn btn-info btn-save-settings" ladda="newchannel.options.saveWorking()" ng-click="newchannel.save()">SALVA</button>
                                     </div>
                                 </div>

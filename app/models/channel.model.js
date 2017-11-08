@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  ChannelModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL']; // 'Restangular', '$q', 'AuthServices'
+  ChannelModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL', '$state']; // 'Restangular', '$q', 'AuthServices'
   models.factory('ChannelModel', ChannelModel);
 
-  function ChannelModel(API, $q ,Restangular, IMAGE_BASEURL) { //Restangular, $q, API, Images, AuthServices
+  function ChannelModel(API, $q ,Restangular, IMAGE_BASEURL, $state) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Channel(channelData) {
@@ -29,9 +29,17 @@
     Channel.prototype.openHours = _openHours;
     Channel.prototype.category = _category;
     Channel.prototype.iconImageUrl = _iconImageUrl;
+    Channel.prototype.address = _address;
     Channel.prototype.website = _website;
+    Channel.prototype.email = _email;
+    Channel.prototype.username = _username;
+    Channel.prototype.password = _password;
+    Channel.prototype.isAdvertiser = _isAdvertiser;
+    Channel.prototype.isLocked = _isLocked;
+    Channel.prototype.openingHours = _openingHours;
     Channel.prototype.phonenumber = _phonenumber;
     Channel.prototype.activeFrom = _activeFrom;
+    Channel.prototype.showDetail = _showDetail;
 
     /** stats **/
     Channel.prototype.statistics = _getStats;
@@ -105,12 +113,63 @@
     }
 
     /**
+     * Address
+     * @return {*|string}
+     * @private
+     */
+    function _address(){
+      return this.ds_address || '';
+    }
+    /**
      * Get website
      * @return {*}
      * @private
      */
     function _website(){
-      return this.ds_website;
+      return this.ds_website || '';
+    }
+
+    /**
+     * Email
+     * @return {*|string}
+     * @private
+     */
+    function _email(){
+      return this.ds_email || '';
+    }
+
+    /**
+     * Username
+     * @return {*|string|string}
+     * @private
+     */
+    function _username(){
+      return this.cd_username || '';
+    }
+
+    /**
+     * Password
+     * @return {string}
+     * @private
+     */
+    function _password(){
+      return '';
+    }
+
+    /**
+     *
+     * @private
+     */
+    function _isAdvertiser(){
+      return this.is_advertiser;
+    }
+
+    /**
+     *
+     * @private
+     */
+    function _isLocked(){
+      return this.is_locked;
     }
 
     /**
@@ -122,6 +181,20 @@
       return this.ds_phone;
     }
 
+    /**
+     * Get opening hours
+     * @return {*|Array}
+     * @private
+     */
+    function _openingHours(){
+      return this.opening_hours || [];
+    }
+
+    /**
+     *  active form
+     * @return {*}
+     * @private
+     */
     function _activeFrom(){
 
       if(this.dt_activation){
@@ -140,6 +213,13 @@
       }
 
       return undefined;
+    }
+
+    /**
+     * Go to detail
+     */
+    function _showDetail(){
+      $state.go($state.ROUTING.detailchannel.name, {id: this._id});
     }
 
     /**

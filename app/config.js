@@ -57,6 +57,12 @@
         url: '/nuovocanale',
         templateUrl: 'app/features/Details/NewChannel/newchannel.view.html'
       },
+      detailchannel:{
+        title: 'Modifica canale',
+        name: 'home.modifica_canale',
+        url: '/canale/:id',
+        templateUrl: 'app/features/Details/NewChannel/newchannel.view.html'
+      },
       media:{
         title: 'Media',
           name: 'home.media',

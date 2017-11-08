@@ -32,7 +32,9 @@
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                     <!---------- ELEMENT ---------->
-                    <div class="row" ng-repeat="channel in canali.channels | limitTo:canali.options.pager.limit:-(canali.options.pager.active*canali.options.pager.limit)" ng-init="channel.statistics()">
+                    <div class="row" ng-repeat="channel in canali.channels | limitTo:canali.options.pager.limit:-(canali.options.pager.active*canali.options.pager.limit)"
+                         ng-init="channel.statistics()"
+                         ng-click="channel.showDetail()">
                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                             <div class="row">
