@@ -138,7 +138,8 @@
 
                                             <div class="row no-padding">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
-                                                    <p class="font-15 font-bold padding-top-10 color-green">ATTIVO</p>
+                                                    <p class="font-15 font-bold padding-top-10 color-green" ng-if="!channel.isLocked()">ATTIVO</p>
+                                                    <p class="font-15 font-bold padding-top-10 color-grey" ng-if="channel.isLocked()">BLOCCATO</p>
                                                 </div>
                                             </div>
                                         </div>

@@ -24,6 +24,7 @@
     //////////////////////////////////
 
     Channel.prototype.set = _set;
+    Channel.prototype.id = _identifier;
     Channel.prototype.name = _name;
     Channel.prototype.authorList = _authorList;
     Channel.prototype.openHours = _openHours;
@@ -64,6 +65,13 @@
       angular.extend(this, uData);
     }
 
+    /**
+     * Get _id
+     * @private
+     */
+    function _identifier(){
+      return this._id;
+    }
     /**
      * Get name of the channel
      * @return {string}

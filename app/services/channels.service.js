@@ -37,7 +37,14 @@
     _that.toArray = _toArray;
     _that.working = function(){ return _that.isWorking; };
     _that.validate = _validate;
+
+
+    /////// CRUD /////////
     _that.create = _createChannel;
+    _that.update = _updateChannel;
+    _that.delete = _deleteChannel;
+    _that.lock = _lockChannel;
+    _that.unlock = _unlockChannel;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -80,6 +87,8 @@
       _this.isWorking = true;
 
       var filters = {cd_privilege: 'CMS-ACCESS-CHANNEL'};
+
+      channels = {};
 
       if(!AdminService.user.isRedazione()){
         //filters['id_channel']
@@ -171,7 +180,7 @@
      * @param channel
      * @private
      */
-    function _validate(channel){
+    function _validate(channel,isNew){
       // check name
       if(channel.name == ''){
         toastr.error('E\' necessario inserire il nome del canale per poter proseguire','Controlla i dati', { closeButton: true});
@@ -185,7 +194,7 @@
       }
 
       // check password
-      if(channel.password == ''){
+      if(isNew && channel.password == ''){
         toastr.error('E\' necessario inserire la password del canale per poter proseguire','Controlla i dati', { closeButton: true});
         return false;
       }
@@ -265,6 +274,115 @@
         });
 
       return defer.promise;
+    }
+
+    /**
+     * Update channel
+     * @param _id
+     * @param channel to update
+     * @return {Promise}
+     * @private
+     */
+    function _updateChannel(_id, channel){
+
+
+      var _this = this;
+      var defer = $q.defer();
+
+      var opening_hours = [];
+      if(channel.orari_specifici && channel.days){
+        opening_hours = channel.days;
+      }
+
+      var toCreate = {
+        "ds_name": channel.name,
+        "cd_username": channel.username,
+        "ds_address": channel.address || '',
+        "id_city": AdminService.user.cityId(),
+        "ds_phone": channel.phone || '',
+        "ds_email": channel.email || '',
+        "ds_website": channel.website || '',
+        "id_icon": channel.icon || '',
+        "ds_category": channel.category || '',
+        "is_advertiser": channel.isInserzionista,
+        "is_locked": channel.isLocked,
+        "authors": channel.authors || [],
+        "opening_hours": opening_hours
+      };
+
+      _this.isWorking = true;
+
+      Restangular
+        .one(API.channels.update({id: _id}))
+        .customPUT(toCreate)
+        .then(function(success){
+          // get new channels
+          toastr.success('Il canale è stato aggiornato');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Aggiornata canale', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+    }
+
+
+    function _deleteChannel(_id){
+
+      var _this = this;
+      var defer = $q.defer();
+
+      _this.isWorking = true;
+      Restangular
+        .one(API.channels.update({id: _id}))
+        .customDELETE()
+        .then(function(success){
+          // get new channels
+          toastr.success('Il canale è stato eliminato');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto', 'Elimina canale', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+
+    }
+
+    function _lockChannel(channelToLock){
+
+      channelToLock.isLocked = true;
+      return this.update(channelToLock._id, channelToLock);
+    }
+
+    function _unlockChannel(channelToUnlock){
+      channelToUnlock.isLocked = false;
+      return this.update(channelToUnlock._id, channelToUnlock);
     }
 
     /** return service **/

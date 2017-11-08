@@ -26,6 +26,7 @@
         get: _customRequest.bind(null, 'getchannel'),
         stats: _customRequest.bind(null, 'reports/channel'),
         create: _customRequest.bind(null, 'channel'),
+        update: _customRequest.bind(null, 'channel/:id'),
       },
       edizioni: {
         get: _customRequest.bind(null, 'alleditions'),

@@ -85,10 +85,10 @@
                                 <!-------- END --------->
                                 <div class="row border-bottom-grey" style="margin-top: 70px">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
-                                        <button ng-if="!newchannel.new_channel.isNew"  ladda="newchannel.options.deleteWorking()" class="btn btn-info btn-delete-settings">ELIMINA</button>
-                                        <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings">ANNULLA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">BLOCCA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">SBLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings" ng-click="newchannel.delete()">ELIMINA</button>
+                                        <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings" ui-sref="home.canali">ANNULLA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings" ng-click="newchannel.lock()">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings" ng-click="newchannel.unlock()">SBLOCCA</button>
                                         <button class="btn btn-info btn-save-settings" ladda="newchannel.options.saveWorking()" ng-click="newchannel.save()">SALVA</button>
                                     </div>
                                 </div>
@@ -145,10 +145,10 @@
                                 <!-------- END --------->
                                 <div class="row border-bottom-grey" style="margin-top: 70px">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
-                                        <button ng-if="!newchannel.new_channel.isNew"  ladda="newchannel.options.deleteWorking()" class="btn btn-info btn-delete-settings">ELIMINA</button>
-                                        <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings">ANNULLA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">BLOCCA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">SBLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew"  class="btn btn-info btn-delete-settings" ng-click="newchannel.delete()">ELIMINA</button>
+                                        <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings" ui-sref="home.canali">ANNULLA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings" ng-click="newchannel.lock()">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings" ng-click="newchannel.unlock()">SBLOCCA</button>
                                         <button class="btn btn-info btn-save-settings" ladda="newchannel.options.saveWorking()" ng-click="newchannel.save()">SALVA</button>
                                     </div>
                                 </div>
@@ -259,10 +259,10 @@
                                 <!-------- END --------->
                                 <div class="row border-bottom-grey" style="margin-top: 70px">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
-                                        <button ng-if="!newchannel.new_channel.isNew"  ladda="newchannel.options.deleteWorking()" class="btn btn-info btn-delete-settings">ELIMINA</button>
-                                        <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings">ANNULLA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">BLOCCA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">SBLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings" ng-click="newchannel.delete()">ELIMINA</button>
+                                        <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings" ui-sref="home.canali">ANNULLA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings" ng-click="newchannel.lock()">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings" ng-click="newchannel.unlock()">SBLOCCA</button>
                                         <button class="btn btn-info btn-save-settings" ladda="newchannel.options.saveWorking()" ng-click="newchannel.save()">SALVA</button>
                                     </div>
                                 </div>
@@ -301,10 +301,10 @@
 
                                 <div class="row border-bottom-grey" style="margin-top: 70px">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
-                                        <button ng-if="!newchannel.new_channel.isNew"  ladda="newchannel.options.deleteWorking()" class="btn btn-info btn-delete-settings">ELIMINA</button>
-                                        <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings">ANNULLA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">BLOCCA</button>
-                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings">SBLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings" ng-click="newchannel.delete()">ELIMINA</button>
+                                        <button ng-if="newchannel.new_channel.isNew" class="btn btn-info btn-delete-settings" ui-sref="home.canali">ANNULLA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && !newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings" ng-click="newchannel.lock()">BLOCCA</button>
+                                        <button ng-if="!newchannel.new_channel.isNew && newchannel.new_channel.isLocked" class="btn btn-info btn-block-settings" ng-click="newchannel.unlock()">SBLOCCA</button>
                                         <button class="btn btn-info btn-save-settings" ladda="newchannel.options.saveWorking()" ng-click="newchannel.save()">SALVA</button>
                                     </div>
                                 </div>

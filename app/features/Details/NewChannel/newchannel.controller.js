@@ -32,6 +32,9 @@
 
     _this.addAuthor = _addAuthor;
     _this.save = _save;
+    _this.delete = _delete;
+    _this.unlock = _unlock;
+    _this.lock = _lock;
     _this.changePSWType = _changePSWType;
 
     /**
@@ -52,19 +55,71 @@
      */
     function _save(){
 
-      if(ChannelService.validate(_this.new_channel)){
+      if(ChannelService.validate(_this.new_channel, _this.new_channel.isNew)){
         //valid
-        ChannelService
-          .create(_this.new_channel)
-          .then(function(){
-            $state.go($state.ROUTING.canali.name);
-          }, function(){});
+        if(_this.new_channel.isNew){
+          //create
+          ChannelService
+            .create(_this.new_channel)
+            .then(function(){
+              $state.go($state.ROUTING.canali.name);
+            }, function(){});
+        }else{
+          //update
+          ChannelService
+            .update(_this.new_channel._id, _this.new_channel)
+            .then(function(){
+              $state.go($state.ROUTING.canali.name);
+            }, function(){});
+        }
+
       }else{
         //not valid
       }
     }
 
+    /**
+     * Delete channel
+     * @private
+     */
+    function _delete(){
 
+      ChannelService
+        .delete(_this.new_channel._id)
+        .then(function(){
+          $state.go($state.ROUTING.canali.name);
+        }, function(){});
+
+    }
+
+    /**
+     * Unlock channel
+     * @private
+     */
+    function _unlock(){
+      ChannelService
+        .unlock(_this.new_channel)
+        .then(function(){
+          $state.go($state.ROUTING.canali.name);
+        }, function(){});
+    }
+
+    /**
+     * Lock channel
+     * @private
+     */
+    function _lock(){
+      ChannelService
+        .lock(_this.new_channel)
+        .then(function(){
+          $state.go($state.ROUTING.canali.name);
+        }, function(){});
+    }
+
+    /**
+     * Change input type
+     * @private
+     */
     function _changePSWType(){
       _this.options.pswType = _this.options.pswType == 'password' ? 'text' : 'password';
     }
@@ -133,13 +188,9 @@
 
       _this.categories = [
         'Commerciale - Locale',
-        'Cultura',
-        'Cronaca',
-        'Economia',
-        'Politica',
-        'Scuola',
-        'Sport',
-        'Tecnologia'
+        'Istruzione comunale',
+        'Associzione sportiva',
+        'Associazione privata'
       ];
 
       if(toEdit){
@@ -269,6 +320,7 @@
       }
 
       _this.new_channel = {
+        _id: channelToEdit.id(),
         isNew : false,
         isLocked: channelToEdit.isLocked(),
         name: channelToEdit.name(),
