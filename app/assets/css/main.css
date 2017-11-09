@@ -3578,6 +3578,34 @@ div[toast].ng-leave.ng-leave-active {
     width: 25em;
   }
 }
+.ql-toolbar {
+  padding-left: 0px !important;
+  border: none !important;
+  border-bottom: 2px solid #E5E5E5 !important;
+}
+.ql-toolbar .ql-formats button {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.ql-toolbar .ql-formats button * {
+  stroke: #939393;
+}
+.ql-editor {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  height: 400px !important;
+  color: black !important;
+}
+.ql-container {
+  border: none !important;
+  height: 400px !important;
+}
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill {
+  fill: #939393;
+}
 * {
   font-family: Roboto;
 }
@@ -4066,4 +4094,7 @@ textarea {
   /*Provide height in pixels or in other units as per your layout*/
   overflow-y: auto;
   /*Provide an auto overflow to diaply scroll*/
+}
+.no-margin-left {
+  margin-left: 0px !important;
 }

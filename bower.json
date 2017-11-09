@@ -37,8 +37,8 @@
     "angular-material": "^1.1.5",
     "moment": "^2.19.1",
     "angular-toastr": "^2.1.1",
-    "angular-trix": "^1.0.2",
-    "angular-elastic": "^2.5.1"
+    "angular-elastic": "^2.5.1",
+    "ngQuill": "ng-quill#^3.5.1"
   },
   "resolutions": {
     "angular": "1.6.6"

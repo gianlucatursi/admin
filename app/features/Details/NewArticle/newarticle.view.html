@@ -141,7 +141,30 @@
 
                                             <div class="row no-padding no-margin margin-top-15px">
                                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 no-padding no-margin">
-                                                    <trix-editor angular-trix ng-model="article.current.description"></trix-editor>
+                                                    <!--<trix-editor angular-trix ng-model="article.current.description"></trix-editor>-->
+                                                    <ng-quill-editor ng-model="article.current.description" placeholder="Inserisci il test dell'articolo">
+                                                        <ng-quill-toolbar>
+                                                            <div>
+                                                                <span class="ql-formats">
+                                                                    <button class="ql-bold no-margin-left" ng-attr-title="{{'Bold'}}"></button>
+                                                                    <button class="ql-italic" ng-attr-title="{{'Italic'}}"></button>
+                                                                    <button class="ql-underline" ng-attr-title="{{'Underline'}}"></button>
+                                                                    <button class="ql-blockquote" ng-attr-title="{{'Blockquote'}}"></button>
+                                                                    <button class="ql-link" ng-attr-title="{{'link'}}"></button>
+                                                                </span>
+                                                                <!--
+                                                                <span class="ql-formats">
+                                                                    <select class="ql-align" ng-attr-title="{{'Aligment'}}">
+                                                                        <option selected></option>
+                                                                        <option value="center"></option>
+                                                                        <option value="right"></option>
+                                                                        <option value="justify"></option>
+                                                                    </select>
+                                                                </span>
+                                                                -->
+                                                            </div>
+                                                        </ng-quill-toolbar>
+                                                    </ng-quill-editor>
                                                 </div>
                                             </div>
                                         </div>
