@@ -41,9 +41,14 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left">
-                    <div class="form-group border-line publish_date_filter">
-                        <label class="font-small color-grey" style="white-space:nowrap;padding-bottom: 5px;">CATEGORIA CONSIGLIATA</label>
-                        <md-datepicker md-open-on-focus ng-model="contenuti.dateSelected" md-placeholder="Seleziona la data..."  style="height: 42px;width: 230px;"></md-datepicker>
+                    <div class="form-group border-line">
+                        <label class="font-small color-grey" style="white-space:nowrap;">CATEGORIA CONSIGLIATA</label>
+                        <ui-select class="community-ui-select" ng-model="article.options.categorySelected">
+                            <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                            <ui-select-choices repeat="cat in article.categoryService.list | filter: $select.search track by $index">
+                                <span ng-bind="cat.ds_name"></span>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                 </div>
 
@@ -128,7 +133,7 @@
 
                                 <div class="row border-bottom-grey">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
-                                        <p class="pull-right font-xs color-grey">Ultimo asalvataggio: TODO data - TODO ORA</p>
+                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo asalvataggio: TODO data - TODO ORA</p>
                                     </div>
                                 </div>
 
@@ -218,7 +223,7 @@
 
                                 <div class="row border-bottom-grey">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
-                                        <p class="pull-right font-xs color-grey">Ultimo asalvataggio: TODO data - TODO ORA</p>
+                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo asalvataggio: TODO data - TODO ORA</p>
                                     </div>
                                 </div>
 
@@ -324,7 +329,7 @@
 
                                 <div class="row border-bottom-grey">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
-                                        <p class="pull-right font-xs color-grey">Ultimo asalvataggio: TODO data - TODO ORA</p>
+                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo asalvataggio: TODO data - TODO ORA</p>
                                     </div>
                                 </div>
 

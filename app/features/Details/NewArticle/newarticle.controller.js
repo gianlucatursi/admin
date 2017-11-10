@@ -3,15 +3,16 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'toastr'];
+  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'CategoryService', 'toastr'];
   controllers.controller('NewArticleController', NewArticleController);
 
-  function NewArticleController($state, AdminService, ArticleService, ChannelService, toastr){
+  function NewArticleController($state, AdminService, ArticleService, ChannelService, CategoryService, toastr){
 
     var _this = this;
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
     _this.channelService = ChannelService;
+    _this.categoryService = CategoryService;
 
     _this.current_state = $state.current;
     _this.hours = [];

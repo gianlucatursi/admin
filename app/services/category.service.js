@@ -54,7 +54,9 @@
 
             _that.options.loaded = true;
             _.each(result, function(val){
-              _that.list.push(val);
+              if(_byId(val._id) == undefined){
+                _that.list.push(val);
+              }
             });
             defer.resolve(_that.list);
           },
