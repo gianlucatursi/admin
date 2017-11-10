@@ -110,7 +110,7 @@
 
 
 
-                        <uib-tab index="1" id="tab2">
+                        <uib-tab index="1" id="tab2" class="border-left-tab">
                             <uib-tab-heading class="padding-10px">
                                 <span class="font-normal font-bold span-tab">
                                     <span class="lsf font-w-100 icon-tab-channel">edit</span>
@@ -134,7 +134,7 @@
                                             <div class="row no-padding no-margin">
                                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 no-padding no-margin">
                                                     <p class="font-small color-grey pull-left" for="description_article">TESTO</p>
-                                                    <p class="font-small color-grey pull-right">{{article.current.description.length || 0}}</p>
+                                                    <p class="font-small color-grey pull-right">{{article.stripHTMLCount(article.current.description) || 0}}</p>
                                                 </div>
                                             </div>
                                             <!--<textarea rows="1" msd-elastic class="form-control new-channel-name"  ng-model="article.current.description" placeholder="Titolo dell'articolo" id="description_article" type="text"></textarea>-->
@@ -172,6 +172,21 @@
                                 </div>
 
                                 <!-------- END --------->
+                                <div class="row" style="margin-top: 70px">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                        <button class="btn btn-info btn-delete-settings" >CESTINA</button>
+                                        <button class="btn btn-info btn-block-settings">CONVERTI IN BOZZA</button>
+
+                                        <button class="btn btn-info btn-pubblica-settings pull-right">PUBBLICA</button>
+                                        <button class="btn btn-info btn-save-bozza-settings pull-right">SALVA BOZZA</button>
+                                    </div>
+                                </div>
+
+                                <div class="row border-bottom-grey">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
+                                        <p class="pull-right font-xs color-grey">Ultimo asalvataggio: TODO data - TODO ORA</p>
+                                    </div>
+                                </div>
 
 
                             </uib-tab-body>
@@ -196,7 +211,7 @@
                             </uib-tab-heading>
                             <uib-tab-body>
                                 <div class="row" style="margin-top: 45px">
-                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 
                                         <cs-flag
                                                 class="my-flag-validation"
@@ -204,6 +219,7 @@
                                                 flag-selected="article.current.is_event"
                                                 flag-string="INSERISCI NEGLI EVENTI"></cs-flag>
                                     </div>
+                                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6"></div>
                                 </div>
 
                                 <div class="row margin-top-20px">
@@ -213,6 +229,21 @@
                                 </div>
 
                                 <!-------- END --------->
+                                <div class="row" style="margin-top: 70px">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                        <button class="btn btn-info btn-delete-settings" >CESTINA</button>
+                                        <button class="btn btn-info btn-block-settings">CONVERTI IN BOZZA</button>
+
+                                        <button class="btn btn-info btn-pubblica-settings pull-right">PUBBLICA</button>
+                                        <button class="btn btn-info btn-save-bozza-settings pull-right">SALVA BOZZA</button>
+                                    </div>
+                                </div>
+
+                                <div class="row border-bottom-grey">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
+                                        <p class="pull-right font-xs color-grey">Ultimo asalvataggio: TODO data - TODO ORA</p>
+                                    </div>
+                                </div>
 
                             </uib-tab-body>
                         </uib-tab>

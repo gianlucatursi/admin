@@ -3150,6 +3150,11 @@ http://kudakurage.com/ligature_symbols/
 #new_channel #tab2 > a > .ng-scope > label {
   vertical-align: 20%;
 }
+#new_channel .border-left-tab {
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-left: 1px solid #CCCCCC !important;
+}
 #new_channel #tab3 > a > .ng-scope > label {
   vertical-align: 20%;
 }

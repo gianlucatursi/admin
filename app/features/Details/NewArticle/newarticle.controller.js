@@ -30,7 +30,7 @@
 
     _this.save = _save;
     _this.delete = _delete;
-
+    _this.stripHTMLCount = _stripHTMLCount;
     /**
      * Save channel
      * @private
@@ -129,6 +129,13 @@
         orari_specifici: orari_specifici,
         days: channelToEdit.openingHours()*/
       };
+    }
+
+    function _stripHTMLCount(html)
+    {
+      var tmp = document.createElement("DIV");
+      tmp.innerHTML = html;
+      return (tmp.textContent || tmp.innerText || "").length;
     }
   }
 
