@@ -31,6 +31,9 @@
 .bgcolor-mid-grey {
   background-color: #939393;
 }
+.search-edition {
+  margin-bottom: 12px !important;
+}
 .md-datepicker-button {
   display: none;
 }

@@ -3,23 +3,37 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'toastr'];
+  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'toastr'];
   controllers.controller('NewArticleController', NewArticleController);
 
-  function NewArticleController($state, AdminService, ArticleService, toastr){
+  function NewArticleController($state, AdminService, ArticleService, ChannelService, toastr){
 
     var _this = this;
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
+    _this.channelService = ChannelService;
+
     _this.current_state = $state.current;
-    _this.aToAdd = '';
-    _this.hours_m = [];
-    _this.hours_a = [];
+    _this.hours = [];
     _this.categories = [];
     _this.current = {};
     _this.options = {
-      saveWorking: ArticleService.working
+      saveWorking: ArticleService.working,
+      channelSelected: null,
+      authorSelected: '',
+      channels: [],
+      event:{
+        isActive: false,
+        place: '',
+        when: [{
+          date: null,
+          start : '',
+          end: ''
+        }]
+      }
     };
+
+    _initialize();
 
     if($state.current == $state.ROUTING.detailarticle){
       _initStatics(ArticleService.byId($state.params.id));
@@ -31,6 +45,8 @@
     _this.save = _save;
     _this.delete = _delete;
     _this.stripHTMLCount = _stripHTMLCount;
+    _this.clearAuthor = _clearAuthor;
+    _this.addDate = _addDate;
     /**
      * Save channel
      * @private
@@ -78,19 +94,6 @@
     }
 
     /**
-     * Init statics
-     * @private
-     */
-    function _initStatics(toEdit){
-
-      if(toEdit){
-        _initEditArticle(toEdit);
-      }else{
-        _initNewArticle();
-      }
-    }
-
-    /**
      * Init new channel
      * @private
      */
@@ -100,7 +103,10 @@
         abstract: '',
         title: '',
         description:'',
-        is_event: false
+        event:{
+          place: '',
+          dates: []
+        }
       };
     }
 
@@ -131,11 +137,130 @@
       };
     }
 
+    /**
+     *
+     * @param html
+     * @return {Number}
+     * @private
+     */
     function _stripHTMLCount(html)
     {
       var tmp = document.createElement("DIV");
       tmp.innerHTML = html;
       return (tmp.textContent || tmp.innerText || "").length;
+    }
+
+    /**
+     *
+     * @private
+     */
+    function _clearAuthor(){
+      _this.options.authorSelected = '';
+      //_this.options.authorSelected = (_this.options.channelSelected.authorList() || [])[0];
+    }
+
+    function _addDate(){
+
+      _this.current.event.place = _this.options.event.place;
+      /**
+       * at the end!
+      if(!_this.current.event.dates){
+        _this.current.event.dates = [];
+      }
+
+      _this.current.event.dates.push(_this.options.event.when[_this.options.event.when.length-1]);
+       **/
+
+      _this.options.event.when.push({
+        date: null,
+        start: '',
+        end: ''
+      });
+
+    }
+
+    /**
+     * Init data
+     * @private
+     */
+    function _initialize(){
+
+      //_this.options.channelSelected = ChannelService.byId(AdminService.user.channelId()) || {};
+
+      if(!AdminService.user.isRedazione()){
+        _this.options.channels = [_this.channelSelected];
+      }else{
+        _this.options.channels = ChannelService.toArray();
+        //_this.options.channelSelected = _this.options.channels[0];
+      }
+
+      //_this.options.authorSelected = (_this.options.channelSelected.authorList() || [])[0];
+
+    }
+
+    /**
+     * Init statics
+     * @private
+     */
+    function _initStatics(toEdit){
+
+      if(toEdit){
+        _initEditArticle(toEdit);
+      }else{
+        _initNewArticle();
+      }
+
+      /** MORNING **/
+      _this.hours = [
+        "00:00",
+        "00:30",
+        "01:00",
+        "01:30",
+        "02:00",
+        "02:30",
+        "03:00",
+        "03:30",
+        "04:00",
+        "04:30",
+        "05:00",
+        "05:30",
+        "06:00",
+        "06:30",
+        "07:00",
+        "07:30",
+        "08:00",
+        "08:30",
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:30",
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+        "20:30",
+        "21:00",
+        "21:30",
+        "22:00",
+        "22:30",
+        "23:00",
+        "23:30",
+      ];
     }
   }
 
