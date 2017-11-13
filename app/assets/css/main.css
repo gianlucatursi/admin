@@ -4109,3 +4109,6 @@ textarea {
 .no-padding-left {
   padding-left: 0 !important;
 }
+.no-border {
+  border: none !important;
+}
