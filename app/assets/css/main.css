@@ -3418,6 +3418,12 @@ http://kudakurage.com/ligature_symbols/
   width: 180px;
   font-size: 16px;
 }
+.modal-data-filter {
+  width: 100% !important;
+}
+.modal-data-filter .md-datepicker-input-container {
+  width: 90% !important;
+}
 .md-calendar-selected-date .md-calendar-date-selection-indicator {
   background: #48AACC !important;
 }
@@ -3881,6 +3887,32 @@ form.communityform .community-control:hover {
 .btn-green:active {
   color: white;
 }
+.btn-green-modal {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  border-left: 1px solid white;
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  height: 37px;
+  background-color: #24C40D;
+  color: white;
+  font-size: 14px;
+  padding: 9px 15px;
+}
+.btn-green-modal:hover,
+.btn-green-modal:focus,
+.btn-green-modal:active {
+  color: white;
+}
+.btn-green-modal.left-rounded {
+  border-bottom-right-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+.btn-green-modal.right-rounded {
+  border-bottom-left-radius: 5px !important;
+  border-top-left-radius: 5px !important;
+}
 .btn-pager {
   font-family: RobotoMedium !important;
   font-weight: 500;
@@ -4111,4 +4143,20 @@ textarea {
 }
 .no-border {
   border: none !important;
+}
+#modal-media-body {
+  padding: 3% !important;
+  padding-top: 0 !important;
+}
+.channel-modal-select {
+  border: none !important;
+  border: 2px solid #E5E5E5 !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+.channel-modal-select .ui-select-toggle {
+  border-bottom: none !important;
+}
+.md-datepicker-calendar-pane {
+  z-index: 9999;
 }

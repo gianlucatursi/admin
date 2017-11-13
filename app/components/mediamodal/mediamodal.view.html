@@ -1,0 +1,87 @@
+<div class="modal-header no-border">
+    <div class="row no-padding">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <div class="row no-padding no-margin">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding no-margin" style="margin-top:20px !important;">
+                    <button class="btn btn-green-modal right-rounded pull-left">
+                        <span class="lsf">plus</span>&nbsp;&nbsp;&nbsp;&nbsp;CARICA IMMAGINI
+                    </button>
+                    <button class="btn btn-green-modal left-rounded pull-left">
+                        CARICA VIDEO
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <button class="no-border pull-right" ng-click="cancel()">
+                <img src="app/assets/images/close_button_gray.png" width="35px">
+            </button>
+        </div>
+    </div>
+</div>
+<hr class="color-grey bgcolor-grey" style="width:94%;margin-left:3%;"/>
+
+<div class="modal-body" id="modal-media-body">
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="form-group">
+                <label class="font-small color-grey">CANALE</label>
+                <ui-select class="community-ui-select" ng-model="channelViewSelected">
+                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                    <ui-select-choices repeat="channel in channels | filter: $select.search track by $index">
+                        <span ng-bind="channel.ds_name"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-6">
+            <div class="form-group border-line modal-data-filter">
+                <label class="font-small color-grey" style="white-space:nowrap;padding-bottom: 5px;">DATA CARICAMENTO</label>
+                <br />
+                <md-datepicker md-open-on-focus ng-model="dateSelected" md-placeholder="Seleziona la data..."  style="height: 42px;"></md-datepicker>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="form-group">
+                <label class="font-small color-grey">TIPO</label>
+                <ui-select class="community-ui-select" ng-model="mediaTypeSelected">
+                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="t in mediaTypes | filter: $select.search track by $index">
+                        <span ng-bind="t"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+            <button ladda="contenuti.options.articleWorking()" class="btn btn-grey btn-block" ng-click="applyFilters()">
+                APPLICA&nbsp;&nbsp;&nbsp;<span class="lsf">right</span></button>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 col-md-9 col-sm-6 col-xs-6">
+            <div class="row border-bottom-grey" style="padding-left: 0px;margin-left: 0px;">
+                <div class="col-lg-11 col-sm-11 col-md-10 col-xs-10" >
+                    <span class="search-icon lsf">search</span>
+                    <input class="form-control search-input" placeholder="Cerca nei tag e nella descrizione" ng-model="textToSearch" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+            <button ladda="contenuti.options.searchWorking" class="btn btn-grey btn-block" style="margin-top: 0;" ng-click="searchText()">
+                CERCA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="lsf">right</span></button>
+        </div>
+    </div>
+
+</div>
+<!--
+<div class="modal-footer no-border">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
+-->
