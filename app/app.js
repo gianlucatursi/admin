@@ -102,6 +102,7 @@
     };
 
   });
+
   app.config(function (laddaProvider) {
     laddaProvider.setOption({ /* optional */
       style: 'expand-right',
@@ -109,6 +110,23 @@
       spinnerColor: '#939393'
     });
   });
+
+  app
+    .directive('fileChange', function() {
+      return {
+        restrict: 'A',
+        scope: {
+          handler: '&'
+        },
+        link: function (scope, element) {
+          element.on('change', function (event) {
+            scope.$apply(function(){
+              scope.handler({files: event.target.files});
+            });
+          });
+        }
+      };
+    });
 
   /** underscore extension **/
   _.mixin({
