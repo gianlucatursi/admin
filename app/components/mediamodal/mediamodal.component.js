@@ -34,8 +34,8 @@
 
     _scope.applyFilters = _applyFilters;
     _scope.$onInit = _onInit;
-    _this.fileSelect = _fileSelect;
-    _this.videoSelect = _videoSelect;
+    _scope.fileSelect = _fileSelect;
+    _scope.videoSelect = _videoSelect;
 
     _scope.ok = function () {
       _this.close({$value: _scope.selected.item});
@@ -71,14 +71,15 @@
 
     function _videoSelect(video) {
 
-       var file = files[0];
+       var file = video;
 
        var uploader = new VimeoUpload({
 
          name: 'name of video',
          description: 'vimeo description',
          file: file,
-         token: 'k2A6rvlgcwmBUZ11CbaSW27dB3oQkANgaHmAxjx1JCs+mIarKemP6Oe72IyocefQGRas4IkOvqwlEFd+FfetnISI/Qp8p0ALwkcivxVhO0nH8IkTlpX8H/cyX1Ii6eWP',
+         private: true,
+         token: '034ea8145a609e99ee0d9f01e8ab4b73',
          onError: function(data) {
          //showMessage('<strong>Error</strong>: ' + JSON.parse(data).error, 'danger')
           toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
