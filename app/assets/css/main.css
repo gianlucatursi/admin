@@ -3620,6 +3620,38 @@ div[toast].ng-leave.ng-leave-active {
 .ql-snow .ql-stroke.ql-fill {
   fill: #939393;
 }
+#iscritti .select-blue {
+  font-family: RobotoMedium !important;
+  font-weight: bold;
+  background-color: white;
+  color: #48AACC;
+  border: 1px solid #48AACC !important;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 5px;
+  margin-top: 10px;
+}
+#iscritti .select-blue > div > span {
+  font-weight: bold;
+  color: #48AACC;
+  border-bottom: 0;
+}
+#iscritti .select-blue > div > span > span {
+  font-weight: bold;
+  color: #48AACC;
+}
+#iscritti .circle-blu {
+  border-radius: 50%;
+  background-color: #48AACC;
+  width: 13px;
+  height: 13px;
+}
+#iscritti .circle-pink {
+  border-radius: 50%;
+  background-color: #D93E5F;
+  width: 13px;
+  height: 13px;
+}
 * {
   font-family: Roboto;
 }
@@ -3661,11 +3693,20 @@ html {
 .margin-left-0 {
   margin-left: 0px;
 }
+.margin-top-5px {
+  margin-top: 5px !important;
+}
 .margin-top-15px {
   margin-top: 15px !important;
 }
 .margin-top-50px {
   margin-top: 50px !important;
+}
+.margin-right-10px {
+  margin-right: 10px !important;
+}
+.margin-bottom-30px {
+  margin-bottom: 30px !important;
 }
 /* Custom page footer */
 .footer {
@@ -3985,6 +4026,23 @@ form.communityform .community-control:hover {
   border: 1px solid #48AACC !important;
   border-radius: 5px;
   color: #48AACC !important;
+}
+.btn-grey-icon {
+  font-family: RobotoBold !important;
+  font-weight: 500;
+  background-color: white;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  color: #808080;
+  font-size: 16px;
+  padding: 10px 15px;
+}
+.btn-grey-icon:hover,
+.btn-grey-icon:focus,
+.btn-grey-icon:active {
+  border: 1px solid #808080 !important;
+  border-radius: 5px;
+  color: #808080 !important;
 }
 .community_link {
   color: #939393;

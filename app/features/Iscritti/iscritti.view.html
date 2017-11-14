@@ -12,7 +12,90 @@
 
     <div class="row page_content">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <h1>ISCRITTI</h1>
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                        <p class="font-small color-grey">DATA ISCRIZIONE</p>
+                        <ui-select class="community-ui-select font-normal" ng-model="newchannel.new_channel.category">
+                            <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
+                                <span ng-bind="cat"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                        <p class="font-small color-grey">STATO</p>
+                        <ui-select class="community-ui-select font-normal" ng-model="newchannel.new_channel.category">
+                            <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
+                                <span ng-bind="cat"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4"></div>
+                    <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                        <button class="btn btn-grey-icon margin-top-10px" >&nbsp;&nbsp;APPLICA&nbsp;&nbsp;<span class="font-medium fa fa-angle-right"></span></button>
+                    </div>
+                </div>
+                <div class="row margin-top-15px margin-bottom-30px">
+                    <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10 border-bottom-grey margin-top-5px">
+                        <input class="form-control search-input ng-pristine ng-valid ng-empty ng-touched" placeholder="Cerca fra tutti gli iscritti" ng-model="contenuti.options.textToSearch" type="text" aria-invalid="false" style="">
+                        <span class="search-icon lsf">search</span>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                        <button class="btn btn-grey-icon" >&nbsp;&nbsp;CERCA&nbsp;&nbsp;<span class="font-medium fa fa-angle-right"></span></button>
+                    </div>
+                </div>
+                <div>
+                    <div class="row margin-top-10px border-bottom-grey">
+                        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+                            <div class="row">
+                                <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 no-padding margin-top-5px">
+                                    <div class="circle-blu"></div>
+                                </div>
+                                <p class="font-bold">Giorgio Mondino</p>
+                            </div>
+                            <div class="row">
+                                <p>Iscritto il <span>11-11-2017</span></p>
+                            </div>
+                            <div class="row">
+                                <p>Ultimo accesso il <span>11-11-2017</span></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 margin-top-10px">
+                            <div class="row"><p class="font-small color-mid-grey">MI PIACE</p></div>
+                            <div class="row"><p class="font-bold color-black">126</p></div>
+                        </div>
+                        <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 margin-top-10px">
+                            <div class="row"><p class="font-small color-mid-grey">COMMENTI</p></div>
+                            <div class="row"><p class="font-bold color-black">14</p></div>
+                        </div>
+                        <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 margin-top-10px">
+                            <div class="row"><p class="font-small color-mid-grey">SEGNALAZIONI</p></div>
+                            <div class="row"><p class="font-bold color-black">2</p></div>
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
+                        <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 margin-top-10px">
+                            <div class="row"><p class="font-small color-mid-grey">STATO</p></div>
+                            <div class="row"><p class="color-green font-bold">ATTIVO</p></div>
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 margin-top-15px">
+                            <button class="btn btn-grey-icon" >&nbsp;&nbsp;BLOCCA&nbsp;&nbsp;</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-20px">
+                    <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10"></div>
+                    <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                        <ui-select class="community-ui-select font-normal select-blue" ng-model="newchannel.new_channel.category">
+                            <ui-select-match placeholder="Pagina 1">{{$select.selected}}</ui-select-match>
+                            <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
+                                <span ng-bind="cat"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
