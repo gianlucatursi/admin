@@ -3,12 +3,16 @@
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
             <div class="row no-padding no-margin">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding no-margin" style="margin-top:20px !important;">
+                    <!--
                     <button class="btn btn-green-modal right-rounded pull-left">
                         <span class="lsf">plus</span>&nbsp;&nbsp;&nbsp;&nbsp;CARICA IMMAGINI
                     </button>
                     <button class="btn btn-green-modal left-rounded pull-left">
                         CARICA VIDEO
                     </button>
+                    -->
+                    <input class="btn btn-green-modal right-rounded pull-left" type="file" file-change handler="fileSelect(files)">
+                    <input class="btn btn-green-modal left-rounded pull-left" type="file" file-change handler="videoSelect(files)">
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 (function(angular){
   "use strict";
 
-  MediaModalController.$inject = ['$scope', 'AdminService', 'ChannelService'];
+  MediaModalController.$inject = ['$scope', 'AdminService', 'ChannelService', 'toastr'];
 
   angular
     .module('Smart.directives')
@@ -15,7 +15,7 @@
       controller: MediaModalController
     });
 
-  function MediaModalController($scope, AdminService, ChannelService){
+  function MediaModalController($scope, AdminService, ChannelService, toastr){
     var _this = this;
     var _scope = $scope;
 
@@ -34,6 +34,8 @@
 
     _scope.applyFilters = _applyFilters;
     _scope.$onInit = _onInit;
+    _this.fileSelect = _fileSelect;
+    _this.videoSelect = _videoSelect;
 
     _scope.ok = function () {
       _this.close({$value: _scope.selected.item});
@@ -52,6 +54,58 @@
     }
 
     function _applyFilters(){
+
+    }
+
+    function _fileSelect(files) {
+
+      var photofile = element.files[0];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        // handle onload
+      };
+      reader.readAsDataURL(photofile);
+
+
+    }
+
+    function _videoSelect(video) {
+
+       var file = files[0];
+
+       var uploader = new VimeoUpload({
+
+         name: 'name of video',
+         description: 'vimeo description',
+         file: file,
+         token: 'k2A6rvlgcwmBUZ11CbaSW27dB3oQkANgaHmAxjx1JCs+mIarKemP6Oe72IyocefQGRas4IkOvqwlEFd+FfetnISI/Qp8p0ALwkcivxVhO0nH8IkTlpX8H/cyX1Ii6eWP',
+         onError: function(data) {
+         //showMessage('<strong>Error</strong>: ' + JSON.parse(data).error, 'danger')
+          toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
+         },
+         onProgress: function(data) {
+          console.info('PROGRESS'  +( data.loaded / data.total));
+         },
+         onComplete: function(videoId, index) {
+           var url = 'https://vimeo.com/' + videoId;
+
+           console.log(url);
+
+           if (index > -1) {
+
+           url = this.metadata[index].link;
+
+           var pretty = JSON.stringify(this.metadata[index], null, 2);
+
+           console.log(pretty)
+         }
+
+         showMessage('<strong>Upload Successful</strong>: check uploaded video @ <a href="' + url + '">' + url + '</a>. Open the Console for the response details.');
+          toastr.success('Caricamento completato', 'Upload Video');
+         }
+       });
+
+       uploader.upload();
 
     }
 
