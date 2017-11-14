@@ -75,6 +75,12 @@
           url: '/iscritti',
           templateUrl: 'app/features/Iscritti/iscritti.view.html'
       },
+      segnalazioni:{
+        title: 'Tutte le segnalazioni',
+        name: 'home.segnalazioni',
+        url: '/segnalazioni',
+        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'
+      },
       edizioni:{
         title: 'Gestisci Edizioni',
           name: 'home.edizioni',
