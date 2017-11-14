@@ -8,6 +8,7 @@
 @import "checkbox";
 @import "toastr";
 @import "editor";
+@import "vittorio";
 
 *{
   font-family: Roboto;
@@ -52,11 +53,20 @@ html{
 .margin-left-0{
   margin-left:0px;
 }
+.margin-top-5px{
+  margin-top:5px !important;
+}
 .margin-top-15px{
   margin-top:15px !important;
 }
 .margin-top-50px{
   margin-top:50px !important;
+}
+.margin-right-10px{
+  margin-right: 10px !important;
+}
+.margin-bottom-30px{
+  margin-bottom: 30px !important;
 }
 /* Custom page footer */
 .footer {
@@ -395,6 +405,23 @@ form.communityform {
     border: 1px solid @light-blue !important;
     border-radius: 5px;
     color: @light-blue !important;
+  }
+}
+
+.btn-grey-icon{
+  font-family: RobotoBold !important;
+  font-weight: 500;
+  background-color: @white;
+  border: 1px solid @grey;
+  border-radius: 5px;
+  color: @grey;
+  font-size: 16px;
+  padding: 10px 15px;
+
+  &:hover, &:focus, &:active{
+    border: 1px solid @grey !important;
+    border-radius: 5px;
+    color: @grey !important;
   }
 }
 
