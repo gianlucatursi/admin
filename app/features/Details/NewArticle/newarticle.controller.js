@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'CategoryService', 'toastr'];
+  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'CategoryService', 'toastr', '$uibModal', 'MediaService'];
   controllers.controller('NewArticleController', NewArticleController);
 
-  function NewArticleController($state, AdminService, ArticleService, ChannelService, CategoryService, toastr){
+  function NewArticleController($state, AdminService, ArticleService, ChannelService, CategoryService, toastr, $uibModal, MediaService){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -18,6 +18,10 @@
     _this.hours = [];
     _this.categories = [];
     _this.current = {};
+    _this.imagesOptions = {
+      isGallery: false
+    };
+
     _this.options = {
       saveWorking: ArticleService.working,
       channelSelected: null,
@@ -34,6 +38,16 @@
       }
     };
 
+    var _mediaModalInstance;
+
+    /*
+    mediaModalInstance.result.then(function (selectedItem) {
+      _this.selected = selectedItem;
+    }, function () {
+      console.log('modal-component dismissed at: ' + new Date());
+    });
+    */
+
     _initialize();
 
     if($state.current == $state.ROUTING.detailarticle){
@@ -49,7 +63,31 @@
     _this.clearAuthor = _clearAuthor;
     _this.addDate = _addDate;
     _this.deleteWhen = _deleteWhen;
+    _this.openCoverImage = _openCoverImage;
+    _this.openGalleryImage = _openGalleryImage;
 
+    function _openCoverImage(){
+
+      MediaService._modalOptions.isGallery = false;
+      _mediaModalInstance = $uibModal.open({
+        animation: true,
+        component: 'mediaModal',
+        size: 'lg'
+      });
+
+    }
+
+    function _openGalleryImage(){
+
+      MediaService._modalOptions.isGallery = true
+
+      _mediaModalInstance = $uibModal.open({
+        animation: true,
+        component: 'mediaModal',
+        size: 'lg'
+      });
+
+    }
     /**
      * Save channel
      * @private

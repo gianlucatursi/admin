@@ -3,28 +3,16 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  DashboardController.$inject = ['$state', 'EventBus', 'AdminService', '$uibModal'];
+  DashboardController.$inject = ['$state', 'EventBus', 'AdminService'];
   controllers.controller('DashboardController', DashboardController);
 
-  function DashboardController($state, EventBus, AdminService, $uibModal){
+  function DashboardController($state, EventBus, AdminService){
 
     var _this = this;
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
 
-
-    var modalInstance = $uibModal.open({
-      animation: true,
-      component: 'mediaModal',
-      size: 'lg'
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      _this.selected = selectedItem;
-    }, function () {
-      console.log('modal-component dismissed at: ' + new Date());
-    });
   }
 
 })(window.angular);

@@ -15,6 +15,12 @@
     },
     ROUTING:{
       CHANNEL: '$routing'
+    },
+    MEDIAMODAL:{
+      CHANNEL: 'mediamodal',
+      GALLERY: 'gallery',
+      SEND_IS_GALLERY: 'is_gallery',
+      GET_IS_GALLERY: 'get_is_gallery'
     }
 
   };
