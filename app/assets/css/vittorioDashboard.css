@@ -34,7 +34,35 @@
 .bgcolor-mid-grey {
   background-color: #939393;
 }
-#iscritti .select-blue {
+#dashboard .border-radius {
+  border-radius: 5px;
+}
+#dashboard .border-grey {
+  border: 1px solid #CCCCCC;
+}
+#dashboard .font-xl {
+  font-size: 22px;
+}
+#dashboard .display-flex {
+  display: flex;
+}
+#dashboard .btn-transparent {
+  border: 1px solid rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0);
+  color: #808080;
+  font-weight: bold;
+}
+#dashboard .width-25px {
+  width: 25px;
+}
+#dashboard .height-25px {
+  height: 25px;
+}
+#segnalazioni .img-see-segnalation {
+  height: 50px;
+  width: 50px;
+}
+#segnalazioni .select-blue {
   font-family: RobotoMedium !important;
   font-weight: bold;
   background-color: white;
@@ -45,24 +73,12 @@
   padding: 5px 5px;
   margin-top: 10px;
 }
-#iscritti .select-blue > div > span {
+#segnalazioni .select-blue > div > span {
   font-weight: bold;
   color: #48AACC;
   border-bottom: 0;
 }
-#iscritti .select-blue > div > span > span {
+#segnalazioni .select-blue > div > span > span {
   font-weight: bold;
   color: #48AACC;
-}
-#iscritti .circle-blu {
-  border-radius: 50%;
-  background-color: #48AACC;
-  width: 13px;
-  height: 13px;
-}
-#iscritti .circle-pink {
-  border-radius: 50%;
-  background-color: #D93E5F;
-  width: 13px;
-  height: 13px;
 }

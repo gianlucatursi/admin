@@ -11,6 +11,9 @@
 .color-mid-grey {
   color: #939393;
 }
+.color-light-grey {
+  color: #E5E5E5;
+}
 .color-blue {
   color: #48AACC;
 }
@@ -3646,6 +3649,54 @@ div[toast].ng-leave.ng-leave-active {
   width: 13px;
   height: 13px;
 }
+#dashboard .border-radius {
+  border-radius: 5px;
+}
+#dashboard .border-grey {
+  border: 1px solid #CCCCCC;
+}
+#dashboard .font-xl {
+  font-size: 22px;
+}
+#dashboard .display-flex {
+  display: flex;
+}
+#dashboard .btn-transparent {
+  border: 1px solid rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0);
+  color: #808080;
+  font-weight: bold;
+}
+#dashboard .width-25px {
+  width: 25px;
+}
+#dashboard .height-25px {
+  height: 25px;
+}
+#segnalazioni .img-see-segnalation {
+  height: 50px;
+  width: 50px;
+}
+#segnalazioni .select-blue {
+  font-family: RobotoMedium !important;
+  font-weight: bold;
+  background-color: white;
+  color: #48AACC;
+  border: 1px solid #48AACC !important;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 5px;
+  margin-top: 10px;
+}
+#segnalazioni .select-blue > div > span {
+  font-weight: bold;
+  color: #48AACC;
+  border-bottom: 0;
+}
+#segnalazioni .select-blue > div > span > span {
+  font-weight: bold;
+  color: #48AACC;
+}
 * {
   font-family: Roboto;
 }
@@ -3685,7 +3736,13 @@ html {
   line-height: 3rem;
 }
 .margin-left-0 {
-  margin-left: 0px;
+  margin-left: 0 !important;
+}
+.margin-left-15px {
+  margin-left: 15px !important;
+}
+.margin-left-55px {
+  margin-left: 55px !important;
 }
 .margin-top-5px {
   margin-top: 5px !important;
@@ -3696,8 +3753,17 @@ html {
 .margin-top-50px {
   margin-top: 50px !important;
 }
+.margin-top-80px {
+  margin-top: 80px !important;
+}
+.margin-right-5px {
+  margin-right: 5px !important;
+}
 .margin-right-10px {
   margin-right: 10px !important;
+}
+.margin-right-15px {
+  margin-right: 15px !important;
 }
 .margin-bottom-30px {
   margin-bottom: 30px !important;
@@ -3831,8 +3897,14 @@ html {
 .padding-top-15 {
   padding-top: 15px;
 }
+.padding-bottom-30px {
+  padding-bottom: 30px !important;
+}
 .no-margin {
   margin: 0 !important;
+}
+.no-margin-bottom {
+  margin-bottom: 0 !important;
 }
 .space-15 {
   height: 15px;
@@ -3887,6 +3959,12 @@ form.communityform .community-control:hover {
 .padding-15per {
   padding-left: 15%;
   padding-right: 15%;
+}
+.padding-left-15px {
+  padding-left: 15px !important;
+}
+.padding-right-15px {
+  padding-right: 15px !important;
 }
 .btn.active.focus,
 .btn.active:focus,
@@ -4150,7 +4228,10 @@ textarea {
   font-size: 16px;
 }
 .margin-bottom-10px {
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
+}
+.margin-bottom-60px {
+  margin-bottom: 60px !important;
 }
 .width-60px {
   width: 60px !important;

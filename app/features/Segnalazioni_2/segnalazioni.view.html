@@ -1,0 +1,148 @@
+<div id="segnalazioni" ng-controller="SegnalazioniController as segnalazioni">
+
+    <!-- NAV BAR -->
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{segnalazioni.current_state.title | uppercase}}</p>
+            <p class="font-bold font-medium color-smart" style="color: {{iscritti.city.assets_color}}">{{segnalazioni.city.ds_name | uppercase}} SMART</p>
+        </div>
+    </div>
+
+    <!------------- body content ---------->
+
+    <div class="row page_content">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <div class="row margin-bottom-60px">
+                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                    <p class="font-small color-grey">CATEGORIE</p>
+                    <ui-select class="community-ui-select font-normal" ng-model="newchannel.new_channel.category">
+                        <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
+                            <span ng-bind="cat"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                </div>
+                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4"></div>
+                <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                    <button class="btn btn-grey-icon margin-top-10px" >&nbsp;&nbsp;APPLICA&nbsp;&nbsp;<span class="font-medium fa fa-angle-right"></span></button>
+                </div>
+            </div>
+            <div class="row article_element ng-scope margin-top-10px">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                    <div class="row">
+                        <!------------- FIRST COL [article description]--------->
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <img ng-src="app/assets/images/c_icon.jpg" width="35px" src="app/assets/images/c_icon.jpg">
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 no-padding">
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-bold no-padding no-margin ng-binding">Gigi D'Alessio</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-small no-padding color-mid-grey no-margin ng-binding"> in INCIDENTI STRADALI</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p class="font-small padding-top-5 ng-binding">Ciao!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!------------- SECOND COL [article title]--------->
+                        <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
+
+                            <div class="row no-padding">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="row no-padding">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p class="color-grey font-small no-padding no-margin">LUOGO</p>
+                                </div>
+                            </div>
+
+                            <div class="row no-padding">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p class="font-medium font-bold roboto-slab-bold padding-top-5 ng-binding">Hellow from the other side 2 2  2 2 2 2 2!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!------------- THIRD COL [pubblication date]--------->
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                            <div class="row no-padding">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="row no-padding">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                                    <p class="color-grey font-small no-padding no-margin">SEGNALAZIONE</p>
+                                </div>
+                            </div>
+
+                            <div class="row no-padding">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12 no-padding">
+                                    <!-- ngIf: article.dt_publication_date --><p class="font-medium padding-top-5 ng-binding ng-scope">06-11-2017</p><!-- end ngIf: article.dt_publication_date -->
+                                    <!-- ngIf: !article.dt_publication_date -->
+                                </div>
+                            </div>
+                        </div>
+                        <!------------- THIRD COL [image]--------->
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                            <div class="row no-padding margin-top-15px">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <img class="img-see-segnalation" src="app/assets/images/report-unwatched.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <!------------- FOUR COL [image]--------->
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div class="row no-padding">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <img class="img-preview-article bgcolor-grey">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--- STATS WITH REPORTS-->
+                    <!-- ngIf: article.isReported() -->
+
+                    <!--- STATS WITHOUT REPORTS-->
+
+                    <!--------- LINE --------->
+                    <div class="row">
+                        <br>
+                        <div class="bgcolor-light-grey" style="height: 2px;"></div>
+                        <br>
+                    </div>
+
+                    <div class="row margin-top-20px">
+                        <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10"></div>
+                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                            <ui-select class="community-ui-select font-normal select-blue" ng-model="newchannel.new_channel.category">
+                                <ui-select-match placeholder="Pagina 1">{{$select.selected}}</ui-select-match>
+                                <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
+                                    <span ng-bind="cat"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
