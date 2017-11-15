@@ -360,6 +360,34 @@ form.communityform {
   }
 }
 
+.btn-green-modal{
+  -webkit-border-radius:0 !important;
+  -moz-border-radius:0 !important;
+  border-radius:0 !important;
+  border-left: 1px solid @white;
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  height: 37px;
+  background-color: @green;
+  color: white;
+  font-size: 14px;
+  padding: 9px 15px;
+
+  &:hover, &:focus, &:active{
+    color: white;
+  }
+
+  &.left-rounded{
+    border-bottom-right-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+  }
+
+  &.right-rounded {
+    border-bottom-left-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+  }
+}
+
 .btn-pager{
   font-family: RobotoMedium !important;
   font-weight: 500;
@@ -643,4 +671,29 @@ input, textarea {
 
 .no-padding-left{
   padding-left: 0 !important;
+}
+
+.no-border{
+  border: none !important;
+}
+
+#modal-media-body{
+  padding: 3% !important;
+  padding-top: 0 !important;
+}
+
+.channel-modal-select{
+  border : none !important;
+  border : 2px solid @light-grey !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+
+  .ui-select-toggle {
+    border-bottom: none !important;
+  }
+}
+
+.md-datepicker-calendar-pane{
+  z-index: 9999
+
 }

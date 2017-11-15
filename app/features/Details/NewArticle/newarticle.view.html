@@ -303,13 +303,23 @@
                                                         </ui-select>
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3" ng-if="!!when.end">
+                                                    <button class="no-border" ng-click="article.deleteWhen($index)">
+                                                        <!--<i class="fa fa-plus"></i>-->
+                                                        <p class="font-small color-grey">&nbsp;</p>
+                                                        <img src="app/assets/images/close_button_red.png" width="35px" />
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row"  style="margin-top: 20px">
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6" ng-click="article.addDate()">
-                                            <button class="btn btn-info btn-add-author"><i class="fa fa-plus"></i></button>
+                                            <button class="no-border">
+                                                <!--<i class="fa fa-plus"></i>-->
+                                                <img src="app/assets/images/add_azure_button.png" width="35px" />
+                                            </button>
                                             <label class="font-small color-grey label-add-author">Aggiungi data</label>
                                         </div>
                                     </div>

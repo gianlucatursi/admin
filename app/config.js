@@ -3,7 +3,7 @@
 
   var required = ['angular-ladda', 'ui.bootstrap', 'ngSanitize', 'ui.select', 'LocalStorageModule', 'restangular', 'ui.router',
     'Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives', 'vimeoEmbed', 'ngAnimate',
-    'ngMaterial', 'toastr','monospaced.elastic','ngQuill'];
+    'ngMaterial', 'toastr','monospaced.elastic','ngQuill','ngFileUpload'];
 
   angular.module('Community', required)
     .constant('IMAGE_BASEURL', 'https://images.google.it/');
@@ -74,6 +74,12 @@
           name: 'home.iscritti',
           url: '/iscritti',
           templateUrl: 'app/features/Iscritti/iscritti.view.html'
+      },
+      segnalazioni:{
+        title: 'Tutte le segnalazioni',
+        name: 'home.segnalazioni',
+        url: '/segnalazioni',
+        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'
       },
       edizioni:{
         title: 'Gestisci Edizioni',

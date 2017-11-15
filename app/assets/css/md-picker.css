@@ -60,6 +60,12 @@
   width: 180px;
   font-size: 16px;
 }
+.modal-data-filter {
+  width: 100% !important;
+}
+.modal-data-filter .md-datepicker-input-container {
+  width: 90% !important;
+}
 .md-calendar-selected-date .md-calendar-date-selection-indicator {
   background: #48AACC !important;
 }

@@ -48,6 +48,8 @@
     _this.stripHTMLCount = _stripHTMLCount;
     _this.clearAuthor = _clearAuthor;
     _this.addDate = _addDate;
+    _this.deleteWhen = _deleteWhen;
+
     /**
      * Save channel
      * @private
@@ -179,6 +181,26 @@
       });
 
     }
+
+    /**
+     * Remove dates
+     * @param index
+     * @private
+     */
+    function _deleteWhen(index){
+
+      if(index == _this.options.event.when.length-1){
+        _this.options.event.when[index] = {
+          date: null,
+          start: '',
+          end: ''
+        };
+
+      }else{
+        _this.options.event.when.splice(index, 1);
+      }
+    }
+
 
     /**
      * Init data

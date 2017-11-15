@@ -32,6 +32,10 @@
         get: _customRequest.bind(null, 'alleditions'),
         getByDay: _customRequest.bind(null, 'todayedition'),
       },
+      media: {
+        get: _customRequest.bind(null, 'media'),
+        search:_customRequest.bind(null, 'search/media'),
+      },
       categories : _customRequest.bind(null, 'category')
     };
 
