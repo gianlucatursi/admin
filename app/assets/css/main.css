@@ -4218,3 +4218,6 @@ textarea {
 .md-datepicker-calendar-pane {
   z-index: 9999;
 }
+.ladda-label {
+  font-family: RobotoBold;
+}
