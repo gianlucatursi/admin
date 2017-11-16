@@ -20,6 +20,9 @@
     var _that = this;
     _that.isWorking = false;
     var _selected = {};
+    _that._modalOptions = {
+      isGallery: false
+    };
 
     //////////////////////////////////
     /////////// PROTOTYPES ///////////
@@ -32,6 +35,8 @@
     _that.toArray = _toArray;
     _that.search = _search;
     _that.working = function(){ return _that.isWorking };
+    _that.modalOptions = function(){ return _that._modalOptions; };
+
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
     //////////////////////////////////

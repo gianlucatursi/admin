@@ -1,7 +1,7 @@
 (function(angular){
   "use strict";
 
-  MediaModalController.$inject = ['$scope', 'AdminService', 'ChannelService', 'toastr'];
+  MediaModalController.$inject = ['$scope', 'AdminService', 'ChannelService', 'toastr', 'MediaService'];
 
   angular
     .module('Smart.directives')
@@ -15,12 +15,19 @@
       controller: MediaModalController
     });
 
-  function MediaModalController($scope, AdminService, ChannelService, toastr){
+  function MediaModalController($scope, AdminService, ChannelService, toastr, MediaService){
     var _this = this;
     var _scope = $scope;
 
     _scope.channelsUpload = [];
     _scope.channels = [];
+    _scope.options = {
+      laddaVideo: false,
+      laddaImages: false
+    };
+
+    _scope.isGallery = MediaService._modalOptions.isGallery;
+    //alert(MediaService._modalOptions.isGallery);
 
     _scope.channelService = ChannelService;
     _scope.channelUploadSelected = {};
@@ -73,6 +80,8 @@
 
        var file = video;
 
+      _scope.options.laddaVideo = true;
+
        var uploader = new VimeoUpload({
 
          name: 'name of video',
@@ -85,23 +94,23 @@
           toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
          },
          onProgress: function(data) {
-          console.info('PROGRESS'  +( data.loaded / data.total));
-         },
+           _scope.options.laddaVideo = (data.loaded / data.total);
+           _scope.$apply();
+          },
          onComplete: function(videoId, index) {
            var url = 'https://vimeo.com/' + videoId;
-
+           _scope.options.laddaVideo = false;
            console.log(url);
 
-           if (index > -1) {
+             if (index > -1) {
 
-           url = this.metadata[index].link;
+             url = this.metadata[index].link;
 
-           var pretty = JSON.stringify(this.metadata[index], null, 2);
+             var pretty = JSON.stringify(this.metadata[index], null, 2);
 
-           console.log(pretty)
-         }
+             console.log(pretty)
+           }
 
-         showMessage('<strong>Upload Successful</strong>: check uploaded video @ <a href="' + url + '">' + url + '</a>. Open the Console for the response details.');
           toastr.success('Caricamento completato', 'Upload Video');
          }
        });
