@@ -234,22 +234,6 @@
   background-color: white;
   color: #E62726 !important;
 }
-#new_channel .btn-block-settings {
-  border: 1px solid #939393;
-  background-color: white;
-  color: #939393;
-  margin-top: 20px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-block-settings:hover,
-#new_channel .btn-block-settings:focus,
-#new_channel .btn-block-settings:active {
-  border: 1px solid #939393 !important;
-  background-color: white;
-  color: #939393 !important;
-}
 #new_channel .btn-save-settings {
   border: 1px solid #24C40D;
   background-color: white;
@@ -321,4 +305,20 @@
 .span-tab {
   line-height: 50px;
   text-align: center;
+}
+.btn-block-settings {
+  border: 1px solid #939393;
+  background-color: white;
+  color: #939393;
+  margin-top: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-block-settings:hover,
+.btn-block-settings:focus,
+.btn-block-settings:active {
+  border: 1px solid #939393 !important;
+  background-color: white;
+  color: #939393 !important;
 }

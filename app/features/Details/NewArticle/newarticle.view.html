@@ -7,7 +7,7 @@
             <p class="font-bold font-medium" style="color: {{article.city.assets_color}}">{{article.city.ds_name | uppercase}} SMART</p>
         </div>
         <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6">
-            <button ui-sref="home.contenuti" class="btn btn-info btn-block-settings pull-right no-margin"><span class="lsf color-grey">back</span>&nbsp;&nbsp;&nbsp;INDIETRO</button>
+            <button ui-sref="home.contenuti" class="btn btn-block-settings pull-right no-margin"><span class="lsf color-grey">back</span>&nbsp;&nbsp;&nbsp;INDIETRO</button>
         </div>
     </div>
 
@@ -347,6 +347,25 @@
                         </uib-tab>
 
                     </uib-tabset>
+                </div>
+            </div>
+
+            <br />
+            <div class="row" ng-if="article.current.isNew">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 no-magin no-padding">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4 col-md-3 col-xs-6">
+                            <button class="btn btn-blue-full" style="padding:10px" ui-sref="home.commenti">
+                                <i class="fa fa-comment-o" style="font-weight: bold" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;GESTISCI COMMENTI</button>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-md-3 col-xs-6">
+                            <img src="app/assets/images/alert.jpg" width="35px" class="pull-left"/>
+                            <p src="app/assets/images/alert.jpg" width="35px" class="pull-left color-smart font-bold" style="margin-left:10px">
+                                RICHIESTA<BR>DI MODERAZIONE
+                            </p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-4"></div>
+                    </div>
                 </div>
             </div>
 

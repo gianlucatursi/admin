@@ -15,9 +15,9 @@
             <div class="row margin-bottom-60px">
                 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
                     <p class="font-small color-grey">CATEGORIE</p>
-                    <ui-select class="community-ui-select font-normal" ng-model="newchannel.new_channel.category">
+                    <ui-select class="community-ui-select font-normal" ng-model="segnalazioni.categorySelected">
                         <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
-                        <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
+                        <ui-select-choices repeat="cat in segnalazioni.categories | filter: $select.search track by $index">
                             <span ng-bind="cat"></span>
                         </ui-select-choices>
                     </ui-select>

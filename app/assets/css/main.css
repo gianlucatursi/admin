@@ -3307,22 +3307,6 @@ http://kudakurage.com/ligature_symbols/
   background-color: white;
   color: #E62726 !important;
 }
-#new_channel .btn-block-settings {
-  border: 1px solid #939393;
-  background-color: white;
-  color: #939393;
-  margin-top: 20px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-block-settings:hover,
-#new_channel .btn-block-settings:focus,
-#new_channel .btn-block-settings:active {
-  border: 1px solid #939393 !important;
-  background-color: white;
-  color: #939393 !important;
-}
 #new_channel .btn-save-settings {
   border: 1px solid #24C40D;
   background-color: white;
@@ -3394,6 +3378,22 @@ http://kudakurage.com/ligature_symbols/
 .span-tab {
   line-height: 50px;
   text-align: center;
+}
+.btn-block-settings {
+  border: 1px solid #939393;
+  background-color: white;
+  color: #939393;
+  margin-top: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-block-settings:hover,
+.btn-block-settings:focus,
+.btn-block-settings:active {
+  border: 1px solid #939393 !important;
+  background-color: white;
+  color: #939393 !important;
 }
 .search-edition {
   margin-bottom: 12px !important;
@@ -3930,6 +3930,19 @@ form.communityform .community-control:hover {
 .btn-green:hover,
 .btn-green:focus,
 .btn-green:active {
+  color: white;
+}
+.btn-blue-full {
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: #3FA9F5;
+  color: white;
+  font-size: 14px;
+  padding: 10px 25px;
+}
+.btn-blue-full:hover,
+.btn-blue-full:focus,
+.btn-blue-full:active {
   color: white;
 }
 .btn-green-modal {

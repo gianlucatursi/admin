@@ -102,7 +102,7 @@
       detailarticle:{
         title: 'Modifica contenuto',
         name: 'home.modifica_contenuto',
-        url: '/modificacontenuto',
+        url: '/modificacontenuto/:id',
         templateUrl: 'app/features/Details/NewArticle/newarticle.view.html'
       },
       segnalazioni:{
