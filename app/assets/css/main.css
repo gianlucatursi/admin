@@ -4285,8 +4285,8 @@ textarea {
   height: 25px;
 }
 #segnalazioni .img-see-segnalation {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
 }
 #segnalazioni .select-blue {
   font-family: RobotoMedium !important;
@@ -4307,6 +4307,10 @@ textarea {
 #segnalazioni .select-blue > div > span > span {
   font-weight: bold;
   color: #48AACC;
+}
+#commenti .margin-first-col {
+  width: 90% !important;
+  margin-left: 3% !important;
 }
 #commenti .border-radius {
   border-radius: 5px;

@@ -93,6 +93,12 @@
         url: '/nuovocontenuto',
         templateUrl: 'app/features/Details/NewArticle/newarticle.view.html'
       },
+      commenti:{
+        title: 'Tutti i commenti',
+        name: 'home.commenti',
+        url: '/commenti',
+        templateUrl: 'app/features/Details/NewArticle/Commenti/commenti.view.html'
+      },
       detailarticle:{
         title: 'Modifica contenuto',
         name: 'home.modifica_contenuto',
@@ -103,13 +109,7 @@
         title: 'Tutte le segnalazioni',
         name: 'home.segnalazioni',
         url: '/segnalazioni',
-        templateUrl: 'app/features/Segnalazioni_2/segnalazioni.view.html'
-      },
-      commenti:{
-        title: 'Tutti i commenti',
-        name: 'home.commenti',
-        url: '/commenti',
-        templateUrl: 'app/features/Commenti/commenti.view.html'
+        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'
       }
 
     };
