@@ -3264,6 +3264,12 @@ http://kudakurage.com/ligature_symbols/
   border: 1px solid #CCCCCC;
   height: 80px;
 }
+#new_channel .div-image {
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  padding: 5px;
+  height: 316px;
+}
 #new_channel .new-channel-author {
   border: none;
   font-family: Roboto;
@@ -4416,4 +4422,14 @@ textarea {
 .container-scroll > .row > .col-md-3 {
   font-weight: bold;
   text-align: center;
+}
+.div-gallery {
+  height: 316px;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+}
+.div-gallery .cont-gallery {
+  overflow-y: auto;
+  height: 92%;
+  margin: 10px 5px 5px;
 }

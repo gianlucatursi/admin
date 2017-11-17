@@ -191,6 +191,12 @@
   border: 1px solid #CCCCCC;
   height: 80px;
 }
+#new_channel .div-image {
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  padding: 5px;
+  height: 316px;
+}
 #new_channel .new-channel-author {
   border: none;
   font-family: Roboto;

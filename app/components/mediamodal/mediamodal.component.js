@@ -166,6 +166,13 @@
         size: 'lg'
       });
 
+      _mediaModalInstance.result.then(function (selectedItem) {
+        //_this.selected = selectedItem;
+        _this.close({$value: selectedItem});
+      }, function () {
+        console.log('modal-component dismissed at: ' + new Date());
+      });
+
     }
 
     /**
@@ -180,6 +187,13 @@
         animation: true,
         component: 'selectmediaModal',
         size: 'lg'
+      });
+
+      _mediaModalInstance.result.then(function (selectedItem) {
+        //_this.selected = selectedItem;
+        _this.close({$value: selectedItem});
+      }, function () {
+        console.log('modal-component dismissed at: ' + new Date());
       });
 
     };

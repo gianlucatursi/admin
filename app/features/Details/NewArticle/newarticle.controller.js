@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'CategoryService', 'toastr', '$uibModal', 'MediaService'];
+  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'CategoryService', 'UtilService', '$uibModal', 'MediaService', '$sce'];
   controllers.controller('NewArticleController', NewArticleController);
 
-  function NewArticleController($state, AdminService, ArticleService, ChannelService, CategoryService, toastr, $uibModal, MediaService){
+  function NewArticleController($state, AdminService, ArticleService, ChannelService, CategoryService, UtilService, $uibModal, MediaService, $sce){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -19,7 +19,8 @@
     _this.categories = [];
     _this.current = {};
     _this.imagesOptions = {
-      isGallery: false
+      gallery: [],
+      cover : null
     };
 
     _this.options = {
@@ -40,14 +41,6 @@
 
     var _mediaModalInstance;
 
-    /*
-    mediaModalInstance.result.then(function (selectedItem) {
-      _this.selected = selectedItem;
-    }, function () {
-      console.log('modal-component dismissed at: ' + new Date());
-    });
-    */
-
     _initialize();
 
     if($state.current == $state.ROUTING.detailarticle){
@@ -65,6 +58,7 @@
     _this.deleteWhen = _deleteWhen;
     _this.openCoverImage = _openCoverImage;
     _this.openGalleryImage = _openGalleryImage;
+    _this.getMediaUrl = _getMediaUrl;
 
     function _openCoverImage(){
 
@@ -75,6 +69,28 @@
         size: 'lg'
       });
 
+      _mediaModalInstance.result.then(function (selectedItem) {
+        //_this.selected = selectedItem;
+        _this.imagesOptions.cover = selectedItem;
+      }, function () {
+        console.log('modal-component dismissed at: ' + new Date());
+      });
+
+
+    }
+
+    /**
+     * Get media url
+     * @param media
+     * @return {*}
+     * @private
+     */
+    function _getMediaUrl(media){
+      if(media.type == 'IMAGE'){
+        return UtilService.imageUrl(media.id_image);
+      }else{
+        return $sce.trustAsResourceUrl(media.video_url);
+      }
     }
 
     function _openGalleryImage(){
@@ -86,6 +102,13 @@
         component: 'mediaModal',
         size: 'lg'
       });
+
+      _mediaModalInstance.result.then(function (selectedItem) {
+        _this.imagesOptions.gallery.push(selectedItem);
+      }, function () {
+        console.log('modal-component dismissed at: ' + new Date());
+      });
+
 
     }
     /**

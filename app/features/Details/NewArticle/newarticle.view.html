@@ -85,16 +85,33 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                                 <p class="font-medium font-bold color-blue">PRINCIPALE</p>
-                                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-icon">
+                                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-icon" ng-if="!article.imagesOptions.cover">
                                                     <button class="btn btn-blue-icon margin-top-15px" ng-click="article.openCoverImage()"><span class="lsf font-medium">ok</span>&nbsp;&nbsp;&nbsp;SELEZIONA</button>
                                                 </div>
+                                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-image" ng-if="!!article.imagesOptions.cover">
+                                                    <div ng-if="article.imagesOptions.cover.type == 'IMAGE'" style="background-image: url({{article.getMediaUrl(article.imagesOptions.cover)}});background-repeat: no-repeat;background-size: contain;max-width: 354px;height: 266px;"></div>
+                                                    <embed-video ng-if="article.imagesOptions.cover.type == 'VIDEO'" controls="0" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo1" ng-href="{{article.getMediaUrl(article.imagesOptions.cover)}}"></embed-video>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6" ng-if="article.imagesOptions.gallery.length  == 0">
                                                 <p class="font-medium font-bold color-blue">GALLERIA</p>
                                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-icon">
                                                     <button class="btn btn-blue-icon margin-top-15px" ng-click="article.openGalleryImage()"><span class="lsf font-medium">ok</span>&nbsp;&nbsp;&nbsp;SELEZIONA</button>
                                                 </div>
                                             </div>
+
+                                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6" ng-if="article.imagesOptions.gallery.length > 0">
+                                                <p class="font-medium font-bold color-blue">GALLERIA</p>
+                                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-gallery">
+                                                    <!--<button class="btn btn-blue-icon margin-top-15px" ng-click="article.openGalleryImage()"><span class="lsf font-medium">ok</span>&nbsp;&nbsp;&nbsp;SELEZIONA</button>-->
+                                                    <div class="row container-fluid container-scroll cont-gallery" >
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-repeat="m in article.imagesOptions.gallery" style="margin-top:5px;">
+                                                            <div style="width: 100px;height: 100px;background-image: url({{article.getMediaUrl(m)}});background-repeat: no-repeat;background-size: contain;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <!--
                                         <div class="row">
