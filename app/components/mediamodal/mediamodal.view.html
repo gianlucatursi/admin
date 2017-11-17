@@ -3,7 +3,15 @@
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
             <div class="row no-padding no-margin">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding no-margin" style="margin-top:20px !important;">
-                    <button class="btn btn-green-modal right-rounded pull-left" ng-class="{'left-rounded': isGallery}" ngf-select="fileSelect($files)"  ngf-multiple="true">
+
+                    <ui-select class="community-ui-select small-input-select" ng-model="channelUploadSelected" >
+                        <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                        <ui-select-choices repeat="channel in channelsUpload | filter: $select.search track by $index">
+                            <span ng-bind="channel.ds_name"></span>
+                        </ui-select-choices>
+                    </ui-select>
+
+                    <button ladda="options.laddaImages"  data-spinner-color="#FFFFFF" class="btn btn-green-modal right-rounded pull-left" ng-class="{'left-rounded': isGallery}" ngf-select="fileSelect($files)"  ngf-multiple="true">
                         <span class="lsf">plus</span>&nbsp;&nbsp;&nbsp;&nbsp;CARICA IMMAGINI
                     </button>
                     <button class="btn btn-green-modal left-rounded pull-left"
@@ -83,6 +91,19 @@
         <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
             <button ladda="contenuti.options.searchWorking" class="btn btn-grey btn-block" style="margin-top: 0;" ng-click="searchText()">
                 CERCA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="lsf">right</span></button>
+        </div>
+    </div>
+
+    <br/><br/>
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" ng-repeat="media in medias">
+                    <div afkl-lazy-image="{{getMediaUrl(media)}}"
+                         class="afkl-lazy-wrapper afkl-img-ratio-1-1 own-classname"></div>
+                </div>
+            </div>
         </div>
     </div>
 

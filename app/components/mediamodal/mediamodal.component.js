@@ -34,13 +34,15 @@
     _scope.channelViewSelected = {};
     _scope.dateSelected = null;
     _scope.textToSearch = '';
-    _scope.medias = [];
+    _scope.medias = MediaService.toArray();
 
     _scope.mediaTypes = ['Immagini e Video', 'Immagini', 'Video'];
     _scope.mediaTypeSelected = _scope.mediaTypes[0];
 
     _scope.applyFilters = _applyFilters;
     _scope.$onInit = _onInit;
+    _scope.getMediaUrl = _getMediaUrl;
+
     _scope.fileSelect = _fileSelect;
     _scope.videoSelect = _videoSelect;
 
@@ -52,7 +54,6 @@
       _this.dismiss({$value: 'cancel'});
     };
 
-    _scope.title = 'Suca title';
 
     _getChannels();
 
@@ -64,18 +65,37 @@
 
     }
 
+    /**
+     * Upload images
+     * @param files
+     * @private
+     */
     function _fileSelect(files) {
 
-      var photofile = element.files[0];
+      var photofile = files[0];
       var reader = new FileReader();
+      _scope.options.laddaImages = true;
       reader.onload = function(e) {
         // handle onload
+        MediaService
+          .uploadImage(e.target.result, _scope.channelUploadSelected._id)
+          .then(function(){
+            _scope.options.laddaImages = false;
+            toastr.success('Caricamento completato', 'Upload Media');
+          }, function(){
+            _scope.options.laddaImages = false;
+            toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
+          });
       };
       reader.readAsDataURL(photofile);
 
-
     }
 
+    /**
+     * Upload video
+     * @param video
+     * @private
+     */
     function _videoSelect(video) {
 
        var file = video;
@@ -90,33 +110,43 @@
          private: true,
          token: '034ea8145a609e99ee0d9f01e8ab4b73',
          onError: function(data) {
-         //showMessage('<strong>Error</strong>: ' + JSON.parse(data).error, 'danger')
-          toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
+            //showMessage('<strong>Error</strong>: ' + JSON.parse(data).error, 'danger')
+            toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
          },
          onProgress: function(data) {
-           _scope.options.laddaVideo = (data.loaded / data.total);
-           _scope.$apply();
+            _scope.options.laddaVideo = (data.loaded / data.total);
+            _scope.$apply();
           },
          onComplete: function(videoId, index) {
-           var url = 'https://vimeo.com/' + videoId;
-           _scope.options.laddaVideo = false;
-           console.log(url);
+            var url = 'https://vimeo.com/' + videoId;
+            _scope.options.laddaVideo = false;
 
-             if (index > -1) {
-
-             url = this.metadata[index].link;
-
-             var pretty = JSON.stringify(this.metadata[index], null, 2);
-
-             console.log(pretty)
-           }
-
-          toastr.success('Caricamento completato', 'Upload Video');
+            MediaService.createMedia({
+              type: 'VIDEO',
+              id_channel: _scope.channelUploadSelected._id,
+              "ds_tags" : '',
+              "ds_description" : '',
+              "video_url" : url
+            }).then(
+              function(){
+                toastr.success('Caricamento completato', 'Upload Video');
+              }, function(){
+                toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
+              }
+            );
          }
        });
 
        uploader.upload();
 
+    }
+
+    function _getMediaUrl(media){
+      if(media.type == 'IMAGE'){
+        return UtilService.imageUrl(media.id_image);
+      }else{
+        return media.video_url;
+      }
     }
 
     /**
@@ -131,6 +161,8 @@
           function(results){
 
             _scope.channels = ChannelService.toArray();
+            _scope.channelsUpload = JSON.parse(JSON.stringify(_scope.channels));
+
             (_scope.channels || []).unshift({
               ds_name: 'Tutti i canali',
               _id: ''
@@ -140,8 +172,9 @@
               _scope.channelUploadSelected = ChannelService.byId(AdminService.user.channelId());
               _scope.channelViewSelected = ChannelService.byId(AdminService.user.channelId());
               _scope.channels = [_scope.channelSelected];
+              _scope.channelsUpload = [_scope.channelUploadSelected];
             }else{
-              _scope.channelUploadSelected = _scope.channels[0];
+              _scope.channelUploadSelected = _scope.channelsUpload[0];
               _scope.channelViewSelected = _scope.channels[0];
             }
           },

@@ -34,7 +34,8 @@
       },
       media: {
         get: _customRequest.bind(null, 'media'),
-        search:_customRequest.bind(null, 'search/media'),
+        create: _customRequest.bind(null, 'media'),
+        search:_customRequest.bind(null, 'search/media')
       },
       categories : _customRequest.bind(null, 'category')
     };

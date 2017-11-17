@@ -27,6 +27,7 @@
 
 
     /////////// CRUD ///////////
+    Media.prototype.create = _create;
     Media.prototype.delete = _delete;
 
 
@@ -61,6 +62,9 @@
 
     /////////// CRUD IMPLEMENTATION ///////////
 
+    function _create(){
+
+    }
     /**
      * TODO
      * @private

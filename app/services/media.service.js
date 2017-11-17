@@ -3,7 +3,7 @@
 
   var services = angular.module('Smart.services');
 
-  MediaService.$inject = ['Restangular', 'MediaModel', 'AdminService', '$q', 'API'];
+  MediaService.$inject = ['Restangular', 'MediaModel', 'AdminService', '$q', 'API', '$http', 'UtilService'];
   services.service('MediaService', MediaService);
 
   /**
@@ -14,7 +14,7 @@
    * @param $q
    * @param API
    */
-  function MediaService(Restangular, MediaModal, AdminService, $q, API) {
+  function MediaService(Restangular, MediaModal, AdminService, $q, API, $http, UtilService) {
 
     var medias = {};
     var _that = this;
@@ -37,6 +37,8 @@
     _that.working = function(){ return _that.isWorking };
     _that.modalOptions = function(){ return _that._modalOptions; };
 
+    _that.createMedia = _createMedia;
+    _that.uploadImage = _uploadImage;
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
     //////////////////////////////////
@@ -58,6 +60,97 @@
       return media;
     }
 
+
+    function _createMedia(media){
+
+      var _this = this;
+      var defer = $q.defer();
+
+      var toCreate = {
+        "type" : media.type,
+        "ds_tags" : media.tags,
+        "ds_description" : media.description,
+        "id_channel" : media.id_channel,
+        "id_city" : AdminService.user.cityId(),
+        "id_image" : media.id_image || "",
+        "video_url" : media.video_url || ""
+      };
+
+      _this.isWorking = true;
+
+      Restangular
+        .one(API.media.create())
+        .customPOST(toCreate)
+        .then(function(success){
+          // get new channels
+          //toastr.success('Il nuovo media è stato creato');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+        }, function(error){
+          //toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Nuovo media', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+    }
+
+    /**
+     * Upload image
+     * @param base64
+     * @param id_channel
+     * @return {Promise}
+     * @private
+     */
+    function _uploadImage(base64, id_channel){
+      var _this = this;
+      var defer = $q.defer();
+
+      _this.isWorking = true;
+
+      $http({
+        method: 'POST',
+        url: UtilService.uploadImageUrl(),
+        data: {image: base64}
+      }).then(function(success){
+        // get new channels
+        _this.createMedia({
+          "type" : 'IMAGE',
+          "ds_tags" : '',
+          "ds_description" : '',
+          "id_channel" : id_channel,
+          "id_city" : AdminService.user.cityId(),
+          "id_image" : success.data._id || "",
+          "video_url" : ""
+        }).then(function(){
+
+          _that.get();
+          defer.resolve();
+
+        }, function(){
+
+          defer.reject();
+        })
+      }, function(error){
+        //toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Nuovo media', {closeButton: true});
+        _this.isWorking = false;
+        console.error(error);
+        defer.reject(error);
+      });
+
+
+      return defer.promise;
+    }
 
     /**
      * Get by id
