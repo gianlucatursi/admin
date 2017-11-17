@@ -2,7 +2,7 @@
   'use strict';
 
   var required = ['angular-ladda', 'ui.bootstrap', 'ngSanitize', 'ui.select', 'LocalStorageModule', 'restangular', 'ui.router',
-    'Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives', 'vimeoEmbed', 'ngAnimate',
+    'Smart.controllers', 'Smart.routing', 'Smart.services', 'Smart.models', 'Smart.directives', 'videosharing-embed', 'ngAnimate',
     'ngMaterial', 'toastr','monospaced.elastic','ngQuill','ngFileUpload', 'afkl.lazyImage'];
 
   angular.module('Community', required)

@@ -33,14 +33,15 @@
     "angular-local-storage": "^0.7.1",
     "postal.js": "^2.0.4",
     "vimeo-upload": "^0.1.5",
-    "angular-vimeo-embed": "^0.1.2",
     "angular-material": "^1.1.5",
     "moment": "^2.19.1",
     "angular-toastr": "^2.1.1",
     "angular-elastic": "^2.5.1",
     "ngQuill": "ng-quill#^3.5.1",
     "ng-file-upload": "^12.2.13",
-    "ng-directive-lazy-image": "afkl-lazy-image#^0.3.4"
+    "ng-directive-lazy-image": "afkl-lazy-image#^0.3.4",
+    "vimeo-player-js": "^2.2.1",
+    "ng-videosharing-embed": "^0.3.8"
   },
   "resolutions": {
     "angular": "1.6.6"
