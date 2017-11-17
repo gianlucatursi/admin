@@ -57,7 +57,6 @@
      */
     function _set(uData) {
       angular.extend(this, uData);
-      _analyzeComments.call(this);
     }
 
     /////////// CRUD IMPLEMENTATION ///////////

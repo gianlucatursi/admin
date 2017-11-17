@@ -174,7 +174,7 @@
 
       options = options == undefined ? {} : options;
 
-      var filters = { id_city: AdminService.user.citySelected()._id };
+      var filters = { /*id_city: AdminService.user.citySelected()._id */};
 
       if(options.id_category){
         filters.id_category = options.id_category;
@@ -219,7 +219,7 @@
       var list = [];
 
       _.each(Object.keys(medias), function(key){
-        list.push(articles[key]);
+        list.push(medias[key]);
       });
 
       return list;

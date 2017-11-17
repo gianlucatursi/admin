@@ -54,9 +54,12 @@ angular.module('vimeoEmbed', [])
       console.log(endpoint + params);
       var d = $q.defer();
 
-      $http.jsonp(endpoint + params).success(function(data) {
-        d.resolve(data);
-      }).error(function(error) {
+      $http({
+        method: 'GET',
+        url: endpoint + params
+      }).then(function(data) {
+          d.resolve(data);
+        }, function(error) {
         console.log(error);
         d.reject('Oops! It looks like there was an error!');
       });

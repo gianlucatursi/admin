@@ -1,7 +1,7 @@
 (function(angular){
   "use strict";
 
-  MediaModalController.$inject = ['$scope', 'AdminService', 'ChannelService', 'toastr', 'MediaService'];
+  MediaModalController.$inject = ['$scope', 'AdminService', 'ChannelService', 'toastr', 'MediaService', 'UtilService', '$sce'];
 
   angular
     .module('Smart.directives')
@@ -15,7 +15,7 @@
       controller: MediaModalController
     });
 
-  function MediaModalController($scope, AdminService, ChannelService, toastr, MediaService){
+  function MediaModalController($scope, AdminService, ChannelService, toastr, MediaService, UtilService, $sce){
     var _this = this;
     var _scope = $scope;
 
@@ -25,6 +25,14 @@
       laddaVideo: false,
       laddaImages: false
     };
+
+    MediaService
+      .get()
+      .then(function(__medias){
+        _scope.medias = MediaService.toArray();
+      }, function(){
+
+      });
 
     _scope.isGallery = MediaService._modalOptions.isGallery;
     //alert(MediaService._modalOptions.isGallery);
@@ -119,7 +127,6 @@
           },
          onComplete: function(videoId, index) {
             var url = 'https://vimeo.com/' + videoId;
-            _scope.options.laddaVideo = false;
 
             MediaService.createMedia({
               type: 'VIDEO',
@@ -130,8 +137,10 @@
             }).then(
               function(){
                 toastr.success('Caricamento completato', 'Upload Video');
+                _scope.options.laddaVideo = false;
               }, function(){
                 toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
+                _scope.options.laddaVideo = false;
               }
             );
          }
@@ -145,7 +154,7 @@
       if(media.type == 'IMAGE'){
         return UtilService.imageUrl(media.id_image);
       }else{
-        return media.video_url;
+        return $sce.trustAsResourceUrl(media.video_url);
       }
     }
 

@@ -128,6 +128,16 @@
       };
     });
 
+  app.config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+      // Allow same origin resource loads.
+      'self',
+      // Allow loading from our assets domain. **.
+      '*://vimeo.com/**',
+      '*://www.vimeo.com/**'
+    ]);
+  });
+
   /** underscore extension **/
   _.mixin({
     // Invalid date predicate. The invalid dates are still `Date` instances, however their time is `NaN`.
