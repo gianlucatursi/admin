@@ -4387,3 +4387,13 @@ textarea {
 .small-input-select .ui-select-search {
   width: 80% !important;
 }
+.own-classname {
+  text-align: center !important;
+}
+.afkl-lazy-image {
+  max-width: 180px;
+  max-height: 140px;
+}
+.vimeo-myembed iframe {
+  margin-top: -20px;
+}

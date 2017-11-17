@@ -134,8 +134,13 @@
           "video_url" : ""
         }).then(function(){
 
-          _that.get();
-          defer.resolve();
+          _that
+            .get()
+            .then(function(){
+              defer.resolve();
+            }, function(){
+              defer.resolve();
+            });
 
         }, function(){
 

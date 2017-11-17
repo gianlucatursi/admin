@@ -53,6 +53,8 @@
 
     _scope.fileSelect = _fileSelect;
     _scope.videoSelect = _videoSelect;
+    _scope.selectImage = _selectImage;
+    _scope.selectVideo = _selectVideo;
 
     _scope.ok = function () {
       _this.close({$value: _scope.selected.item});
@@ -90,6 +92,7 @@
           .then(function(){
             _scope.options.laddaImages = false;
             toastr.success('Caricamento completato', 'Upload Media');
+            _scope.medias = MediaService.toArray();
           }, function(){
             _scope.options.laddaImages = false;
             toastr.error('Ops! Qualcosa è andato storto. Si prega di riprovare più tardi', 'Upload Video')
@@ -150,6 +153,19 @@
 
     }
 
+    function _selectImage(m){
+      alert(m.id_image);
+    };
+    function  _selectVideo(m){
+      alert(m.video_url);
+    };
+
+    /**
+     * Get media url
+     * @param media
+     * @return {*}
+     * @private
+     */
     function _getMediaUrl(media){
       if(media.type == 'IMAGE'){
         return UtilService.imageUrl(media.id_image);
