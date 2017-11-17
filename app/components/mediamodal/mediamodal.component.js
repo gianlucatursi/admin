@@ -1,7 +1,7 @@
 (function(angular){
   "use strict";
 
-  MediaModalController.$inject = ['$scope', 'AdminService', 'ChannelService', 'toastr', 'MediaService', 'UtilService', '$sce'];
+  MediaModalController.$inject = ['$scope', 'AdminService', 'ChannelService', 'toastr', 'MediaService', 'UtilService', '$sce', '$uibModal'];
 
   angular
     .module('Smart.directives')
@@ -15,7 +15,7 @@
       controller: MediaModalController
     });
 
-  function MediaModalController($scope, AdminService, ChannelService, toastr, MediaService, UtilService, $sce){
+  function MediaModalController($scope, AdminService, ChannelService, toastr, MediaService, UtilService, $sce, $uibModal){
     var _this = this;
     var _scope = $scope;
 
@@ -115,7 +115,7 @@
 
        var uploader = new VimeoUpload({
 
-         name: 'name of video',
+         name: _scope.channelUploadSelected.ds_name  + " " + (new Date()).toISOString(),
          description: 'vimeo description',
          file: file,
          private: true,
@@ -153,11 +153,35 @@
 
     }
 
+    /**
+     * Open modal select image
+     * @param m
+     * @private
+     */
     function _selectImage(m){
-      alert(m.id_image);
-    };
+      MediaService._modalOptions.mediaSelected = m;
+      var _mediaModalInstance = $uibModal.open({
+        animation: true,
+        component: 'selectmediaModal',
+        size: 'lg'
+      });
+
+    }
+
+    /**
+     * Open Modal select video
+     * @param m
+     * @private
+     */
     function  _selectVideo(m){
-      alert(m.video_url);
+      MediaService._modalOptions.mediaSelected = m;
+
+      var _mediaModalInstance = $uibModal.open({
+        animation: true,
+        component: 'selectmediaModal',
+        size: 'lg'
+      });
+
     };
 
     /**

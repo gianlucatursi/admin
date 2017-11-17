@@ -45,7 +45,7 @@
                         <label class="font-small color-grey" style="white-space:nowrap;">CATEGORIA CONSIGLIATA</label>
                         <ui-select class="community-ui-select" ng-model="article.options.categorySelected">
                             <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
-                            <ui-select-choices repeat="cat in article.categoryService.list | filter: $select.search track by $index">
+                            <ui-select-choices repeat="cat in article.categoryService.listNoAll | filter: $select.search track by $index">
                                 <span ng-bind="cat.ds_name"></span>
                             </ui-select-choices>
                         </ui-select>

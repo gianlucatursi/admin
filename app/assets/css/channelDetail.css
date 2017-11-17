@@ -191,14 +191,6 @@
   border: 1px solid #CCCCCC;
   height: 80px;
 }
-#new_channel .btn-selected-settings {
-  border: 1px solid #3FA9F5;
-  background-color: white;
-  color: #3FA9F5;
-  margin-top: 20px;
-  font-weight: bold;
-  padding: 10px;
-}
 #new_channel .new-channel-author {
   border: none;
   font-family: Roboto;
@@ -216,72 +208,6 @@
   font-size: 16px;
   font-weight: normal;
   margin-left: 10px;
-}
-#new_channel .btn-delete-settings {
-  border: 1px solid #E62726;
-  background-color: white;
-  color: #E62726;
-  margin-top: 20px;
-  margin-right: 5px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-delete-settings:hover,
-#new_channel .btn-delete-settings:focus,
-#new_channel .btn-delete-settings:active {
-  border: 1px solid #E62726 !important;
-  background-color: white;
-  color: #E62726 !important;
-}
-#new_channel .btn-save-settings {
-  border: 1px solid #24C40D;
-  background-color: white;
-  color: #24C40D;
-  margin-top: 20px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-save-settings:hover,
-#new_channel .btn-save-settings:focus,
-#new_channel .btn-save-settings:active {
-  border: 1px solid #24C40D !important;
-  background-color: white;
-  color: #24C40D !important;
-}
-#new_channel .btn-save-bozza-settings {
-  border: 1px solid #48AACC;
-  background-color: white;
-  color: #48AACC;
-  margin-top: 20px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-save-bozza-settings:hover,
-#new_channel .btn-save-bozza-settings:focus,
-#new_channel .btn-save-bozza-settings:active {
-  border: 1px solid #48AACC !important;
-  background-color: white;
-  color: #48AACC !important;
-}
-#new_channel .btn-pubblica-settings {
-  border: 1px solid #24C40D;
-  background-color: white;
-  color: #24C40D;
-  margin-top: 20px;
-  margin-left: 10px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-pubblica-settings:hover,
-#new_channel .btn-pubblica-settings:focus,
-#new_channel .btn-pubblica-settings:active {
-  border: 1px solid #24C40D !important;
-  background-color: white;
-  color: #24C40D !important;
 }
 #new_channel .container-modifier {
   margin-bottom: 30px;

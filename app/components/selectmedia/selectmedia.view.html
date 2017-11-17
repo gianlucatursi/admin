@@ -1,0 +1,66 @@
+<div class="modal-body" id="modal-media-body">
+    <br />
+    <button class="no-border pull-right" ng-click="cancelSelection()" style="position:absolute;right: 20px; top:20px;z-index: 999999;">
+        <img src="app/assets/images/close_button_gray.png" width="35px">
+    </button>
+
+    <div class="row" id="new_channel">
+        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
+            <div ng-if="mediaSelected.type == 'IMAGE'" style="background-image: url({{getMediaUrl(mediaSelected)}});background-repeat: no-repeat;background-size: contain;max-width: 354px;height: 266px;"></div>
+            <embed-video class="vimeo-myembed margin-frame-20" ng-if="mediaSelected.type == 'VIDEO'" controls="0" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo{{$index}}" ng-href="{{getMediaUrl(mediaSelected)}}"></embed-video>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-6">
+
+            <div class="row" style="margin-top:30px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="border-bottom-grey">
+                        <p class="font-small color-grey">CANALE</p>
+                        <ui-select class="community-ui-select" ng-model="data.channelSelected" >
+                            <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                            <ui-select-choices repeat="channel in channels | filter: $select.search track by $index">
+                                <span ng-bind="channel.ds_name"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="border-bottom-grey">
+                        <p class="font-small color-grey">DESCRIZIONE</p>
+                        <input class="form-control new-channel-author table-day-text" placeholder="descrizione del media" ng-model="data.newdesc" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="border-bottom-grey">
+                        <p class="font-small color-grey">TAG</p>
+                        <input class="form-control new-channel-author table-day-text" placeholder="tag separati da virgola" ng-model="data.newtags" type="text">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <br/><br/>
+    <div class="row">
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button class="btn btn-delete-settings pull-left" >ELIMINA</button>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button class="btn btn-pubblica-settings pull-right" style="margin-right:10px;" ng-click="saveMedia()">SALVA</button>
+            <button class="btn btn-save-bozza-settings pull-right" ng-click="selectMedia()">SELEZIONA</button>
+        </div>
+
+    </div>
+</div>
+<!--
+<div class="modal-footer no-border">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
+-->

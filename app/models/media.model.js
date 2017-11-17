@@ -34,8 +34,8 @@
     /////////// MEDIA DATA FOR VIEW ///////////
 
     Media.prototype.identifier = _identifier;
-    Media.prototype.description = _description;
-    Media.prototype.tags = _tags;
+    Media.prototype.getDescription = _description;
+    Media.prototype.getTags = _tags;
     Media.prototype.mediaType = _mediaType;
     Media.prototype.categoryId = _categoryId;
     Media.prototype.channelId = _channelId;

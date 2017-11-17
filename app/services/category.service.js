@@ -20,6 +20,8 @@
       }
     ];
 
+    _that.listNoAll = [];
+
     _get();
 
     //////////////////////////////////
@@ -56,6 +58,7 @@
             _.each(result, function(val){
               if(_byId(val._id) == undefined){
                 _that.list.push(val);
+                _that.listNoAll.push(val);
               }
             });
             defer.resolve(_that.list);

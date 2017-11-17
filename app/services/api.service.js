@@ -35,6 +35,7 @@
       media: {
         get: _customRequest.bind(null, 'media'),
         create: _customRequest.bind(null, 'media'),
+        update: _customRequest.bind(null, 'media/:id'),
         search:_customRequest.bind(null, 'search/media')
       },
       categories : _customRequest.bind(null, 'category')

@@ -3264,14 +3264,6 @@ http://kudakurage.com/ligature_symbols/
   border: 1px solid #CCCCCC;
   height: 80px;
 }
-#new_channel .btn-selected-settings {
-  border: 1px solid #3FA9F5;
-  background-color: white;
-  color: #3FA9F5;
-  margin-top: 20px;
-  font-weight: bold;
-  padding: 10px;
-}
 #new_channel .new-channel-author {
   border: none;
   font-family: Roboto;
@@ -3289,72 +3281,6 @@ http://kudakurage.com/ligature_symbols/
   font-size: 16px;
   font-weight: normal;
   margin-left: 10px;
-}
-#new_channel .btn-delete-settings {
-  border: 1px solid #E62726;
-  background-color: white;
-  color: #E62726;
-  margin-top: 20px;
-  margin-right: 5px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-delete-settings:hover,
-#new_channel .btn-delete-settings:focus,
-#new_channel .btn-delete-settings:active {
-  border: 1px solid #E62726 !important;
-  background-color: white;
-  color: #E62726 !important;
-}
-#new_channel .btn-save-settings {
-  border: 1px solid #24C40D;
-  background-color: white;
-  color: #24C40D;
-  margin-top: 20px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-save-settings:hover,
-#new_channel .btn-save-settings:focus,
-#new_channel .btn-save-settings:active {
-  border: 1px solid #24C40D !important;
-  background-color: white;
-  color: #24C40D !important;
-}
-#new_channel .btn-save-bozza-settings {
-  border: 1px solid #48AACC;
-  background-color: white;
-  color: #48AACC;
-  margin-top: 20px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-save-bozza-settings:hover,
-#new_channel .btn-save-bozza-settings:focus,
-#new_channel .btn-save-bozza-settings:active {
-  border: 1px solid #48AACC !important;
-  background-color: white;
-  color: #48AACC !important;
-}
-#new_channel .btn-pubblica-settings {
-  border: 1px solid #24C40D;
-  background-color: white;
-  color: #24C40D;
-  margin-top: 20px;
-  margin-left: 10px;
-  font-weight: bold;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-#new_channel .btn-pubblica-settings:hover,
-#new_channel .btn-pubblica-settings:focus,
-#new_channel .btn-pubblica-settings:active {
-  border: 1px solid #24C40D !important;
-  background-color: white;
-  color: #24C40D !important;
 }
 #new_channel .container-modifier {
   margin-bottom: 30px;
@@ -4396,4 +4322,98 @@ textarea {
 }
 .vimeo-myembed iframe {
   margin-top: -20px;
+}
+.vimeo-myembed.margin-frame-20 iframe {
+  margin-top: 30px !important;
+}
+.btn-selected-settings {
+  border: 1px solid #3FA9F5;
+  background-color: white;
+  color: #3FA9F5;
+  margin-top: 20px;
+  font-weight: bold;
+  padding: 10px;
+}
+.btn-delete-settings {
+  border: 1px solid #E62726;
+  background-color: white;
+  color: #E62726;
+  margin-top: 20px;
+  margin-right: 5px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-delete-settings:hover,
+.btn-delete-settings:focus,
+.btn-delete-settings:active {
+  border: 1px solid #E62726 !important;
+  background-color: white;
+  color: #E62726 !important;
+}
+.btn-save-settings {
+  border: 1px solid #24C40D;
+  background-color: white;
+  color: #24C40D;
+  margin-top: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-save-settings:hover,
+.btn-save-settings:focus,
+.btn-save-settings:active {
+  border: 1px solid #24C40D !important;
+  background-color: white;
+  color: #24C40D !important;
+}
+.btn-save-bozza-settings {
+  border: 1px solid #48AACC;
+  background-color: white;
+  color: #48AACC;
+  margin-top: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-save-bozza-settings:hover,
+.btn-save-bozza-settings:focus,
+.btn-save-bozza-settings:active {
+  border: 1px solid #48AACC !important;
+  background-color: white;
+  color: #48AACC !important;
+}
+.btn-pubblica-settings {
+  border: 1px solid #24C40D;
+  background-color: white;
+  color: #24C40D;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-pubblica-settings:hover,
+.btn-pubblica-settings:focus,
+.btn-pubblica-settings:active {
+  border: 1px solid #24C40D !important;
+  background-color: white;
+  color: #24C40D !important;
+}
+@media (min-width: 992px) {
+  .container-scroll > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .container-scroll > .row > .col-md-3 {
+    display: inline-block;
+    float: none;
+  }
+}
+.container-scroll > .row {
+  margin-top: 24px;
+}
+.container-scroll > .row > .col-md-3 {
+  font-weight: bold;
+  text-align: center;
 }

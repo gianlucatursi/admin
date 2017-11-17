@@ -921,4 +921,105 @@ input, textarea {
   iframe{
     margin-top: -20px;
   }
+  &.margin-frame-20{
+    iframe{
+      margin-top: 30px !important;
+    }
+  }
+}
+
+
+.btn-selected-settings{
+  border: 1px solid @blue-tab;
+  background-color: @white;
+  color: @blue-tab;
+  margin-top: 20px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+
+.btn-delete-settings{
+  border: 1px solid @delete;
+  background-color: @white;
+  color: @delete;
+  margin-top: 20px;
+  margin-right: 5px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &:hover, &:focus, &:active{
+    border: 1px solid @delete !important;
+    background-color: @white;
+    color: @delete!important;
+  }
+}
+
+.btn-save-settings{
+  border: 1px solid @green;
+  background-color: @white;
+  color: @green;
+  margin-top: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &:hover, &:focus, &:active{
+    border: 1px solid @green!important;
+    background-color: @white;
+    color: @green!important;
+  }
+}
+
+.btn-save-bozza-settings{
+  border: 1px solid @light-blue;
+  background-color: @white;
+  color: @light-blue;
+  margin-top: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &:hover, &:focus, &:active{
+    border: 1px solid @light-blue!important;
+    background-color: @white;
+    color: @light-blue!important;
+  }
+}
+
+.btn-pubblica-settings{
+  border: 1px solid @green;
+  background-color: @white;
+  color: @green;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &:hover, &:focus, &:active{
+    border: 1px solid @green!important;
+    background-color: @white;
+    color: @green!important;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-scroll > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .container-scroll > .row > .col-md-3 {
+    display: inline-block;
+    float: none;
+  }
+}
+
+.container-scroll > .row {
+  margin-top: 24px;
+}
+.container-scroll > .row > .col-md-3 {
+  font-weight: bold;
+  text-align: center;
 }

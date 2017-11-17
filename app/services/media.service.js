@@ -21,7 +21,9 @@
     _that.isWorking = false;
     var _selected = {};
     _that._modalOptions = {
-      isGallery: false
+      isGallery: false,
+      mediaSelected: {},
+      realSelected: {}
     };
 
     //////////////////////////////////
@@ -39,6 +41,7 @@
 
     _that.createMedia = _createMedia;
     _that.uploadImage = _uploadImage;
+    _that.updateMedia = _updateMedia;
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
     //////////////////////////////////
@@ -153,6 +156,36 @@
         defer.reject(error);
       });
 
+
+      return defer.promise;
+    }
+
+    /**
+     *
+     * @private
+     */
+    function _updateMedia(_data){
+      var _this = this;
+      var defer = $q.defer();
+
+      _this.isWorking = true;
+
+      var _id = _data._id;
+
+      delete _data._id;
+
+      Restangular
+        .one(API.media.update({id: _id}))
+        .customPUT(_data)
+        .then(
+          function(){
+            _this.isWorking = false;
+            defer.resolve(_data);
+          },
+          function(){
+            _this.isWorking = true;
+            defer.reject();
+          });
 
       return defer.promise;
     }
