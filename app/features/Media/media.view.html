@@ -1,10 +1,10 @@
-<div id="media" ng-controller="MediaController as media">
+<div id="media" ng-controller="MediaController as mediaCtrl">
 
     <!-- NAV BAR -->
     <div class="row">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{media.current_state.title | uppercase}}</p>
-            <p class="font-bold font-medium" style="color: {{media.city.assets_color}}">{{media.city.ds_name | uppercase}} SMART</p>
+            <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{mediaCtrl.current_state.title | uppercase}}</p>
+            <p class="font-bold font-medium" style="color: {{mediaCtrl.city.assets_color}}">{{mediaCtrl.city.ds_name | uppercase}} SMART</p>
         </div>
     </div>
 
@@ -12,7 +12,113 @@
 
     <div class="row page_content">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <h1>MEDIA</h1>
+
+            <div class="row no-padding" style="margin-top:20px;">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <div class="row no-padding no-margin">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding no-margin" style="margin-top:20px !important;">
+
+                            <ui-select class="community-ui-select small-input-select" ng-model="mediaCtrl.channelUploadSelected" >
+                                <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                <ui-select-choices repeat="channel in mediaCtrl.channelsUpload | filter: $select.search track by $index">
+                                    <span ng-bind="channel.ds_name"></span>
+                                </ui-select-choices>
+                            </ui-select>
+
+                            <button ladda="options.laddaImages"  data-spinner-color="#FFFFFF" class="btn btn-green-modal right-rounded pull-left" ngf-select="mediaCtrl.fileSelect($files)"  ngf-multiple="true">
+                                <span class="lsf">plus</span>&nbsp;&nbsp;&nbsp;&nbsp;CARICA IMMAGINI
+                            </button>
+                            <button class="btn btn-green-modal left-rounded pull-left"
+                                    ngf-select="mediaCtrl.videoSelect($file)"
+                                    ladda="options.laddaVideo"
+                                    data-style="expand-right"
+                                    data-spinner-color="#FFFFFF">
+                                CARICA VIDEO
+                            </button>
+
+                            <!--<input class="btn btn-green-modal right-rounded pull-left" type="file" file-change handler="fileSelect(files)">-->
+                            <!--<input class="btn btn-green-modal left-rounded pull-left" type="file" file-change handler="videoSelect(files)">-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr class="color-grey bgcolor-grey" style="width:100%;"/>
+
+    <div class="row" style="margin-top:30px;">
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="form-group">
+                <label class="font-small color-grey">CANALE</label>
+                <ui-select class="community-ui-select" ng-model="mediaCtrl.channelViewSelected">
+                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                    <ui-select-choices repeat="channel in mediaCtrl.channels | filter: $select.search track by $index">
+                        <span ng-bind="channel.ds_name"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-6">
+            <div class="form-group border-line modal-data-filter">
+                <label class="font-small color-grey" style="white-space:nowrap;padding-bottom: 5px;">DATA CARICAMENTO</label>
+                <br />
+                <md-datepicker md-open-on-focus ng-model="mediaCtrl.dateSelected" md-placeholder="Seleziona la data..."  style="height: 42px;"></md-datepicker>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="form-group">
+                <label class="font-small color-grey">TIPO</label>
+                <ui-select class="community-ui-select" ng-model="mediaCtrl.mediaTypeSelected">
+                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="t in mediaCtrl.mediaTypes | filter: $select.search track by $index">
+                        <span ng-bind="t"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+            <button ladda="mediaCtrl.options.articleWorking()" class="btn btn-grey btn-block" ng-click="applyFilters()">
+                APPLICA&nbsp;&nbsp;&nbsp;<span class="lsf">right</span></button>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 col-md-9 col-sm-6 col-xs-6">
+            <div class="row border-bottom-grey" style="padding-left: 0px;margin-left: 0px;">
+                <div class="col-lg-11 col-sm-11 col-md-10 col-xs-10" >
+                    <span class="search-icon lsf">search</span>
+                    <input class="form-control search-input" placeholder="Cerca nei tag e nella descrizione" ng-model="mediaCtrl.textToSearch" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+            <button ladda="mediaCtrl.options.searchWorking" class="btn btn-grey btn-block" style="margin-top: 0;" ng-click="mediaCtrl.searchText()">
+                CERCA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="lsf">right</span></button>
+        </div>
+    </div>
+
+    <br/><br/>
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row container-fluid container-scroll">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" ng-repeat="m in mediaCtrl.medias" style="height: 140px;">
+                    <!--- images -->
+                    <div ng-if="m.type == 'IMAGE'" afkl-lazy-image="{{mediaCtrl.getMediaUrl(m)}}"
+                         class="afkl-lazy-wrapper afkl-img-ratio-1-1 own-classname img-responsive" ng-click="mediaCtrl.selectImage(m)"></div>
+                    <!-- video -->
+                    <div ng-if="m.type == 'VIDEO'" style="width: 180px; height: 140px; z-index:999999;background-color: transparent;position: absolute;top:0" ng-click="mediaCtrl.selectVideo(m)"></div>
+                    <embed-video class="vimeo-myembed" ng-if="m.type == 'VIDEO'" controls="0" iframe-id="vimeo{{$index}}" width="180" height="140" api="1" player_id="vimeo{{$index}}" ng-href="{{mediaCtrl.getMediaUrl(m)}}"></embed-video>
+
+                    <div class="clearfix hidden-sm-up"></div>
+                </div>
+            </div>
         </div>
     </div>
 
