@@ -4433,3 +4433,10 @@ textarea {
   height: 92%;
   margin: 10px 5px 5px;
 }
+.delete-image {
+  position: absolute;
+  vertical-align: middle;
+  top: 30%;
+  text-align: center;
+  left: 35%;
+}

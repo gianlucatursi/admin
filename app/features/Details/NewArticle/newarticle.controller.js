@@ -63,6 +63,9 @@
     _this.openGalleryImage = _openGalleryImage;
     _this.getMediaUrl = _getMediaUrl;
 
+    _this.deleteCover = _deleteCover;
+    _this.deleteGallery = _deleteGallery;
+
     function _openCoverImage(){
 
       MediaService._modalOptions.isGallery = false;
@@ -95,6 +98,16 @@
         return $sce.trustAsResourceUrl(media.video_url);
       }
     }
+
+    function _deleteCover(){
+      _this.imagesOptions.cover = null;
+    };
+
+    function _deleteGallery(_index){
+      _this.imagesOptions.gallery = _this.imagesOptions.gallery || [];
+      _this.imagesOptions.gallery.splice(_index, 1);
+    };
+
 
     function _openGalleryImage(){
 
