@@ -27,6 +27,7 @@
     };
 
     _scope.isGallery = MediaService._modalOptions.isGallery;
+    _scope.isMediaView = MediaService._modalOptions.isMediaView;
     //alert(MediaService._modalOptions.isGallery);
 
     _scope.channelService = ChannelService;

@@ -22,6 +22,7 @@
     var _selected = {};
     _that._modalOptions = {
       isGallery: false,
+      isMediaView: false,
       mediaSelected: {},
       realSelected: {}
     };

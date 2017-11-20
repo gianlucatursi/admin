@@ -31,6 +31,8 @@
     _scope.saveMedia = _saveMedia;
 
     _scope.mediaSelected = MediaService._modalOptions.mediaSelected;
+    _scope.isMediaView = MediaService._modalOptions.isMediaView;
+
     _scope.data.newdesc = _scope.mediaSelected.description || '';
     _scope.data.newtags = _scope.mediaSelected.tags || '';
     _scope.data.channelSelected = ChannelService.byId(_scope.mediaSelected.id_channel);

@@ -69,6 +69,8 @@
     function _openCoverImage(){
 
       MediaService._modalOptions.isGallery = false;
+      MediaService._modalOptions.isMediaView = false;
+
       _mediaModalInstance = $uibModal.open({
         animation: true,
         component: 'mediaModal',
@@ -112,6 +114,7 @@
     function _openGalleryImage(){
 
       MediaService._modalOptions.isGallery = true;
+      MediaService._modalOptions.isMediaView = false;
 
       _mediaModalInstance = $uibModal.open({
         animation: true,

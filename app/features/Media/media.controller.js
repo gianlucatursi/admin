@@ -146,6 +146,9 @@
      */
     function _selectImage(m){
       MediaService._modalOptions.mediaSelected = m;
+      MediaService._modalOptions.isMediaView = true;
+      MediaService._modalOptions.isGallery = false;
+
       var _mediaModalInstance = $uibModal.open({
         animation: true,
         component: 'selectmediaModal',
@@ -168,6 +171,8 @@
      */
     function  _selectVideo(m){
       MediaService._modalOptions.mediaSelected = m;
+      MediaService._modalOptions.isMediaView = true;
+      MediaService._modalOptions.isGallery = false;
 
       var _mediaModalInstance = $uibModal.open({
         animation: true,
