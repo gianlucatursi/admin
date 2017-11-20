@@ -141,8 +141,8 @@
 
                                     <div class="row no-padding">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xa-12">
-                                            <p ng-if="article.dt_publication_date" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
-                                            <p ng-if="!article.dt_publication_date" class="font-medium padding-top-5 font-bold"></p>
+                                            <p ng-if="article.is_published" class="font-medium padding-top-5">{{article.publishDate() | date:'dd-MM-yyyy'}}</p>
+                                            <p ng-if="!article.is_published" class="font-medium padding-top-5 font-bold"><span class="font-bold color-mid-grey">BOZZA</span></p>
                                         </div>
                                     </div>
                                 </div>

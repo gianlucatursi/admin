@@ -3,7 +3,7 @@
 
   var services = angular.module('Smart.services');
 
-  ArticleService.$inject = ['Restangular', 'ArticleModel', 'AdminService', '$q', 'API'];
+  ArticleService.$inject = ['Restangular', 'ArticleModel', 'AdminService', '$q', 'API', 'toastr'];
   services.service('ArticleService', ArticleService);
 
   /**
@@ -14,7 +14,7 @@
    * @param $q
    * @param API
    */
-  function ArticleService(Restangular, ArticleModel, AdminService, $q, API) {
+  function ArticleService(Restangular, ArticleModel, AdminService, $q, API, toastr) {
 
     var articles = {};
     var _that = this;
@@ -45,9 +45,106 @@
     _that.toArray = _toArray;
     _that.search = _search;
     _that.working = function(){ return _that.isWorking };
+
+    _that.validate = _validateArticle;
+    _that.create = _createArticle;
+    _that.update = _updateArticle;
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
     //////////////////////////////////
+
+
+    function _validateArticle(){
+      return true;
+    }
+
+    function _createArticle(article){
+
+      var _this = this;
+      var defer = $q.defer();
+
+      var toCreate = {
+        "ds_abstract" : article.ds_abstract,
+        "ds_title" : article.ds_title,
+        "ds_description" : article.ds_description,
+        "dt_publication_date" : null,
+        "id_category" : article.id_category,
+        "id_channel" : article.id_channel,
+        "id_city" : AdminService.user.cityId(),
+        "is_deleted" : false,
+        "event" : article.event,
+        "cover_media" : article.cover_media,
+        "image_gallery" : article.image_gallery,
+        "comments" : [],
+        "likes" : []
+      };
+
+      _this.isWorking = true;
+
+      Restangular
+        .one(API.articles.create())
+        .customPOST(toCreate)
+        .then(function(success){
+          // get new channels
+          toastr.success('Il nuovo articolo è stato salvato');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+
+          defer.resolve();
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Salva articolo', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+
+    }
+
+    function  _updateArticle(toUpdate){
+
+      var defer = $q.defer();
+      var _this = this;
+
+      Restangular
+        .one(API.articles.create())
+        .customPUT(toUpdate)
+        .then(function(success){
+          // get new channels
+          toastr.success('Il nuovo articolo è stato aggiornato');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+
+          defer.resolve();
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Aggiorna articolo', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+    }
+
     /**
      * Retrive instance of a article with _id
      * @param _id Identifier of Article

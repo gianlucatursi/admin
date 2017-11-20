@@ -15,6 +15,7 @@
       },
       /************ ARTICLE **************/
       articles: {
+        create: _customRequest.bind(null, 'article'),
         get: _customRequest.bind(null, 'article'),
         update: _customRequest.bind(null, 'article/:id'),
         byId: _customRequest.bind(null, 'article/:id'),

@@ -24,6 +24,7 @@
     };
 
     _this.options = {
+      categorySelected: null,
       saveWorking: ArticleService.working,
       channelSelected: null,
       authorSelected: '',
@@ -50,7 +51,9 @@
       _initStatics();
     }
 
-    _this.save = _save;
+    //_this.save = _save;
+    _this.saveDraft = _saveDraft;
+    _this.publish = _publish;
     _this.delete = _delete;
     _this.stripHTMLCount = _stripHTMLCount;
     _this.clearAuthor = _clearAuthor;
@@ -95,7 +98,7 @@
 
     function _openGalleryImage(){
 
-      MediaService._modalOptions.isGallery = true
+      MediaService._modalOptions.isGallery = true;
 
       _mediaModalInstance = $uibModal.open({
         animation: true,
@@ -116,31 +119,71 @@
      * Save channel
      * @private
      */
-    function _save(){
+    function _saveDraft(toPublish){
 
-      /*
       if(ArticleService.validate(_this.current, _this.current.isNew)){
         //valid
         if(_this.current.isNew){
           //create
-       ArticleService
-            .create(_this.current)
-            .then(function(){
-              $state.go($state.ROUTING.canali.name);
-            }, function(){});
-        }else{
-          //update
-            ArticleService
-            .update(_this.current._id, _this.current)
-            .then(function(){
-              $state.go($state.ROUTING.canali.name);
-            }, function(){});
-        }
 
-      }else{
+         _this.current.is_published =  toPublish == true ? toPublish : false;
+         _this.current.id_channel = _this.options.channelSelected._id;
+         _this.current.id_category = _this.options.categorySelected._id;
+         _this.current.ds_author = _this.options.authorSelected;
+
+         if(toPublish){
+           _this.current.dt_publication_date = new Date();
+         }
+
+         if(_this.imagesOptions.cover){
+           _this.current.image_cover = {
+             type : _this.imagesOptions.cover.type,
+             id_image: _this.imagesOptions.cover._id
+
+           };
+         }
+
+          _this.current.gallery = [];
+
+         _.each((_this.imagesOptions.gallery || []), function(img_g){
+           _this.current.gallery.push(img_g._id);
+         });
+
+         if(_this.options.event){
+           _this.current.event = {
+             place: _this.options.event.place,
+             dates:[]
+           };
+           _this.current.event.dates = _createDates();
+         }
+
+         ArticleService
+              .create(_this.current)
+              .then(function(){
+                $state.go($state.ROUTING.canali.name);
+              }, function(){});
+          }else{
+            //update
+              ArticleService
+              .update(_this.current._id, _this.current)
+              .then(function(){
+                $state.go($state.ROUTING.canali.name);
+              }, function(){});
+          }
+
+        }else{
         //not valid
       }
-      */
+
+    }
+
+    function _publish(){
+      if(_this.current.isNew){
+        _saveDraft(true)
+      }else{
+        ArticleService
+          .update(_this.current._id, {dt_publication_date: new Date(), is_published: true});
+      }
     }
 
     /**
@@ -165,9 +208,10 @@
     function _initNewArticle(){
       _this.current = {
         isNew : true,
-        abstract: '',
-        title: '',
-        description:'',
+        is_published: false,
+        ds_abstract: '',
+        ds_title: '',
+        ds_description:'',
         event:{
           place: '',
           dates: []
@@ -281,6 +325,31 @@
 
       //_this.options.authorSelected = (_this.options.channelSelected.authorList() || [])[0];
 
+    }
+
+    function _createDates(){
+      var list = [];
+
+      _.each(_this.options.event.when, function(w){
+
+        var start = new Date(w.date);
+        var end = new Date(w.date);
+        var listStart = (w.start || '').split(':');
+        var listEnd = (w.end || '').split(':');
+
+        start.setHours((parseInt(listStart[0]))-1);
+        start.setMinutes(parseInt(listStart[1]));
+
+        end.setHours((parseInt(listEnd[0]))-1);
+        end.setMinutes(parseInt(listEnd[1]));
+
+        list.push({
+          dt_start: start,
+          dt_end: end
+        });
+      });
+
+      return list;
     }
 
     /**
