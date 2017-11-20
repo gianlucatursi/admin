@@ -214,8 +214,8 @@
 
       var filters = { /*id_city: AdminService.user.citySelected()._id */};
 
-      if(options.id_category){
-        filters.id_category = options.id_category;
+      if(options.type){
+        filters.type = options.type;
       }
 
       if(options.id_channel){

@@ -26,14 +26,6 @@
       laddaImages: false
     };
 
-    MediaService
-      .get()
-      .then(function(__medias){
-        _scope.medias = MediaService.toArray();
-      }, function(){
-
-      });
-
     _scope.isGallery = MediaService._modalOptions.isGallery;
     //alert(MediaService._modalOptions.isGallery);
 
@@ -43,8 +35,24 @@
     _scope.dateSelected = null;
     _scope.textToSearch = '';
     _scope.medias = MediaService.toArray();
+    _scope.filters = {};
 
-    _scope.mediaTypes = ['Immagini e Video', 'Immagini', 'Video'];
+    if(_scope.isGallery){
+      _scope.mediaTypes = ['Immagini'];
+      _scope.filters = {type: 'IMAGE'};
+    }else{
+      _scope.mediaTypes = ['Immagini e Video', 'Immagini', 'Video'];
+    }
+
+
+    MediaService
+      .get(_scope.filters)
+      .then(function(__medias){
+        _scope.medias = MediaService.toArray();
+      }, function(){
+
+      });
+
     _scope.mediaTypeSelected = _scope.mediaTypes[0];
 
     _scope.applyFilters = _applyFilters;

@@ -105,6 +105,7 @@
 
       _mediaModalInstance.result.then(function (selectedItem) {
         _this.imagesOptions.gallery.push(selectedItem);
+
       }, function () {
         console.log('modal-component dismissed at: ' + new Date());
       });
