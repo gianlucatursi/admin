@@ -96,7 +96,7 @@
       commenti:{
         title: 'Tutti i commenti',
         name: 'home.commenti',
-        url: '/commenti',
+        url: '/commenti/:id',
         templateUrl: 'app/features/Details/NewArticle/Commenti/commenti.view.html'
       },
       detailarticle:{

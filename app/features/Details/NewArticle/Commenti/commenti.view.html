@@ -7,26 +7,25 @@
             <p class="font-bold font-medium" style="color: {{commenti.city.assets_color}}">{{commenti.city.ds_name | uppercase}} SMART</p>
         </div>
         <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6">
-            <button ui-sref="home.modifica_contenuto({id:1})" class="btn btn-block-settings pull-right no-margin"><span class="lsf color-grey">back</span>&nbsp;&nbsp;&nbsp;INDIETRO</button>
+            <button ui-sref="home.modifica_contenuto({id: commenti.articleSelected._id})" class="btn btn-block-settings pull-right no-margin"><span class="lsf color-grey">back</span>&nbsp;&nbsp;&nbsp;INDIETRO</button>
         </div>
     </div>
 
     <!------------- body content ---------->
 
-    <div class="row page_content">
+    <div class="row page_content" style="padding-left:15px">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 no-margin">
+
+            <!--
             <div class="row" style="margin-top:25px !important;">
 
                 <div class="col-lg-4 col-md-3 col-sm-6 col-xs-6 no-padding-left">
+
                     <div class="form-group">
                         <label class="font-small color-grey">CANALE</label>
-                        <ui-select class="community-ui-select" ng-model="article.options.channelSelected" on-select="article.clearAuthor()">
-                            <ui-select-match placeholder="Seleziona...">{{$select.selected.name()}}</ui-select-match>
-                            <ui-select-choices repeat="channel in article.options.channels | filter: $select.search track by $index">
-                                <span ng-bind="channel.name()"></span>
-                            </ui-select-choices>
-                        </ui-select>
+                        <input class="form-control new-channel-author table-day-text" placeholder="email" type="text" ng-model="newchannel.new_channel.username">
                     </div>
+
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left">
                     <div class="form-group">
@@ -56,26 +55,28 @@
                 </div>
 
             </div>
+            -->
 
             <div class="row">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 border-bottom-grey no-padding margin-top-15px margin-bottom-30px">
-                    <p class="font-xxl color-black no-margin"><span>12</span> commenti</p>
-                    <p class="font-sm color-black"><span>12</span> richieste moderazione, <span>1</span> bloccati</p>
+                    <p class="font-xxl color-black no-margin"><span>{{commenti.articleSelected.commentsCount()}}</span> commenti</p>
+                    <p class="font-sm color-black"><span>{{commenti.articleSelected.commentsReportedCount()}}</span> richieste moderazione</p>
                 </div>
-                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 border-bottom-grey">
-                    <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                    <div class="row border-bottom-grey" ng-repeat="com in commenti.articleSelected.commentList()" style="margin-bottom:10px;">
                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 margin-bottom-20px">
                             <div class="row">
                                 <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 no-padding no-margin">
                                     <span class='lsf font-xl color-mid-grey margin-left-10px'>arrowright</span>
                                 </div>
                                 <div class="col-lg-11 col-sm-11 col-md-11 col-xs-11 no-padding no-margin">
-                                    <p class="no-margin-bottom margin-top-5px margin-first-col"><span class="color-black">Giorgio Mondino</span> - <span>15-06-2017</span> alle <span>18:30</span> <!--<span class="color-mid-grey font-bold">BLOCCA UTENTE</span>--></p>
+                                    <p class="no-margin-bottom margin-top-5px margin-first-col"><span class="color-black">{{com.ds_name}} {{com.ds_surname}}</span> - <span>{{com.dt_comment | date:'dd - MM - yyyy'}}</span> alle <span>{{com.dt_comment | date: 'HH:mm'}}</span> <!--<span class="color-mid-grey font-bold">BLOCCA UTENTE</span>--></p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 no-padding no-margin margin-top-10px">
-                                    <img class="img-medium margin-top-10px" src="app/assets/images/alert.jpg"/>
+                                    <img class="img-medium margin-top-10px" src="app/assets/images/alert.jpg" ng-if="com.reports && com.reports.length > 0"/>
                                 </div>
                                 <div class="col-lg-11 col-sm-11 col-md-11 col-xs-11 no-padding no-margin">
                                     <p class="margin-first-col">{{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mauris justo, gravida eu gravida eu, volutpat vel magna. Mauris turpis eros, convallis ut lacus eu, luctus scelerisque mauris. Morbi viverra sapien sodales turpis sodales, eget fringilla nunc consequat. Cras eget auctor ante, sed pulvinar mi. Nullam at metus quam. Cras sit amet egestas felis. Pellentesque eleifend convallis velit, sed fermentum massa convallis scelerisque. Morbi quis leo id augue tristique varius eu et orci. Mauris commodo enim leo, at mattis libero pretium sed. Aliquam erat volutpat. Nullam bibendum feugiat luctus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non aliquet turpis. Aenean tristique est eget erat pulvinar, quis dictum velit consequat. Etiam in fermentum augue.' | limitTo: 150}}</p>
@@ -87,7 +88,7 @@
                                 <p class="color-grey font-small no-margin-bottom margin-top-5px">SEGNALAZIONI</p>
                             </div>
                             <div class="row">
-                                <p class="color-black no-margin-bottom margin-top-5px font-bold">0</p>
+                                <p class="color-black no-margin-bottom margin-top-5px font-bold">{{com.reports.length || 0}}</p>
                             </div>
                         </div>
                         <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1">
@@ -95,7 +96,7 @@
                                 <p class="color-grey font-small no-margin-bottom margin-top-5px">ROBOT</p>
                             </div>
                             <div class="row">
-                                <p class="color-black no-margin-bottom margin-top-5px font-bold">-</p>
+                                <p class="color-red no-margin-bottom margin-top-5px font-bold">{{com.is_robot == true ? 'Alert' : ''}}</p>
                             </div>
                         </div>
                         <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1">
@@ -103,7 +104,8 @@
                                 <p class="color-grey font-small no-margin-bottom margin-top-5px">STATO</p>
                             </div>
                             <div class="row">
-                                <p class="color-green no-margin-bottom margin-top-5px font-bold">VISIBLE</p>
+                                <p ng-if="com.is_enabled" class="color-green no-margin-bottom margin-top-5px font-bold">VISIBLE</p>
+                                <p ng-if="com.is_blocked" class="color-red no-margin-bottom margin-top-5px font-bold">BLOCCATO</p>
                             </div>
                         </div>
                         <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
@@ -114,6 +116,8 @@
                                 </ui-select-choices>
                             </ui-select>
                         </div>
+
+                        <hr />
                     </div>
                 </div>
             </div>

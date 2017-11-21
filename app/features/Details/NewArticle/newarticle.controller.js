@@ -298,7 +298,8 @@
         is_published: articleToEdit.isPublished(),
         ds_abstract: articleToEdit.abstract(),
         ds_title: articleToEdit.title(),
-        ds_description: articleToEdit.description()
+        ds_description: articleToEdit.description(),
+        isReported: articleToEdit.isReported(articleToEdit)
         /*
         isLocked: channelToEdit.isLocked(),
         name: channelToEdit.name(),
