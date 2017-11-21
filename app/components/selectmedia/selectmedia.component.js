@@ -45,7 +45,7 @@
 
     function _getMediaUrl(media){
       if(media.type == 'IMAGE'){
-        return UtilService.imageUrl(media.id_image);
+        return UtilService.imageUrl(media.id_image, 'm');
       }else{
         return $sce.trustAsResourceUrl(media.video_url);
       }

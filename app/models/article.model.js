@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  ArticleModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL', '$state']; // 'Restangular', '$q', 'AuthServices'
+  ArticleModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL', '$state', 'UtilService', '$sce']; // 'Restangular', '$q', 'AuthServices'
   models.factory('ArticleModel', ArticleModel);
 
-  function ArticleModel(API, $q ,Restangular, IMAGE_BASEURL, $state) { //Restangular, $q, API, Images, AuthServices
+  function ArticleModel(API, $q ,Restangular, IMAGE_BASEURL, $state, UtilService, $sce) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Article(articleData) {
@@ -249,7 +249,7 @@
      * @private
      */
     function _coverMedia(){
-      return this.cover_media;
+      return this.image_cover;
     }
 
     /**
@@ -257,12 +257,14 @@
      * @return {*}
      * @private
      */
-    function _coverUrl(){
-      if(this.cover_media && this.cover_media.type == 'IMAGE'){
-        return IMAGE_BASEURL + this.cover_media.id_image;
+    function _coverUrl(size){
+
+      if(this.image_cover.type == 'IMAGE'){
+        return UtilService.imageUrl(this.image_cover.id_image, size);
+      }else{
+        return $sce.trustAsResourceUrl(this.image_cover.video_url);
       }
 
-      return '';
     }
 
     /**

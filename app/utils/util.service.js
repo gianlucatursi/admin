@@ -22,8 +22,17 @@
       return 'https://claudiaimages.azurewebsites.net/api/users/5a059de2443979eb1e266f28/projects/5a05b760045c15349d78f61d/images'
     }
 
-    function _imageUrl(id){
-      return 'https://claudiaimages.azurewebsites.net/api/media/' +id;
+    function _imageUrl(id, size){
+      var param = '';
+      if(size == 's'){
+        param = '?w=128';
+      }else if(size == 'm'){
+        param = '?w=256';
+      }else{
+        param = '?w=512';
+      }
+
+      return 'https://claudiaimages.azurewebsites.net/api/media/' +id+ '' + param;
     }
 
     /** return service **/

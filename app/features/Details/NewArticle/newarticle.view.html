@@ -110,7 +110,7 @@
                                                     <div class="row container-fluid container-scroll cont-gallery" >
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-repeat="m in article.imagesOptions.gallery" style="margin-top:5px;" ng-init="m.showDelete = false;"
                                                              ng-mouseover="m.showDelete = true" ng-mouseleave="m.showDelete =  false;">
-                                                            <div style="width: 100px;height: 100px;background-image: url({{article.getMediaUrl(m)}});background-repeat: no-repeat;background-size: contain;"></div>
+                                                            <div style="width: 100px;height: 100px;background-image: url({{article.getMediaUrl(m, 's')}});background-repeat: no-repeat;background-size: contain;"></div>
                                                             <button ng-if="m.showDelete" class="btn btn-delete-settings delete-image" ng-click="article.deleteGallery($index)">ELIMINA</button>
                                                         </div>
                                                     </div>
@@ -288,7 +288,7 @@
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                             <div class="border-bottom-grey">
                                                 <p class="font-small color-grey">LUOGO</p>
-                                                <input class="form-control new-channel-author table-day-text" placeholder="Indirizzo" ng-model="newchannel.new_channel.address" type="text">
+                                                <input class="form-control new-channel-author table-day-text" placeholder="Indirizzo" ng-model="article.options.event.place" type="text">
                                             </div>
                                         </div>
                                     </div>

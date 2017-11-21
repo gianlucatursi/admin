@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'CategoryService', 'UtilService', '$uibModal', 'MediaService', '$sce'];
+  NewArticleController.$inject = ['$state', 'AdminService', 'ArticleService', 'ChannelService', 'CategoryService', 'UtilService', '$uibModal', 'MediaService', '$sce', 'toastr'];
   controllers.controller('NewArticleController', NewArticleController);
 
-  function NewArticleController($state, AdminService, ArticleService, ChannelService, CategoryService, UtilService, $uibModal, MediaService, $sce){
+  function NewArticleController($state, AdminService, ArticleService, ChannelService, CategoryService, UtilService, $uibModal, MediaService, $sce, toastr){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -93,9 +93,9 @@
      * @return {*}
      * @private
      */
-    function _getMediaUrl(media){
+    function _getMediaUrl(media, s){
       if(media.type == 'IMAGE'){
-        return UtilService.imageUrl(media.id_image);
+        return UtilService.imageUrl(media.id_image, s);
       }else{
         return $sce.trustAsResourceUrl(media.video_url);
       }
@@ -168,17 +168,25 @@
         }
 
         if(_this.imagesOptions.cover){
-          _this.current.image_cover = {
-            type : _this.imagesOptions.cover.type,
-            id_image: _this.imagesOptions.cover._id
+          if(_this.imagesOptions.cover.type == 'IMAGE'){
+            _this.current.image_cover = {
+              type : _this.imagesOptions.cover.type,
+              id_image: _this.imagesOptions.cover.id_image
 
-          };
+            };
+          }else{
+            _this.current.image_cover = {
+              type : _this.imagesOptions.cover.type,
+              video_url: _this.imagesOptions.cover.video_url
+
+            };
+          }
         }
 
         _this.current.image_gallery = [];
 
         _.each((_this.imagesOptions.gallery || []), function(img_g){
-          _this.current.image_gallery.push(img_g._id);
+          _this.current.image_gallery.push(img_g.id_image);
         });
 
         if(_this.options.event && _this.options.event.when.length > 0 && _this.options.event.when[0].start != ""){
@@ -274,12 +282,13 @@
       _.each(articleToEdit.gallery(), function(g_id){
         _this.imagesOptions.gallery.push({
           type: 'IMAGE',
-          _id: g_id
+          id_image: g_id
         });
       });
 
       if(articleToEdit.isEvent()){
         _this.options.event = _convertEvent(articleToEdit.eventInfos());
+        _this.options.event.isActive = true;
       }
 
 
@@ -322,7 +331,7 @@
 
     function _convertEvent(ev){
 
-      _this.current.event = {
+      _this.options.event = {
         place : ev.place,
         when: []
       };
@@ -330,16 +339,21 @@
 
       _.each(ev.dates || [], function(dat){
 
-        var startHour = "" + dat.start.getHours() + ":" + dat.start.getMinutes();
-        var endHour = "" + dat.end.getHours() + ":" + dat.end.getMinutes();
+        var dataStart = convertDateToUTC(new Date(dat.dt_start));
+        var dataEnd = convertDateToUTC(new Date(dat.dt_end));
+
+        var startHour = "" + dataStart.getHours() + ":" + dataStart.getMinutes();
+        var endHour = "" + dataEnd.getHours() + ":" + dataEnd.getMinutes();
 
         _this.options.event.when.push({
-          date: dat.start,
+          date: dataStart,
           start: startHour,
           end: endHour
         });
 
       });
+
+      return _this.options.event;
     }
     /**
      *
@@ -419,11 +433,14 @@
         var listStart = (w.start || '').split(':');
         var listEnd = (w.end || '').split(':');
 
-        start.setHours((parseInt(listStart[0]))-1);
+        start.setHours((parseInt(listStart[0])));
         start.setMinutes(parseInt(listStart[1]));
 
-        end.setHours((parseInt(listEnd[0]))-1);
+        end.setHours((parseInt(listEnd[0])));
         end.setMinutes(parseInt(listEnd[1]));
+
+        start = createDateAsUTC(start);
+        end = createDateAsUTC(end);
 
         list.push({
           dt_start: start,
@@ -432,6 +449,14 @@
       });
 
       return list;
+    }
+
+    function createDateAsUTC(date) {
+      return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()));
+    }
+
+    function convertDateToUTC(date) {
+      return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
     }
 
     /**

@@ -73,7 +73,7 @@
         "id_channel" : article.id_channel,
         "id_city" : AdminService.user.cityId(),
         "is_deleted" : false,
-        "cover_media" : article.cover_media,
+        "image_cover" : article.image_cover,
         "image_gallery" : article.image_gallery,
         "comments" : [],
         "likes" : []

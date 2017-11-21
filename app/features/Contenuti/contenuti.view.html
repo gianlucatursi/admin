@@ -151,7 +151,9 @@
                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                     <div class="row no-padding">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <img class="img-preview-article bgcolor-grey"/>
+                                            <img ng-if="!article.image_cover" class="img-preview-article bgcolor-grey"/>
+                                            <div ng-if="article.image_cover" class="img-preview-article"
+                                                 style="background-image: url({{article.coverUrl('s')}});background-repeat: no-repeat;background-size: contain;"/>
                                         </div>
                                     </div>
                                 </div>
