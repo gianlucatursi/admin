@@ -137,53 +137,74 @@
      */
     function _saveDraft(toPublish){
 
+      if(!_this.options.channelSelected){
+
+        toastr.error('Devi selezionare un canale per poter proseguire', 'Modifica contenuto');
+        return;
+      }
+
+      if(!_this.options.categorySelected._id){
+        toastr.error('Devi selezionare una categoria per poter proseguire', 'Modifica contenuto');
+        return;
+      }
+
+      if(!_this.options.authorSelected){
+
+        toastr.error('Devi selezionare un autore per poter proseguire', 'Modifica contenuto');
+        return;
+      }
+
       if(ArticleService.validate(_this.current, _this.current.isNew)){
         //valid
+
+        //create
+        _this.current.is_published =  toPublish == true ? toPublish : false;
+        _this.current.id_channel = _this.options.channelSelected._id;
+        _this.current.id_category = _this.options.categorySelected._id;
+        _this.current.ds_author = _this.options.authorSelected;
+
+        if(toPublish){
+          _this.current.dt_publication_date = new Date();
+        }
+
+        if(_this.imagesOptions.cover){
+          _this.current.image_cover = {
+            type : _this.imagesOptions.cover.type,
+            id_image: _this.imagesOptions.cover._id
+
+          };
+        }
+
+        _this.current.image_gallery = [];
+
+        _.each((_this.imagesOptions.gallery || []), function(img_g){
+          _this.current.image_gallery.push(img_g._id);
+        });
+
+        if(_this.options.event && _this.options.event.when.length > 0 && _this.options.event.when[0].start != ""){
+          _this.current.event = {
+            place: _this.options.event.place,
+            dates:[]
+          };
+          _this.current.is_event = true;
+          _this.current.event.dates = _createDates();
+        }else{
+          _this.current.is_event = false;
+        }
+
+
         if(_this.current.isNew){
-          //create
-
-         _this.current.is_published =  toPublish == true ? toPublish : false;
-         _this.current.id_channel = _this.options.channelSelected._id;
-         _this.current.id_category = _this.options.categorySelected._id;
-         _this.current.ds_author = _this.options.authorSelected;
-
-         if(toPublish){
-           _this.current.dt_publication_date = new Date();
-         }
-
-         if(_this.imagesOptions.cover){
-           _this.current.image_cover = {
-             type : _this.imagesOptions.cover.type,
-             id_image: _this.imagesOptions.cover._id
-
-           };
-         }
-
-          _this.current.gallery = [];
-
-         _.each((_this.imagesOptions.gallery || []), function(img_g){
-           _this.current.gallery.push(img_g._id);
-         });
-
-         if(_this.options.event){
-           _this.current.event = {
-             place: _this.options.event.place,
-             dates:[]
-           };
-           _this.current.event.dates = _createDates();
-         }
-
          ArticleService
               .create(_this.current)
               .then(function(){
-                $state.go($state.ROUTING.canali.name);
+                $state.go($state.ROUTING.contenuti.name);
               }, function(){});
           }else{
             //update
               ArticleService
               .update(_this.current._id, _this.current)
               .then(function(){
-                $state.go($state.ROUTING.canali.name);
+                $state.go($state.ROUTING.contenuti.name);
               }, function(){});
           }
 
@@ -242,9 +263,33 @@
      */
     function _initEditArticle(articleToEdit){
 
+      _this.imagesOptions.gallery = [];
+
+      _this.options.channelSelected = ChannelService.byId(articleToEdit.channelId());
+      _this.options.categorySelected = CategoryService.byId(articleToEdit.categoryId());
+      _this.options.authorSelected = articleToEdit.authorName();
+      //_this.options.categorySelected
+
+      _this.imagesOptions.cover = articleToEdit.coverMedia();
+      _.each(articleToEdit.gallery(), function(g_id){
+        _this.imagesOptions.gallery.push({
+          type: 'IMAGE',
+          _id: g_id
+        });
+      });
+
+      if(articleToEdit.isEvent()){
+        _this.options.event = _convertEvent(articleToEdit.eventInfos());
+      }
+
+
       _this.current = {
-        _id: articleToEdit.id(),
-        isNew : false
+        _id: articleToEdit.identifier(),
+        isNew : false,
+        is_published: articleToEdit.isPublished(),
+        ds_abstract: articleToEdit.abstract(),
+        ds_title: articleToEdit.title(),
+        ds_description: articleToEdit.description()
         /*
         isLocked: channelToEdit.isLocked(),
         name: channelToEdit.name(),
@@ -275,6 +320,27 @@
       return (tmp.textContent || tmp.innerText || "").length;
     }
 
+    function _convertEvent(ev){
+
+      _this.current.event = {
+        place : ev.place,
+        when: []
+      };
+
+
+      _.each(ev.dates || [], function(dat){
+
+        var startHour = "" + dat.start.getHours() + ":" + dat.start.getMinutes();
+        var endHour = "" + dat.end.getHours() + ":" + dat.end.getMinutes();
+
+        _this.options.event.when.push({
+          date: dat.start,
+          start: startHour,
+          end: endHour
+        });
+
+      });
+    }
     /**
      *
      * @private

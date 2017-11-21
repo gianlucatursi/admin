@@ -40,6 +40,7 @@
     _this.searchText = _searchText;
     _this.generatePages = _generatePages;
     _this.changePage = _changePage;
+    _this.gotoDetail = _gotoDetail;
 
     _initializeCollections();
 
@@ -99,6 +100,10 @@
 
     function _changePage(pnum){
       _this.options.pager.active = pnum;
+    }
+
+    function _gotoDetail(art){
+      $state.go($state.ROUTING.detailarticle.name, {id: art.id()});
     }
     /**
      * Initialize collections

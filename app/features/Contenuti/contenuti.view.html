@@ -76,7 +76,8 @@
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                     <!---------- ELEMENT ---------->
-                    <div class="row article_element" ng-repeat="article in contenuti.articles | limitTo:contenuti.options.pager.limit:-(contenuti.options.pager.active*contenuti.options.pager.limit)">
+                    <div class="row article_element" ng-repeat="article in contenuti.articles | limitTo:contenuti.options.pager.limit:-(contenuti.options.pager.active*contenuti.options.pager.limit)"
+                          ng-click="article.showDetail()">
                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                             <div class="row">

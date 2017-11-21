@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  ArticleModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL']; // 'Restangular', '$q', 'AuthServices'
+  ArticleModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL', '$state']; // 'Restangular', '$q', 'AuthServices'
   models.factory('ArticleModel', ArticleModel);
 
-  function ArticleModel(API, $q ,Restangular, IMAGE_BASEURL) { //Restangular, $q, API, Images, AuthServices
+  function ArticleModel(API, $q ,Restangular, IMAGE_BASEURL, $state) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Article(articleData) {
@@ -44,6 +44,7 @@
     Article.prototype.cityId = _cityId;
     Article.prototype.isDeleted = _isDeleted;
     Article.prototype.isEvent = _isEvent;
+    Article.prototype.authorName = _authorName;
     Article.prototype.eventInfos = _eventInfos;
     Article.prototype.coverMedia = _coverMedia;
     Article.prototype.coverUrl = _coverUrl;
@@ -54,6 +55,8 @@
     Article.prototype.likeList = _likesList;
     Article.prototype.likeCount = _likesCount;
     Article.prototype.views = _viewsCounter;
+    Article.prototype.isPublished = _isPublished;
+    Article.prototype.showDetail = _showDetail;
 
     Article.prototype.isReported = _isReported;
     Article.prototype.commentsReportedCount = _commentsReportedCount;
@@ -220,6 +223,9 @@
       return !!this.event;
     }
 
+    function _authorName(){
+      return this.ds_author || '';
+    }
     /**
      * Get event if exist
      * @return {*}
@@ -231,6 +237,10 @@
       }
 
       return { dates: [] };
+    }
+
+    function _showDetail(){
+      $state.go($state.ROUTING.detailarticle.name, {id: this.identifier()});
     }
 
     /**
@@ -321,6 +331,10 @@
      */
     function _viewsCounter(){
       return (this.views || []).length;
+    }
+
+    function _isPublished(){
+      return this.is_published == true ? this.is_published : false;
     }
     //////////////////// COMMENTS FUNCTIONS ////////////////////
 

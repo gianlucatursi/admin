@@ -67,17 +67,23 @@
         "ds_abstract" : article.ds_abstract,
         "ds_title" : article.ds_title,
         "ds_description" : article.ds_description,
+        "ds_author": article.ds_author,
         "dt_publication_date" : null,
         "id_category" : article.id_category,
         "id_channel" : article.id_channel,
         "id_city" : AdminService.user.cityId(),
         "is_deleted" : false,
-        "event" : article.event,
         "cover_media" : article.cover_media,
         "image_gallery" : article.image_gallery,
         "comments" : [],
         "likes" : []
       };
+
+      toCreate["is_event"] = article.is_event == true;
+
+      if(article.is_event == true){
+        toCreate["event"] = article.event;
+      }
 
       _this.isWorking = true;
 
@@ -111,14 +117,14 @@
 
     }
 
-    function  _updateArticle(toUpdate){
+    function  _updateArticle(toUpdate, data){
 
       var defer = $q.defer();
       var _this = this;
 
       Restangular
-        .one(API.articles.create())
-        .customPUT(toUpdate)
+        .one(API.articles.update({id: toUpdate}))
+        .customPUT(data)
         .then(function(success){
           // get new channels
           toastr.success('Il nuovo articolo è stato aggiornato');
