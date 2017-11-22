@@ -234,6 +234,9 @@
 
           _this.isWorking = false;
 
+          //limit media: todo pager only local
+          data = data.slice(0,20);
+          
           _.each(data, function (media) {
             // init articles
             _retriveInstance(media._id, media);
