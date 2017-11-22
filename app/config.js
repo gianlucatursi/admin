@@ -110,7 +110,32 @@
         name: 'home.segnalazioni',
         url: '/segnalazioni',
         templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'
+      },
+      segnalazioni_detail:{
+        title: 'Visualizza segnalazione',
+        name: 'home.detailsegnalazioni',
+        url: '/segnalazionidetail/:id'/*,
+        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'*/
+      },
+      utilita:{
+        title: 'Gestisci utilita\'',
+        name: 'home.utilita',
+        url: '/utilita'/*,
+        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'*/
+      },
+      utilita_nuova:{
+        title: 'Nuova utilità',
+        name: 'home.nuovautilita',
+        url: '/segnalazioni'/*,
+        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'*/
+      },
+      utilita_detail:{
+        title: 'Modifica utilità',
+        name: 'home.modificautilita',
+        url: '/modificautilita/:id'/*,
+        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'*/
       }
+
 
     };
 
