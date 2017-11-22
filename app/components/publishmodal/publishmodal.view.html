@@ -1,0 +1,38 @@
+<div class="modal-header no-border">
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px !important;margin-left:20px;">
+                    <p class="font-normal color-blue font-bold">PROGRAMMA LA PUBBLICAZIONE</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <button class="no-border pull-right" ng-click="cancel()">
+                <img src="app/assets/images/close_button_gray.png" width="35px">
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-body" id="modal-media-body" style="margin-left:10px">
+    <div class="row" id="new_channel" style="margin-top:20px;">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+            <div class="border-bottom-grey search-edition form-group">
+                <p class="font-small color-grey" style="white-space:nowrap;padding-bottom: 5px;">DATA</p>
+                <md-datepicker md-open-on-focus ng-model="data.dateSelected" class="modal-data-filter" md-placeholder="Seleziona la data..."  style="height: 42px;width: 100%;"></md-datepicker>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+            <div class="form-group border-line publish_date_filter">
+                <label class="font-small color-"  style="white-space:nowrap;padding-bottom: 5px;">ORA</label>
+                <input class="form-control new-channel-author font-normal color-black" ng-model="data.oraSelected" placeholder="14:00" type="text" style="margin:0" ng-change="checkNumber()" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer no-border" style="padding-bottom:20px;">
+    <button class="btn btn-pubblica-settings pull-right" type="button" ng-click="ok()" style="margin-right: 20px">PROGRAMMA</button>
+    <button class="btn btn-block-settings pull-left" type="button" ng-click="cancel()" style="margin-left: 15px;">RIMUOVI PROGRAMMAZIONE</button>
+</div>

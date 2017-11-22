@@ -65,6 +65,15 @@
 
     _this.deleteCover = _deleteCover;
     _this.deleteGallery = _deleteGallery;
+    _this.openPublishProgram = _openPublishProgram;
+
+    function _openPublishProgram(){
+      _mediaModalInstance = $uibModal.open({
+        animation: true,
+        component: 'publishModal',
+        size: 'lg'
+      });
+    }
 
     function _openCoverImage(){
 

@@ -148,7 +148,14 @@
                                         <button class="btn btn-delete-settings" ng-if="!article.current.isNew">CESTINA</button>
                                         <button class="btn btn-block-settings" ng-if="!article.current.isNew">CONVERTI IN BOZZA</button>
 
-                                        <button class="btn btn-pubblica-settings pull-right">PUBBLICA</button>
+                                        <!--<button class="btn btn-pubblica-settings pull-right" ng-click="article.openPublishProgram()">PUBBLICA</button>-->
+                                        <div class="btn-group pull-right" style="margin-left:5px;" uib-dropdown>
+                                            <button id="split-button" type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">PUBBLICA</button>
+                                            <button type="button" class="btn btn-action-publish" style="HEIGHT: 42px;margin-top: 20px;" uib-dropdown-toggle ng-click="article.openPublishProgram()">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Split button!</span>
+                                            </button>
+                                        </div>
                                         <button class="btn btn-save-bozza-settings pull-right" ng-click="article.saveDraft()">SALVA BOZZA</button>
                                     </div>
                                 </div>
@@ -238,7 +245,7 @@
                                         <button class="btn btn-delete-settings" ng-if="!article.current.isNew">CESTINA</button>
                                         <button class="btn btn-block-settings" ng-if="!article.current.isNew">CONVERTI IN BOZZA</button>
 
-                                        <button class="btn btn-pubblica-settings pull-right">PUBBLICA</button>
+                                        <button class="btn btn-pubblica-settings pull-right" ng-click="article.openPublishProgram()">PUBBLICA</button>
                                         <button class="btn btn-save-bozza-settings pull-right" ng-click="article.saveDraft()">SALVA BOZZA</button>
                                     </div>
                                 </div>
@@ -354,7 +361,7 @@
                                         <button class="btn btn-delete-settings" ng-if="!article.current.isNew">CESTINA</button>
                                         <button class="btn btn-block-settings" ng-if="!article.current.isNew">CONVERTI IN BOZZA</button>
 
-                                        <button class="btn btn-pubblica-settings pull-right">PUBBLICA</button>
+                                        <button class="btn btn-pubblica-settings pull-right" ng-click="article.openPublishProgram()">PUBBLICA</button>
                                         <button class="btn btn-save-bozza-settings pull-right" ng-click="article.saveDraft()">SALVA BOZZA</button>
                                     </div>
                                 </div>

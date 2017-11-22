@@ -3933,6 +3933,21 @@ form.communityform .community-control:hover {
   padding-left: 10px;
   border: 1px solid #48AACC !important;
 }
+.btn-action-publish {
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: white;
+  border: 1px solid #24C40D;
+  color: #24C40D;
+  font-size: 14px;
+  padding: 10px 25px;
+}
+.btn-action-publish:hover,
+.btn-action-publish:focus,
+.btn-action-publish:active {
+  border: 1px solid #24C40D !important;
+  color: #24C40D;
+}
 .btn-comment-action {
   font-family: RobotoMedium !important;
   font-weight: 500;
