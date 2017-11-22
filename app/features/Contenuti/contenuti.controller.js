@@ -96,7 +96,7 @@
     }
 
     function _generatePages(){
-      return _.range(1,_this.options.pager.count+1);
+      return _.range(1,_this.options.pager. q+1);
     }
 
     function _changePage(pnum){
