@@ -158,7 +158,7 @@
      * Save channel
      * @private
      */
-    function _saveDraft(toPublish){
+    function _saveDraft(toPublish, toDate){
 
       if(!_this.options.channelSelected){
 
@@ -187,7 +187,7 @@
         _this.current.ds_author = _this.options.authorSelected;
 
         if(toPublish){
-          _this.current.dt_publication_date = new Date();
+          _this.current.dt_publication_date = toDate;
         }
 
         if(_this.imagesOptions.cover){
@@ -246,11 +246,29 @@
     }
 
     function _publish(){
+
+      var data = '';
+
+      if(_this.options.program){
+
+        data = new Date(_this.options.program.dateSelected);
+        var oraList = (_this.options.program.oraSelected || '').split(':');
+
+        data.setHours((parseInt(oraList[0])));
+        data.setMinutes(parseInt(oraList[1]));
+
+        data = createDateAsUTC(data);
+
+
+      }else{
+        data = new Date();
+      }
+
       if(_this.current.isNew){
-        _saveDraft(true)
+        _saveDraft(true, data);
       }else{
         ArticleService
-          .update(_this.current._id, {dt_publication_date: new Date(), is_published: true});
+          .update(_this.current._id, {dt_publication_date: data, is_published: true});
       }
     }
 
