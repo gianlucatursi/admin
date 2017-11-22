@@ -13,6 +13,7 @@
     _this.city = AdminService.user.citySelected();
     _this.channelService = ChannelService;
     _this.categoryService = CategoryService;
+    _this.adminService = AdminService;
 
     _this.options = {
       articleWorking: ArticleService.working,

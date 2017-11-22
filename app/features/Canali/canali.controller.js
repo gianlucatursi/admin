@@ -13,6 +13,8 @@
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
     _this.channelService = ChannelService;
+    _this.adminService = AdminService;
+
     _this.channels = [];
 
     _this.options = {

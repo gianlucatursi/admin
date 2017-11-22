@@ -14,6 +14,8 @@
     _this.current_state = $state.current;
     _this.categories = ['Tutte le categorie', 'Lettera aperta', 'Incidente stradale', 'Foto e curiosità', 'Disservizi', 'Evento', 'Altro'];
     _this.categorySelected = _this.categories[0];
+    _this.adminService = AdminService;
+
   }
 
 })(window.angular);

@@ -44,6 +44,7 @@
     _that.cities = _getCity;
     _that.isWorking = _isWorking;
     _that.login = _login;
+    _that.logout = _logout;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -132,6 +133,10 @@
       return defer.promise;
     }
 
+    function _logout(){
+      localStorageService.remove('user_login');
+      $state.go($state.ROUTING.login.name);
+    }
 
     //////////////////////////////////
     /////////// PRIVATES ////////////

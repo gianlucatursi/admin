@@ -14,6 +14,7 @@
     _this.current_state = $state.current;
     _this.edizioni = [];
     _this.dateSelected = null;
+    _this.adminService = AdminService;
 
     _this.options = {
       pager:{

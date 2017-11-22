@@ -12,6 +12,7 @@
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
+    _this.adminService = AdminService;
 
   }
 

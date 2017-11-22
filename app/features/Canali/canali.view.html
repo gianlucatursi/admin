@@ -2,9 +2,12 @@
 
     <!-- NAV BAR -->
     <div class="row">
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <div class="col-lg-9 col-sm-9 col-md-9 col-xs-6">
             <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{canali.current_state.title | uppercase}}</p>
             <p class="font-bold font-medium" style="color: {{canali.city.assets_color}}">{{canali.city.ds_name | uppercase}} SMART</p>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6">
+            <button ng-click="canali.adminService.logout()" class="btn btn-block-settings pull-right no-margin"><span class="lsf color-grey">logout</span>&nbsp;&nbsp;&nbsp;ESCI</button>
         </div>
     </div>
 

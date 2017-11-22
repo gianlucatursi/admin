@@ -13,6 +13,7 @@
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
     _this.medias = MediaService.toArray();
+    _this.adminService = AdminService;
 
     _this.channelsUpload = [];
     _this.channels = [];
