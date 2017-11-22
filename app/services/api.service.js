@@ -37,6 +37,11 @@
         create: _customRequest.bind(null, 'pharmacy'),
         update: _customRequest.bind(null, 'pharmacy/:id'),
       },
+      segnalazioni: {
+        get: _customRequest.bind(null, 'segnalazioni'),
+        create: _customRequest.bind(null, 'segnalazioni'),
+        update: _customRequest.bind(null, 'segnalazioni/:id'),
+      },
       edizioni: {
         get: _customRequest.bind(null, 'alleditions'),
         getByDay: _customRequest.bind(null, 'todayedition'),
