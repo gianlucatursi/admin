@@ -146,23 +146,23 @@
                                 <div class="row" style="margin-top: 70px">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                         <button class="btn btn-delete-settings" ng-if="!article.current.isNew">CESTINA</button>
-                                        <button class="btn btn-block-settings" ng-if="!article.current.isNew">CONVERTI IN BOZZA</button>
+                                        <button class="btn btn-block-settings" ng-if="!article.current.isNew && article.current.is_published">CONVERTI IN BOZZA</button>
 
                                         <!--<button class="btn btn-pubblica-settings pull-right" ng-click="article.openPublishProgram()">PUBBLICA</button>-->
                                         <div class="btn-group pull-right" style="margin-left:5px;" uib-dropdown>
-                                            <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">PUBBLICA</button>
+                                            <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">{{article.current.is_published ? 'SALVA':'PUBBLICA' }}</button>
                                             <button type="button" class="btn btn-action-publish" style="HEIGHT: 42px;margin-top: 20px;" uib-dropdown-toggle ng-click="article.openPublishProgram()">
                                                 <span class="caret"></span>
                                                 <span class="sr-only">Split button!</span>
                                             </button>
                                         </div>
-                                        <button class="btn btn-save-bozza-settings pull-right" ng-click="article.saveDraft()">SALVA BOZZA</button>
+                                        <button class="btn btn-save-bozza-settings pull-right" ng-if="!article.current.is_published" ng-click="article.saveDraft()">SALVA BOZZA</button>
                                     </div>
                                 </div>
 
                                 <div class="row border-bottom-grey">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
-                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo asalvataggio: TODO data - TODO ORA</p>
+                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo salvataggio: {{article.current.updatedAt | date: 'dd - MM - yyyy'}} - {{ article.current.updatedAt | date: 'HH:mm'}}</p>
                                         <p class="pull-right font-xs color-grey" ng-if="article.current.isNew && !article.options.program">Programmato per il: {{article.todayDate() | date: 'dd - MM - yyyy'}} - {{article.todayDate() | date: 'HH:mm'}}</p>
                                         <p class="pull-right font-xs color-grey" ng-if="article.current.isNew && article.options.program">Programmato per il: {{article.options.program.dateSelected | date: 'dd - MM - yyyy'}} - {{article.options.program.oraSelected | date: 'HH:mm'}}</p>
                                     </div>
@@ -248,19 +248,19 @@
                                         <button class="btn btn-block-settings" ng-if="!article.current.isNew">CONVERTI IN BOZZA</button>
 
                                         <div class="btn-group pull-right" style="margin-left:5px;" uib-dropdown>
-                                            <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">PUBBLICA</button>
+                                            <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">{{article.current.is_published ? 'SALVA':'PUBBLICA' }}</button>
                                             <button type="button" class="btn btn-action-publish" style="HEIGHT: 42px;margin-top: 20px;" uib-dropdown-toggle ng-click="article.openPublishProgram()">
                                                 <span class="caret"></span>
                                                 <span class="sr-only">Split button!</span>
                                             </button>
                                         </div>
-                                        <button class="btn btn-save-bozza-settings pull-right" ng-click="article.saveDraft()">SALVA BOZZA</button>
+                                        <button class="btn btn-save-bozza-settings pull-right" ng-if="!article.current.is_published" ng-click="article.saveDraft()">SALVA BOZZA</button>
                                     </div>
                                 </div>
 
                                 <div class="row border-bottom-grey">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
-                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo asalvataggio: TODO data - TODO ORA</p>
+                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo salvataggio: {{article.current.updatedAt | date: 'dd - MM - yyyy'}} - {{ article.current.updatedAt | date: 'HH:mm'}}</p>
                                         <p class="pull-right font-xs color-grey" ng-if="article.current.isNew && !article.options.program">Programmato per il: {{article.todayDate() | date: 'dd - MM - yyyy'}} - {{article.todayDate() | date: 'HH:mm'}}</p>
                                         <p class="pull-right font-xs color-grey" ng-if="article.current.isNew && article.options.program">Programmato per il: {{article.options.program.dateSelected | date: 'dd - MM - yyyy'}} - {{article.options.program.oraSelected | date: 'HH:mm'}}</p>
                                     </div>
@@ -372,19 +372,19 @@
                                         <button class="btn btn-block-settings" ng-if="!article.current.isNew">CONVERTI IN BOZZA</button>
 
                                         <div class="btn-group pull-right" style="margin-left:5px;" uib-dropdown>
-                                            <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">PUBBLICA</button>
+                                            <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">{{article.current.is_published ? 'SALVA':'PUBBLICA' }}</button>
                                             <button type="button" class="btn btn-action-publish" style="HEIGHT: 42px;margin-top: 20px;" uib-dropdown-toggle ng-click="article.openPublishProgram()">
                                                 <span class="caret"></span>
                                                 <span class="sr-only">Split button!</span>
                                             </button>
                                         </div>
-                                        <button class="btn btn-save-bozza-settings pull-right" ng-click="article.saveDraft()">SALVA BOZZA</button>
+                                        <button class="btn btn-save-bozza-settings pull-right" ng-if="!article.current.is_published" ng-click="article.saveDraft()">SALVA BOZZA</button>
                                     </div>
                                 </div>
 
                                 <div class="row border-bottom-grey">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
-                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo asalvataggio: TODO data - TODO ORA</p>
+                                        <p class="pull-right font-xs color-grey" ng-if="!article.current.isNew">Ultimo salvataggio: {{article.current.updatedAt | date: 'dd - MM - yyyy'}} - {{ article.current.updatedAt | date: 'HH:mm'}}</p>
                                         <p class="pull-right font-xs color-grey" ng-if="article.current.isNew && !article.options.program">Programmato per il: {{article.todayDate() | date: 'dd - MM - yyyy'}} - {{article.todayDate() | date: 'HH:mm'}}</p>
                                         <p class="pull-right font-xs color-grey" ng-if="article.current.isNew && article.options.program">Programmato per il: {{article.options.program.dateSelected | date: 'dd - MM - yyyy'}} - {{article.options.program.oraSelected | date: 'HH:mm'}}</p>
                                     </div>

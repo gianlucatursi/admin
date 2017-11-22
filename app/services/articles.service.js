@@ -32,6 +32,9 @@
     };
 
     var _selected = {};
+    _that._modalOptions = {
+      programSelected: null
+    };
 
 
     //////////////////////////////////

@@ -1,7 +1,7 @@
 (function(angular){
   "use strict";
 
-  PublishModalController.$inject = ['$scope', 'AdminService', 'ChannelService', 'toastr', 'MediaService', 'UtilService', '$sce', '$uibModal'];
+  PublishModalController.$inject = ['$scope', 'AdminService', 'ArticleService', 'toastr', 'MediaService', 'UtilService', '$sce', '$uibModal'];
 
   angular
     .module('Smart.directives')
@@ -15,7 +15,7 @@
       controller: PublishModalController
     });
 
-  function PublishModalController($scope, AdminService, ChannelService, toastr, MediaService, UtilService, $sce, $uibModal){
+  function PublishModalController($scope, AdminService, ArticleService, toastr, MediaService, UtilService, $sce, $uibModal){
     var _this = this;
     var _scope = $scope;
 
@@ -28,6 +28,12 @@
 
     var today = new Date();
     var hours = today.getHours() + ":" + today.getMinutes();
+
+    if(ArticleService._modalOptions.programSelected){
+      today =  ArticleService._modalOptions.programSelected.dateSelected;
+      hours = ArticleService._modalOptions.programSelected.oraSelected;
+    }
+
     _scope.data = {
       oraSelected: hours,
       dateSelected : today

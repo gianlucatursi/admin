@@ -72,6 +72,18 @@
     _this.todayDate = function(){ return new Date(); };
 
     function _openPublishProgram(){
+
+      if(_this.current.is_published){
+        var data = _this.current.dt_publication_date;
+        var string = data.getUTCHours() + ":" + data.getUTCMinutes();
+
+        ArticleService._modalOptions.programSelected = {
+          dateSelected: data,
+          oraSelected: string
+        };
+
+      }
+
       _publishModalInstance = $uibModal.open({
         animation: true,
         component: 'publishModal',
@@ -79,7 +91,6 @@
       });
 
       _publishModalInstance.result.then(function (selectedProgram) {
-        //_this.selected = selectedItem;
         _this.options.program = selectedProgram;
       }, function (result) {
         if(result == 'delete'){
@@ -268,7 +279,15 @@
         _saveDraft(true, data);
       }else{
         ArticleService
-          .update(_this.current._id, {dt_publication_date: data, is_published: true});
+          .update(_this.current._id, {dt_publication_date: createDateAsUTC(data), is_published: true})
+          .then(
+            function(){
+              $state.go($state.ROUTING.contenuti.name);
+            },
+            function(){
+              $state.go($state.ROUTING.contenuti.name);
+            }
+          )
       }
     }
 
@@ -340,7 +359,9 @@
         ds_abstract: articleToEdit.abstract(),
         ds_title: articleToEdit.title(),
         ds_description: articleToEdit.description(),
-        isReported: articleToEdit.isReported(articleToEdit)
+        isReported: articleToEdit.isReported(articleToEdit),
+        dt_publication_date: articleToEdit.publishDate(),
+        updatedAt: createDateAsUTC(new Date(articleToEdit.timeInfo.dt_lastUpdated))
         /*
         isLocked: channelToEdit.isLocked(),
         name: channelToEdit.name(),
