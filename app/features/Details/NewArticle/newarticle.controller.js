@@ -37,10 +37,12 @@
           start : '',
           end: ''
         }]
-      }
+      },
+      program: null
     };
 
     var _mediaModalInstance;
+    var _publishModalInstance;
 
     _initialize();
 
@@ -67,12 +69,24 @@
     _this.deleteGallery = _deleteGallery;
     _this.openPublishProgram = _openPublishProgram;
 
+    _this.todayDate = function(){ return new Date(); };
+
     function _openPublishProgram(){
-      _mediaModalInstance = $uibModal.open({
+      _publishModalInstance = $uibModal.open({
         animation: true,
         component: 'publishModal',
         size: 'lg'
       });
+
+      _publishModalInstance.result.then(function (selectedProgram) {
+        //_this.selected = selectedItem;
+        _this.options.program = selectedProgram;
+      }, function (result) {
+        if(result == 'delete'){
+          _this.options.program = null;
+        }
+      });
+
     }
 
     function _openCoverImage(){

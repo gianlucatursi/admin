@@ -46,6 +46,10 @@
       _this.dismiss({$value: 'cancel'});
     };
 
+    _scope.deleteProgram = function () {
+      _this.dismiss({$value: 'delete'});
+    };
+
 
   }
 
