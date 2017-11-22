@@ -1,0 +1,148 @@
+<div id="canali" ng-controller="UtilitaController as utilita">
+
+    <!-- NAV BAR -->
+    <div class="row">
+        <div class="col-lg-9 col-sm-9 col-md-9 col-xs-6">
+            <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{utilita.current_state.title | uppercase}}</p>
+            <p class="font-bold font-medium" style="color: {{utilita.city.assets_color}}">{{utilita.city.ds_name | uppercase}} SMART</p>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6">
+            <button ng-click="utilita.adminService.logout()" class="btn btn-block-settings pull-right no-margin"><span class="lsf color-grey">logout</span>&nbsp;&nbsp;&nbsp;ESCI</button>
+        </div>
+    </div>
+
+    <!------------- body content ---------->
+
+    <div class="row page_content margin-top-50px">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <button class="btn btn-green pull-left" style="padding-left:12px; padding-right:12px;" ui-sref="home.nuovo_canale">
+                        <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;NUOVA UTILITA'
+                    </button>
+                </div>
+            </div>
+
+            <!--------- list ---------->
+
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                    <!---------- ELEMENT ---------->
+                    <div class="row" ng-repeat="utility in utilita.utilities | limitTo:utilita.options.pager.limit:-(utilita.options.pager.active*utilita.options.pager.limit)">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                            <div class="row">
+                                <!------------- FIRST COL [article description]--------->
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                            <img src="app/assets/images/utility-default.jpg" width="35px"/>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 no-padding">
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" style="height:15px">
+                                                    <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                                </div>
+                                            </div>
+                                            <div class="row no-padding">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                                                    <p class="font-bold no-padding no-margin">{{utility.ds_name}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-15 padding-top-15">{{utility.ds_address}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!------------- SECOND COL [article title]--------->
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="color-grey font-small no-padding no-margin">TIPO</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-15 font-bold padding-top-10">{{utility.ds_category}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!------------- THIRD COL [pubblication date]--------->
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-bold no-padding no-margin">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="color-grey font-small no-padding no-margin">INFO</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row no-padding">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <p class="font-15 font-bold padding-top-10" ng-class="{'color-blue': utility.di_turno}">{{utility.di_turno ? 'DI TURNO' : '-'}}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <br />
+                                <div class="bgcolor-light-grey" style="height: 2px;" ></div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!---- END LIST --------->
+
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <!-- Single button -->
+                    <div class="btn-group pull-right" uib-dropdown is-open="utilita.options.pager.isopen">
+                        <button id="single-button" type="button" class="btn btn-pager mydropdown" uib-dropdown-toggle>
+                            <span class="pull-left">PAGINA {{utilita.options.pager.active}}</span>
+                            <span class="pull-right lsf ">dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                            <li role="menuitem" ng-repeat="page in utilita.generatePages()">
+                                <a ng-click="utilita.changePage(page)">PAGINA {{page}}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

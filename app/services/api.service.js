@@ -32,6 +32,11 @@
         create: _customRequest.bind(null, 'channel'),
         update: _customRequest.bind(null, 'channel/:id'),
       },
+      utilita: {
+        get: _customRequest.bind(null, 'pharmacy'),
+        create: _customRequest.bind(null, 'pharmacy'),
+        update: _customRequest.bind(null, 'pharmacy/:id'),
+      },
       edizioni: {
         get: _customRequest.bind(null, 'alleditions'),
         getByDay: _customRequest.bind(null, 'todayedition'),

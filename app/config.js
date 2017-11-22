@@ -120,8 +120,8 @@
       utilita:{
         title: 'Gestisci utilita\'',
         name: 'home.utilita',
-        url: '/utilita'/*,
-        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'*/
+        url: '/utilita',
+        templateUrl: 'app/features/Utilita/utilita.view.html'
       },
       utilita_nuova:{
         title: 'Nuova utilità',
