@@ -21,7 +21,7 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: @white !important;
-  min-width: 900px !important;
+  min-width: 960px !important;
 }
 html{
   background-color: @white !important;
@@ -95,12 +95,20 @@ html{
   border-top: .05rem solid #e5e5e5;
 }
 
-/* Customize container */
+/* Customize container
 @media (min-width: 48em) {
   .container {
     max-width: 120rem;
   }
 }
+*/
+@media screen and (max-width: 960px) {
+  .master-uiview{
+    width:90%;
+    margin-left:5%;
+  }
+}
+
 .container-narrow > hr {
   margin: 2rem 0;
 }
@@ -425,6 +433,29 @@ form.communityform {
     width: 150px;
     padding-left: 10px;
     border: 1px solid @blue !important;
+  }
+}
+
+
+.btn-comment-action{
+  font-family: RobotoMedium !important;
+  font-weight: 500;
+  background-color: @white;
+  border: 1px solid @mid-grey;
+  color: @mid-grey;
+  font-size: 14px;
+  padding: 10px 25px;
+
+  &:hover, &:focus, &:active{
+    border: 1px solid @mid-grey !important;
+    color: @mid-grey;
+  }
+
+  &.mydropdown{
+
+    width: 120px;
+    padding-left: 10px;
+    border: 1px solid @mid-grey !important;
   }
 }
 
