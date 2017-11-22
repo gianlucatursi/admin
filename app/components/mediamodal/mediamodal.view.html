@@ -44,7 +44,7 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
             <div class="form-group">
                 <label class="font-small color-grey">CANALE</label>
-                <ui-select class="community-ui-select" ng-model="channelViewSelected">
+                <ui-select class="community-ui-select" ng-model="options.channelViewSelected">
                     <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
                     <ui-select-choices repeat="channel in channels | filter: $select.search track by $index">
                         <span ng-bind="channel.ds_name"></span>
@@ -56,13 +56,13 @@
             <div class="form-group border-line modal-data-filter">
                 <label class="font-small color-grey" style="white-space:nowrap;padding-bottom: 5px;">DATA CARICAMENTO</label>
                 <br />
-                <md-datepicker md-open-on-focus ng-model="dateSelected" md-placeholder="Seleziona la data..."  style="height: 42px;"></md-datepicker>
+                <md-datepicker md-open-on-focus ng-model="options.dateSelected" md-placeholder="Seleziona la data..."  style="height: 42px;"></md-datepicker>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
             <div class="form-group">
                 <label class="font-small color-grey">TIPO</label>
-                <ui-select class="community-ui-select" ng-model="mediaTypeSelected">
+                <ui-select class="community-ui-select" ng-model="options.mediaTypeSelected">
                     <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
                     <ui-select-choices repeat="t in mediaTypes | filter: $select.search track by $index">
                         <span ng-bind="t"></span>
@@ -83,7 +83,7 @@
             <div class="row border-bottom-grey" style="padding-left: 0px;margin-left: 0px;">
                 <div class="col-lg-11 col-sm-11 col-md-10 col-xs-10" >
                     <span class="search-icon lsf">search</span>
-                    <input class="form-control search-input" placeholder="Cerca nei tag e nella descrizione" ng-model="textToSearch" type="text">
+                    <input class="form-control search-input" placeholder="Cerca nei tag e nella descrizione" ng-model="options.textToSearch" type="text">
                 </div>
             </div>
         </div>

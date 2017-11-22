@@ -27,6 +27,17 @@
       realSelected: {}
     };
 
+    _that.options = {
+      textToSearch: '',
+      searchWorking: false,
+      pager:{
+        isopen: false,
+        active: 1,
+        count: 1,
+        limit: 5
+      }
+    };
+
     //////////////////////////////////
     /////////// PROTOTYPES ///////////
     //////////////////////////////////
@@ -223,8 +234,8 @@
         filters.id_channel = options.id_channel;
       }
 
-      if(options.dt_start && _.isDate(options.dt_start)){
-        filters.dt_start = options.dt_start.getTime();
+      if(options.dt_insert && _.isDate(options.dt_insert)){
+        filters.dt_insert = options.dt_insert.getTime();
       }
 
       Restangular

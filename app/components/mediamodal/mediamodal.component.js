@@ -26,15 +26,29 @@
       laddaImages: false
     };
 
+    _scope.options = {
+      textToSearch: '',
+      searchWorking: false,
+      pager:{
+        isopen: false,
+        active: 1,
+        count: 1,
+        limit: 5
+      },
+      channelViewSelected: {},
+      dateSelected: null,
+      mediaTypeSelected: '',
+    };
+
     _scope.isGallery = MediaService._modalOptions.isGallery;
     _scope.isMediaView = MediaService._modalOptions.isMediaView;
     //alert(MediaService._modalOptions.isGallery);
 
     _scope.channelService = ChannelService;
     _scope.channelUploadSelected = {};
-    _scope.channelViewSelected = {};
-    _scope.dateSelected = null;
-    _scope.textToSearch = '';
+//    _scope.channelViewSelected = {};
+//    _scope.dateSelected = null;
+
     _scope.medias = MediaService.toArray();
     _scope.filters = {};
 
@@ -45,16 +59,11 @@
       _scope.mediaTypes = ['Immagini e Video', 'Immagini', 'Video'];
     }
 
+    _scope.options.mediaTypeSelected = _scope.mediaTypes[0];
 
-    MediaService
-      .get(_scope.filters)
-      .then(function(__medias){
-        _scope.medias = MediaService.toArray();
-      }, function(){
+    _getMedia();
 
-      });
-
-    _scope.mediaTypeSelected = _scope.mediaTypes[0];
+    _scope.options.mediaTypeSelected = _scope.mediaTypes[0];
 
     _scope.applyFilters = _applyFilters;
     _scope.$onInit = _onInit;
@@ -81,7 +90,26 @@
     }
 
     function _applyFilters(){
+      //article
+      var filter = {};
+      if(_scope.options.channelViewSelected && _scope.options.channelViewSelected._id != ''){
+        filter.id_channel = _scope.options.channelViewSelected._id;
+      }
+      if(_scope.mediaTypeSelected != ''){
+        if(_scope.options.mediaTypeSelected == _scope.mediaTypes[1]){
+          filter.type = 'IMAGE';
+        }else if(_scope.options.mediaTypeSelected == _scope.mediaTypes[2]){
+          filter.type = 'VIDEO';
+        }
+      }
 
+      if(_.isDate(_scope.options.dateSelected)){
+        filter.dt_insert = _this.dateSelected;
+        filter.dt_insert.setHours(0, 0, 1, 0);
+      }
+      _this.medias = [];
+
+      _getMedia(filter);
     }
 
     /**
@@ -255,6 +283,24 @@
           }
         );
     }
+
+    function _getMedia(filters){
+
+      MediaService
+        .get(filters || {})
+        .then(
+          function(results){
+            _scope.medias = MediaService.toArray();
+            _scope.options.pager.count = Math.ceil(_scope.medias.length / _scope.options.pager.limit);
+            $scope.$apply();
+          },
+          function(){
+            console.error("ERROR GETTING ARTICLES");
+          }
+        );
+
+    }
+
 
   }
 

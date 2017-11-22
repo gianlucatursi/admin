@@ -22,14 +22,7 @@
       laddaImages: false
     };
 
-    MediaService
-      .get()
-      .then(function(__medias){
-        _this.medias = MediaService.toArray();
-        $scope.$apply();
-      }, function(){
-
-      });
+    _getMedia();
 
     _this.isGallery = MediaService._modalOptions.isGallery;
     //alert(MediaService._modalOptions.isGallery);
@@ -59,7 +52,26 @@
     }
 
     function _applyFilters(){
+      //article
+      var filter = {};
+      if(_this.channelViewSelected._id != ''){
+        filter.id_channel = _this.channelViewSelected._id;
+      }
+      if(_this.mediaTypeSelected != ''){
+        if(_this.mediaTypeSelected == _this.mediaTypes[1]){
+          filter.type = 'IMAGE';
+        }else if(_this.mediaTypeSelected == _this.mediaTypes[2]){
+          filter.type = 'VIDEO';
+        }
+      }
 
+      if(_.isDate(_this.dateSelected)){
+        filter.dt_insert = _this.dateSelected;
+        filter.dt_insert.setHours(0, 0, 1, 0);
+      }
+      _this.medias = [];
+
+      _getMedia(filter);
     }
 
     /**
@@ -238,6 +250,24 @@
           }
         );
     }
+
+    function _getMedia(filters){
+
+      MediaService
+        .get(filters || {})
+        .then(
+          function(results){
+            _this.medias = MediaService.toArray();
+            _this.options.pager.count = Math.ceil(_this.medias.length / _this.options.pager.limit);
+            $scope.$apply();
+          },
+          function(){
+            console.error("ERROR GETTING ARTICLES");
+          }
+        );
+
+    }
+
 
   }
 
