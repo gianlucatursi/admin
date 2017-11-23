@@ -28,6 +28,7 @@
 
     _this.changePage = _changePage;
     _this.generatePages = _generatePages;
+    _this.showDetail = _showDetail;
 
     _getUtilita();
 
@@ -54,6 +55,10 @@
 
     function _generatePages(){
       return _.range(1,_this.options.pager.count+1);
+    }
+
+    function _showDetail(ut){
+      $state.go($state.ROUTING.utilita_detail.name, {id: ut._id});
     }
 
   }

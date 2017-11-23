@@ -3379,6 +3379,17 @@ http://kudakurage.com/ligature_symbols/
 .article_element.ng-enter-active {
   opacity: 1;
 }
+.page_content {
+  opacity: 1;
+}
+.page_content.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+.page_content.ng-enter-active {
+  opacity: 1;
+}
 .cs-checkbox {
   width: 30px;
   height: 30px;

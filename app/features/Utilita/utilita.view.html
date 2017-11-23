@@ -19,7 +19,7 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                    <button class="btn btn-green pull-left" style="padding-left:12px; padding-right:12px;" ui-sref="home.nuovo_canale">
+                    <button class="btn btn-green pull-left" style="padding-left:12px; padding-right:12px;" ui-sref="home.nuovautilita">
                         <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;NUOVA UTILITA'
                     </button>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                     <!---------- ELEMENT ---------->
-                    <div class="row" ng-repeat="utility in utilita.utilities | limitTo:utilita.options.pager.limit:-(utilita.options.pager.active*utilita.options.pager.limit)">
+                    <div class="row" ng-repeat="utility in utilita.utilities | limitTo:utilita.options.pager.limit:-(utilita.options.pager.active*utilita.options.pager.limit)" ng-click="utilita.showDetail(utility)">
                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
                             <div class="row">

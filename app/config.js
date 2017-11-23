@@ -126,14 +126,14 @@
       utilita_nuova:{
         title: 'Nuova utilità',
         name: 'home.nuovautilita',
-        url: '/segnalazioni'/*,
-        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'*/
+        url: '/nuovautilita',
+        templateUrl: 'app/features/Details/NewUtility/newutility.view.html'
       },
       utilita_detail:{
         title: 'Modifica utilità',
         name: 'home.modificautilita',
-        url: '/modificautilita/:id'/*,
-        templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'*/
+        url: '/modificautilita/:id',
+        templateUrl: 'app/features/Details/NewUtility/newutility.view.html'
       }
 
 

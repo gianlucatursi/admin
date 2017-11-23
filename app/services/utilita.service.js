@@ -33,8 +33,10 @@
     _that.working = function(){ return _that.isWorking; };
 
     /////// CRUD /////////
+    _that.validate = _validate;
     _that.create = _createUtilita;
     _that.update = _updateUtilita;
+    _that.delete = _delete;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -89,33 +91,45 @@
     }
 
 
+    function _validate(util , isNew){
+      // check name
+      if(util.name == ''){
+        toastr.error('E\' necessario inserire il nome dell\'utilità per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
+      // check category
+      if(util.category == ''){
+        toastr.error('E\' necessario inserire la categoria dell\'utilità per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
+      // check category
+      if(util.phone == ''){
+        toastr.error('E\' necessario inserire il numero di telefono dell\'utilità per poter proseguire','Controlla i dati', { closeButton: true});
+        return false;
+      }
+
+      return true
+    }
+
     /**
      * Create Channel
      * @param channel
      */
-    function _createUtilita(channel){
+    function _createUtilita(uti){
 
       var _this = this;
       var defer = $q.defer();
 
       var toCreate = {
-        /*
-        "ds_name": channel.name,
-        "cd_username": channel.username,
-        "pw_password": password,
-        "ds_address": channel.address || '',
-        "id_city": AdminService.user.cityId(),
-        "ds_phone": channel.phone || '',
-        "ds_email": channel.email || '',
-        "ds_website": channel.website || '',
-        "id_icon": channel.icon || '',
-        "dt_activation": new Date(),
-        "ds_category": channel.category || '',
-        "is_advertiser": channel.isInserzionista,
-        "is_locked": false,
-        "authors": channel.authors || [],
-        "opening_hours": opening_hours
-        */
+        "ds_name" : uti.name,
+        "ds_address" : uti.address,
+        "ds_phone" : uti.phone,
+        "id_city" : AdminService.user.cityId(),
+        "ds_category" : uti.category,
+        "opening_hours" : uti.days || [],
+        "di_turno" : uti.di_turno
       };
 
       _this.isWorking = true;
@@ -154,29 +168,22 @@
      * @return {Promise}
      * @private
      */
-    function _updateUtilita(_id, channel){
+    function _updateUtilita(_id, uti){
 
 
       var _this = this;
       var defer = $q.defer();
 
       var toCreate = {
-        /*
-        "ds_name": channel.name,
-        "cd_username": channel.username,
-        "ds_address": channel.address || '',
-        "id_city": AdminService.user.cityId(),
-        "ds_phone": channel.phone || '',
-        "ds_email": channel.email || '',
-        "ds_website": channel.website || '',
-        "id_icon": channel.icon || '',
-        "ds_category": channel.category || '',
-        "is_advertiser": channel.isInserzionista,
-        "is_locked": channel.isLocked,
-        "authors": channel.authors || [],
-        "opening_hours": opening_hours
-        */
+        "ds_name" : uti.name,
+        "ds_address" : uti.address,
+        "ds_phone" : uti.phone,
+        "id_city" : AdminService.user.cityId(),
+        "ds_category" : uti.category,
+        "opening_hours" : uti.days ||[],
+        "di_turno" : uti.di_turno
       };
+
 
       _this.isWorking = true;
 
@@ -205,6 +212,40 @@
         });
 
       return defer.promise;
+    }
+
+    function _delete(_id){
+
+      var _this = this;
+      var defer = $q.defer();
+
+      _this.isWorking = true;
+      Restangular
+        .one(API.utilita.update({id: _id}))
+        .customDELETE()
+        .then(function(success){
+          // get new channels
+          toastr.success('L\'utilità è stata eliminata');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto', 'Elimina utilità', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+
     }
 
     /** return service **/
