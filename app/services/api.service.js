@@ -32,6 +32,10 @@
         create: _customRequest.bind(null, 'channel'),
         update: _customRequest.bind(null, 'channel/:id'),
       },
+      iscritti: {
+        get: _customRequest.bind(null, 'allusers'),
+        update: _customRequest.bind(null, 'user/:id'),
+      },
       utilita: {
         get: _customRequest.bind(null, 'pharmacy'),
         create: _customRequest.bind(null, 'pharmacy'),
