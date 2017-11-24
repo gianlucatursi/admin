@@ -19,7 +19,13 @@
     _this.channels = [];
     _this.options = {
       laddaVideo: false,
-      laddaImages: false
+      laddaImages: false,
+      pager:{
+        isopen: false,
+        active: 1,
+        count: 1,
+        limit: 20
+      }
     };
 
     _getMedia();
@@ -39,6 +45,9 @@
     _this.applyFilters = _applyFilters;
     _this.$onInit = _onInit;
     _this.getMediaUrl = _getMediaUrl;
+
+    _this.generatePages = _generatePages;
+    _this.changePage = _changePage;
 
     _this.fileSelect = _fileSelect;
     _this.videoSelect = _videoSelect;
@@ -99,6 +108,10 @@
       };
       reader.readAsDataURL(photofile);
 
+    }
+
+    function _generatePages(){
+      return _.range(1,_this.options.pager.count+1);
     }
 
     /**
@@ -268,6 +281,9 @@
 
     }
 
+    function _changePage(pnum){
+      _this.options.pager.active = pnum;
+    }
 
   }
 

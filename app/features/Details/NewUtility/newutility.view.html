@@ -1,0 +1,252 @@
+<div id="new_channel" ng-controller="NewUtilityController as newutil">
+
+    <!-- NAV BAR -->
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{newutil.current_state.title | uppercase}}</p>
+            <p class="font-bold font-medium" style="color: {{newutil.city.assets_color}}">{{newutil.city.ds_name | uppercase}} SMART</p>
+        </div>
+    </div>
+
+    <!------------- body content ---------->
+
+    <div class="row page_content margin-top-50px margin-left-0">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <div class="row no-padding">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <div class="form-group row border-bottom-grey">
+                        <p class="font-small color-grey" for="name_new_channel">NOME UTILITA'</p>
+                        <input class="form-control new-channel-name"  ng-model="newutil.new_util.name" placeholder="Nome della utilità" id="name_new_channel" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-padding container-hour">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 no-padding">
+
+                    <uib-tabset active="activeJustified">
+                        <uib-tab index="0" id="tab0">
+                            <uib-tab-heading class="padding-10px">
+                                <!--<span class="lsf icon-tab">photo</span> <label >IMPOSTAZIONI</label>-->
+                                <span class="font-normal font-bold span-tab">
+                                    <span class="lsf font-w-100" style="font-size:25px">photo</span>
+                                    <span class="tab-title">&nbsp;&nbsp;IMPOSTAZIONI</span>
+                                </span>
+                            </uib-tab-heading>
+                            <uib-tab-body>
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-settings">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                                <p class="font-small color-grey">TIPO</p>
+                                                <ui-select class="community-ui-select table-day-text" ng-model="newutil.new_util.category">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                                                    <ui-select-choices repeat="cat in newutil.categories | filter: $select.search track by $index">
+                                                        <span ng-bind="cat"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-------- END --------->
+                                <div class="row border-bottom-grey" style="margin-top: 70px">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
+                                        <button ng-if="!newutil.new_util.isNew" class="btn btn-info btn-delete-settings" ng-click="newutil.delete()">ELIMINA</button>
+                                        <button ng-if="newutil.new_util.isNew" class="btn btn-info btn-delete-settings" ui-sref="home.utilita">ANNULLA</button>
+                                        <button class="btn btn-save-settings pull-right" ladda="newutil.options.saveWorking()" ng-click="newutil.save()">SALVA</button>
+                                    </div>
+                                </div>
+
+                            </uib-tab-body>
+                        </uib-tab>
+
+
+
+
+                        <!-------------------- SECOND TAB ------------------>
+
+
+
+
+
+                        <uib-tab index="1" id="tab2" class="border-left-tab">
+                            <uib-tab-heading class="padding-10px">
+                                <span class="font-normal font-bold span-tab">
+                                    <span class="lsf font-w-100 icon-tab-channel">map</span>
+                                    <span class="tab-title">&nbsp;&nbsp;CONTATTI</span>
+                                </span>
+                            </uib-tab-heading>
+                            <uib-tab-body>
+                                <div class="row" style="margin-top: 45px">
+                                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                        <div class="border-bottom-grey">
+                                            <p class="font-small color-grey">INDIRIZZO</p>
+                                            <input class="form-control new-channel-author table-day-text" placeholder="Indirizzo" ng-model="newutil.new_util.address" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 25px">
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                        <div class="border-bottom-grey">
+                                            <p class="font-small color-grey">TELEFONO</p>
+                                            <input class="form-control new-channel-author table-day-text" placeholder="Telefono" ng-model="newutil.new_util.phone" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                        <div class="border-bottom-grey">
+                                            <p class="font-small color-grey">EMAIL</p>
+                                            <input class="form-control new-channel-author table-day-text" placeholder="Email" ng-model="newutil.new_util.email" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                        <div class="border-bottom-grey">
+                                            <p class="font-small color-grey">SITO INTERNET</p>
+                                            <input class="form-control new-channel-author table-day-text" placeholder="Sito internet" ng-model="newutil.new_util.website" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-------- END --------->
+                                <div class="row border-bottom-grey" style="margin-top: 70px">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
+                                        <button ng-if="!newutil.new_util.isNew"  class="btn btn-delete-settings" ng-click="newutil.delete()">ELIMINA</button>
+                                        <button ng-if="newutil.new_util.isNew" class="btn btn-delete-settings" ui-sref="home.canali">ANNULLA</button>
+                                        <button class="btn btn-save-settings pull-right" ladda="newutil.options.saveWorking()" ng-click="newutil.save()">SALVA</button>
+                                    </div>
+                                </div>
+
+                            </uib-tab-body>
+                        </uib-tab>
+
+
+
+
+                        <!-------------------- THIRD TAB ------------------>
+
+
+
+
+
+
+                        <uib-tab index="2" id="tab-last">
+                            <uib-tab-heading class="padding-10px">
+                                <span class="font-normal font-bold span-tab">
+                                    <span class="lsf font-w-100 icon-tab-channel" style="font-size:30px;font-weight: 100;">time</span>
+                                    <span class="tab-title" >&nbsp;&nbsp;ORARI</span>
+                                </span>
+                            </uib-tab-heading>
+                            <uib-tab-body>
+                                <div class="row" style="margin-top: 45px">
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+
+                                        <cs-flag
+                                                class="my-flag-validation"
+                                                flag-show-info="false"
+                                                flag-selected="newutil.new_util.orari_specifici"
+                                                flag-string="ORARI SPECIFICI"></cs-flag>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+
+                                        <cs-flag
+                                                class="my-flag-validation"
+                                                flag-show-info="false"
+                                                flag-selected="newutil.new_util.di_turno"
+                                                flag-string="DI TURNO"></cs-flag>
+                                    </div>
+
+                                </div>
+
+                                <div class="row margin-top-20px">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" ng-if="newutil.new_util.orari_specifici">
+                                        <div class="row">
+                                            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 width-60px">
+
+                                            </div>
+                                            <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                                                <p class="font-small color-grey">GIORNO</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <p class="font-small color-grey">DA</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <p class="font-small color-grey">A</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <p class="font-small color-grey">DA</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <p class="font-small color-grey">A</p>
+                                            </div>
+                                        </div>
+                                        <!-------- days -------->
+                                        <div class="row margin-bottom-10px" ng-repeat="day in newutil.new_util.days">
+                                            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 width-60px">
+                                                <cs-flag
+                                                        class="my-flag-validation"
+                                                        flag-show-info="false"
+                                                        flag-selected="day.open"
+                                                        flag-string=""></cs-flag>
+                                            </div>
+                                            <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3 border-bottom-grey new-channel-day">
+                                                <p class="font-small font-medium color-black">{{day.label}}</p>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <ui-select class="community-ui-select table-day-text" ng-model="day.morning.start">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                                                    <ui-select-choices repeat="h in newutil.hours_m | filter: $select.search track by $index">
+                                                        <span ng-bind="h"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <ui-select class="community-ui-select table-day-text" ng-model="day.morning.end">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                                                    <ui-select-choices repeat="h in newutil.hours_m | filter: $select.search track by $index">
+                                                        <span ng-bind="h"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <ui-select class="community-ui-select table-day-text" ng-model="day.afternoon.start">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                                                    <ui-select-choices repeat="h in newutil.hours_a | filter: $select.search track by $index">
+                                                        <span ng-bind="h"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+                                                <ui-select class="community-ui-select table-day-text" ng-model="day.afternoon.end">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                                                    <ui-select-choices repeat="h in newutil.hours_a | filter: $select.search track by $index">
+                                                        <span ng-bind="h"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-------- END --------->
+                                <div class="row border-bottom-grey" style="margin-top: 70px">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 container-modifier">
+                                        <button ng-if="!newutil.new_util.isNew" class="btn btn-delete-settings" ng-click="newutil.delete()">ELIMINA</button>
+                                        <button ng-if="newutil.new_util.isNew" class="btn btn-delete-settings" ui-sref="home.canali">ANNULLA</button>
+                                        <button class="btn btn-save-settings pull-right" ladda="newutil.options.saveWorking()" ng-click="newutil.save()">SALVA</button>
+                                    </div>
+                                </div>
+
+                            </uib-tab-body>
+                        </uib-tab>
+
+                    </uib-tabset>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

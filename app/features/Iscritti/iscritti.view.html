@@ -19,82 +19,95 @@
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                     <div class="row">
                         <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-                            <p class="font-small color-grey">DATA ISCRIZIONE</p>
-                            <ui-select class="community-ui-select font-normal" ng-model="newchannel.new_channel.category">
-                                <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
-                                <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
-                                    <span ng-bind="cat"></span>
-                                </ui-select-choices>
-                            </ui-select>
+
+                            <div class="form-group border-line modal-data-filter">
+                                <label class="font-small color-grey" style="white-space:nowrap;padding-bottom: 5px;">DATA ISCRIZIONE</label>
+                                <!--<p class="font-small color-grey">DATA ISCRIZIONE</p>-->
+                                <br />
+                                <md-datepicker md-open-on-focus ng-model="iscritti.filterOptions.dateSelected" md-placeholder="Seleziona la data..."  style="height: 42px;"></md-datepicker>
+                            </div>
+
                         </div>
                         <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
                             <p class="font-small color-grey">STATO</p>
-                            <ui-select class="community-ui-select font-normal" ng-model="newchannel.new_channel.category">
+                            <ui-select class="community-ui-select font-normal" ng-model="iscritti.filterOptions.status">
                                 <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
-                                <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
+                                <ui-select-choices repeat="cat in ['Tutti', 'Attivo', 'Bloccato' ] | filter: $select.search track by $index">
                                     <span ng-bind="cat"></span>
                                 </ui-select-choices>
                             </ui-select>
                         </div>
                         <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4"></div>
                         <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                            <button class="btn btn-block btn-grey-icon margin-top-10px" >&nbsp;&nbsp;APPLICA&nbsp;&nbsp;<span class="font-medium fa fa-angle-right"></span></button>
+                            <button class="btn btn-block btn-grey-icon margin-top-10px" ng-click="iscritti.applyFilters()" ladda="iscritti.options.laddaApply">&nbsp;&nbsp;APPLICA&nbsp;&nbsp;<span class="font-medium fa fa-angle-right"></span></button>
                         </div>
                     </div>
                     <div class="row margin-top-15px margin-bottom-30px no-margin-left">
                         <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10 border-bottom-grey margin-top-5px">
-                            <input class="form-control search-input ng-pristine ng-valid ng-empty ng-touched" placeholder="Cerca fra tutti gli iscritti" ng-model="contenuti.options.textToSearch" type="text" aria-invalid="false" style="">
+                            <input class="form-control search-input ng-pristine ng-valid ng-empty ng-touched" placeholder="Cerca fra tutti gli iscritti" ng-model="iscritti.filterOptions.textToSearch" type="text" aria-invalid="false" style="">
                             <span class="search-icon lsf">search</span>
                         </div>
                         <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
                             <button class="btn btn-block btn-grey-icon" >&nbsp;&nbsp;CERCA&nbsp;&nbsp;<span class="font-medium fa fa-angle-right"></span></button>
                         </div>
                     </div>
-                    <div class="row no-margin margin-top-10px border-bottom-grey">
+                    <div class="row no-margin margin-top-10px border-bottom-grey" ng-repeat="user in iscritti.users">
                         <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
                             <div class="row">
                                 <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 no-padding margin-top-5px">
                                     <div class="circle-blu"></div>
                                 </div>
-                                <p class="font-bold">Giorgio Mondino</p>
+                                <p class="font-bold">{{user.ds_name}} {{user.ds_surname}}</p>
                             </div>
                             <div class="row">
-                                <p>Iscritto il <span>11-11-2017</span></p>
+                                <p>Iscritto il <span>{{ user.timeInfo.dt_creationDate | date :'dd - MM - yyyy'}}</span></p>
                             </div>
                             <div class="row">
-                                <p>Ultimo accesso il <span>11-11-2017</span></p>
+                                <p>Ultimo accesso il <span>{{ user.dt_access | date : 'dd - MM - yyyy'}}</span></p>
                             </div>
                         </div>
                         <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 margin-top-10px">
                             <div class="row"><p class="font-small color-mid-grey">MI PIACE</p></div>
-                            <div class="row"><p class="font-bold color-black">126</p></div>
+                            <div class="row"><p class="font-bold color-black">0</p></div>
                         </div>
                         <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 margin-top-10px">
                             <div class="row"><p class="font-small color-mid-grey">COMMENTI</p></div>
-                            <div class="row"><p class="font-bold color-black">14</p></div>
+                            <div class="row"><p class="font-bold color-black">0</p></div>
                         </div>
                         <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 margin-top-10px">
                             <div class="row"><p class="font-small color-mid-grey">SEGNALAZIONI</p></div>
-                            <div class="row"><p class="font-bold color-black">2</p></div>
+                            <div class="row"><p class="font-bold color-black">0</p></div>
                         </div>
                         <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
                         <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 margin-top-10px">
                             <div class="row"><p class="font-small color-mid-grey">STATO</p></div>
-                            <div class="row"><p class="color-green font-bold">ATTIVO</p></div>
+                            <div class="row"><p class="color-red font-bold" ng-if="user.is_blocked == true">BLOCCATO</p></div>
+                            <div class="row"><p class="color-green font-bold" ng-if="user.is_blocked != true">ATTIVO</p></div>
                         </div>
                         <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 margin-top-15px">
-                            <button class="btn btn-grey-icon" >&nbsp;&nbsp;BLOCCA&nbsp;&nbsp;</button>
+                            <button ng-if="user.is_blocked != true" ladda="iscritti.options.laddaLockUnlock" class="btn btn-grey-icon pull-right" ng-click="iscritti.blocca(user._id)">&nbsp;&nbsp;BLOCCA&nbsp;&nbsp;</button>
+                            <button ng-if="user.is_blocked == true" ladda="iscritti.options.laddaLockUnlock" class="btn btn-grey-icon pull-right" ng-click="iscritti.sblocca(user._id)" >&nbsp;&nbsp;ATTIVA&nbsp;&nbsp;</button>
                         </div>
                     </div>
+
+
                     <div class="row margin-top-20px">
-                        <div class="col-lg-10 col-sm-10 col-md-10 col-xs-10"></div>
-                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                            <ui-select class="community-ui-select font-normal select-blue" ng-model="newchannel.new_channel.category">
-                                <ui-select-match placeholder="Pagina 1">{{$select.selected}}</ui-select-match>
-                                <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
-                                    <span ng-bind="cat"></span>
-                                </ui-select-choices>
-                            </ui-select>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <!-- Single button -->
+                            <div class="btn-group pull-right" uib-dropdown is-open="iscritti.options.pager.isopen">
+                                <button id="single-button" type="button" class="btn btn-pager mydropdown" uib-dropdown-toggle>
+                                    <span class="pull-left">PAGINA {{iscritti.options.pager.active}}</span>
+                                    <span class="pull-right lsf ">dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem" ng-repeat="page in iscritti.generatePages()">
+                                        <a ng-click="iscritti.changePage(page)">PAGINA {{page}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                 </div>

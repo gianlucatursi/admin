@@ -3,20 +3,19 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  SegnalazioniController.$inject = ['$state', 'SegnalazioniService', 'AdminService'];
-  controllers.controller('SegnalazioniController', SegnalazioniController);
+  UtilitaController.$inject = ['$state', 'UtilitaService', 'AdminService', 'ChannelService'];
+  controllers.controller('UtilitaController', UtilitaController);
 
-  function SegnalazioniController($state, SegnalazioniService, AdminService){
+  function UtilitaController($state, UtilitaService, AdminService, ChannelService){
 
     var _this = this;
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
     _this.current_state = $state.current;
-    _this.categories = ['Tutte le categorie', 'Lettera aperta', 'Incidente stradale', 'Foto e curiosità', 'Disservizi', 'Evento', 'Altro'];
-    _this.categorySelected = _this.categories[0];
+    _this.channelService = ChannelService;
     _this.adminService = AdminService;
 
-    _this.alerts = [];
+    _this.utilities = [];
 
     _this.options = {
       pager:{
@@ -29,18 +28,19 @@
 
     _this.changePage = _changePage;
     _this.generatePages = _generatePages;
+    _this.showDetail = _showDetail;
 
     _getUtilita();
 
     function _getUtilita(){
 
-      SegnalazioniService
+      UtilitaService
         .get()
         .then(
           function(results){
 
-            _this.alerts = results;
-            _this.options.pager.count = Math.ceil(_this.alerts.length / _this.options.pager.limit);
+            _this.utilities = results;
+            _this.options.pager.count = Math.ceil(_this.utilities.length / _this.options.pager.limit);
 
           },
           function(){
@@ -55,6 +55,10 @@
 
     function _generatePages(){
       return _.range(1,_this.options.pager.count+1);
+    }
+
+    function _showDetail(ut){
+      $state.go($state.ROUTING.utilita_detail.name, {id: ut._id});
     }
 
   }
