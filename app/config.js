@@ -112,9 +112,9 @@
         templateUrl: 'app/features/Segnalazioni/segnalazioni.view.html'
       },
       segnalationdetail:{//segnalazioni_detail:{
-        title: 'Visualizza segnalazione',
+        title: 'Dettaglio segnalazione',
         name: 'home.segnalationdetail',//'home.detailsegnalazioni',
-        url: '/segnalationdetail',//'/segnalazionidetail/:id',
+        url: '/segnalationdetail/:id',//'/segnalazionidetail/:id',
         templateUrl: 'app/features/Details/SegnalationDetail/segnalationdetail.view.html'
       },
       utilita:{

@@ -4,10 +4,9 @@
     <div class="row">
         <div class="col-lg-9 col-sm-9 col-md-12 col-xs-9">
             <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{segnalationdetail.current_state.title | uppercase}}</p>
-            <p class="font-bold font-medium" style="color: {{newchannel.city.assets_color}}">{{segnalationdetail.city.ds_name | uppercase}} SMART</p>
+            <p class="font-bold font-medium" style="color: {{segnalationdetail.city.assets_color}}">{{segnalationdetail.city.ds_name | uppercase}} SMART</p>
         </div>
         <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-            <button ng-click="dash.adminService.logout()" class="btn btn-block-settings pull-right no-margin"><span class="lsf color-grey">back</span>&nbsp;&nbsp;&nbsp;INDIETRO</button>
         </div>
     </div>
 
@@ -19,19 +18,19 @@
                 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
                     <div class="row border-bottom-grey margin-right-10px">
                         <p class="font-small color-grey">CATEGORIA</p>
-                        <p class="new-channel-name color-black no-border font-large no-padding-left font-medium">Incidenti stradali</p>
+                        <p class="new-channel-name color-black no-border font-large no-padding-left font-medium">{{segnalationdetail.current.ds_category}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
                     <div class="row border-bottom-grey margin-right-10px">
                         <p class="font-small color-grey">DATA</p>
-                        <p class="new-channel-name color-black no-border font-large no-padding-left font-medium">30/02/2017</p>
+                        <p class="new-channel-name color-black no-border font-large no-padding-left font-medium">{{segnalationdetail.current.dt_createdAt | date: 'dd/MM/yyyy'}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
                     <div class="row border-bottom-grey margin-right-10px">
                         <p class="font-small color-grey">SEGNALATO DA</p>
-                        <p class="new-channel-name color-black no-border font-large no-padding-left font-medium">Gigi d'Alessio</p>
+                        <p class="new-channel-name color-black no-border font-large no-padding-left font-medium">{{segnalationdetail.current.ds_name}} {{segnalationdetail.current.ds_surname}}</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3"></div>
@@ -40,8 +39,8 @@
             <div class="row no-padding margin-top-50px">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                     <div class="row border-bottom-grey">
-                        <p class="font-small color-grey">TITOLO SEGNALAZIONE</p>
-                        <p class="no-border color-black margin-bottom-5px font-xxl font-bold no-padding">Incidente Via Savigliano</p>
+                        <p class="font-small color-grey">LUOGO SEGNALAZIONE</p>
+                        <p class="no-border color-black margin-bottom-5px font-xxl roboto-slab font-bold no-padding">{{segnalationdetail.current.ds_place}}</p>
                     </div>
                 </div>
             </div>
@@ -52,8 +51,10 @@
                         <p class="font-small color-grey">CONTENUTO</p>
                     </div>
                     <div class="row border-bottom-grey margin-top-20px">
-                        <p class="no-border color-black margin-bottom-5px font-medium">Testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo testo</p>
+                        <p class="no-border color-black margin-bottom-5px font-medium">{{segnalationdetail.current.de_description}}</p>
                         <button class="btn btn-block-see margin-top-30px margin-bottom-30px"><span class="lsf color-blue font-xl">eye</span>&nbsp;&nbsp;&nbsp;VISTO&nbsp;&nbsp;</button>
+
+                        <a class="btn btn-block-see margin-top-30px margin-bottom-30px" target="_blank"  href="{{segnalationdetail.getMediaUrl(segnalationdetail.current.id_image)}}" ng-if="segnalationdetail.current.id_image"><span class="lsf color-blue font-xl">image</span>&nbsp;&nbsp;&nbsp;MEDIA&nbsp;&nbsp;</a>
                     </div>
                 </div>
             </div>

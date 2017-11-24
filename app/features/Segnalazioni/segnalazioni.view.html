@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-9 col-sm-9 col-md-9 col-xs-9">
             <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{segnalazioni.current_state.title | uppercase}}</p>
-            <p class="font-bold font-medium color-smart" style="color: {{iscritti.city.assets_color}}">{{segnalazioni.city.ds_name | uppercase}} SMART</p>
+            <p class="font-bold font-medium color-smart" style="color: {{segnalazioni.city.assets_color}}">{{segnalazioni.city.ds_name | uppercase}} SMART</p>
         </div>
         <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6">
             <button ng-click="segnalazioni.adminService.logout()" class="btn btn-block-settings pull-right no-margin"><span class="lsf color-grey">logout</span>&nbsp;&nbsp;&nbsp;ESCI</button>
@@ -19,9 +19,9 @@
                 <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
                     <p class="font-small color-grey">CATEGORIE</p>
                     <ui-select class="community-ui-select font-normal" ng-model="segnalazioni.categorySelected">
-                        <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                        <ui-select-match placeholder="Seleziona...">{{$select.selected.label}}</ui-select-match>
                         <ui-select-choices repeat="cat in segnalazioni.categories | filter: $select.search track by $index">
-                            <span ng-bind="cat"></span>
+                            <span ng-bind="cat.label"></span>
                         </ui-select-choices>
                     </ui-select>
                 </div>
@@ -29,16 +29,19 @@
                 </div>
                 <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4"></div>
                 <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                    <button ladda="contenuti.options.articleWorking()" class="btn btn-grey btn-block ladda-button" ng-click="contenuti.applyFilters()" data-style="expand-right" data-spinner-size="35" data-spinner-color="#939393">
+                    <!--
+                    <button ladda="contenuti.options.articleWorking()" class="btn btn-grey btn-block ladda-button"  data-style="expand-right" data-spinner-size="35" data-spinner-color="#939393">
                         APPLICA&nbsp;&nbsp;&nbsp;<span class="lsf">right</span>
                     </button>
+
+                    -->
                 </div>
             </div>
             <!-- ng-repeat="alert in segnalazioni.alerts | limitTo:utilita.options.pager.limit:-(utilita.options.pager.active*utilita.options.pager.limit)" -->
             <div class="row article_element margin-top-10px">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
-                    <div class="row">
+                    <div class="row" ng-repeat="report in segnalazioni.reports | filter: segnalazioni.categorySelected.value" ng-click="segnalazioni.showDetail(report)"> <!--| filter: {ds_category: segnalazioni.categorySelected}-->
                         <!------------- FIRST COL [article description]--------->
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <div class="row">
@@ -48,19 +51,19 @@
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 no-padding">
                                     <div class="row no-padding">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <p class="font-bold no-padding no-margin">Gigi</p>
+                                            <p class="font-bold no-padding no-margin">{{report.ds_name}} {{report.ds_surname}}</p>
                                         </div>
                                     </div>
                                     <div class="row no-padding">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <p class="font-small no-padding color-mid-grey no-margin"> in INCIDENTI STRADALI</p>
+                                            <p class="font-small no-padding color-mid-grey no-margin"> in {{report.ds_category | uppercase}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <p class="font-small padding-top-5">Ciao!</p>
+                                    <p class="font-small padding-top-5">{{report.ds_description | limitTo:150}}</p>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +78,7 @@
 
                             <div class="row no-padding">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <p class="font-medium font-bold roboto-slab-bold padding-top-5">Hellow from the other side 2 2  2 2 2 2 2!</p>
+                                    <p class="font-medium font-bold roboto-slab-bold padding-top-5">{{report.ds_place}}</p>
                                 </div>
                             </div>
                         </div>
@@ -90,11 +93,11 @@
 
                             <div class="row no-padding">
                                 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 no-padding">
-                                    <p class="font-medium padding-top-5">06-11-2017</p>
+                                    <p class="font-medium padding-top-5">{{report.dt_createdAt | date : 'dd - MM - yyyy'}}</p>
                                 </div>
 
                                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 no-padding">
-                                    <img class="img-see-segnalation" src="app/assets/images/report-unwatched.jpg">
+                                    <img ng-if="!report.is_handled" class="img-see-segnalation" src="app/assets/images/report-unwatched.jpg">
                                 </div>
                             </div>
                         </div>
@@ -102,7 +105,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <div class="row no-padding">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <img class="img-preview-article bgcolor-grey">
+                                    <img ng-if="report.id_image" class="img-preview-article bgcolor-grey" ng-src="{{segnalazioni.getMediaUrl(report.id_image)}}">
                                 </div>
                             </div>
                         </div>
