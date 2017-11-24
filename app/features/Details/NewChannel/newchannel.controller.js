@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewChannelController.$inject = ['$state', 'AdminService', 'ChannelService', 'toastr'];
+  NewChannelController.$inject = ['$state', 'AdminService', 'ChannelService', '$uibModal', 'MediaService', '$sce', 'UtilService'];
   controllers.controller('NewChannelController', NewChannelController);
 
-  function NewChannelController($state, AdminService, ChannelService, toastr){
+  function NewChannelController($state, AdminService, ChannelService, $uibModal, MediaService, $sce, UtilService){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -17,11 +17,17 @@
     _this.hours_a = [];
     _this.categories = [];
     _this.new_channel = {};
+    _this.imagesOptions = {
+      icon: null
+    };
+
     _this.options = {
       saveWorking: ChannelService.working,
       deleteWorking: ChannelService.working,
       pswType: 'password'
     };
+
+    var _mediaModalInstance;
 
     if($state.current == $state.ROUTING.detailchannel){
       _initStatics(ChannelService.byId($state.params.id));
@@ -36,6 +42,9 @@
     _this.unlock = _unlock;
     _this.lock = _lock;
     _this.changePSWType = _changePSWType;
+    _this.openChannelImage = _openChannelImage;
+    _this.getMediaUrl = _getMediaUrl;
+    _this.deleteIcon = _deleteIcon;
 
     /**
      * Add author
@@ -337,6 +346,39 @@
         days: channelToEdit.openingHours()
       };
     }
+
+    function _openChannelImage(){
+
+      MediaService._modalOptions.isGallery = true;
+      MediaService._modalOptions.isMediaView = false;
+
+      _mediaModalInstance = $uibModal.open({
+        animation: true,
+        component: 'mediaModal',
+        size: 'lg'
+      });
+
+      _mediaModalInstance.result.then(function (selectedItem) {
+        //_this.selected = selectedItem;
+        _this.imagesOptions.icon = selectedItem;
+      }, function () {
+        console.log('modal-component dismissed at: ' + new Date());
+      });
+    }
+
+    function _getMediaUrl(media, s){
+      if(media.type == 'IMAGE'){
+        return UtilService.imageUrl(media.id_image, s);
+      }else{
+        return $sce.trustAsResourceUrl(media.video_url);
+      }
+    }
+
+    function _deleteIcon(){
+      _this.imagesOptions.cover = null;
+    }
+
+
   }
 
 })(window.angular);

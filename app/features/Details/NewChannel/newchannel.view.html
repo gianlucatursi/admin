@@ -56,9 +56,16 @@
                                             </div>
                                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                                 <p class="font-small color-grey">ICONA</p>
-                                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-icon">
-                                                    <button class="btn btn-blue-icon margin-top-20px" ><span class="lsf font-medium">ok</span>&nbsp;&nbsp;&nbsp;SELEZIONA</button>
+                                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-icon" ng-if="!newchannel.imagesOptions.icon">
+                                                    <button class="btn btn-blue-icon margin-top-20px" ng-click="newchannel.openChannelImage()"><span class="lsf font-medium">ok</span>&nbsp;&nbsp;&nbsp;SELEZIONA</button>
                                                 </div>
+
+                                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-image" style="height: auto !important;" ng-if="!!newchannel.imagesOptions.icon" ng-mouseover="showDeleteCover = true" ng-mouseleave="showDeleteCover = false">
+                                                    <div style="background-image: url({{newchannel.getMediaUrl(newchannel.imagesOptions.icon)}});background-repeat: no-repeat;background-size: contain;width: 160px;height: 160px;margin-left:auto;margin-right:auto"></div>
+                                                    <button ng-mouseover="showDeleteCover = true" ng-if="showDeleteCover" class="btn btn-delete-settings delete-image" style="left:43%" ng-click="newchannel.deleteIcon()">ELIMINA</button><!---->
+                                                </div>
+
+
                                             </div>
                                         </div>
                                         <div class="row">
