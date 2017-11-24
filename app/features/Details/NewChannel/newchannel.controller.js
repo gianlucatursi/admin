@@ -64,6 +64,12 @@
      */
     function _save(){
 
+      if(_this.imagesOptions.icon){
+        if(_this.imagesOptions.icon.type == 'IMAGE'){
+          _this.new_channel.id_icon = _this.imagesOptions.icon.id_image;
+        }
+      }
+
       if(ChannelService.validate(_this.new_channel, _this.new_channel.isNew)){
         //valid
         if(_this.new_channel.isNew){
@@ -345,6 +351,13 @@
         orari_specifici: orari_specifici,
         days: channelToEdit.openingHours()
       };
+
+      if(channelToEdit.id_icon){
+        _this.imagesOptions.icon = {
+          type: 'IMAGE',
+          id_image: channelToEdit.id_icon
+        }
+      }
     }
 
     function _openChannelImage(){
@@ -375,7 +388,7 @@
     }
 
     function _deleteIcon(){
-      _this.imagesOptions.cover = null;
+      _this.imagesOptions.icon = null;
     }
 
 

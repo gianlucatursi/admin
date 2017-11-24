@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  ChannelModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL', '$state']; // 'Restangular', '$q', 'AuthServices'
+  ChannelModel.$inject = ['API', '$q', 'Restangular', 'UtilService', '$state']; // 'Restangular', '$q', 'AuthServices'
   models.factory('ChannelModel', ChannelModel);
 
-  function ChannelModel(API, $q ,Restangular, IMAGE_BASEURL, $state) { //Restangular, $q, API, Images, AuthServices
+  function ChannelModel(API, $q ,Restangular, UtilService, $state) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Channel(channelData) {
@@ -115,7 +115,7 @@
      */
     function _iconImageUrl(){
       if(this.id_icon){
-        return IMAGE_BASEURL + this.id_icon;
+        return UtilService.imageUrl(this.id_icon, 's');
       }
       return 'app/assets/images/c_icon.jpg';
     }
