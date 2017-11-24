@@ -42,6 +42,9 @@
         update: _customRequest.bind(null, 'media/:id'),
         search:_customRequest.bind(null, 'search/media')
       },
+      dashboard:{
+        stats: _customRequest.bind(null, 'dashboard/platformstats'),
+      },
       categories : _customRequest.bind(null, 'category')
     };
 

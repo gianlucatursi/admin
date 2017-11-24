@@ -41,27 +41,27 @@
             <h3 class="margin-top-80px">Statistiche</h3>
             <p class="color-mid-grey font-medium"><span>Savigliano Smart</span> è attivo dal <span>18 gennaio 2017</span> e conta <span>64 edizioni</span></p>
             <div class="row margin-top-20px display-flex margin-left-0 margin-right-0">
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 border-grey border-radius no-padding margin-right-20px">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 border-grey border-radius no-padding margin-right-20px" ng-if="dash.options.platformLoaded">
                     <div class="border-bottom-grey padding-left-15px padding-right-15px">
                         <p class="color-blue font-xl font-normal margin-top-15px">Piattaforma</p>
-                        <p class="color-black font-bold font-xl margin-top-15px no-margin-bottom">1312</p>
+                        <p class="color-black font-bold font-xl margin-top-15px no-margin-bottom">{{dash.stats.platform.total_users}}</p>
                         <p class="color-mid-grey font-small font-bold">UTENTI TOTALI</p>
                         <p class="color-blue font-medium margin-top-15px">Attività</p>
                     </div>
                     <div>
                         <div class="row padding-top-15 margin-left-15px margin-right-15px">
                             <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-                                <p class="font-xl color-black no-margin-bottom">1760</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.platform.total_posts}}</p>
                                 <p class="color-mid-grey font-small font-bold">POST TOTALI</p>
                             </div>
                             <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1"></div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                <p class="font-xl color-black no-margin-bottom">832</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.platform.total_articles}}</p>
                                 <p class="color-mid-grey font-small font-bold">ARTICOLI</p>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                <p class="font-xl color-black no-margin-bottom">136</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.platform.total_events}}</p>
                                 <p class="color-mid-grey font-small font-bold">EVENTI</p>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
@@ -69,7 +69,7 @@
                         <div class="row"></div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 border-grey border-radius no-padding margin-left-20px">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 border-grey border-radius no-padding margin-left-20px" ng-if="dash.options.channelLoaded">
                     <div class="border-bottom-grey padding-left-15px padding-right-15px">
                         <div class="row margin-top-15px">
                             <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
@@ -77,32 +77,32 @@
                             </div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
                             <div class="col-lg-7 col-sm-7 col-md-7 col-xs-7">
-                                <ui-select class="community-ui-select font-normal" ng-model="newchannel.new_channel.category">
-                                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
-                                    <ui-select-choices repeat="cat in newchannel.categories | filter: $select.search track by $index">
-                                        <span ng-bind="cat"></span>
+                                <ui-select class="community-ui-select font-normal" ng-model="dash.channelSelected" ng-change="dash.channelChanged()">
+                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.name()}}</ui-select-match>
+                                    <ui-select-choices repeat="channel in dash.channels | filter: $select.search track by $index">
+                                        <span ng-bind="channel.name()"></span>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
                         </div>
-                        <p class="color-black font-bold font-xl margin-top-10px no-margin-bottom">368</p>
+                        <p class="color-black font-bold font-xl margin-top-10px no-margin-bottom">{{dash.stats.channel.total_channel_followers}}</p>
                         <p class="color-mid-grey font-small font-bold">ISCRITTI</p>
                         <p class="color-blue font-medium margin-top-15px">Attività</p>
                     </div>
                     <div>
                         <div class="row padding-top-15 margin-left-15px margin-right-15px">
                             <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-                                <p class="font-xl color-black no-margin-bottom">1760</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.channel.total_posts}}</p>
                                 <p class="color-mid-grey font-small font-bold">POST</p>
                             </div>
                             <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1"></div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                <p class="font-xl color-black no-margin-bottom">832</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.channel.total_articles}}</p>
                                 <p class="color-mid-grey font-small font-bold">ARTICOLI</p>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                <p class="font-xl color-black no-margin-bottom">136</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.channel.total_events}}</p>
                                 <p class="color-mid-grey font-small font-bold">EVENTI</p>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
@@ -110,17 +110,17 @@
                         <div class="border-bottom-grey"><p class="color-blue font-medium margin-top-15px margin-left-15px">Interazioni</p></div>
                         <div class="row padding-top-15 margin-left-15px margin-right-15px padding-bottom-30px">
                             <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
-                                <p class="font-xl color-black no-margin-bottom">432</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.channel.total_views}}</p>
                                 <p class="color-mid-grey font-small font-bold">VISUALIZZAZIONI</p>
                             </div>
                             <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1"></div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                <p class="font-xl color-black no-margin-bottom">848</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.channel.total_likes}}</p>
                                 <p class="color-mid-grey font-small font-bold">MI&nbsp;PIACE</p>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
-                                <p class="font-xl color-black no-margin-bottom">246</p>
+                                <p class="font-xl color-black no-margin-bottom">{{dash.stats.channel.total_comments}}</p>
                                 <p class="color-mid-grey font-small font-bold">COMMENTI</p>
                             </div>
                             <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2"></div>
