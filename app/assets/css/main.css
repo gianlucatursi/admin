@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.color-orange {
+  color: #F3BD3B;
+}
 .color-grey {
   color: #808080;
 }
@@ -4515,10 +4518,10 @@ textarea {
   text-align: center;
   left: 35%;
 }
-#segnalationdetail .font-xl {
+.font-xl {
   font-size: 22px;
 }
-#segnalationdetail .font-xxl {
+.font-xxl {
   font-size: 24px;
 }
 #segnalationdetail .width-content {
@@ -4531,4 +4534,7 @@ textarea {
   font-weight: bold;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+.border-edition {
+  border: 1px solid #CCCCCC;
 }

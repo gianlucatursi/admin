@@ -81,6 +81,18 @@
           url: '/edizioni',
           templateUrl: 'app/features/Edizioni/edizioni.view.html'
       },
+      nuova_edizione:{
+        title: 'Gestisci Edizione',
+        name: 'home.nuova_edizione',
+        url: '/nuovaedizione',
+        templateUrl: 'app/features/Details/NewEdition/newedition.view.html'
+      },
+      modifica_edizione:{
+        title: 'Gestisci Edizione',
+        name: 'home.modifica_edizione',
+        url: '/modificaedizione/:id',
+        templateUrl: 'app/features/Details/NewEdition/newedition.view.html'
+      },
       contenuti:{
         title: 'Tutti i post',
           name: 'home.contenuti',

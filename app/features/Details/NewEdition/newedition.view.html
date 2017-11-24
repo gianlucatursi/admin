@@ -1,0 +1,154 @@
+<div id="new_channel" ng-controller="NewEditionController as newedition">
+
+    <!-- NAV BAR -->
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <p class="font-bold font-medium color-mid-grey" style="margin-bottom:0">{{newedition.current_state.title | uppercase}}</p>
+            <p class="font-bold font-medium" style="color: {{newedition.city.assets_color}}">{{newedition.city.ds_name | uppercase}} SMART</p>
+        </div>
+    </div>
+
+    <!------------- body content ---------->
+
+    <div class="row page_content margin-top-50px margin-left-0">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <div class="row no-padding">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <div class="form-group row">
+                        <p class="font-xxl color-black" for="name_new_channel">Edizione del TODO</p>
+                        <p class="font-small color-mid-grey">On-line fra TODO</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-padding container-hour">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 no-padding">
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <p class="font-xl font-bold color-red">FUORI EDIZIONE</p>
+                            <div class="row border-edition no-padding no-margin">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" style="padding:30px;">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="font-small color-grey">CANALI</label>
+                                                <ui-select class="community-ui-select" ng-model="newedition.channelSelected">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                                    <ui-select-choices repeat="channel in newedition.channels | filter: $select.search track by $index">
+                                                        <span ng-bind="channel.ds_name"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br/><br/>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="font-small color-grey">PERIODO</label>
+                                                <ui-select class="community-ui-select" ng-model="newedition.periodoSelected">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
+                                                    <ui-select-choices repeat="per in newedition.periodi | filter: $select.search track by $index">
+                                                        <span ng-bind="per"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <div class="form-group">
+                                                <label class="font-small color-grey">CATEGORIA</label>
+                                                <ui-select class="community-ui-select" ng-model="newedition.categorySelected">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                                    <ui-select-choices repeat="cat in newedition.categories | filter: $select.search track by $index">
+                                                        <span ng-bind="cat.ds_name"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <p class="font-xl font-bold color-green">IN EDIZIONE</p>
+                            <div class="row border-edition no-padding no-margin">
+                                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" style="padding:30px;">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="font-small color-grey">ASSOCIA A CATEGORIA</label>
+                                                <ui-select class="community-ui-select" ng-model="newedition.categoryToBe">
+                                                    <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
+                                                    <ui-select-choices repeat="cat in newedition.categories | filter: $select.search track by $index">
+                                                        <span ng-bind="cat.ds_name"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br/><br/>
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                            <div class="form-group">
+                                                <p class="font-normal color-grey">1 post in questa categoria</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <div class="form-group">
+                                                <p class="font-normal color-grey">13 post in Edizione</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                                            <div class="form-group">
+                                                <p class="font-normal color-grey" style="text-align: right">
+                                                    <span class="lsf font-medium color-orange">star</span>&nbsp; 3 post in Copertina
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-------- END --------->
+    <div class="row" style="margin-top: 70px">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <button class="btn btn-delete-settings" ng-if="!newedition.current.isNew">CESTINA</button>
+            <button class="btn btn-block-settings" ng-if="!newedition.current.isNew">CONVERTI IN BOZZA</button>
+
+            <button class="btn btn-action-publish margin-top-20px margin-left-10px pull-right" ng-if="!newedition.current.is_published"  ng-click="newedition.publish()">AUTORIZZA</button>
+            <button class="btn btn-save-bozza-settings pull-right" ng-if="!newedition.current.is_published" ng-click="newedition.saveDraft()">SALVA BOZZA</button>
+        </div>
+    </div>
+
+    <br /><br />
+    <div class="row border-bottom-grey"></div>
+
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
+            <p class="pull-right font-xs color-grey" ng-if="!newedition.current.isNew">Ultimo salvataggio: {{newedition.current.updatedAt | date: 'dd - MM - yyyy'}} - {{ newedition.current.updatedAt | date: 'HH:mm'}}</p>
+        </div>
+    </div>
+
+</div>
