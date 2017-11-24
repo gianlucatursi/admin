@@ -16,7 +16,8 @@
 
     _that.stats = {
       platform: {},
-      channel:{}
+      channel:{},
+      alerts : []
     };
 
     _get();
@@ -27,6 +28,7 @@
     //////////////////////////////////
 
     _that.get = _get;
+    _that.alerts = _alerts;
     _that.byId  = _byId;
 
 
@@ -86,6 +88,41 @@
 
     }
 
+    function _alerts(_options){
+
+      var defer = $q.defer();
+
+      _options = _options || {};
+
+      var filters = {
+        id_city: AdminService.user.cityId()
+      };
+      if(!AdminService.user.isRedazione()){
+        filters.id_channel = _options.id_channel || AdminService.user.channelId();
+      }else if('id_channel' in _options){
+        filters.id_channel = _options.id_channel;
+      }
+
+      Restangular
+        .one(API.dashboard.alerts({}, filters))
+        .get()
+        .then(
+          function(results){
+
+            _that.options.loaded = true;
+            _that.stats.alerts = results.alerts || [];
+
+            defer.resolve(results);
+          },
+          function(error){
+            defer.reject(new Error("CATEGORIES FAILED"));
+          }
+        );
+
+
+      return defer.promise;
+
+    }
     /**
      * Get by id
      * @param _id

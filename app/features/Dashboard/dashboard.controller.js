@@ -16,13 +16,15 @@
     _this.stats = {};
     _this.options = {
       platformLoaded: false,
-      channelLoaded: false
+      channelLoaded: false,
+      notificationsLoaded: false
     };
 
     _this.channels = [];
     _this.channelSelected = {};
 
     _this.channelChanged = _channelChanged;
+    _this.channelNameById = _channelNameById;
 
     if(AdminService.user.isRedazione()){
       _stats({}, true);
@@ -49,6 +51,22 @@
         )
     }
 
+    function _alerts(filters){
+
+      DashboardService
+        .alerts(filters)
+        .then(
+          function(result){
+            console.info(result);
+            _this.stats = DashboardService.allStats();
+            _this.options.notificationsLoaded = true;
+          },
+          function(error){
+            console.error(error);
+          }
+        )
+    }
+
     function _channelChanged(){
 
       if(_this.stats.channel){
@@ -63,6 +81,13 @@
 
     }
 
+    function _channelNameById(id){
+      if(_this.channels){
+        return (_.find(_this.channels, {_id: id}) || {}).ds_name;
+      }
+
+      return '';
+    }
     /**
      * Get channels
      * @private
@@ -86,6 +111,9 @@
             _stats({
               id_channel : _this.channelSelected.id()
             },false);
+
+            _alerts();
+
           },
           function(){
             console.error("ERROR GETTING CHANNELS");

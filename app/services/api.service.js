@@ -44,6 +44,7 @@
       },
       dashboard:{
         stats: _customRequest.bind(null, 'dashboard/platformstats'),
+        alerts: _customRequest.bind(null, 'dashboard/alerts'),
       },
       categories : _customRequest.bind(null, 'category')
     };
