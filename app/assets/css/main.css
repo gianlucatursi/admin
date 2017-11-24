@@ -3629,6 +3629,9 @@ html {
 .margin-top-15px {
   margin-top: 15px !important;
 }
+.margin-top-30px {
+  margin-top: 30px !important;
+}
 .margin-top-50px {
   margin-top: 50px !important;
 }
@@ -3649,6 +3652,9 @@ html {
 }
 .margin-right-20px {
   margin-right: 20px !important;
+}
+.margin-bottom-5px {
+  margin-bottom: 5px !important;
 }
 .margin-bottom-20px {
   margin-bottom: 20px !important;
@@ -4505,4 +4511,21 @@ textarea {
   top: 30%;
   text-align: center;
   left: 35%;
+}
+#segnalationdetail .font-xl {
+  font-size: 22px;
+}
+#segnalationdetail .font-xxl {
+  font-size: 24px;
+}
+#segnalationdetail .width-content {
+  width: fit-content;
+}
+#segnalationdetail .btn-block-see {
+  border: 1px solid #48AACC;
+  background-color: white;
+  color: #48AACC;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
