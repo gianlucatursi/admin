@@ -173,7 +173,8 @@
               id_channel: _scope.channelUploadSelected._id,
               "ds_tags" : '',
               "ds_description" : '',
-              "video_url" : url
+              "video_url" : url,
+              "video_id": videoId
             }).then(
               function(){
                 toastr.success('Caricamento completato', 'Upload Video');
