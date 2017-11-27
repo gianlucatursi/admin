@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  EdizioniController.$inject = ['$state', 'UtilService', 'AdminService', 'EdizioniService'];
+  EdizioniController.$inject = ['$state', 'UtilService', 'AdminService', 'EdizioniService', 'toastr'];
   controllers.controller('EdizioniController', EdizioniController);
 
-  function EdizioniController($state, UtilService, AdminService, EdizioniService){
+  function EdizioniController($state, UtilService, AdminService, EdizioniService, toastr){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -96,6 +96,8 @@
         //_getEditions(_this.dateSelected.getTime());
         UtilService.options.newEditionDate = _this.dateSelected;
         $state.go($state.ROUTING.nuova_edizione.name);
+      }else{
+        toastr.error('Devi selezionare una data per poter creare un\'edizione');
       }
 
     }
