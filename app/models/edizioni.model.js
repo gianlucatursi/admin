@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  EdizioneModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL']; // 'Restangular', '$q', 'AuthServices'
+  EdizioneModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL', '$state']; // 'Restangular', '$q', 'AuthServices'
   models.factory('EdizioneModel', EdizioneModel);
 
-  function EdizioneModel(API, $q ,Restangular, IMAGE_BASEURL) { //Restangular, $q, API, Images, AuthServices
+  function EdizioneModel(API, $q ,Restangular, IMAGE_BASEURL, $state) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Edizione(edizioneData) {
@@ -27,6 +27,7 @@
     Edizione.prototype.name = _name;
     Edizione.prototype.postNumber = _postNumber;
     Edizione.prototype.status = _getStatus;
+    Edizione.prototype.showDetail = _showDetail;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -71,6 +72,10 @@
      */
     function _getStatus(){
       return !!this.authorized;
+    }
+
+    function _showDetail(){
+      $state.go($state.ROUTING.modifica_edizione.name, {id: this._id});
     }
     /** return User ***/
     return Edizione;

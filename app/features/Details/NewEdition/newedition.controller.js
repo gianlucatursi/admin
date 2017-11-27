@@ -48,8 +48,11 @@
 
     _initializeCollections();
 
-    if($state.current == $state.ROUTING.detailchannel){
-      _initStatics(ChannelService.byId($state.params.id));
+    var _initEditEdition = function(){};
+
+    if($state.current == $state.ROUTING.modifica_edizione){
+      _initEditEdition = __initEditEdition;
+      _initStatics(EdizioniService.byId($state.params.id));
     }else{
       // new channel
       _initStatics();
@@ -152,7 +155,6 @@
         _initNewChannel();
       }
     }
-
     /**
      * Init new channel
      * @private
@@ -173,7 +175,6 @@
       _this.current.ds_title = "Edizione del " + currentDate.getDate() + " " + month + " " + currentDate.getFullYear();
       _this.current.dt_edition = currentDate;
 
-
     }
 
     /**
@@ -183,12 +184,46 @@
      */
     function _initEditChannel(channelToEdit){
 
-
+      //channelToEdit.articles
       _this.current = {
         isNew: false,
+        ds_title: channelToEdit.ds_title,
+        dt_edition: channelToEdit.dt_edition,
         articles: [],
         cover: []
       };
+
+      //_initEditEdition.bind(channelToEdit);
+      //fixme: da fare dopo get articles
+      //_initEditEdition(channelToEdit);
+
+    }
+
+    /**
+     * Edit
+     * @param channelToEdit
+     * @private
+     */
+    function __initEditEdition(channelToEdit){
+
+      _.each(channelToEdit.articles || [], function(category){
+
+        if(!(category.category in _this.articleByCategory)){
+          _this.articleByCategory[category.category] = {
+            category: category.category,
+            articles: []
+          }
+        }
+
+        _.each(category.ids || [], function(art){
+          _this.articleByCategory[category.category].articles.push(ArticleService.byId(art));
+        });
+
+      });
+
+      _.each(channelToEdit.cover || [], function(art){
+        _this.coverArticles.push(ArticleService.byId(art));
+      });
 
     }
 
