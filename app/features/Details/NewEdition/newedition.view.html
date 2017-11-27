@@ -75,163 +75,40 @@
                                     <br/>
                                     <div class="row" id="editionDetail">
                                         <main class="post-wrap pwa">
-                                            <article class="post">
+                                            <article class="post" ng-repeat="article in newedition.articles" ng-init="article.myChannel = newedition.channelService.byId(article.channelId())">
                                                 <div class="post-header">
-                                                    <div class="avatar" style="background-image:url('img/avatar/corriere.png')">
+                                                    <div class="avatar" style="background-image:url({{article.myChannel.iconImageUrl()}})">
                                                         &nbsp;
                                                     </div>
                                                     <div class="channel">
-                                                        <h2>Corriere di Savigliano</h2>
-                                                        <small>13 ottobre</small>
+                                                        <h2>{{article.myChannel.name()}}</h2>
+                                                        <small>{{article.authorName()}} - {{article.publishDate() | date : 'dd/MM/yyyy'}}</small>
                                                     </div>
                                                 </div>
                                                 <div class="post-main">
-                                                    Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                    {{article.abstract()}}
                                                 </div>
-                                                <div class="post-article-title">
-                                                    Consectetur adipisicing elit tempor magna aliqua
+                                                <div ng-if="article.title()" class="post-article-title roboto-slab-bold">
+                                                    {{article.title() | limitTo: 30}}
+                                                    <i class="glyphicon glyphicon-chevron-right pull-right color-grey"></i>
                                                 </div>
                                                 <div class="post-media">
-                                                    <img src="img/post/scuola/1.jpg">
+                                                    <img ng-if="article.coverMedia() && article.coverMedia().type == 'IMAGE'" src="{{article.coverUrl()}}">
+                                                    <embed-video ng-if="article.coverMedia() && article.coverMedia().type == 'VIDEO'" controls="0" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo1" ng-href="{{article.coverUrl()}}"></embed-video>
                                                 </div>
                                                 <div class="post-action">
                                                     <div class="action-go">
                                                         <div class="action icon">
-                                                            <span class="icon-like"></span> 23
+                                                            <span class="icon-like"></span> {{article.likeCount()}}
                                                         </div>
                                                         <div class="action icon">
-                                                            <span class="icon-comment"></span> 12
+                                                            <span class="icon-comment"></span> {{article.commentsCount()}}
                                                         </div>
                                                     </div>
                                                     <div class="action-do">
-                                                        <div class="action">
-                                                            Commenta
-                                                        </div>
-                                                        <div class="action">
-                                                            Condividi
-                                                        </div>
                                                         <div class="action extended-action">
-                                                            <i class="fa fa-ellipsis-h"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </article>
-
-                                            <article class="post">
-                                                <div class="post-header">
-                                                    <div class="avatar" style="background-image:url('img/avatar/ascom.png')">
-                                                        &nbsp;
-                                                    </div>
-                                                    <div class="channel">
-                                                        <h2>Ascom</h2>
-                                                        <small>13 ottobre</small>
-                                                    </div>
-                                                </div>
-                                                <div class="post-main">
-                                                    Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                                                </div>
-                                                <div class="post-media">
-                                                    <iframe src="https://player.vimeo.com/video/182879855?autoplay=1&amp;color=D33352&amp;title=0&amp;byline=0&amp;portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                                                </div>
-                                                <div class="post-action">
-                                                    <div class="action-go">
-                                                        <div class="action icon">
-                                                            <span class="icon-like"></span> 23
-                                                        </div>
-                                                        <div class="action icon">
-                                                            <span class="icon-comment"></span> 12
-                                                        </div>
-                                                    </div>
-                                                    <div class="action-do">
-                                                        <div class="action">
-                                                            Commenta
-                                                        </div>
-                                                        <div class="action">
-                                                            Condividi
-                                                        </div>
-                                                        <div class="action extended-action">
-                                                            <i class="fa fa-ellipsis-h"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </article>
-
-                                            <article class="post">
-                                                <div class="post-header">
-                                                    <div class="avatar" style="background-image:url('img/avatar/basket.png')">
-                                                        &nbsp;
-                                                    </div>
-                                                    <div class="channel">
-                                                        <h2>Savigliano Basketball</h2>
-                                                        <small>13 ottobre</small>
-                                                    </div>
-                                                </div>
-                                                <div class="post-main">
-                                                    Consectetur adipisicing elit tempor magna aliqua!
-                                                </div>
-                                                <div class="post-article-title">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                                </div>
-                                                <div class="post-media post-media-title">
-                                                    <img src="img/post/sport/1.jpg">
-                                                </div>
-                                                <div class="post-action">
-                                                    <div class="action-go">
-                                                        <div class="action icon">
-                                                            <span class="icon-like"></span> 23
-                                                        </div>
-                                                        <div class="action icon">
-                                                            <span class="icon-comment"></span> 12
-                                                        </div>
-                                                    </div>
-                                                    <div class="action-do">
-                                                        <div class="action">
-                                                            Commenta
-                                                        </div>
-                                                        <div class="action">
-                                                            Condividi
-                                                        </div>
-                                                        <div class="action extended-action">
-                                                            <i class="fa fa-ellipsis-h"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </article>
-
-                                            <article class="post">
-                                                <div class="post-header">
-                                                    <div class="avatar" style="background-image:url('img/avatar/corriere.png')">
-                                                        &nbsp;
-                                                    </div>
-                                                    <div class="channel">
-                                                        <h2>Corriere di Savigliano</h2>
-                                                        <small>13 ottobre</small>
-                                                    </div>
-                                                </div>
-                                                <div class="post-main">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                </div>
-                                                <div class="post-media">
-                                                    <img src="img/post/eventi/1.jpg">
-                                                </div>
-                                                <div class="post-action">
-                                                    <div class="action-go">
-                                                        <div class="action icon">
-                                                            <span class="icon-like"></span> 23
-                                                        </div>
-                                                        <div class="action icon">
-                                                            <span class="icon-comment"></span> 12
-                                                        </div>
-                                                    </div>
-                                                    <div class="action-do">
-                                                        <div class="action">
-                                                            Commenta
-                                                        </div>
-                                                        <div class="action">
-                                                            Condividi
-                                                        </div>
-                                                        <div class="action extended-action">
-                                                            <i class="fa fa-ellipsis-h"></i>
+                                                            <!--<i class="fa fa-ellipsis-h"></i>-->
+                                                            <span class="color-green font-bold font-normal" style="font-size:10pt;">AGGIUNGI A EDIZIONE</span>
                                                         </div>
                                                     </div>
                                                 </div>

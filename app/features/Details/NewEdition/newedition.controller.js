@@ -3,17 +3,24 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewEditionController.$inject = ['$state', 'AdminService', 'ChannelService', 'CategoryService', 'MediaService', '$sce', 'UtilService'];
+  NewEditionController.$inject = ['$state', 'AdminService', 'ChannelService', 'CategoryService', '$q', '$sce', 'UtilService', 'ArticleService'];
   controllers.controller('NewEditionController', NewEditionController);
 
-  function NewEditionController($state, AdminService, ChannelService, CategoryService, MediaService, $sce, UtilService){
+  function NewEditionController($state, AdminService, ChannelService, CategoryService, $q, $sce, UtilService, ArticleService){
 
     var _this = this;
     _this.user = AdminService.user;
     _this.city = AdminService.user.citySelected();
+    _this.channelService = ChannelService;
+    _this.categoryService = CategoryService;
+
     _this.current_state = $state.current;
     _this.aToAdd = '';
+
     _this.categories = [];
+    _this.articles = [];
+    _this.channels = [];
+
     _this.channelSelected = {};
     _this.categorySelected = {};
     _this.categoryToBe = {};
@@ -38,7 +45,7 @@
     _this.delete = _delete;
     _this.getMediaUrl = _getMediaUrl;
 
-    _getChannels();
+    //_getChannels();
     /**
      * Save channel
      * @private
@@ -147,6 +154,8 @@
      */
     function _getChannels(){
 
+      var defer = $q.defer();
+
       ChannelService
         .get()
         .then(
@@ -164,11 +173,16 @@
             }else{
               _this.channelSelected = _this.channels[0];
             }
+
+            defer.resolve();
           },
           function(){
             console.error("ERROR GETTING CHANNELS");
+            defer.reject();
           }
         );
+
+      return defer.promise;
     }
 
     function _initializeCollections(){
@@ -187,7 +201,16 @@
           }
         );
 
-      _getChannels();
+      _getChannels()
+        .then(function(){
+
+          if(AdminService.user.isRedazione()){
+            _getArticles();
+          }else{
+            _getArticles({id_channel: AdminService.user.channelId()});
+          }
+
+        }, function(){});
 
       /*
       if(AdminService.user.isRedazione()){
@@ -198,6 +221,23 @@
       */
 
     }
+
+    function _getArticles(filters){
+
+      ArticleService
+        .get(filters || {})
+        .then(
+          function(results){
+            _this.articles = ArticleService.toArray();
+            //_this.options.pager.count = Math.ceil(_this.articles.length / _this.options.pager.limit);
+          },
+          function(){
+            console.error("ERROR GETTING ARTICLES");
+          }
+        );
+
+    }
+
 
 
   }

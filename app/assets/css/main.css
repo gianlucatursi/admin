@@ -3657,7 +3657,7 @@ div[toast].ng-leave.ng-leave-active {
   margin: 0;
   padding: 0;
   border: 0;
-  font: inherit;
+  /*font: inherit;*/
   font-size: 100%;
   vertical-align: baseline;
 }
@@ -3710,14 +3710,14 @@ div[toast].ng-leave.ng-leave-active {
 }
 @font-face {
   font-family: 'icomoon';
-  src: url("../img/fonts/icomoon.eot?qd7bp9");
-  src: url("../img/fonts/icomoon.eot?qd7bp9#iefix") format("embedded-opentype"), url("../img/fonts/icomoon.ttf?qd7bp9") format("truetype"), url("../img/fonts/icomoon.woff?qd7bp9") format("woff"), url("../img/fonts/icomoon.svg?qd7bp9#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?qd7bp9");
+  src: url("../fonts/icomoon.eot?qd7bp9#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?qd7bp9") format("truetype"), url("../fonts/icomoon.woff?qd7bp9") format("woff"), url("../fonts/icomoon.svg?qd7bp9#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 #editionDetail [class^="icon-"],
 #editionDetail [class*=" icon-"] {
-  font-family: 'icomoon' !important;
+  font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -3879,7 +3879,7 @@ div[toast].ng-leave.ng-leave-active {
 #editionDetail #top-bar .titolo {
   font-size: 21px;
   color: white;
-  font-family: 'Roboto Slab', serif;
+  font-family: RobotoSlabBold, serif;
   font-weight: 300;
 }
 #editionDetail #top-bar .selettore {
@@ -3958,6 +3958,8 @@ div[toast].ng-leave.ng-leave-active {
   padding-bottom: 80px;
   position: relative;
   top: 0;
+  max-height: 800px;
+  overflow-y: auto;
 }
 #editionDetail .container {
   position: relative;
@@ -4240,7 +4242,7 @@ div[toast].ng-leave.ng-leave-active {
   width: auto;
   padding: 6px 8px;
   color: #24C40D;
-  border: 1px solid #24C40D;
+  border: 1px solid #09b25e;
   border-radius: 8px;
   margin-top: 12px;
 }

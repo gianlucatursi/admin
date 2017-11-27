@@ -1,4 +1,5 @@
 @import "colors";
+@import "fonts";
 
 #editionDetail {
 
@@ -6,7 +7,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin: 0;
     padding: 0;
     border: 0;
-    font: inherit;
+    /*font: inherit;*/
     font-size: 100%;
     vertical-align: baseline
 }
@@ -48,15 +49,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 @font-face {
+
     font-family: 'icomoon';
-    src: url("../img/fonts/icomoon.eot?qd7bp9");
-    src: url("../img/fonts/icomoon.eot?qd7bp9#iefix") format("embedded-opentype"), url("../img/fonts/icomoon.ttf?qd7bp9") format("truetype"), url("../img/fonts/icomoon.woff?qd7bp9") format("woff"), url("../img/fonts/icomoon.svg?qd7bp9#icomoon") format("svg");
+    src: url("../fonts/icomoon.eot?qd7bp9");
+    src: url("../fonts/icomoon.eot?qd7bp9#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?qd7bp9") format("truetype"), url("../fonts/icomoon.woff?qd7bp9") format("woff"), url("../fonts/icomoon.svg?qd7bp9#icomoon") format("svg");
     font-weight: normal;
     font-style: normal
 }
 
 [class^="icon-"], [class*=" icon-"] {
-    font-family: 'icomoon' !important;
+    font-family: 'icomoon';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -259,7 +261,7 @@ b {
 #top-bar .titolo {
     font-size: 21px;
     color: white;
-    font-family: 'Roboto Slab', serif;
+    font-family: RobotoSlabBold, serif;
     font-weight: 300
 }
 
@@ -347,7 +349,9 @@ b {
     background: white;
     padding-bottom: 80px;
     position: relative;
-    top: 0
+    top: 0;
+    max-height:800px;
+    overflow-y: auto;
 }
 
 .container {
@@ -683,7 +687,7 @@ b {
     width: auto;
     padding: 6px 8px;
     color: @green;
-    border: 1px solid @green;
+    border: 1px solid #09b25e;
     border-radius: 8px;
     margin-top: 12px
 }
