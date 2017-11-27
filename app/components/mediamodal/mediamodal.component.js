@@ -153,7 +153,7 @@
        var uploader = new VimeoUpload({
 
          name: _scope.channelUploadSelected.ds_name  + " " + (new Date()).toISOString(),
-         description: 'vimeo description',
+         description: '' + new Date() +"",
          file: file,
          private: true,
          token: '034ea8145a609e99ee0d9f01e8ab4b73',

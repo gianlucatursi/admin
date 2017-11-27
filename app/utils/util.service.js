@@ -10,6 +10,10 @@
 
     var _this = this;
 
+    _this.options = {
+      newEditionDate :null
+    };
+
     _this.generatePassword = _genPSW;
     _this.uploadImageUrl = _uploadImageUrl;
     _this.imageUrl = _imageUrl;

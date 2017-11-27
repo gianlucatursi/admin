@@ -15,8 +15,8 @@
             <div class="row no-padding">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                     <div class="form-group row">
-                        <p class="font-xxl color-black" for="name_new_channel">Edizione del TODO</p>
-                        <p class="font-small color-mid-grey">On-line fra TODO</p>
+                        <p class="font-xxl color-black" for="name_new_channel">{{newedition.current.ds_title}}</p>
+                        <!--<p class="font-small color-mid-grey">On-line fra TODO</p>-->
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                             <div class="form-group">
                                                 <label class="font-small color-grey">CANALI</label>
-                                                <ui-select class="community-ui-select" ng-model="newedition.channelSelected">
+                                                <ui-select class="community-ui-select" ng-model="newedition.channelSelected" ng-change="newedition.onChangedChannel()">
                                                     <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
                                                     <ui-select-choices repeat="channel in newedition.channels | filter: $select.search track by $index">
                                                         <span ng-bind="channel.ds_name"></span>
@@ -50,7 +50,7 @@
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                             <div class="form-group">
                                                 <label class="font-small color-grey">PERIODO</label>
-                                                <ui-select class="community-ui-select" ng-model="newedition.periodoSelected">
+                                                <ui-select class="community-ui-select" ng-model="newedition.periodoSelected" ng-change="newedition.onChangedPeriodo()">
                                                     <ui-select-match placeholder="Seleziona...">{{$select.selected}}</ui-select-match>
                                                     <ui-select-choices repeat="per in newedition.periodi | filter: $select.search track by $index">
                                                         <span ng-bind="per"></span>
@@ -61,7 +61,7 @@
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                             <div class="form-group">
                                                 <label class="font-small color-grey">CATEGORIA</label>
-                                                <ui-select class="community-ui-select" ng-model="newedition.categorySelected">
+                                                <ui-select class="community-ui-select" ng-model="newedition.categorySelected" ng-change="newedition.onChangedCategory()">
                                                     <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
                                                     <ui-select-choices repeat="cat in newedition.categories | filter: $select.search track by $index">
                                                         <span ng-bind="cat.ds_name"></span>
@@ -73,7 +73,7 @@
                                     <br/>
                                     <div class="edition-red-line"></div>
                                     <br/>
-                                    <div class="row" id="editionDetail">
+                                    <div class="row editionDetail">
                                         <main class="post-wrap pwa">
                                             <article class="post" ng-repeat="article in newedition.articles" ng-init="article.myChannel = newedition.channelService.byId(article.channelId())">
                                                 <div class="post-header">
@@ -94,7 +94,7 @@
                                                 </div>
                                                 <div class="post-media">
                                                     <img ng-if="article.coverMedia() && article.coverMedia().type == 'IMAGE'" src="{{article.coverUrl()}}">
-                                                    <embed-video ng-if="article.coverMedia() && article.coverMedia().type == 'VIDEO'" controls="0" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo1" ng-href="{{article.coverUrl()}}"></embed-video>
+                                                    <embed-video ng-if="article.coverMedia() && article.coverMedia().type == 'VIDEO'" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo1" ng-href="{{article.coverUrl()}}"></embed-video>
                                                 </div>
                                                 <div class="post-action">
                                                     <div class="action-go">
@@ -106,7 +106,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="action-do">
-                                                        <div class="action extended-action">
+                                                        <div class="action extended-action" ng-click="newedition.aggiungiAEdizione(article)">
                                                             <!--<i class="fa fa-ellipsis-h"></i>-->
                                                             <span class="color-green font-bold font-normal" style="font-size:10pt;">AGGIUNGI A EDIZIONE</span>
                                                         </div>
@@ -131,7 +131,7 @@
                                                 <label class="font-small color-grey">ASSOCIA A CATEGORIA</label>
                                                 <ui-select class="community-ui-select" ng-model="newedition.categoryToBe">
                                                     <ui-select-match placeholder="Seleziona...">{{$select.selected.ds_name}}</ui-select-match>
-                                                    <ui-select-choices repeat="cat in newedition.categories | filter: $select.search track by $index">
+                                                    <ui-select-choices repeat="cat in newedition.categoriesToBe | filter: $select.search track by $index">
                                                         <span ng-bind="cat.ds_name"></span>
                                                     </ui-select-choices>
                                                 </ui-select>
@@ -144,7 +144,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                             <div class="form-group">
-                                                <p class="font-normal color-grey">1 post in questa categoria</p>
+                                                <p ng-if="newedition.categoryToBe" class="font-normal color-grey">{{newedition.articleByCategory[newedition.categoryToBe._id].articles.length}} post in questa categoria</p>
                                             </div>
                                         </div>
 
@@ -153,14 +153,14 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                             <div class="form-group">
-                                                <p class="font-normal color-grey">13 post in Edizione</p>
+                                                <p class="font-normal color-grey">{{newedition.allPosts()}} post in Edizione</p>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                             <div class="form-group">
                                                 <p class="font-normal color-grey" style="text-align: right">
-                                                    <span class="lsf font-medium color-orange">star</span>&nbsp; 3 post in Copertina
+                                                    <span class="lsf font-medium color-orange">star</span>&nbsp; {{newedition.options.cover.length}} post in Copertina
                                                 </p>
                                             </div>
                                         </div>
@@ -171,6 +171,52 @@
                                     <div class="edition-green-line"></div>
                                     <br/>
 
+                                    <div class="row editionDetail">
+                                        <main class="post-wrap pwa">
+                                            <article ng-if="newedition.categoryToBe" class="post" ng-init="article.myChannel = newedition.channelService.byId(article.channelId())"
+                                                     ng-repeat="article in newedition.articleByCategory[newedition.categoryToBe._id].articles">
+                                                <div class="post-header">
+                                                    <div class="avatar" style="background-image:url({{article.myChannel.iconImageUrl()}})">
+                                                        &nbsp;
+                                                    </div>
+                                                    <div class="channel">
+                                                        <h2>{{article.myChannel.name()}}</h2>
+                                                        <small>{{article.authorName()}} - {{article.publishDate() | date : 'dd/MM/yyyy'}}</small>
+                                                    </div>
+                                                </div>
+                                                <div class="post-main">
+                                                    {{article.abstract()}}
+                                                </div>
+                                                <div ng-if="article.title()" class="post-article-title roboto-slab-bold">
+                                                    {{article.title() | limitTo: 30}}
+                                                    <i class="glyphicon glyphicon-chevron-right pull-right color-grey"></i>
+                                                </div>
+                                                <div class="post-media">
+                                                    <img ng-if="article.coverMedia() && article.coverMedia().type == 'IMAGE'" src="{{article.coverUrl()}}">
+                                                    <embed-video ng-if="article.coverMedia() && article.coverMedia().type == 'VIDEO'" controls="0" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo1" ng-href="{{article.coverUrl()}}"></embed-video>
+                                                </div>
+                                                <div class="post-action">
+                                                    <div class="action-go">
+                                                        <!--
+                                                        <div class="action icon">
+                                                            <span class="icon-like"></span> {{article.likeCount()}}
+                                                        </div>
+                                                        <div class="action icon">
+                                                            <span class="icon-comment"></span> {{article.commentsCount()}}
+                                                        </div>
+                                                        -->
+                                                    </div>
+                                                    <div class="action-do">
+                                                        <div class="action extended-action" ng-click="newedition.deleteFromCategory(article)">
+                                                            <!--<i class="fa fa-ellipsis-h"></i>-->
+                                                            <span class="color-red font-bold font-normal" style="font-size:10pt;">RIMUOVI</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+
+                                        </main>
+                                    </div>
                                 </div>
                             </div>
                         </div>

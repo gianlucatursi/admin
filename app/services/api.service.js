@@ -49,6 +49,8 @@
       edizioni: {
         get: _customRequest.bind(null, 'alleditions'),
         getByDay: _customRequest.bind(null, 'todayedition'),
+        create: _customRequest.bind(null, 'edition'),
+        update: _customRequest.bind(null, 'edition/:id')
       },
       media: {
         get: _customRequest.bind(null, 'media'),

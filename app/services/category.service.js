@@ -40,11 +40,16 @@
      * Get city list
      * @private
      */
-    function _get(){
+    function _get(noAll){
       var defer = $q.defer();
 
       if(_that.options.loaded){
-        defer.resolve(_that.list);
+        if(noAll == true){
+          defer.resolve(_that.listNoAll);
+        }else{
+          defer.resolve(_that.list);
+        }
+
         return defer.promise;
       }
 
@@ -61,7 +66,13 @@
                 _that.listNoAll.push(val);
               }
             });
-            defer.resolve(_that.list);
+
+            if(noAll == true){
+              defer.resolve(_that.listNoAll);
+            }else{
+              defer.resolve(_that.list);
+            }
+
           },
           function(error){
             defer.reject(new Error("CATEGORIES FAILED"));

@@ -3,7 +3,7 @@
 
   var services = angular.module('Smart.services');
 
-  EdizioniService.$inject = ['Restangular', 'EdizioneModel', 'AdminService', '$q', 'API'];
+  EdizioniService.$inject = ['Restangular', 'EdizioneModel', 'AdminService', '$q', 'API', 'toastr'];
   services.service('EdizioniService', EdizioniService);
 
   /**
@@ -14,7 +14,7 @@
    * @param $q
    * @param API
    */
-  function EdizioniService(Restangular, EdizioneModel, AdminService, $q, API) {
+  function EdizioniService(Restangular, EdizioneModel, AdminService, $q, API, toastr) {
 
     var edizioni = {};
     var _that = this;
@@ -33,6 +33,10 @@
     _that.local  = _local;
     _that.selected = _getSelected;
     _that.toArray = _toArray;
+
+    _that.validate = _validateEdition;
+    _that.create = _createEdition;
+    _that.update = _updateEdition;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -160,6 +164,94 @@
 
       return list;
     }
+
+
+
+    function _validateEdition(){
+      return true;
+    }
+
+    function _createEdition(edition){
+
+      var _this = this;
+      var defer = $q.defer();
+
+      var toCreate = {
+        "ds_title" : edition.ds_title,
+        "dt_edition": edition.dt_edition,
+        "id_city": AdminService.user.cityId(),
+        "cover": edition.cover,
+        "articles": edition.articles,
+        "authorized": edition.authorized == true ? true : false
+      };
+
+      _this.isWorking = true;
+
+      Restangular
+        .one(API.edizioni.create())
+        .customPOST(toCreate)
+        .then(function(success){
+          // get new channels
+          toastr.success('La nuova edizione è stato salvata');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+
+          defer.resolve();
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Salva edizione', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+
+    }
+
+    function  _updateEdition(toUpdate, data){
+
+      var defer = $q.defer();
+      var _this = this;
+
+      Restangular
+        .one(API.edizioni.update({id: toUpdate}))
+        .customPUT(data)
+        .then(function(success){
+          // get new channels
+          toastr.success('L\'edizione è stata aggiornata');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+
+          defer.resolve();
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Aggiorna edizione', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+    }
+
+
     /** return service **/
     return this;
 
