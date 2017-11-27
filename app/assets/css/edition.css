@@ -1,3 +1,45 @@
+.color-orange {
+  color: #F3BD3B;
+}
+.color-grey {
+  color: #7C7C7C;
+}
+.color-day-text-grey {
+  color: #939393;
+}
+.color-black {
+  color: black;
+}
+.color-mid-grey {
+  color: #939393;
+}
+.color-light-grey {
+  color: #E5E5E5;
+}
+.color-blue {
+  color: #48AACC;
+}
+.color-smart {
+  color: #D33352;
+}
+.color-red {
+  color: #E62726;
+}
+.color-green {
+  color: #24C40D;
+}
+.bgcolor-smart {
+  background-color: #D33352;
+}
+.bgcolor-grey {
+  background-color: #7C7C7C;
+}
+.bgcolor-light-grey {
+  background-color: #E5E5E5;
+}
+.bgcolor-mid-grey {
+  background-color: #939393;
+}
 #editionDetail html,
 #editionDetail body,
 #editionDetail div,
@@ -282,7 +324,7 @@
   fill: #e58597;
 }
 #editionDetail .logo .cls-2 {
-  fill: #d33352;
+  fill: #D33352;
 }
 #editionDetail .logo .cls-3 {
   fill: #6c1728;
@@ -664,8 +706,8 @@
   display: inline-block;
   width: auto;
   padding: 6px 8px;
-  color: #09b25e;
-  border: 1px solid #09b25e;
+  color: #24C40D;
+  border: 1px solid #24C40D;
   border-radius: 8px;
   margin-top: 12px;
 }
@@ -677,7 +719,7 @@
   display: none;
 }
 #editionDetail .follow a.active {
-  background: #09b25e;
+  background: #24C40D;
   color: white;
 }
 #editionDetail .follow a.active:after {

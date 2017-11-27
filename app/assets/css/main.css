@@ -3,7 +3,7 @@
   color: #F3BD3B;
 }
 .color-grey {
-  color: #808080;
+  color: #7C7C7C;
 }
 .color-day-text-grey {
   color: #939393;
@@ -21,7 +21,7 @@
   color: #48AACC;
 }
 .color-smart {
-  color: #D93E5F;
+  color: #D33352;
 }
 .color-red {
   color: #E62726;
@@ -30,10 +30,10 @@
   color: #24C40D;
 }
 .bgcolor-smart {
-  background-color: #D93E5F;
+  background-color: #D33352;
 }
 .bgcolor-grey {
-  background-color: #808080;
+  background-color: #7C7C7C;
 }
 .bgcolor-light-grey {
   background-color: #E5E5E5;
@@ -3141,7 +3141,7 @@ http://kudakurage.com/ligature_symbols/
 }
 #new_channel .nav-tabs > li > a {
   font-size: 13px;
-  color: #808080;
+  color: #7C7C7C;
   font-weight: bold;
   height: 50px;
   padding-top: 0;
@@ -3857,7 +3857,7 @@ div[toast].ng-leave.ng-leave-active {
   fill: #e58597;
 }
 #editionDetail .logo .cls-2 {
-  fill: #d33352;
+  fill: #D33352;
 }
 #editionDetail .logo .cls-3 {
   fill: #6c1728;
@@ -4239,8 +4239,8 @@ div[toast].ng-leave.ng-leave-active {
   display: inline-block;
   width: auto;
   padding: 6px 8px;
-  color: #09b25e;
-  border: 1px solid #09b25e;
+  color: #24C40D;
+  border: 1px solid #24C40D;
   border-radius: 8px;
   margin-top: 12px;
 }
@@ -4252,7 +4252,7 @@ div[toast].ng-leave.ng-leave-active {
   display: none;
 }
 #editionDetail .follow a.active {
-  background: #09b25e;
+  background: #24C40D;
   color: white;
 }
 #editionDetail .follow a.active:after {
@@ -4564,7 +4564,7 @@ html {
 #login .subtitle,
 #choose_city .subtitle {
   font-family: Roboto;
-  color: #808080;
+  color: #7C7C7C;
 }
 #login .login_form,
 #choose_city .login_form {
@@ -4583,7 +4583,7 @@ html {
 }
 #login .font-title,
 #choose_city .font-title {
-  color: #808080;
+  color: #7C7C7C;
   font-size: 28pt;
 }
 .no-padding {
@@ -4616,7 +4616,7 @@ form.communityform .titleform {
   font-family: RobotoBold;
 }
 form.communityform .form-group label {
-  color: #808080;
+  color: #7C7C7C;
   font-family: RobotoLight;
   font-size: 12px;
 }
@@ -4855,18 +4855,18 @@ form.communityform .community-control:hover {
   font-family: RobotoBold !important;
   font-weight: 500;
   background-color: white;
-  border: 1px solid #808080;
+  border: 1px solid #7C7C7C;
   border-radius: 5px;
-  color: #808080;
+  color: #7C7C7C;
   font-size: 16px;
   padding: 10px 15px;
 }
 .btn-grey-icon:hover,
 .btn-grey-icon:focus,
 .btn-grey-icon:active {
-  border: 1px solid #808080 !important;
+  border: 1px solid #7C7C7C !important;
   border-radius: 5px;
-  color: #808080 !important;
+  color: #7C7C7C !important;
 }
 .community_link {
   color: #939393;
@@ -5095,7 +5095,7 @@ textarea {
 #dashboard .btn-transparent {
   border: 1px solid rgba(255, 255, 255, 0);
   background-color: rgba(255, 255, 255, 0);
-  color: #808080;
+  color: #7C7C7C;
   font-weight: bold;
 }
 #dashboard .width-25px {
@@ -5153,7 +5153,7 @@ textarea {
 #commenti .btn-transparent {
   border: 1px solid rgba(255, 255, 255, 0);
   background-color: rgba(255, 255, 255, 0);
-  color: #808080;
+  color: #7C7C7C;
   font-weight: bold;
 }
 #commenti .width-25px {
@@ -5334,4 +5334,12 @@ textarea {
 }
 .border-edition {
   border: 1px solid #CCCCCC;
+}
+.edition-green-line {
+  height: 4px;
+  background-color: #24C40D;
+}
+.edition-red-line {
+  height: 4px;
+  background-color: #D93E5F;
 }
