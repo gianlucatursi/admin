@@ -437,7 +437,7 @@
 
     function _addDate(){
 
-      _this.current.event.place = _this.options.event.place;
+      //_this.current.event.place = _this.options.event.place;
       /**
        * at the end!
       if(!_this.current.event.dates){
