@@ -522,6 +522,14 @@
 
     function _changeCategoryArticle(article){
 
+      _.each(_this.articleByCategory, function(element){
+
+        if(element && element.articles){
+          element.articles = _.without(element.articles, _.find(element.articles, {_id:article._id}));
+        }
+
+      });
+
       article.id_category = _this.categoryToBe._id;
 
       ArticleService
