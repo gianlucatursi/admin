@@ -92,7 +92,7 @@
                                                     {{article.title() | limitTo: 30}}
                                                     <i class="glyphicon glyphicon-chevron-right pull-right color-grey"></i>
                                                 </div>
-                                                <div class="post-media">
+                                                <div class="post-media" ng-if="article.coverMedia()">
                                                     <img ng-if="article.coverMedia() && article.coverMedia().type == 'IMAGE'" src="{{article.coverUrl()}}">
                                                     <embed-video ng-if="article.coverMedia() && article.coverMedia().type == 'VIDEO'" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo1" ng-href="{{article.coverUrl()}}"></embed-video>
                                                 </div>
@@ -160,7 +160,7 @@
                                         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                             <div class="form-group">
                                                 <p class="font-normal color-grey" style="text-align: right">
-                                                    <span class="lsf font-medium color-orange">star</span>&nbsp; {{newedition.options.cover.length}} post in Copertina
+                                                    <span class="lsf font-medium color-orange">star</span>&nbsp; {{newedition.coverArticles.length}} post in Copertina
                                                 </p>
                                             </div>
                                         </div>
@@ -191,20 +191,30 @@
                                                     {{article.title() | limitTo: 30}}
                                                     <i class="glyphicon glyphicon-chevron-right pull-right color-grey"></i>
                                                 </div>
-                                                <div class="post-media">
+                                                <div class="post-media" ng-if="article.coverMedia()">
                                                     <img ng-if="article.coverMedia() && article.coverMedia().type == 'IMAGE'" src="{{article.coverUrl()}}">
                                                     <embed-video ng-if="article.coverMedia() && article.coverMedia().type == 'VIDEO'" controls="0" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo1" ng-href="{{article.coverUrl()}}"></embed-video>
                                                 </div>
                                                 <div class="post-action">
                                                     <div class="action-go">
-                                                        <!--
+
                                                         <div class="action icon">
-                                                            <span class="icon-like"></span> {{article.likeCount()}}
+                                                            <img ng-if="!newedition.isCover(article._id)" ng-click="newedition.addCover(article)" src="app/assets/images/star_outline_icon.png" class="pointer" style="width: 20px"/>
+                                                            <img ng-if="newedition.isCover(article._id)" ng-click="newedition.removeCover(article)" src="app/assets/images/star_full_icon.png" class="pointer" style="width: 20px"/>
                                                         </div>
                                                         <div class="action icon">
-                                                            <span class="icon-comment"></span> {{article.commentsCount()}}
+                                                            <img src="app/assets/images/double_arrowup_grey_icon.png" ng-click="newedition.forceUp($index)" class="pointer" style="width: 15px"/>
                                                         </div>
-                                                        -->
+                                                        <div class="action icon">
+                                                            <img src="app/assets/images/arrow_up_grey_icon.png" ng-click="newedition.singleUp($index)" class="pointer" style="width: 20px"/>
+                                                        </div>
+                                                        <div class="action icon">
+                                                            <img src="app/assets/images/arrow_down_grey_icon.png" ng-click="newedition.singleDown($index)" class="pointer" style="width: 20px"/>
+                                                        </div>
+                                                        <div class="action icon">
+                                                            <img src="app/assets/images/double_arrowdown_grey_icon.png" ng-click="newedition.forceDown($index)" class="pointer" style="width: 15px"/>
+                                                        </div>
+
                                                     </div>
                                                     <div class="action-do">
                                                         <div class="action extended-action" ng-click="newedition.deleteFromCategory(article)">

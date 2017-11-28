@@ -95,7 +95,7 @@
         .customPOST(toCreate)
         .then(function(success){
           // get new channels
-          toastr.success('Il nuovo articolo è stato salvato');
+          toastr.success('L\' articolo è stato salvato');
           _this.get()
             .then(
               function(){
@@ -125,12 +125,15 @@
       var defer = $q.defer();
       var _this = this;
 
+      delete data.isNew;
+      delete data.isReported;
+
       Restangular
         .one(API.articles.update({id: toUpdate}))
         .customPUT(data)
         .then(function(success){
           // get new channels
-          toastr.success('Il nuovo articolo è stato aggiornato');
+          toastr.success('L\' articolo è stato aggiornato');
           _this.get()
             .then(
               function(){
@@ -207,6 +210,10 @@
 
       if(options.id_category){
         filters.id_category = options.id_category;
+      }
+
+      if(options.is_published){
+        filters.is_published = options.is_published;
       }
 
       if(options.id_channel){

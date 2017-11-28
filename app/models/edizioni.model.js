@@ -63,7 +63,12 @@
      * @private
      */
     function _postNumber(){
-      return (this.articles || []).length;
+      var sum = 0;
+      sum += _.reduce((this.articles || []), function(memo, elem){
+          return memo + (elem.ids || []).length;
+      }, 0);
+
+      return sum;
     }
 
     /**

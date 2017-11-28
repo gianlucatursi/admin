@@ -96,6 +96,9 @@
       var defer = $q.defer();
       var _this = this;
 
+      delete data.isNew;
+      delete data.isReported;
+
       Restangular
         .one(API.articles.update({id: _this.identifier()}))
         .customPUT(data).then(

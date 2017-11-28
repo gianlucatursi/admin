@@ -3,10 +3,10 @@
 
   var controllers = angular.module('Smart.controllers');
 
-  NewEditionController.$inject = ['$state', 'AdminService', 'ChannelService', 'CategoryService', '$q', '$sce', 'UtilService', 'ArticleService', 'EdizioniService'];
+  NewEditionController.$inject = ['$state', 'AdminService', 'ChannelService', 'CategoryService', '$q', '$sce', 'UtilService', 'ArticleService', 'EdizioniService', 'toastr'];
   controllers.controller('NewEditionController', NewEditionController);
 
-  function NewEditionController($state, AdminService, ChannelService, CategoryService, $q, $sce, UtilService, ArticleService, EdizioniService){
+  function NewEditionController($state, AdminService, ChannelService, CategoryService, $q, $sce, UtilService, ArticleService, EdizioniService, toastr){
 
     var _this = this;
     _this.user = AdminService.user;
@@ -70,6 +70,14 @@
 
     _this.allPosts = _allPosts;
 
+    _this.isCover = _isCover;
+    _this.addCover = _addCover;
+    _this.removeCover = _removeCover;
+    _this.singleUp = _singleUp;
+    _this.singleDown = _singleDown;
+    _this.forceUp = _foceUp;
+    _this.forceDown = _foceDown;
+
     /*
     {
       cover: ["5a142c5f687be736244f303b"],
@@ -88,6 +96,8 @@
     function _save(){
 
       var __articlesToSend = [];
+      var __articlesToCover = [];
+
       _.each(_this.articleByCategory, function(elem){
         if('articles' in elem && elem.articles.length > 0){
           __articlesToSend.push({
@@ -97,10 +107,14 @@
         }
       });
 
+      _.each(_this.coverArticles, function(elem){
+        __articlesToCover.push(elem._id);
+      });
+
       if(EdizioniService.validate(_this.current, _this.current.isNew)){
 
         _this.current.articles = __articlesToSend;
-        _this.current.cover = _this.coverArticles;
+        _this.current.cover = __articlesToCover;
 
         //valid
         if(_this.current.isNew){
@@ -186,6 +200,7 @@
       //channelToEdit.articles
       _this.current = {
         isNew: false,
+        _id: channelToEdit._id,
         ds_title: channelToEdit.ds_title,
         dt_edition: channelToEdit.dt_edition,
         articles: [],
@@ -248,7 +263,7 @@
 
     /**
      * Delete from category
-     * @param _id
+     * @param article
      * @private
      */
     function _deleteFromCategory(article){
@@ -257,6 +272,7 @@
       }
 
       _this.articleByCategory[_this.categoryToBe._id].articles = _.without(_this.articleByCategory[_this.categoryToBe._id].articles, article);
+      _this.coverArticles = _.without(_this.coverArticles, article);
 
     }
 
@@ -272,6 +288,7 @@
           var r = confirm("Stai cercando di inserire l'articolo in un'atra categoria. Vuoi proseguire?");
           if (r == true) {
             //change category article
+            _changeCategoryArticle(article);
           } else {
             // don't add
             return;
@@ -292,6 +309,58 @@
           return memo + (category.articles || []).length;
       }, 0);
     }
+
+
+    function _isCover(_id){
+      return _.some(_this.coverArticles, {_id: _id});
+    }
+
+    function _addCover(article){
+      if(!_isCover(article._id)){
+        _this.coverArticles.push(article);
+      }
+    }
+
+    function _removeCover(article){
+      if(_isCover(article._id)){
+        _this.coverArticles = _.without(_this.coverArticles, article);
+      }
+    }
+
+    function _singleUp(_index){
+      if(_index == 0) return;
+
+      if(_this.articleByCategory[_this.categoryToBe._id]){
+        if(_this.articleByCategory[_this.categoryToBe._id].articles.length >= _index){
+          //
+          _this.articleByCategory[_this.categoryToBe._id].articles.move(_index, _index-1);
+        }
+      }
+    }
+
+    function _singleDown(_index){
+
+      if(_this.articleByCategory[_this.categoryToBe._id]){
+        if(_this.articleByCategory[_this.categoryToBe._id].articles.length > _index){
+          //
+          _this.articleByCategory[_this.categoryToBe._id].articles.move(_index, _index+1);
+        }
+      }
+    }
+
+    function _foceUp(_index){
+      if(_this.articleByCategory[_this.categoryToBe._id]){
+        _this.articleByCategory[_this.categoryToBe._id].articles.move(_index, 0);
+      }
+    }
+
+    function _foceDown(_index){
+      if(_this.articleByCategory[_this.categoryToBe._id]){
+        _this.articleByCategory[_this.categoryToBe._id].articles.move(_index, _this.articleByCategory[_this.categoryToBe._id].articles.length-1);
+      }
+    }
+
+    /*********** functions ***********/
 
     function _applyFilters(){
       //article
@@ -432,6 +501,9 @@
 
     function _getArticles(filters){
 
+      filters = filters || {};
+      filters.is_published = true;
+
       ArticleService
         .get(filters || {})
         .then(
@@ -448,7 +520,33 @@
 
     }
 
+    function _changeCategoryArticle(article){
 
+      article.id_category = _this.categoryToBe._id;
+
+      ArticleService
+        .update(article._id, article)
+        .then(
+          function(){
+            toastr.success('La categoria dell\'articolo è stata modificata', 'Aggiorna categoria');
+            _applyFilters();
+          },
+          function(){
+            toastr.error('Ops! Qualcosa è andato storto. La categoria non è stata modificata', 'Aggiorna categoria');
+          }
+        );
+    }
+
+    Array.prototype.move = function (old_index, new_index) {
+      if (new_index >= this.length) {
+        var k = new_index - this.length;
+        while ((k--) + 1) {
+          this.push(undefined);
+        }
+      }
+      this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+      return this; // for testing purposes
+    };
 
   }
 
