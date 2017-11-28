@@ -89,7 +89,7 @@
 
     $mdDateLocaleProvider.months = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
     $mdDateLocaleProvider.shortMonths = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
-    $mdDateLocaleProvider.days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoedì', 'Giovedì', 'Venerdì', 'Sabato'];
+    $mdDateLocaleProvider.days = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
     $mdDateLocaleProvider.shortDays = ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'];
 
     $mdDateLocaleProvider.msgCalendar = 'Calendario';

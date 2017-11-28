@@ -54,7 +54,7 @@
     Article.prototype.showAlertIcon = _showAlertIcon;
     Article.prototype.likeList = _likesList;
     Article.prototype.likeCount = _likesCount;
-    Article.prototype.views = _viewsCounter;
+    Article.prototype.viewsCounter = _viewsCounter;
     Article.prototype.isPublished = _isPublished;
     Article.prototype.showDetail = _showDetail;
 
@@ -331,7 +331,7 @@
      * @private
      */
     function _viewsCounter(){
-      return (this.views || []).length;
+      return this.views || 0;
     }
 
     function _isPublished(){
