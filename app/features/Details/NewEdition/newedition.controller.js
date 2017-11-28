@@ -48,10 +48,9 @@
 
     _initializeCollections();
 
-    var _initEditEdition = function(){};
+    var _initEdition = function(){};
 
     if($state.current == $state.ROUTING.modifica_edizione){
-      _initEditEdition = __initEditEdition;
       _initStatics(EdizioniService.byId($state.params.id));
     }else{
       // new channel
@@ -196,7 +195,7 @@
       //_initEditEdition.bind(channelToEdit);
       //fixme: da fare dopo get articles
       //_initEditEdition(channelToEdit);
-
+      _initEdition = __initEditEdition.bind(null, channelToEdit);
     }
 
     /**
@@ -439,6 +438,8 @@
           function(results){
             _this.articles = ArticleService.toArray();
             //_this.options.pager.count = Math.ceil(_this.articles.length / _this.options.pager.limit);
+            _initEdition();
+            _initEdition = function(){};
           },
           function(){
             console.error("ERROR GETTING ARTICLES");
