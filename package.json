@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postpublish": "npm install",
-    "test": "karma start",
+    "test": "karma start --single-run",
     "style": "grunt less:dev"
   },
   "author": "DigitalX",
