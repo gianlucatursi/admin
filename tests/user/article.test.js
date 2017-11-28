@@ -5,6 +5,27 @@
     var ArticleModel;
 
     beforeEach(angular.mock.module('Smart.models'));
+    beforeEach(angular.mock.module('Smart.services'));
+    beforeEach(angular.mock.module('Smart.directives'));
+    beforeEach(angular.mock.module('restangular'));
+    beforeEach(angular.mock.module('ui.router'));
+
+    var API, RESTANGULAR, STATE, UTILSSERVICE;
+    beforeEach(inject(function (_Restangular_) {
+      RESTANGULAR = _Restangular_;
+    }));
+
+    beforeEach(inject(function (_UtilService_) {
+      UTILSSERVICE = _UtilService_;
+    }));
+
+    beforeEach(inject(function (_$state_) {
+      STATE = _$state_;
+    }));
+
+    beforeEach(inject(function (_API_) {
+      API = _API_;
+    }));
 
     beforeEach(inject(function(_ArticleModel_) {
       ArticleModel = _ArticleModel_;

@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  ArticleModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL', '$state', 'UtilService', '$sce']; // 'Restangular', '$q', 'AuthServices'
+  ArticleModel.$inject = ['API', '$q', 'Restangular', '$state', 'UtilService', '$sce']; // 'Restangular', '$q', 'AuthServices'
   models.factory('ArticleModel', ArticleModel);
 
-  function ArticleModel(API, $q ,Restangular, IMAGE_BASEURL, $state, UtilService, $sce) { //Restangular, $q, API, Images, AuthServices
+  function ArticleModel(API, $q ,Restangular, $state, UtilService, $sce) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Article(articleData) {
@@ -286,10 +286,6 @@
      */
     function _galleryUrls(){
       var list = [];
-
-      _.each(this.image_gallery || [], function(img){
-        list.push(IMAGE_BASEURL + img)
-      });
 
       return list;
     }

@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  EdizioneModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL', '$state']; // 'Restangular', '$q', 'AuthServices'
+  EdizioneModel.$inject = ['API', '$q', 'Restangular', '$state']; // 'Restangular', '$q', 'AuthServices'
   models.factory('EdizioneModel', EdizioneModel);
 
-  function EdizioneModel(API, $q ,Restangular, IMAGE_BASEURL, $state) { //Restangular, $q, API, Images, AuthServices
+  function EdizioneModel(API, $q ,Restangular, $state) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Edizione(edizioneData) {

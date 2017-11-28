@@ -3,10 +3,10 @@
 
   var models = angular.module('Smart.models');
 
-  MediaModel.$inject = ['API', '$q', 'Restangular', 'IMAGE_BASEURL']; // 'Restangular', '$q', 'AuthServices'
+  MediaModel.$inject = ['API', '$q', 'Restangular']; // 'Restangular', '$q', 'AuthServices'
   models.factory('MediaModel', MediaModel);
 
-  function MediaModel(API, $q ,Restangular, IMAGE_BASEURL) { //Restangular, $q, API, Images, AuthServices
+  function MediaModel(API, $q ,Restangular) { //Restangular, $q, API, Images, AuthServices
 
     /////////// CONSTRUCTOR ///////////
     function Media(mediaData) {
