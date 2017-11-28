@@ -37,6 +37,7 @@
     _that.validate = _validateEdition;
     _that.create = _createEdition;
     _that.update = _updateEdition;
+    _that.delete = _deleteEdition;
 
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
@@ -251,6 +252,38 @@
       return defer.promise;
     }
 
+    function _deleteEdition(toUpdate){
+      var defer = $q.defer();
+      var _this = this;
+
+      Restangular
+        .one(API.edizioni.update({id: toUpdate}))
+        .customDELETE()
+        .then(function(success){
+          // get new channels
+          toastr.success('L\'edizione è stata eliminata');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+
+          defer.resolve();
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Elimina edizione', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+    }
 
     /** return service **/
     return this;

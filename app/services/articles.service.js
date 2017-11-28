@@ -52,6 +52,7 @@
     _that.validate = _validateArticle;
     _that.create = _createArticle;
     _that.update = _updateArticle;
+    _that.delete = _deleteArticle;
     //////////////////////////////////
     /////////// FUNCTIONS ////////////
     //////////////////////////////////
@@ -95,7 +96,7 @@
         .customPOST(toCreate)
         .then(function(success){
           // get new channels
-          toastr.success('L\' articolo è stato salvato');
+          toastr.success('L\ articolo è stato salvato');
           _this.get()
             .then(
               function(){
@@ -120,12 +121,20 @@
 
     }
 
-    function  _updateArticle(toUpdate, data){
+    function  _updateArticle(toUpdate, dataToUpdate){
 
       var defer = $q.defer();
       var _this = this;
 
+      var data = JSON.parse(JSON.stringify(dataToUpdate));
+
       delete data.isNew;
+      delete data.__toAlert;
+      delete data.__commentsList;
+      delete data.__commentsCount;
+      delete data.__reportedCount;
+      delete data.isWorking;
+      delete data.myChannel;
       delete data.isReported;
 
       Restangular
@@ -149,6 +158,40 @@
           defer.resolve();
         }, function(error){
           toastr.error('Ops! Qualcosa è andato storto. Controlla i dati inseriti', 'Aggiorna articolo', {closeButton: true});
+          _this.isWorking = false;
+          console.error(error);
+          defer.reject(error);
+        });
+
+      return defer.promise;
+    }
+
+    function _deleteArticle(toUpdate){
+
+      var defer = $q.defer();
+      var _this = this;
+
+      Restangular
+        .one(API.articles.update({id: toUpdate}))
+        .customDELETE()
+        .then(function(success){
+          // get new channels
+          toastr.success('L\' articolo è stato eliminato');
+          _this.get()
+            .then(
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              },
+              function(){
+                _this.isWorking = false;
+                defer.resolve();
+              }
+            );
+
+          defer.resolve();
+        }, function(error){
+          toastr.error('Ops! Qualcosa è andato storto', 'Elimina articolo', {closeButton: true});
           _this.isWorking = false;
           console.error(error);
           defer.reject(error);

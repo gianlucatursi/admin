@@ -59,6 +59,9 @@
 
     _this.saveDraft = _save;
     _this.delete = _delete;
+    _this.autorizza = _autorizza;
+    _this.convertiInBozza = _convertiInBozza;
+
     _this.getMediaUrl = _getMediaUrl;
 
     _this.onChangedChannel = _onChangedChannel;
@@ -93,7 +96,7 @@
      * Save channel
      * @private
      */
-    function _save(){
+    function _save(toAuth){
 
       var __articlesToSend = [];
       var __articlesToCover = [];
@@ -115,6 +118,12 @@
 
         _this.current.articles = __articlesToSend;
         _this.current.cover = __articlesToCover;
+
+        if(toAuth){
+          _this.current.authorized = true;
+        }else{
+          _this.current.authorized = false;
+        }
 
         //valid
         if(_this.current.isNew){
@@ -145,10 +154,10 @@
      */
     function _delete(){
 
-      ChannelService
+      EdizioniService
         .delete(_this.current._id)
         .then(function(){
-          $state.go($state.ROUTING.canali.name);
+          $state.go($state.ROUTING.edizioni.name);
         }, function(){});
 
     }
@@ -176,6 +185,7 @@
 
       _this.current = {
         isNew: true,
+        authorized: false,
         articles: [],
         cover: []
       };
@@ -203,6 +213,7 @@
         _id: channelToEdit._id,
         ds_title: channelToEdit.ds_title,
         dt_edition: channelToEdit.dt_edition,
+        authorized: channelToEdit.authorized,
         articles: [],
         cover: []
       };
@@ -247,6 +258,14 @@
       }else{
         return $sce.trustAsResourceUrl(media.video_url);
       }
+    }
+
+    function _autorizza(){
+      _save(true);
+    }
+
+    function _convertiInBozza(){
+      _save(false);
     }
 
     function _onChangedChannel(){

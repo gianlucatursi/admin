@@ -57,6 +57,8 @@
     _this.saveDraft = _saveDraft;
     _this.publish = _publish;
     _this.delete = _delete;
+    _this.covertToDraft = _covertToDraft;
+
     _this.stripHTMLCount = _stripHTMLCount;
     _this.clearAuthor = _clearAuthor;
     _this.addDate = _addDate;
@@ -169,7 +171,7 @@
      * Save channel
      * @private
      */
-    function _saveDraft(toPublish, toDate){
+    function _saveDraft(toPublish, toDate, toDraft){
 
       if(!_this.options.channelSelected){
 
@@ -199,6 +201,11 @@
 
         if(toPublish){
           _this.current.dt_publication_date = toDate;
+        }
+
+        if(toDraft){
+          _this.current.dt_publication_date = null;
+          _this.current.is_published = false;
         }
 
         if(_this.imagesOptions.cover){
@@ -297,15 +304,16 @@
      */
     function _delete(){
 
-      /*
        ArticleService
         .delete(_this.current._id)
         .then(function(){
-          $state.go($state.ROUTING.canali.name);
+          $state.go($state.ROUTING.contenuti.name);
         }, function(){});
-      */
     }
 
+    function _covertToDraft(){
+      _saveDraft(false, null, true);
+    }
     /**
      * Init new channel
      * @private

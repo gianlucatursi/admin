@@ -240,21 +240,23 @@
     <!-------- END --------->
     <div class="row" style="margin-top: 70px">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-            <button class="btn btn-delete-settings" ng-if="!newedition.current.isNew">CESTINA</button>
-            <button class="btn btn-block-settings" ng-if="!newedition.current.isNew">CONVERTI IN BOZZA</button>
+            <button class="btn btn-delete-settings" ng-click="newedition.delete()" ng-if="!newedition.current.isNew && !newedition.current.authorized">CESTINA</button>
+            <button class="btn btn-block-settings" ng-if="!newedition.current.isNew" ng-click="newedition.convertiInBozza()">CONVERTI IN BOZZA</button>
 
-            <button class="btn btn-action-publish margin-top-20px margin-left-10px pull-right" ng-if="!newedition.current.is_published"  ng-click="newedition.publish()">AUTORIZZA</button>
-            <button class="btn btn-save-bozza-settings pull-right" ng-if="!newedition.current.is_published" ng-click="newedition.saveDraft()">SALVA BOZZA</button>
+            <button class="btn btn-action-publish margin-top-20px margin-left-10px pull-right" ng-click="newedition.autorizza()">{{!newedition.current.authorized ? 'AUTORIZZA': 'SALVA'}}</button>
+            <button class="btn btn-save-bozza-settings pull-right" ng-if="!newedition.current.authorized" ng-click="newedition.saveDraft()">SALVA BOZZA</button>
         </div>
     </div>
 
     <br /><br />
     <div class="row border-bottom-grey"></div>
 
+    <!--
     <div class="row">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 margin-top-15px" style="margin-bottom: 10px;">
             <p class="pull-right font-xs color-grey" ng-if="!newedition.current.isNew">Ultimo salvataggio: {{newedition.current.updatedAt | date: 'dd - MM - yyyy'}} - {{ newedition.current.updatedAt | date: 'HH:mm'}}</p>
         </div>
     </div>
+    -->
 
 </div>

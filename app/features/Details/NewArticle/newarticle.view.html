@@ -145,8 +145,8 @@
                                 <!-------- END --------->
                                 <div class="row" style="margin-top: 70px">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                        <button class="btn btn-delete-settings" ng-if="!article.current.isNew">CESTINA</button>
-                                        <button class="btn btn-block-settings" ng-if="!article.current.isNew && article.current.is_published">CONVERTI IN BOZZA</button>
+                                        <button class="btn btn-delete-settings" ng-if="!article.current.isNew" ng-click="article.delete()">CESTINA</button>
+                                        <button class="btn btn-block-settings" ng-if="!article.current.isNew && article.current.is_published" ng-click="article.covertToDraft()">CONVERTI IN BOZZA</button>
 
                                         <!--<button class="btn btn-pubblica-settings pull-right" ng-click="article.openPublishProgram()">PUBBLICA</button>-->
                                         <div class="btn-group pull-right" style="margin-left:5px;" uib-dropdown>
@@ -244,8 +244,8 @@
                                 <!-------- END --------->
                                 <div class="row" style="margin-top: 70px">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                        <button class="btn btn-delete-settings" ng-if="!article.current.isNew">CESTINA</button>
-                                        <button class="btn btn-block-settings" ng-if="!article.current.isNew">CONVERTI IN BOZZA</button>
+                                        <button class="btn btn-delete-settings" ng-if="!article.current.isNew" ng-click="article.delete()">CESTINA</button>
+                                        <button class="btn btn-block-settings" ng-if="!article.current.isNew" ng-click="article.covertToDraft()">CONVERTI IN BOZZA</button>
 
                                         <div class="btn-group pull-right" style="margin-left:5px;" uib-dropdown>
                                             <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">{{article.current.is_published ? 'SALVA':'PUBBLICA' }}</button>
@@ -368,8 +368,8 @@
                                 <!-------- END --------->
                                 <div class="row" style="margin-top: 70px">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                        <button class="btn btn-delete-settings" ng-if="!article.current.isNew">CESTINA</button>
-                                        <button class="btn btn-block-settings" ng-if="!article.current.isNew">CONVERTI IN BOZZA</button>
+                                        <button class="btn btn-delete-settings" ng-if="!article.current.isNew" ng-click="article.delete()">CESTINA</button>
+                                        <button class="btn btn-block-settings" ng-if="!article.current.isNew" ng-click="article.covertToDraft()">CONVERTI IN BOZZA</button>
 
                                         <div class="btn-group pull-right" style="margin-left:5px;" uib-dropdown>
                                             <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">{{article.current.is_published ? 'SALVA':'PUBBLICA' }}</button>
