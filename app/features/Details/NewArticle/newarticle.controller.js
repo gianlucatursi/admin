@@ -285,8 +285,14 @@
       if(_this.current.isNew){
         _saveDraft(true, data);
       }else{
+        _this.current.dt_publication_date = createDateAsUTC(data);
+        _this.current.is_published = true;
+
+        _saveDraft(true, data);
+
+        /*
         ArticleService
-          .update(_this.current._id, {dt_publication_date: createDateAsUTC(data), is_published: true})
+          .update(_this.current._id, )
           .then(
             function(){
               $state.go($state.ROUTING.contenuti.name);
@@ -295,6 +301,7 @@
               $state.go($state.ROUTING.contenuti.name);
             }
           )
+          */
       }
     }
 
