@@ -1,0 +1,291 @@
+<html lang="en" ng-app="CommunityRestore">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Community Smart</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="app/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="app/libs/ladda/dist/ladda-themeless.min.css">
+    <link rel="stylesheet" href="app/libs/angular-ui-select/dist/select.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="app/libs/animate.css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="app/libs/angular-material/angular-material.css">
+    <link rel="stylesheet" href="app/libs/angular-toastr/dist/angular-toastr.css" />
+    <link href="//cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="app/assets/css/main.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+    <script>
+        document.createElement('ui-select');
+        document.createElement('ui-select-match');
+        document.createElement('ui-select-choices');
+    </script>
+    <![endif]-->
+</head>
+
+<body ng-controller="RestoreController as restore" style="min-width:0px !important;">
+
+<div class="loading">
+    <img class="logo animated pulse infinite" src="./app/assets/images/logo.png" />
+</div>
+
+<div class="maincontent animated fadeIn">
+
+    <div class="row">
+        <!--
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2"></div>
+        <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8">
+            <ui-view></ui-view>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2"></div>
+        -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 master-uiview">
+            <div id="login" class="row">
+                <div class="col-sm-1 col-md-2 col-lg-2"></div>
+                <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
+                    <div class="login_form" style="height: auto; ">
+
+                        <div class="row" id="logintitle">
+                            <div class="col-sm-12 col-md-12 col-lg-12 hidden-xs" style="margin-left:-50px">
+                                <img src="app/assets/images/logo_h.png">
+                            </div>
+                            <div class="col-xs-12 hidden-md hidden-sm hidden-lg">
+                                <img src="app/assets/images/logo.png" style="display: block; margin-left:auto;margin-right: auto;">
+                            </div>
+                        </div>
+
+                        <div class="row no-padding" ng-if="!restore.userdata.isRecoverd">
+                            <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
+                                <form class="communityform">
+                                    <p class="titleform">RECUPERA PASSOWRD</p>
+                                    <div ng-if="!restore.userdata.invalid" class="space-15"></div>
+
+                                    <div class="box-login-invalid" ng-if="restore.userdata.invalid">
+                                        <p>Dati di accesso errati, riprova.</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label ng-class="{'label-invalid': restore.userdata.invalid}">INDIRIZZO E-MAIL</label>
+                                        <input ng-model="restore.userdata.email" type="email" class="form-control community-control">
+                                        <small id="emailHelp" class="form-text text-muted">Il tuo indirizzo mail di cui vuoi recuperare la password</small>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+                        </div>
+
+                        <div class="row no-padding" ng-if="restore.userdata.isRecoverd">
+                            <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
+                                <form class="communityform">
+                                    <p class="titleform">IMPOSTA PASSOWRD</p>
+                                    <div ng-if="!restore.userdata.invalid" class="space-15"></div>
+
+                                    <div class="box-login-invalid" ng-if="restore.userdata.invalid">
+                                        <p>Dati di accesso errati, riprova.</p>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label ng-class="{'label-invalid': restore.userdata.invalid}">INDIRIZZO E-MAIL</label>
+                                        <input ng-model="restore.userdata.email" type="email" class="form-control community-control" disabled>
+                                        <!--<small id="emailHelp" class="form-text text-muted">Il tuo indirizzo mail di cui vuoi recuperare la password</small>-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label ng-class="{'label-invalid': restore.userdata.invalid}">PASSWORD</label>
+                                        <input ng-model="restore.userdata.password" type="password" class="form-control community-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label ng-class="{'label-invalid': restore.userdata.invalid}">RIPETI PASSWORD</label>
+                                        <input ng-model="restore.userdata.secondpassword" type="password" class="form-control community-control">
+                                        <small id="emailHelp" class="form-text text-muted color-smart"
+                                               ng-if="(restore.userdata.password.length > 0 && restore.userdata.secondpassword.length > 0) && (restore.userdata.password != restore.userdata.secondpassword )">La password non è corretta</small>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+                        </div>
+
+                        <div ng-if="!restore.userdata.invalid">
+                            <br />
+                        </div>
+
+                        <div class="row no-padding" style="padding-bottom:30px !important;" ng-if="!restore.userdata.isRecoverd">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
+                                <div class="row no-padding">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margin-top-10px">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <button ng-click="restore.recupera()" class="btn btn-green pull-right" ladda="restore.userdata.isWorking()" data-spinner-color="#FFFFFF">RECUPERA</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row no-padding" style="padding-bottom:30px !important;" ng-if="restore.userdata.isRecoverd">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
+                                <div class="row no-padding">
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margin-top-10px">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <button ng-click="restore.setNewPassword()" class="btn btn-green pull-right" ladda="restore.userdata.isWorking()" data-spinner-color="#FFFFFF">SALVA PASSWORD</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-1 col-md-2 col-lg-2"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="app/libs/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="app/libs/angular/angular.min.js"></script>
+<script type="text/javascript" src="app/libs/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="app/libs/crypto-js/crypto-js.js"></script>
+<!--
+<script type="text/javascript" src="app/libs/restangular/dist/restangular.min.js"></script>
+<script type="text/javascript" src="app/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="app/libs/angular-local-storage/dist/angular-local-storage.min.js"></script>
+<script type="text/javascript" src="app/libs/postal.js/lib/postal.min.js"></script>
+<script type="text/javascript" src="app/libs/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="app/libs/angular-ui-select/dist/select.min.js"></script>
+<script type="text/javascript" src="app/libs/ladda/dist/spin.min.js"></script>
+<script type="text/javascript" src="app/libs/ladda/dist/ladda.min.js"></script>
+<script type="text/javascript" src="app/libs/angular-ladda/dist/angular-ladda.min.js"></script>
+<script type="text/javascript" src="app/libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="app/libs/vimeo-upload/vimeo-upload.js"></script>
+<script type="text/javascript" src="app/libs/angular-aria/angular-aria.js"></script>
+<script type="text/javascript" src="app/libs/angular-animate/angular-animate.min.js"></script>
+<script type="text/javascript" src="app/libs/angular-material/angular-material.js"></script>
+<script type="text/javascript" src="app/libs/moment/moment.js"></script>
+<script type="text/javascript" src="app/libs/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script type="text/javascript" src="app/libs/angular-elastic/elastic.js"></script>
+<script type="text/javascript" src="app/libs/ng-file-upload/ng-file-upload-all.min.js"></script>
+<script type="text/javascript" src="app/libs/ng-file-upload/ng-file-upload.js"></script>
+<script type="text/javascript" src="app/libs/ng-directive-lazy-image/dist/lazy-image.min.js"></script>
+<script type="text/javascript" src="app/libs/ng-videosharing-embed/build/ng-videosharing-embed.min.js"></script>
+<script type="text/javascript" src="app/utils/badwords.js"></script>
+-->
+<!-- APP -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="app/assets/vendor/ie10-viewport-bug-workaround/ie10-viewport-bug-workaround.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    $('.maincontent').hide();
+  })();
+</script>
+
+<script>
+  (function(angular){
+
+    var app = angular.module('CommunityRestore', []);
+
+    app.config(['$locationProvider', function($locationProvider){
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+      });
+    }]);
+
+    RestoreController.$inject = ['$scope', '$http', '$location'];
+    app.controller('RestoreController', RestoreController);
+
+
+    function RestoreController($scope, $http, $location){
+
+      var _this = this;
+      _this.userdata = {
+        email: '',
+        password: '',
+        secondpassword: '',
+        invalid: false,
+        isRecoverd: false
+      };
+
+      _this.recupera = _recupera;
+      _this.setNewPassword = _setNewPassword;
+
+      if($location.search().user){
+        _this.userdata.email = $location.search().user;
+      }
+
+      function _recupera(){
+
+        $http.post('https://communitysmart-services.azurewebsites.net/api/v1/user/recovery/request', {
+          "ds_email": _this.userdata.email
+        })
+          .then(function(result){
+            if(result && result.data && result.data.cd_recoverytoken){
+                _this.userdata.cd_recoverytoken = result.data.cd_recoverytoken;
+                _this.userdata.isRecoverd = true;
+              _this.userdata.invalid = false;
+            }else{
+              _this.userdata.isRecoverd = false;
+              _this.userdata.invalid = true;
+            }
+
+          }, function(){
+            _this.userdata.isRecoverd = false;
+            _this.userdata.invalid = true;
+          });
+
+      }
+
+      function _setNewPassword(){
+
+        if(_this.userdata.password != _this.userdata.secondpassword){
+          _this.userdata.invalid = true;
+          return;
+        }
+
+        _this.userdata.invalid = false;
+
+        $http.post('https://communitysmart-services.azurewebsites.net/api/v1/user/recovery/set', {
+          "cd_recoverytoken":_this.userdata.cd_recoverytoken,
+          "ds_email": _this.userdata.email,
+          "pw_password": _genPSW(_this.userdata.password)
+        })
+          .then(function(result){
+            _this.userdata.isRecoverd = false;
+            alert('Password impostata correttamente');
+          }, function(){
+            _this.userdata.isRecoverd = false;
+            alert('Ops! Qualcosa è andato storto');
+          })
+      }
+
+      setTimeout(function(){
+        $('.loading').hide();
+        $('.maincontent').show();
+      }, 500);
+
+      function _genPSW(psw){
+        return CryptoJS.SHA256(psw).toString(CryptoJS.enc.Base64);
+      }
+    }
+
+  })(window.angular);
+</script>
+
+</body>
+
+</html>
