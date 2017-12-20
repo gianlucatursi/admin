@@ -204,7 +204,7 @@
       _this.categories = [
         'Commerciale - Locale',
         'Istruzione comunale',
-        'Associzione sportiva',
+        'Associazione sportiva',
         'Associazione privata'
       ];
 
