@@ -42,7 +42,7 @@
         update: _customRequest.bind(null, 'pharmacy/:id'),
       },
       segnalazioni: {
-        get: _customRequest.bind(null, 'segnalazioni'),
+        get: _customRequest.bind(null, 'user/newsreport'),
         create: _customRequest.bind(null, 'segnalazioni'),
         update: _customRequest.bind(null, 'segnalazioni/:id'),
       },
