@@ -520,7 +520,7 @@
         start = createDateAsUTC(start);
         end = createDateAsUTC(end);
 
-        if(start && end){
+        if(_.isDate(start) && _.isDate(end)){
           list.push({
             dt_start: start,
             dt_end: end
