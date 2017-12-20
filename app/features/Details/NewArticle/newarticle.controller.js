@@ -520,10 +520,12 @@
         start = createDateAsUTC(start);
         end = createDateAsUTC(end);
 
-        list.push({
-          dt_start: start,
-          dt_end: end
-        });
+        if(start && end){
+          list.push({
+            dt_start: start,
+            dt_end: end
+          });
+        }
       });
 
       return list;

@@ -304,7 +304,7 @@
       if(_this.categoryToBe){
 
         if(_this.categoryToBe._id != article.id_category){
-          var r = confirm("Stai cercando di inserire l'articolo in un'atra categoria. Vuoi proseguire?");
+          var r = confirm("Stai cercando di inserire l'articolo in un'altra categoria. Vuoi proseguire?");
           if (r == true) {
             //change category article
             _changeCategoryArticle(article);
