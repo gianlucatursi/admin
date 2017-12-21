@@ -89,9 +89,9 @@
                                                     <button class="btn btn-blue-icon margin-top-15px" ng-click="article.openCoverImage()"><span class="lsf font-medium">ok</span>&nbsp;&nbsp;&nbsp;SELEZIONA</button>
                                                 </div>
                                                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 div-image" ng-if="!!article.imagesOptions.cover" ng-mouseover="showDeleteCover = true" ng-mouseleave="showDeleteCover = false">
-                                                    <div ng-if="article.imagesOptions.cover.type == 'IMAGE'" style="background-image: url({{article.getMediaUrl(article.imagesOptions.cover)}});background-repeat: no-repeat;background-size: contain;max-width: 354px;height: 266px;"></div>
+                                                    <div ng-if="article.imagesOptions.cover.type == 'IMAGE'" style="background-image: url({{article.getMediaUrl(article.imagesOptions.cover)}});background-repeat: no-repeat;background-size: cover;width: 100%;height: 100%;"></div>
                                                     <embed-video ng-if="article.imagesOptions.cover.type == 'VIDEO'" controls="0" iframe-id="vimeo{{$index}}" width="354" height="266" api="1" player_id="vimeo1" ng-href="{{article.getMediaUrl(article.imagesOptions.cover)}}"></embed-video>
-                                                    <button ng-mouseover="showDeleteCover = true"  ng-if="showDeleteCover" class="btn btn-delete-settings delete-image" ng-click="article.deleteCover()">ELIMINA</button>
+                                                    <p class="text-center"><button ng-mouseover="showDeleteCover = true" ng-if="showDeleteCover" class="btn btn-delete-settings delete-image" ng-click="article.deleteCover()">ELIMINA</button></p>
                                                 </div>
 
                                             </div>
@@ -110,7 +110,7 @@
                                                     <div class="row container-fluid container-scroll cont-gallery" >
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-repeat="m in article.imagesOptions.gallery" style="margin-top:5px;" ng-init="m.showDelete = false;"
                                                              ng-mouseover="m.showDelete = true" ng-mouseleave="m.showDelete =  false;">
-                                                            <div style="width: 100px;height: 100px;background-image: url({{article.getMediaUrl(m, 's')}});background-repeat: no-repeat;background-size: contain;"></div>
+                                                            <div style="width: 100%;height: 140px;background-image: url({{article.getMediaUrl(m, 's')}});background-repeat: no-repeat;background-size: cover;"></div>
                                                             <button ng-if="m.showDelete" class="btn btn-delete-settings delete-image" ng-click="article.deleteGallery($index)">ELIMINA</button>
                                                         </div>
                                                     </div>
@@ -151,7 +151,7 @@
                                         <!--<button class="btn btn-pubblica-settings pull-right" ng-click="article.openPublishProgram()">PUBBLICA</button>-->
                                         <div class="btn-group pull-right" style="margin-left:5px;" uib-dropdown>
                                             <button type="button" class="btn btn-action-publish font-bold" style="HEIGHT: 42px;margin-top: 20px;" ng-click="article.publish()">{{article.current.is_published ? 'SALVA':'PUBBLICA' }}</button>
-                                            <button type="button" class="btn btn-action-publish" style="HEIGHT: 42px;margin-top: 20px;" uib-dropdown-toggle ng-click="article.openPublishProgram()">
+                                            <button type="button" class="btn btn-action-publish" style="height: 42px;margin-top: 20px;" uib-dropdown-toggle ng-click="article.openPublishProgram()">
                                                 <span class="caret"></span>
                                                 <span class="sr-only">Split button!</span>
                                             </button>
