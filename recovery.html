@@ -61,32 +61,10 @@
                             </div>
                         </div>
 
-                        <div class="row no-padding" ng-if="!restore.userdata.isRecoverd">
-                            <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
+                        <div class="row no-padding" >
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
                                 <form class="communityform">
-                                    <p class="titleform">RECUPERA PASSOWRD</p>
-                                    <div ng-if="!restore.userdata.invalid" class="space-15"></div>
-
-                                    <div class="box-login-invalid" ng-if="restore.userdata.invalid">
-                                        <p>Dati di accesso errati, riprova.</p>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label ng-class="{'label-invalid': restore.userdata.invalid}">INDIRIZZO E-MAIL</label>
-                                        <input ng-model="restore.userdata.email" type="email" class="form-control community-control">
-                                        <small id="emailHelp" class="form-text text-muted">Il tuo indirizzo mail di cui vuoi recuperare la password</small>
-                                    </div>
-                                </form>
-                            </div>
-                            <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
-                        </div>
-
-                        <div class="row no-padding" ng-if="restore.userdata.isRecoverd">
-                            <!--<div class="col-lg-2 col-md-2 col-sm-1 col-xs-1"></div>-->
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
-                                <form class="communityform">
-                                    <p class="titleform">IMPOSTA PASSOWRD</p>
+                                    <p class="titleform">IMPOSTA PASSOWORD</p>
                                     <div ng-if="!restore.userdata.invalid" class="space-15"></div>
 
                                     <div class="box-login-invalid" ng-if="restore.userdata.invalid">
@@ -117,20 +95,7 @@
                             <br />
                         </div>
 
-                        <div class="row no-padding" style="padding-bottom:30px !important;" ng-if="!restore.userdata.isRecoverd">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
-                                <div class="row no-padding">
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margin-top-10px">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                        <button ng-click="restore.recupera()" class="btn btn-green pull-right" ladda="restore.userdata.isWorking()" data-spinner-color="#FFFFFF">RECUPERA</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row no-padding" style="padding-bottom:30px !important;" ng-if="restore.userdata.isRecoverd">
+                        <div class="row no-padding" style="padding-bottom:30px !important;">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-15per">
                                 <div class="row no-padding">
                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 margin-top-10px">
@@ -221,6 +186,15 @@
         isRecoverd: false
       };
 
+      var data = $location.search();
+      if(('mail' in data) && ('token' in data)){
+        _this.userdata.email = data.mail;
+        _this.userdata.cd_recoverytoken = data.token;
+        _this.userdata.isRecoverd = true;
+      }else{
+        window.location.href = '/restore.html';
+      }
+
       _this.recupera = _recupera;
       _this.setNewPassword = _setNewPassword;
 
@@ -235,10 +209,9 @@
         })
           .then(function(result){
             if(result && result.data && result.data.cd_recoverytoken){
-                alert('Controlla il tuo indirizzo email');
-                window.location.href = 'https://communitysmart.it';
-               //_this.userdata.isRecoverd = true;
-              //_this.userdata.invalid = false;
+                _this.userdata.cd_recoverytoken = result.data.cd_recoverytoken;
+                _this.userdata.isRecoverd = true;
+              _this.userdata.invalid = false;
             }else{
               _this.userdata.isRecoverd = false;
               _this.userdata.invalid = true;
@@ -268,6 +241,7 @@
           .then(function(result){
             _this.userdata.isRecoverd = false;
             alert('Password impostata correttamente');
+            window.location.href = 'https://communitysmart.it';
           }, function(){
             _this.userdata.isRecoverd = false;
             alert('Ops! Qualcosa è andato storto');
