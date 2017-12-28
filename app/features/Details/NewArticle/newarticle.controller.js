@@ -218,8 +218,8 @@
           }else{
             _this.current.image_cover = {
               type : _this.imagesOptions.cover.type,
-              video_url: _this.imagesOptions.cover.video_url
-
+              video_url: _this.imagesOptions.cover.video_url,
+              video_id: _this.imagesOptions.cover.video_id || ""
             };
           }
         }
