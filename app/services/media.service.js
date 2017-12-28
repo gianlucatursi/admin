@@ -88,7 +88,7 @@
         "id_channel" : media.id_channel,
         "id_city" : AdminService.user.cityId(),
         "id_image" : media.id_image || "",
-        "video_url" : media.video_url || ""
+        "video_url" : media.video_url || "",
         "video_id" : media.video_id || ""
       };
 
