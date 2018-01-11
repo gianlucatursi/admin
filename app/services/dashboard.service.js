@@ -57,6 +57,10 @@
       }else if('id_channel' in _options){
         filters.id_channel = _options.id_channel;
       }
+      
+      if(isPlatform == undefined || isPlatform == false){
+        delete filters.id_city;
+      }
 
       Restangular
         .one(API.dashboard.stats({}, filters))
