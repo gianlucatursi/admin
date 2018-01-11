@@ -245,7 +245,11 @@
         .then(function(data){
 
           _this.isWorking = false;
-          
+
+          data = _.sortBy(data || [],function(node){
+            return - (new Date(node.dt_insert).getTime());
+          });
+
           _.each(data, function (media) {
             // init articles
             _retriveInstance(media._id, media);
